@@ -1,40 +1,417 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>StrainRelief</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      background:#f4fff4;
-      padding:20px;
-      color:#222;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .card{
-      background:white;
-      padding:20px;
-      border-radius:20px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      max-width:600px;
-      margin:auto;
-    }
+<title>StrainRelief</title>
 
-    h1{
-      color:#1f8f4d;
-    }
+<style>
 
-    button{
-      background:#1f8f4d;
-      color:white;
-      border:none;
-      padding:12px 20px;
-      border-radius:12px;
-      margin-top:10px;
-      font-size:16px;
-      cursor:pointer;
-    }
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(to bottom right,#efffed,#dff7e1);
+margin:0;
+padding:20px;
+color:#222;
+}
 
+.container{
+max-width:700px;
+margin:auto;
+}
+
+.hero{
+background:white;
+padding:30px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+margin-bottom:20px;
+}
+
+h1{
+font-size:42px;
+margin-bottom:10px;
+color:#1f8f4d;
+}
+
+.subtitle{
+font-size:18px;
+color:#555;
+line-height:1.5;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+margin-bottom:20px;
+}
+
+h2{
+margin-top:0;
+}
+
+select{
+width:100%;
+padding:15px;
+border-radius:15px;
+border:1px solid #ccc;
+font-size:16px;
+margin-top:10px;
+}
+
+button{
+background:#1f8f4d;
+color:white;
+border:none;
+padding:15px;
+border-radius:15px;
+font-size:16px;
+width:100%;
+margin-top:15px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#18733e;
+}
+
+.result{
+margin-top:20px;
+background:#efffed;
+padding:20px;
+border-radius:20px;
+line-height:1.7;
+display:none;
+}
+
+.badge{
+display:inline-block;
+background:#1f8f4d;
+color:white;
+padding:6px 12px;
+border-radius:20px;
+font-size:14px;
+margin-right:8px;
+margin-bottom:8px;
+}
+
+.warning{
+background:#fff7e6;
+padding:18px;
+border-radius:20px;
+margin-top:20px;
+font-size:14px;
+line-height:1.6;
+}
+
+.footer{
+text-align:center;
+margin-top:30px;
+font-size:13px;
+color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="hero">
+
+<div class="badge">Pain</div>
+<div class="badge">Stress</div>
+<div class="badge">Sleep</div>
+<div class="badge">Mood</div>
+
+<h1>🌿 StrainRelief</h1>
+
+<p class="subtitle">
+A cannabis wellness education tool that helps users discover strain directions based on stress, pain, sleep, mood, and personal comfort level.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>What are you dealing with?</h2>
+
+<select id="symptom">
+<option value="">Select your symptom</option>
+<option>Anxiety</option>
+<option>Body Pain</option>
+<option>Stress</option>
+<option>Sleep Trouble</option>
+<option>Low Mood</option>
+<option>Appetite Loss</option>
+</select>
+
+<select id="experience">
+<option value="">Select experience level</option>
+<option>Beginner</option>
+<option>Some Experience</option>
+<option>Experienced</option>
+</select>
+
+<select id="goal">
+<option value="">Desired feeling</option>
+<option>Relaxed</option>
+<option>Sleepy</option>
+<option>Focused</option>
+<option>Uplifted</option>
+<option>Calm but Functional</option>
+</select>
+
+<button onclick="findStrain()">
+Find My Match
+</button>
+
+<div class="result" id="result"></div>
+
+<div class="warning">
+<strong>Important:</strong><br><br>
+
+StrainRelief is for educational wellness information only. This app does not diagnose, treat, cure, or prevent medical conditions. Cannabis affects everyone differently. Follow local laws and consult a licensed healthcare professional when necessary.
+</div>
+
+</div>
+
+<div class="footer">
+StrainRelief © 2026
+</div>
+
+</div>
+
+<script>
+
+function findStrain(){
+
+let symptom =
+document.getElementById("symptom").value;
+
+let experience =
+document.getElementById("experience").value;
+
+let goal =
+document.getElementById("goal").value;
+
+let resultBox =
+document.getElementById("result");
+
+let recommendation = "";
+
+if(symptom === "Anxiety"){
+
+recommendation =
+`
+<h2>Recommended Direction</h2>
+
+<b>Strain Types:</b>
+CBD-dominant hybrids
+
+<br><br>
+
+<b>Examples:</b>
+Harlequin, ACDC
+
+<br><br>
+
+<b>Suggested Effects:</b>
+Calm, clear-headed, functional
+
+<br><br>
+
+<b>Warning:</b>
+Avoid extremely high THC products if you are anxiety-prone.
+`;
+
+}
+
+else if(symptom === "Body Pain"){
+
+recommendation =
+`
+<h2>Recommended Direction</h2>
+
+<b>Strain Types:</b>
+Indica or balanced hybrids
+
+<br><br>
+
+<b>Examples:</b>
+Northern Lights, Cannatonic
+
+<br><br>
+
+<b>Suggested Effects:</b>
+Body relaxation, comfort, stress relief
+
+<br><br>
+
+<b>Helpful Terpenes:</b>
+Myrcene, Caryophyllene
+`;
+
+}
+
+else if(symptom === "Stress"){
+
+recommendation =
+`
+<h2>Recommended Direction</h2>
+
+<b>Strain Types:</b>
+Balanced calming hybrids
+
+<br><br>
+
+<b>Examples:</b>
+Blue Dream, Cannatonic
+
+<br><br>
+
+<b>Suggested Effects:</b>
+Relaxed, uplifted, calm
+`;
+
+}
+
+else if(symptom === "Sleep Trouble"){
+
+recommendation =
+`
+<h2>Recommended Direction</h2>
+
+<b>Strain Types:</b>
+Nighttime indica strains
+
+<br><br>
+
+<b>Examples:</b>
+Granddaddy Purple, Northern Lights
+
+<br><br>
+
+<b>Suggested Effects:</b>
+Sleepy, heavy relaxation
+
+<br><br>
+
+<b>Warning:</b>
+May cause couch-lock or drowsiness.
+`;
+
+}
+
+else if(symptom === "Low Mood"){
+
+recommendation =
+`
+<h2>Recommended Direction</h2>
+
+<b>Strain Types:</b>
+Uplifting hybrids or sativa-leaning strains
+
+<br><br>
+
+<b>Examples:</b>
+Blue Dream, Sour Diesel
+
+<br><br>
+
+<b>Suggested Effects:</b>
+Energetic, creative, uplifted
+
+<br><br>
+
+<b>Warning:</b>
+Some high-THC products may increase anxiety.
+`;
+
+}
+
+else if(symptom === "Appetite Loss"){
+
+recommendation =
+`
+<h2>Recommended Direction</h2>
+
+<b>Strain Types:</b>
+Relaxing hybrids
+
+<br><br>
+
+<b>Examples:</b>
+Girl Scout Cookies
+
+<br><br>
+
+<b>Suggested Effects:</b>
+Hungry, relaxed, euphoric
+`;
+
+}
+
+else{
+
+recommendation =
+`
+Please select a symptom.
+`;
+
+}
+
+if(experience === "Beginner"){
+
+recommendation +=
+`
+<br><br>
+
+<b>Beginner Tip:</b>
+Start with low THC or balanced THC/CBD products and begin with a very small dose.
+`;
+
+}
+
+if(goal === "Focused"){
+
+recommendation +=
+`
+<br><br>
+
+<b>Focus Direction:</b>
+Look for strains with Pinene terpene and avoid heavy indica products during daytime use.
+`;
+
+}
+
+if(goal === "Sleepy"){
+
+recommendation +=
+`
+<br><br>
+
+<b>Sleep Direction:</b>
+Look for indica strains with Myrcene terpene.
+`;
+
+}
+
+resultBox.style.display = "block";
+resultBox.innerHTML = recommendation;
+
+}
+
+</script>
+
+</body>
+</html>
     select{
       width:100%;
       padding:12px;
