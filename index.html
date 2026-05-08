@@ -4,38 +4,39 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#06110b" />
+<meta name="description" content="StrainRelief is a cannabis wellness education app for exploring strain directions, terpenes, THC guidance, favorites, and wellness journaling." />
 <title>StrainRelief</title>
 
 <style>
 :root{
   --bg:#eaffec;
-  --card:rgba(255,255,255,.86);
+  --card:rgba(255,255,255,.88);
   --card2:rgba(240,255,245,.92);
   --text:#102016;
   --muted:#617167;
   --green:#1f8f4d;
   --green2:#42d884;
+  --gold:#ffd66b;
   --warn:#fff2d4;
   --danger:#ef5b4c;
   --shadow:0 24px 60px rgba(20,90,45,.22);
 }
-
 body.dark{
   --bg:#06110b;
-  --card:rgba(17,34,24,.86);
-  --card2:rgba(28,58,39,.78);
+  --card:rgba(17,34,24,.88);
+  --card2:rgba(28,58,39,.8);
   --text:#f4fff6;
   --muted:#c4d3c9;
   --green:#38c878;
   --green2:#52e890;
+  --gold:#ffd66b;
   --warn:#3b2d13;
   --shadow:0 26px 65px rgba(0,0,0,.5);
 }
-
 *{box-sizing:border-box}
 body{
   margin:0;
-  padding:22px 22px 122px;
+  padding:22px 22px 124px;
   font-family:Arial,sans-serif;
   color:var(--text);
   background:
@@ -47,7 +48,7 @@ body.dark{
     radial-gradient(circle at top,#123b24,transparent 34%),
     linear-gradient(180deg,#06110b,#0a1810);
 }
-.container{max-width:1050px;margin:auto}
+.container{max-width:1080px;margin:auto}
 .card{
   background:var(--card);
   border-radius:34px;
@@ -63,9 +64,16 @@ body.dark{
 .pressable:active{transform:scale(.97);filter:brightness(1.08)}
 .hero{background:linear-gradient(135deg,var(--green),var(--green2));color:white}
 .hero p{color:white}
-h1{font-size:56px;line-height:1;margin:18px 0 12px;color:var(--green)}
-h2{font-size:36px;line-height:1.1;margin:0 0 18px}
-h3{font-size:24px;margin:10px 0}
+.logo-wrap{display:flex;align-items:center;gap:14px;margin:16px 0}
+.logo{
+  width:72px;height:72px;border-radius:24px;
+  background:linear-gradient(135deg,#06110b,#1f8f4d);
+  display:flex;align-items:center;justify-content:center;
+  font-size:38px;box-shadow:0 0 30px rgba(82,232,144,.25)
+}
+h1{font-size:52px;line-height:1;margin:0;color:var(--green)}
+h2{font-size:34px;line-height:1.1;margin:0 0 18px}
+h3{font-size:23px;margin:10px 0}
 p{color:var(--muted);font-size:17px;line-height:1.6}
 .small{font-size:14px}
 .badge,.tag{
@@ -80,12 +88,12 @@ p{color:var(--muted);font-size:17px;line-height:1.6}
 }
 .tag{background:rgba(56,200,120,.18);color:var(--text)}
 .tag.warn{background:rgba(239,91,76,.18)}
-.tag.gold{background:rgba(255,205,70,.2)}
+.tag.gold{background:rgba(255,205,70,.22)}
 select,input,textarea{
   width:100%;
   padding:18px;
   border-radius:22px;
-  border:1px solid #cfcfcf;
+  border:1px solid rgba(180,180,180,.55);
   margin-top:14px;
   font-size:17px;
   outline:none;
@@ -103,7 +111,7 @@ button{
   font-weight:bold;
   box-shadow:0 0 26px rgba(56,200,120,.28);
 }
-.mode,.darkbtn{background:#333}
+.mode,.darkbtn,.close{background:#333}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .filter{min-height:90px;background:var(--card2);color:var(--text)}
 .filter.active{background:linear-gradient(135deg,var(--green),var(--green2));color:white}
@@ -146,17 +154,29 @@ button{
   border:1px solid rgba(255,255,255,.08);
 }
 .image-banner{
-  height:165px;
+  height:170px;
   border-radius:28px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:74px;
   margin-bottom:20px;
-  background:
-    radial-gradient(circle,rgba(82,232,144,.42),transparent 55%),
-    linear-gradient(135deg,rgba(31,143,77,.35),rgba(0,0,0,.08));
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
 }
+.image-banner:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.18));
+}
+.image-banner span{position:relative;z-index:2}
+.img-cbd{background:radial-gradient(circle at 30% 30%,#dfffe7,transparent 25%),linear-gradient(135deg,#2ecc71,#0b3d21)}
+.img-night{background:radial-gradient(circle at 30% 20%,#b5a7ff,transparent 24%),linear-gradient(135deg,#0d132f,#3a1f68)}
+.img-day{background:radial-gradient(circle at 30% 25%,#fff39b,transparent 25%),linear-gradient(135deg,#42d884,#155e36)}
+.img-dessert{background:radial-gradient(circle at 70% 25%,#ffdf9e,transparent 24%),linear-gradient(135deg,#5b2d18,#8b4c2b)}
+.img-bright{background:radial-gradient(circle at 35% 25%,#fff176,transparent 24%),linear-gradient(135deg,#f9a825,#1f8f4d)}
 .match h3{color:var(--green2);font-size:32px}
 .score-row{margin-bottom:16px}
 .score-row strong{display:block;margin-bottom:8px}
@@ -172,7 +192,7 @@ button{
 .thc-high{width:94%;background:#e74c3c}
 @keyframes grow{from{width:0}}
 .grid{display:grid;grid-template-columns:1fr;gap:16px}
-.mini-card,.terpene,.journal-entry{
+.mini-card,.terpene,.journal-entry,.slide{
   background:var(--card2);
   border-radius:26px;
   padding:22px;
@@ -188,7 +208,7 @@ button{
   z-index:50;
 }
 .nav button{
-  width:auto;margin:0;padding:12px 10px;border-radius:16px;
+  width:auto;margin:0;padding:12px 9px;border-radius:16px;
   background:transparent;color:var(--text);box-shadow:none;font-size:12px;
 }
 .nav button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:white}
@@ -206,7 +226,6 @@ button{
   max-height:88vh;overflow:auto;border-radius:34px 34px 0 0;
   padding:26px;backdrop-filter:blur(18px);
 }
-.close{background:#333}
 .footer{text-align:center;color:var(--muted);margin:32px 0}
 .install-box{display:none}
 .legal-link{
@@ -215,6 +234,9 @@ button{
   color:var(--green2);
   font-weight:bold;
 }
+.category-tabs{display:flex;gap:10px;overflow-x:auto;margin:12px 0 20px}
+.category-tabs button{width:auto;white-space:nowrap;margin:0;padding:12px 14px;font-size:14px;background:var(--card2);color:var(--text);box-shadow:none}
+.category-tabs button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:white}
 @media(min-width:760px){
   .grid{grid-template-columns:1fr 1fr}
   .match{min-width:48%}
@@ -227,6 +249,20 @@ button{
 <body class="dark">
 
 <div class="container">
+
+<section id="onboardingPage" class="page hidden">
+  <div class="card hero">
+    <h2>Before You Start</h2>
+    <p>StrainRelief is cannabis wellness education, not medical advice.</p>
+  </div>
+  <div class="grid">
+    <div class="slide"><h3>🌿 Educational Only</h3><p>This app helps you explore directions associated with strains, terpenes, THC/CBD, and personal comfort goals.</p></div>
+    <div class="slide"><h3>🐢 Start Low</h3><p>Start low and go slow, especially with THC or if you are newer to cannabis.</p></div>
+    <div class="slide"><h3>⚖️ Follow Local Laws</h3><p>Only use cannabis where legal and never drive or operate machinery while impaired.</p></div>
+    <div class="slide"><h3>📝 Track Your Experience</h3><p>Use the journal to remember serving size, time of day, and how you felt.</p></div>
+  </div>
+  <button onclick="finishOnboarding()">I Understand</button>
+</section>
 
 <section id="home" class="page">
 
@@ -242,7 +278,11 @@ button{
     <span class="badge">Mood</span>
     <span class="badge">Terpenes</span>
 
-    <h1>🌿 StrainRelief</h1>
+    <div class="logo-wrap">
+      <div class="logo">🌿</div>
+      <h1>StrainRelief</h1>
+    </div>
+
     <p>A cannabis wellness education app for exploring strain directions based on comfort goals, THC sensitivity, terpene profiles, and personal preference.</p>
 
     <button class="mode pressable" onclick="toggleDark()">🌙 Toggle Light / Dark Mode</button>
@@ -252,6 +292,11 @@ button{
   <div class="card daily">
     <h2>Daily Wellness Tip</h2>
     <p id="dailyTip"></p>
+  </div>
+
+  <div class="card">
+    <h2>Quick Categories</h2>
+    <div class="grid" id="categoryCards"></div>
   </div>
 
   <div class="card">
@@ -313,6 +358,8 @@ button{
   <div class="card">
     <h2>Search Strains</h2>
     <input id="searchInput" placeholder="Search Blue Dream, Harlequin, Myrcene, sleep..." oninput="searchStrains()" />
+
+    <div class="category-tabs" id="categoryTabs"></div>
 
     <h2>Trending Strains</h2>
     <div class="grid" id="trendingBox"></div>
@@ -391,13 +438,16 @@ button{
     <p>Follow all local laws. Only use cannabis where legal. Do not drive or operate machinery while impaired.</p>
 
     <h3>Privacy</h3>
-    <p>This version stores favorites, recent searches, and journal entries locally on your device using browser storage. No account system is active in this version.</p>
+    <p>This version stores favorites, recent searches, onboarding status, and journal entries locally on your device using browser storage. No account system is active in this version.</p>
 
     <h3>Terms</h3>
     <p>By using StrainRelief, you understand the app is informational and educational. You are responsible for your own decisions and for following applicable laws.</p>
 
+    <h3>Install App</h3>
+    <p>Add StrainRelief to your home screen for an app-like experience. If the install button does not appear, use your browser menu and choose “Add to Home screen.”</p>
+
     <h3>Contact</h3>
-    <p>For now, add your contact email or business contact here when ready.</p>
+    <p>Add your business contact email here when ready.</p>
   </div>
 </section>
 
@@ -451,22 +501,37 @@ const terpeneGuide=[
  ["🍊 Ocimene","Often associated with sweet, citrusy aroma and lighter daytime directions."]
 ];
 
+const categories=[
+ ["Beginner Friendly","Beginner"],
+ ["Sleep","Sleep Trouble"],
+ ["Lower Anxiety","Anxiety"],
+ ["Stress","Stress"],
+ ["Body Comfort","Body Pain"],
+ ["Mood","Low Mood"],
+ ["Appetite","Appetite Loss"],
+ ["Soreness","Muscle Soreness"]
+];
+
 const strains=[
- {emoji:"🌱",name:"Harlequin",type:"CBD-dominant Hybrid",thc:"Low to moderate THC",cbd:"High CBD",level:"low",terpenes:"Myrcene, Pinene, Beta-Caryophyllene",flavor:"Earthy, herbal, mild sweetness",use:"Day or evening",intensity:"Mild",effects:["Calm","Clear-headed","CBD-forward"],good:["Anxiety","Headache","Stress"],avoid:["Heavy sedation","Strong high"],why:"A calmer direction without an intense high.",warning:"Avoid very high THC products if anxiety-prone.",similar:["ACDC","Cannatonic"],symptoms:["Anxiety","Headache","Stress"],match:94,beginner:92,relax:82,sleep:42},
- {emoji:"🍃",name:"ACDC",type:"CBD-dominant Hybrid",thc:"Very low THC",cbd:"Very high CBD",level:"low",terpenes:"Myrcene, Pinene, Beta-Caryophyllene",flavor:"Earthy, citrus, light pine",use:"Daytime",intensity:"Mild",effects:["Functional","Calm","Low intoxication"],good:["Anxiety","Beginner use","Stress"],avoid:["Strong euphoria"],why:"Good for beginners or THC-sensitive users.",warning:"Effects can be subtle.",similar:["Harlequin","Cannatonic"],symptoms:["Anxiety","Stress"],match:91,beginner:97,relax:78,sleep:35},
- {emoji:"🌿",name:"Cannatonic",type:"Balanced THC/CBD Hybrid",thc:"Low to moderate THC",cbd:"Moderate to high CBD",level:"mid",terpenes:"Myrcene, Pinene, Caryophyllene",flavor:"Citrus, earthy, slightly sweet",use:"Day or evening",intensity:"Moderate",effects:["Balanced","Calm","Body comfort"],good:["Body Pain","Stress","Soreness"],avoid:["Heavy couch-lock"],why:"Balanced option while staying functional.",warning:"Start low if new.",similar:["Harlequin","ACDC","Blue Dream"],symptoms:["Body Pain","Stress","Headache","Muscle Soreness"],match:89,beginner:82,relax:86,sleep:50},
- {emoji:"🌙",name:"Northern Lights",type:"Indica",thc:"Moderate to high THC",cbd:"Low CBD",level:"high",terpenes:"Myrcene, Caryophyllene, Limonene",flavor:"Pine, earthy, sweet spice",use:"Evening / nighttime",intensity:"Strong",effects:["Sleepy","Body heavy","Relaxed"],good:["Sleep Trouble","Body Pain"],avoid:["Daytime focus","Driving","Low tolerance"],why:"Commonly chosen for body relaxation and winding down.",warning:"May cause drowsiness or couch-lock.",similar:["Granddaddy Purple","Girl Scout Cookies"],symptoms:["Body Pain","Sleep Trouble","Muscle Soreness"],match:88,beginner:48,relax:93,sleep:91},
- {emoji:"💚",name:"Blue Dream",type:"Balanced Hybrid",thc:"Moderate THC",cbd:"Low CBD",level:"mid",terpenes:"Myrcene, Pinene, Caryophyllene",flavor:"Berry, sweet, herbal",use:"Day or evening",intensity:"Moderate",effects:["Uplifted","Creative","Relaxed"],good:["Stress","Low Mood"],avoid:["High anxiety sensitivity"],why:"Often described as relaxed but uplifting.",warning:"High-THC batches may not be ideal for anxiety-prone users.",similar:["Cannatonic","Sour Diesel"],symptoms:["Stress","Low Mood"],match:86,beginner:70,relax:75,sleep:38},
- {emoji:"🌌",name:"Granddaddy Purple",type:"Indica-leaning",thc:"Moderate to high THC",cbd:"Low CBD",level:"high",terpenes:"Myrcene, Caryophyllene, Pinene",flavor:"Grape, berry, sweet earth",use:"Nighttime",intensity:"Strong",effects:["Sleepy","Heavy relaxation","Nighttime"],good:["Sleep Trouble"],avoid:["Daytime tasks","Driving","Beginners"],why:"Classic sleepy relaxation direction.",warning:"Do not drive after use.",similar:["Northern Lights"],symptoms:["Sleep Trouble"],match:92,beginner:45,relax:95,sleep:96},
- {emoji:"⚡",name:"Sour Diesel",type:"Sativa-leaning",thc:"High THC",cbd:"Low CBD",level:"high",terpenes:"Limonene, Caryophyllene, Myrcene",flavor:"Diesel, citrus, sharp herbal",use:"Daytime",intensity:"Strong",effects:["Energetic","Uplifted","Creative"],good:["Low Mood","Experienced users"],avoid:["Anxiety-prone","Sleep time","Beginners"],why:"Energetic direction for experienced users.",warning:"Not beginner-friendly. May increase anxiety for some users.",similar:["Blue Dream"],symptoms:["Low Mood"],match:80,beginner:35,relax:40,sleep:10},
- {emoji:"🍪",name:"Girl Scout Cookies",type:"Hybrid",thc:"High THC",cbd:"Low CBD",level:"high",terpenes:"Caryophyllene, Limonene, Humulene",flavor:"Sweet, earthy, dessert-like",use:"Evening",intensity:"Strong",effects:["Hungry","Euphoric","Relaxed"],good:["Appetite Loss","Evening relaxation"],avoid:["Low THC tolerance","Anxiety-prone"],why:"Often associated with hunger and relaxation.",warning:"High THC. Beginners should be careful.",similar:["Blue Dream","Northern Lights"],symptoms:["Appetite Loss"],match:84,beginner:38,relax:82,sleep:62},
- {emoji:"🍍",name:"Pineapple Express",type:"Hybrid",thc:"Moderate THC",cbd:"Low CBD",level:"mid",terpenes:"Limonene, Pinene, Caryophyllene",flavor:"Pineapple, citrus, tropical",use:"Daytime",intensity:"Moderate",effects:["Uplifted","Creative","Bright"],good:["Low Mood","Stress"],avoid:["Sleep time"],why:"A brighter daytime-style direction.",warning:"Start low if sensitive to THC.",similar:["Blue Dream","Jack Herer"],symptoms:["Low Mood","Stress"],match:83,beginner:66,relax:55,sleep:20},
- {emoji:"🌸",name:"Jack Herer",type:"Sativa-leaning Hybrid",thc:"Moderate THC",cbd:"Low CBD",level:"mid",terpenes:"Terpinolene, Pinene, Caryophyllene",flavor:"Pine, herbal, spicy",use:"Daytime",intensity:"Moderate",effects:["Focused","Clear","Uplifted"],good:["Low Mood","Focus"],avoid:["Night use","Anxiety sensitivity"],why:"Often chosen for a clearer daytime direction.",warning:"May feel stimulating for some users.",similar:["Sour Diesel","Pineapple Express"],symptoms:["Low Mood","Stress"],match:81,beginner:62,relax:45,sleep:12},
- {emoji:"🫐",name:"Purple Punch",type:"Indica-leaning Hybrid",thc:"High THC",cbd:"Low CBD",level:"high",terpenes:"Myrcene, Caryophyllene, Limonene",flavor:"Berry, grape, dessert",use:"Nighttime",intensity:"Strong",effects:["Sleepy","Relaxed","Heavy"],good:["Sleep Trouble","Evening relaxation"],avoid:["Daytime focus","Beginners"],why:"A heavier wind-down direction.",warning:"High THC may be too intense for some users.",similar:["Granddaddy Purple"],symptoms:["Sleep Trouble"],match:87,beginner:42,relax:91,sleep:93},
- {emoji:"🍋",name:"Lemon Haze",type:"Sativa-leaning",thc:"Moderate to high THC",cbd:"Low CBD",level:"high",terpenes:"Limonene, Myrcene, Caryophyllene",flavor:"Lemon, citrus, sweet",use:"Daytime",intensity:"Strong",effects:["Uplifted","Energetic","Bright"],good:["Low Mood"],avoid:["Anxiety-prone","Sleep time"],why:"Bright, citrus-forward daytime direction.",warning:"Can feel intense for THC-sensitive users.",similar:["Sour Diesel"],symptoms:["Low Mood"],match:78,beginner:40,relax:35,sleep:8}
+ {emoji:"🌱",image:"img-cbd",name:"Harlequin",type:"CBD-dominant Hybrid",thc:"Low to moderate THC",cbd:"High CBD",level:"low",terpenes:"Myrcene, Pinene, Beta-Caryophyllene",flavor:"Earthy, herbal, mild sweetness",use:"Day or evening",intensity:"Mild",effects:["Calm","Clear-headed","CBD-forward"],good:["Anxiety","Headache","Stress"],avoid:["Heavy sedation","Strong high"],why:"A calmer direction without an intense high.",insight:"Balanced CBD-forward options may align with lower-anxiety comfort goals while keeping the experience more functional.",warning:"Avoid very high THC products if anxiety-prone.",similar:["ACDC","Cannatonic"],symptoms:["Anxiety","Headache","Stress"],match:94,beginner:92,relax:82,sleep:42},
+ {emoji:"🍃",image:"img-cbd",name:"ACDC",type:"CBD-dominant Hybrid",thc:"Very low THC",cbd:"Very high CBD",level:"low",terpenes:"Myrcene, Pinene, Beta-Caryophyllene",flavor:"Earthy, citrus, light pine",use:"Daytime",intensity:"Mild",effects:["Functional","Calm","Low intoxication"],good:["Anxiety","Beginner use","Stress"],avoid:["Strong euphoria"],why:"Good for beginners or THC-sensitive users.",insight:"This is one of the gentler educational directions for users who want comfort without a strong intoxicating effect.",warning:"Effects can be subtle.",similar:["Harlequin","Cannatonic"],symptoms:["Anxiety","Stress"],match:91,beginner:97,relax:78,sleep:35},
+ {emoji:"🌿",image:"img-cbd",name:"Cannatonic",type:"Balanced THC/CBD Hybrid",thc:"Low to moderate THC",cbd:"Moderate to high CBD",level:"mid",terpenes:"Myrcene, Pinene, Caryophyllene",flavor:"Citrus, earthy, slightly sweet",use:"Day or evening",intensity:"Moderate",effects:["Balanced","Calm","Body comfort"],good:["Body Pain","Stress","Soreness"],avoid:["Heavy couch-lock"],why:"Balanced option while staying functional.",insight:"Balanced THC/CBD directions can be a useful middle ground for users who want comfort but do not want the strongest THC experience.",warning:"Start low if new.",similar:["Harlequin","ACDC","Blue Dream"],symptoms:["Body Pain","Stress","Headache","Muscle Soreness"],match:89,beginner:82,relax:86,sleep:50},
+ {emoji:"🌙",image:"img-night",name:"Northern Lights",type:"Indica",thc:"Moderate to high THC",cbd:"Low CBD",level:"high",terpenes:"Myrcene, Caryophyllene, Limonene",flavor:"Pine, earthy, sweet spice",use:"Evening / nighttime",intensity:"Strong",effects:["Sleepy","Body heavy","Relaxed"],good:["Sleep Trouble","Body Pain"],avoid:["Daytime focus","Driving","Low tolerance"],why:"Commonly chosen for body relaxation and winding down.",insight:"Myrcene-forward nighttime directions may be better suited for evenings when relaxation is the main goal.",warning:"May cause drowsiness or couch-lock.",similar:["Granddaddy Purple","Girl Scout Cookies"],symptoms:["Body Pain","Sleep Trouble","Muscle Soreness"],match:88,beginner:48,relax:93,sleep:91},
+ {emoji:"💚",image:"img-day",name:"Blue Dream",type:"Balanced Hybrid",thc:"Moderate THC",cbd:"Low CBD",level:"mid",terpenes:"Myrcene, Pinene, Caryophyllene",flavor:"Berry, sweet, herbal",use:"Day or evening",intensity:"Moderate",effects:["Uplifted","Creative","Relaxed"],good:["Stress","Low Mood"],avoid:["High anxiety sensitivity"],why:"Often described as relaxed but uplifting.",insight:"This direction may fit users looking for a lighter balance between mood support and relaxation, but THC sensitivity still matters.",warning:"High-THC batches may not be ideal for anxiety-prone users.",similar:["Cannatonic","Sour Diesel"],symptoms:["Stress","Low Mood"],match:86,beginner:70,relax:75,sleep:38},
+ {emoji:"🌌",image:"img-night",name:"Granddaddy Purple",type:"Indica-leaning",thc:"Moderate to high THC",cbd:"Low CBD",level:"high",terpenes:"Myrcene, Caryophyllene, Pinene",flavor:"Grape, berry, sweet earth",use:"Nighttime",intensity:"Strong",effects:["Sleepy","Heavy relaxation","Nighttime"],good:["Sleep Trouble"],avoid:["Daytime tasks","Driving","Beginners"],why:"Classic sleepy relaxation direction.",insight:"This is a heavier nighttime-style direction and is better approached carefully by THC-sensitive users.",warning:"Do not drive after use.",similar:["Northern Lights"],symptoms:["Sleep Trouble"],match:92,beginner:45,relax:95,sleep:96},
+ {emoji:"⚡",image:"img-bright",name:"Sour Diesel",type:"Sativa-leaning",thc:"High THC",cbd:"Low CBD",level:"high",terpenes:"Limonene, Caryophyllene, Myrcene",flavor:"Diesel, citrus, sharp herbal",use:"Daytime",intensity:"Strong",effects:["Energetic","Uplifted","Creative"],good:["Low Mood","Experienced users"],avoid:["Anxiety-prone","Sleep time","Beginners"],why:"Energetic direction for experienced users.",insight:"Stimulating high-THC directions may be better for experienced users and may not match lower-anxiety goals.",warning:"Not beginner-friendly. May increase anxiety for some users.",similar:["Blue Dream"],symptoms:["Low Mood"],match:80,beginner:35,relax:40,sleep:10},
+ {emoji:"🍪",image:"img-dessert",name:"Girl Scout Cookies",type:"Hybrid",thc:"High THC",cbd:"Low CBD",level:"high",terpenes:"Caryophyllene, Limonene, Humulene",flavor:"Sweet, earthy, dessert-like",use:"Evening",intensity:"Strong",effects:["Hungry","Euphoric","Relaxed"],good:["Appetite Loss","Evening relaxation"],avoid:["Low THC tolerance","Anxiety-prone"],why:"Often associated with hunger and relaxation.",insight:"High-THC evening directions may feel enjoyable for some users but can be too strong for beginners.",warning:"High THC. Beginners should be careful.",similar:["Blue Dream","Northern Lights"],symptoms:["Appetite Loss"],match:84,beginner:38,relax:82,sleep:62},
+ {emoji:"🍍",image:"img-day",name:"Pineapple Express",type:"Hybrid",thc:"Moderate THC",cbd:"Low CBD",level:"mid",terpenes:"Limonene, Pinene, Caryophyllene",flavor:"Pineapple, citrus, tropical",use:"Daytime",intensity:"Moderate",effects:["Uplifted","Creative","Bright"],good:["Low Mood","Stress"],avoid:["Sleep time"],why:"A brighter daytime-style direction.",insight:"Limonene and pinene-forward daytime directions may feel brighter and more functional for some users.",warning:"Start low if sensitive to THC.",similar:["Blue Dream","Jack Herer"],symptoms:["Low Mood","Stress"],match:83,beginner:66,relax:55,sleep:20},
+ {emoji:"🌸",image:"img-bright",name:"Jack Herer",type:"Sativa-leaning Hybrid",thc:"Moderate THC",cbd:"Low CBD",level:"mid",terpenes:"Terpinolene, Pinene, Caryophyllene",flavor:"Pine, herbal, spicy",use:"Daytime",intensity:"Moderate",effects:["Focused","Clear","Uplifted"],good:["Low Mood","Focus"],avoid:["Night use","Anxiety sensitivity"],why:"Often chosen for a clearer daytime direction.",insight:"Clearer, pinene-forward directions may better align with daytime focus goals than nighttime relaxation goals.",warning:"May feel stimulating for some users.",similar:["Sour Diesel","Pineapple Express"],symptoms:["Low Mood","Stress"],match:81,beginner:62,relax:45,sleep:12},
+ {emoji:"🫐",image:"img-night",name:"Purple Punch",type:"Indica-leaning Hybrid",thc:"High THC",cbd:"Low CBD",level:"high",terpenes:"Myrcene, Caryophyllene, Limonene",flavor:"Berry, grape, dessert",use:"Nighttime",intensity:"Strong",effects:["Sleepy","Relaxed","Heavy"],good:["Sleep Trouble","Evening relaxation"],avoid:["Daytime focus","Beginners"],why:"A heavier wind-down direction.",insight:"Dessert-style indica-leaning directions are often better saved for nighttime and lower-responsibility windows.",warning:"High THC may be too intense for some users.",similar:["Granddaddy Purple"],symptoms:["Sleep Trouble"],match:87,beginner:42,relax:91,sleep:93},
+ {emoji:"🍋",image:"img-bright",name:"Lemon Haze",type:"Sativa-leaning",thc:"Moderate to high THC",cbd:"Low CBD",level:"high",terpenes:"Limonene, Myrcene, Caryophyllene",flavor:"Lemon, citrus, sweet",use:"Daytime",intensity:"Strong",effects:["Uplifted","Energetic","Bright"],good:["Low Mood"],avoid:["Anxiety-prone","Sleep time"],why:"Bright, citrus-forward daytime direction.",insight:"Citrus-forward high-THC options may feel energizing but can be too intense for THC-sensitive users.",warning:"Can feel intense for THC-sensitive users.",similar:["Sour Diesel"],symptoms:["Low Mood"],match:78,beginner:40,relax:35,sleep:8}
 ];
 
 function toggleDark(){document.body.classList.toggle("dark")}
+function finishOnboarding(){
+ localStorage.setItem("strainReliefOnboarding","done");
+ showPageById("home");
+}
 function toggleFilter(type){
  if(type==="anxiety"){lowAnxietyMode=!lowAnxietyMode;document.getElementById("lowAnxietyBtn").classList.toggle("active")}
  if(type==="night"){nightMode=!nightMode;document.getElementById("nightBtn").classList.toggle("active")}
@@ -507,6 +572,7 @@ function findStrain(){
   if(experience==="Beginner") matches=matches.sort((a,b)=>b.beginner-a.beginner);
   if(goal==="Sleepy") matches=matches.sort((a,b)=>b.sleep-a.sleep);
   if(goal==="Relaxed") matches=matches.sort((a,b)=>b.relax-a.relax);
+  if(goal==="Focused") matches=matches.sort((a,b)=>b.beginner + b.match - (b.sleep/2) - (a.beginner + a.match - (a.sleep/2)));
 
   if(!matches.length) matches=strains.filter(s=>s.level==="low"||s.cbd.includes("High")).slice(0,3);
 
@@ -522,6 +588,7 @@ function findStrain(){
     ${lowAnxietyMode ? "✓ Lower-anxiety preference<br>" : ""}
     ${nightMode ? "✓ Nighttime preference<br>" : ""}
   </div>
+  <div class="info"><strong>AI Wellness Insight:</strong><br>${buildInsight(symptom,experience,goal)}</div>
   <div class="carousel">
   `;
 
@@ -545,13 +612,24 @@ function findStrain(){
   result.innerHTML=html;
   loadRecent();
   loadSearches();
- },1200);
+ },1100);
+}
+
+function buildInsight(symptom,experience,goal){
+ let parts=[];
+ if(symptom==="Anxiety") parts.push("lower-THC or CBD-forward directions may be a better starting point");
+ if(symptom==="Sleep Trouble") parts.push("myrcene-forward nighttime directions may better match your wind-down goal");
+ if(symptom==="Low Mood") parts.push("brighter limonene-forward directions may align with an uplifted daytime preference");
+ if(symptom==="Body Pain" || symptom==="Muscle Soreness") parts.push("balanced body-comfort directions with caryophyllene or myrcene may be worth asking about");
+ if(experience==="Beginner") parts.push("beginner-friendly options should stay lower intensity");
+ if(goal) parts.push("your desired feeling is " + goal.toLowerCase());
+ return parts.length ? "Based on your profile, " + parts.join(", ") + ". Ask for lab-tested options and start low." : "Based on your profile, balanced, lab-tested options may be the safest educational direction to explore first.";
 }
 
 function strainCard(s,index){
  return `
  <div class="match pressable">
-  <div class="image-banner">${s.emoji}</div>
+  <div class="image-banner ${s.image}"><span>${s.emoji}</span></div>
   <h3>${index+1}. ${s.name}</h3>
   ${tags(s.effects)}
   <div class="score-box">
@@ -568,6 +646,7 @@ function strainCard(s,index){
   <p><strong>Terpenes:</strong> ${s.terpenes}</p>
   <p><strong>Flavor / Aroma:</strong> ${s.flavor}</p>
   <p><strong>Best Use:</strong> ${s.use}</p>
+  <div class="info"><strong>AI Wellness Insight:</strong><br>${s.insight}</div>
   <div class="info"><strong>Good For:</strong><br>${tags(s.good)}</div>
   <div class="warning"><strong>Avoid If:</strong><br>${tags(s.avoid)}</div>
   <div class="info"><strong>Why this direction:</strong><br>${s.why}</div>
@@ -602,12 +681,20 @@ function searchStrains(){
  loadRecent();loadSearches();
 }
 
+function filterCategory(value){
+ let found;
+ if(value==="Beginner") found=strains.filter(s=>s.beginner>=70);
+ else found=strains.filter(s=>s.symptoms.includes(value) || s.good.includes(value));
+ document.getElementById("searchResults").innerHTML=`<h2>${value}</h2><div class="carousel">${found.map((s,i)=>strainCard(s,i)).join("")}</div>`;
+ showPageById("searchPage");
+}
+
 function openDetails(name){
  const s=strains.find(x=>x.name===name);
  if(!s)return;
  addRecent(name);loadRecent();
  document.getElementById("modalContent").innerHTML=`
-  <div class="image-banner">${s.emoji}</div>
+  <div class="image-banner ${s.image}"><span>${s.emoji}</span></div>
   <h2>${s.name}</h2>
   ${tags(s.effects)}
   <div class="score-box">
@@ -623,6 +710,7 @@ function openDetails(name){
   <p><strong>Terpenes:</strong> ${s.terpenes}</p>
   <p><strong>Flavor / Aroma:</strong> ${s.flavor}</p>
   <p><strong>Best Use:</strong> ${s.use}</p>
+  <div class="info"><strong>AI Wellness Insight:</strong><br>${s.insight}</div>
   <div class="info"><strong>Good For:</strong><br>${tags(s.good)}</div>
   <div class="warning"><strong>Avoid If:</strong><br>${tags(s.avoid)}</div>
   <div class="info"><strong>Similar Strains:</strong><br>${tags(s.similar)}</div>
@@ -702,6 +790,17 @@ function loadTrending(){
 function loadTerpenes(){
  document.getElementById("terpeneBox").innerHTML=terpeneGuide.map(t=>`
   <div class="terpene pressable"><h3>${t[0]}</h3><p>${t[1]}</p></div>
+ `).join("");
+}
+function loadCategories(){
+ document.getElementById("categoryCards").innerHTML=categories.map(c=>`
+  <div class="mini-card pressable" onclick="filterCategory('${c[1]}')">
+    <h3>${c[0]}</h3>
+    <p>Explore ${c[0].toLowerCase()} cannabis wellness directions.</p>
+  </div>
+ `).join("");
+ document.getElementById("categoryTabs").innerHTML=categories.map(c=>`
+  <button onclick="filterCategory('${c[1]}')">${c[0]}</button>
  `).join("");
 }
 function showToast(msg){
@@ -811,9 +910,14 @@ loadRecent();
 loadSearches();
 loadTrending();
 loadTerpenes();
+loadCategories();
 loadJournalSelect();
 loadJournal();
 setupPWA();
+
+if(!localStorage.getItem("strainReliefOnboarding")){
+ showPageById("onboardingPage");
+}
 </script>
 
 </body>
