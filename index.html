@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#06110b" />
 <meta name="description" content="StrainRelief is a cannabis wellness education app for exploring strain directions, terpenes, THC guidance, favorites, and wellness journaling." />
-<title>StrainRelief - Cannabis Wellness Education</title>
+<title>StrainRelief</title>
  
 <style>
 :root{
@@ -209,7 +209,7 @@ button{
 }
 .nav button{
   width:auto;margin:0;padding:12px 9px;border-radius:16px;
-  background:transparent;color:var(--text);box-shadow:none;font-size:11px;
+  background:transparent;color:var(--text);box-shadow:none;font-size:12px;
 }
 .nav button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:white}
 .toast{
@@ -238,67 +238,39 @@ button{
 .category-tabs button{width:auto;white-space:nowrap;margin:0;padding:12px 14px;font-size:14px;background:var(--card2);color:var(--text);box-shadow:none}
 .category-tabs button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:white}
  
-.brand-strip{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-  margin-top:18px;
-}
-.brand-card{
-  background:linear-gradient(135deg,rgba(56,200,120,.18),rgba(82,232,144,.08));
-  border:1px solid rgba(82,232,144,.18);
+.collection-card{
+  background:linear-gradient(135deg,rgba(56,200,120,.18),rgba(255,214,107,.10));
   border-radius:28px;
-  padding:20px;
-}
-.wordmark{
-  font-weight:900;
-  letter-spacing:-1px;
-}
-.wordmark span{
-  color:var(--green2);
-}
-.app-icon-preview{
-  width:118px;
-  height:118px;
-  border-radius:34px;
-  background:
-    radial-gradient(circle at 30% 25%,rgba(82,232,144,.75),transparent 28%),
-    linear-gradient(135deg,#06110b,#145c32 65%,#38c878);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:58px;
-  box-shadow:0 20px 55px rgba(0,0,0,.35), inset 0 0 18px rgba(255,255,255,.08);
+  padding:24px;
+  border:1px solid rgba(255,255,255,.08);
 }
 .article-card{
   background:var(--card2);
   border-radius:28px;
   padding:24px;
-  border:1px solid rgba(255,255,255,.08);
+  cursor:pointer;
 }
-.article-card h3{
-  color:var(--green2);
+.logo-mark{
+  width:92px;
+  height:92px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(82,232,144,.9),transparent 28%),
+    linear-gradient(135deg,#06110b,#1f8f4d 55%,#52e890);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:46px;
+  box-shadow:0 18px 55px rgba(56,200,120,.28);
+  margin-bottom:14px;
 }
-.visual-label{
-  position:absolute;
-  left:14px;
-  bottom:14px;
-  z-index:3;
-  background:rgba(0,0,0,.45);
-  color:white;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:bold;
-  backdrop-filter:blur(8px);
-}
-.premium-divider{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(82,232,144,.45),transparent);
-  margin:20px 0;
-}
-@media(min-width:760px){
-  .brand-strip{grid-template-columns:1fr 1fr 1fr}
+.profile-pill{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.10);
+  padding:12px 14px;
+  border-radius:18px;
+  margin-top:10px;
+  color:var(--text);
 }
  
 @media(min-width:760px){
@@ -316,16 +288,47 @@ button{
  
 <section id="onboardingPage" class="page hidden">
   <div class="card hero">
-    <h2>Before You Start</h2>
-    <p>StrainRelief is cannabis wellness education, not medical advice.</p>
+    <div class="logo-mark">🌿</div>
+    <h2>Set Up StrainRelief</h2>
+    <p>Personalize your cannabis wellness education experience. This is educational only, not medical advice.</p>
   </div>
+ 
+  <div class="card">
+    <h2>Your Wellness Profile</h2>
+    <select id="onboardPriority">
+      <option value="">What matters most?</option>
+      <option>Lower Anxiety</option>
+      <option>Better Sleep</option>
+      <option>Body Comfort</option>
+      <option>Daytime Focus</option>
+      <option>Mood Support</option>
+      <option>Appetite Support</option>
+    </select>
+ 
+    <select id="onboardSensitivity">
+      <option value="">THC sensitivity</option>
+      <option>Very sensitive</option>
+      <option>Somewhat sensitive</option>
+      <option>Not very sensitive</option>
+      <option>Not sure yet</option>
+    </select>
+ 
+    <select id="onboardPreference">
+      <option value="">Preferred direction</option>
+      <option>CBD-forward</option>
+      <option>Balanced THC/CBD</option>
+      <option>THC-forward</option>
+      <option>Not sure yet</option>
+    </select>
+  </div>
+ 
   <div class="grid">
     <div class="slide"><h3>🌿 Educational Only</h3><p>This app helps you explore directions associated with strains, terpenes, THC/CBD, and personal comfort goals.</p></div>
     <div class="slide"><h3>🐢 Start Low</h3><p>Start low and go slow, especially with THC or if you are newer to cannabis.</p></div>
     <div class="slide"><h3>⚖️ Follow Local Laws</h3><p>Only use cannabis where legal and never drive or operate machinery while impaired.</p></div>
     <div class="slide"><h3>📝 Track Your Experience</h3><p>Use the journal to remember serving size, time of day, and how you felt.</p></div>
   </div>
-  <button onclick="finishOnboarding()">I Understand</button>
+  <button onclick="finishOnboarding()">Save My Profile</button>
 </section>
  
 <section id="home" class="page">
@@ -351,41 +354,22 @@ button{
  
     <button class="mode pressable" onclick="toggleDark()">🌙 Toggle Light / Dark Mode</button>
     <button class="pressable install-box" id="installBtn">Install StrainRelief</button>
- 
-    <div class="premium-divider"></div>
-    <div class="brand-strip">
-      <div class="brand-card">
-        <h3>Premium Brand</h3>
-        <p class="small">Clean green-black wellness identity with safer educational positioning.</p>
-      </div>
-      <div class="brand-card">
-        <h3>App-Like Feel</h3>
-        <p class="small">Installable layout, bottom navigation, saved favorites, and journal tracking.</p>
-      </div>
-      <div class="brand-card">
-        <h3>Safety First</h3>
-        <p class="small">Educational only, local-law reminders, no treatment or cure claims.</p>
-      </div>
-    </div>
-  </div>
- 
- 
-  <div class="card">
-    <h2>Brand Studio</h2>
-    <div class="row">
-      <div>
-        <div class="app-icon-preview">🌿</div>
-      </div>
-      <div>
-        <h3 class="wordmark">Strain<span>Relief</span></h3>
-        <p>Premium cannabis wellness education. Built around safer guidance, personal comfort goals, terpene literacy, and responsible shopping confidence.</p>
-      </div>
-    </div>
   </div>
  
   <div class="card daily">
     <h2>Daily Wellness Tip</h2>
     <p id="dailyTip"></p>
+  </div>
+ 
+  <div class="card">
+    <h2>Your Saved Profile</h2>
+    <div id="profileBox" class="profile-summary">No profile saved yet. Complete onboarding or use the quiz below.</div>
+    <button class="mode" onclick="resetOnboarding()">Edit Wellness Profile</button>
+  </div>
+ 
+  <div class="card">
+    <h2>Collections</h2>
+    <div class="grid" id="collectionsBox"></div>
   </div>
  
   <div class="card">
@@ -521,42 +505,11 @@ button{
 </section>
  
  
-<section id="articlesPage" class="page hidden">
-  <div class="card hero">
-    <h2>Education Center</h2>
-    <p>Simple cannabis wellness education written with safer, non-medical wording.</p>
-  </div>
- 
-  <div class="grid">
-    <div class="article-card">
-      <h3>🌿 THC vs CBD</h3>
-      <p>THC is commonly associated with intoxicating effects, while CBD-forward options may feel less intense for some users. Products vary widely, so ask for lab-tested information and start low.</p>
-    </div>
- 
-    <div class="article-card">
-      <h3>🥭 What is Myrcene?</h3>
-      <p>Myrcene is a terpene often associated with earthy aroma, body relaxation, and nighttime-style directions. It does not guarantee a specific effect.</p>
-    </div>
- 
-    <div class="article-card">
-      <h3>🐢 Start Low and Go Slow</h3>
-      <p>Newer users may want to begin with lower THC, balanced THC/CBD, or CBD-forward options. Give products time to take effect and avoid stacking too much too quickly.</p>
-    </div>
- 
-    <div class="article-card">
-      <h3>🌙 Daytime vs Nighttime</h3>
-      <p>Daytime directions are often described as brighter, clearer, or more functional. Nighttime directions are often associated with heavier relaxation or sleepiness.</p>
-    </div>
- 
-    <div class="article-card">
-      <h3>🛒 Dispensary Questions</h3>
-      <p>Ask about THC percentage, CBD content, terpene profile, serving size, onset time, lab testing, and beginner-friendly options. Follow local laws and do not drive while impaired.</p>
-    </div>
- 
-    <div class="article-card">
-      <h3>📝 Why Journaling Helps</h3>
-      <p>Tracking strain, serving size, time of day, and how you felt can help you remember what directions felt comfortable or too intense.</p>
-    </div>
+<section id="educationPage" class="page hidden">
+  <div class="card">
+    <h2>Education Hub</h2>
+    <p>Simple cannabis wellness education. No medical claims. No diagnosis. No treatment promises.</p>
+    <div class="grid" id="articleBox"></div>
   </div>
 </section>
  
@@ -581,16 +534,16 @@ button{
     <p>Add StrainRelief to your home screen for an app-like experience. If the install button does not appear, use your browser menu and choose “Add to Home screen.”</p>
  
     <h3>Contact</h3>
-    <p>Coming soon: official StrainRelief contact form and partnership inquiry options.</p>
+    <p>Add your business contact email here when ready.</p>
   </div>
 </section>
  
 <div class="footer">
-  StrainRelief © 2026 - Cannabis Wellness Education<br>
-  <span class="legal-link" onclick="showPageById('articlesPage')">Education</span>
+  StrainRelief © 2026<br>
   <span class="legal-link" onclick="showPageById('infoPage')">About</span>
   <span class="legal-link" onclick="showPageById('infoPage')">Privacy</span>
   <span class="legal-link" onclick="showPageById('infoPage')">Medical Disclaimer</span>
+  <span class="legal-link" onclick="showPageById('educationPage')">Education Hub</span>
 </div>
  
 </div>
@@ -600,8 +553,8 @@ button{
   <button onclick="showPage('searchPage', this)">Search</button>
   <button onclick="showPage('terpenesPage', this)">Terpenes</button>
   <button onclick="showPage('journalPage', this)">Journal</button>
-  <button onclick="showPage('articlesPage', this)">Learn</button>
   <button onclick="showPage('favoritesPage', this)">Saved</button>
+  <button onclick="showPage('educationPage', this)">Learn</button>
   <button onclick="showPage('infoPage', this)">Info</button>
 </div>
  
@@ -681,6 +634,25 @@ const strainSeeds=[
  ["Chemdawg","⛽","img-bright","Hybrid","High THC","Low CBD","high","Caryophyllene, Myrcene, Limonene","Diesel, chemical, pine","Day or evening","Strong",["Creative","Euphoric","Strong"],["Low Mood","Experienced users"],["Beginners","Anxiety-prone"],["Low Mood"],74,28,45,18]
 ];
  
+ 
+const collections=[
+ {title:"Beginner-Friendly Collection",desc:"Lower-intensity or CBD-forward directions to explore first.",filter:s=>s.beginner>=80},
+ {title:"CBD-Forward Options",desc:"Options with CBD-forward or balanced profiles.",filter:s=>s.level==="low" || s.cbd.toLowerCase().includes("high")},
+ {title:"Sleep + Wind-Down",desc:"Nighttime-style directions with stronger relaxation scores.",filter:s=>s.sleep>=80},
+ {title:"Functional Daytime",desc:"Clearer daytime directions that may feel less heavy.",filter:s=>s.use.toLowerCase().includes("day") && s.sleep<50},
+ {title:"Body Comfort",desc:"Directions commonly associated with body comfort or soreness goals.",filter:s=>s.symptoms.includes("Body Pain") || s.symptoms.includes("Muscle Soreness")},
+ {title:"Appetite Direction",desc:"Options often associated with hunger or evening appetite support.",filter:s=>s.symptoms.includes("Appetite Loss")}
+];
+ 
+const articles=[
+ {title:"What does CBD-forward mean?",body:"CBD-forward means the product is centered more around CBD than THC. For some users, this may feel less intense than high-THC options. Always check lab results and start low."},
+ {title:"THC vs CBD explained simply",body:"THC is the cannabinoid most associated with intoxication. CBD is not usually associated with the same intoxicating effect. Many products contain both, so ask for percentages and serving size."},
+ {title:"What are terpenes?",body:"Terpenes are aroma compounds that influence smell and flavor. They are also commonly discussed when describing the overall direction of a strain, such as citrusy, earthy, sleepy, bright, or calming."},
+ {title:"Start low and go slow",body:"Start with a low serving, especially if you are new or sensitive to THC. Wait to understand how it affects you before taking more. Avoid driving while impaired."},
+ {title:"How to shop at a dispensary",body:"Ask for lab-tested products, THC/CBD percentages, terpene profile, serving size, onset time, and lower-risk beginner-friendly options. Follow local laws."},
+ {title:"Lower-anxiety cannabis directions",body:"For anxiety-prone users, lower THC, CBD-forward, or balanced THC/CBD options may be more comfortable directions to explore. Cannabis affects everyone differently."}
+];
+ 
 const strains=strainSeeds.map(x=>({
  name:x[0],emoji:x[1],image:x[2],type:x[3],thc:x[4],cbd:x[5],level:x[6],terpenes:x[7],flavor:x[8],use:x[9],intensity:x[10],
  effects:x[11],good:x[12],avoid:x[13],symptoms:x[14],match:x[15],beginner:x[16],relax:x[17],sleep:x[18],
@@ -696,8 +668,33 @@ strains.forEach(s=>{
  
 function toggleDark(){document.body.classList.toggle("dark")}
 function finishOnboarding(){
+ const profile={
+  priority:document.getElementById("onboardPriority").value || "Not selected",
+  sensitivity:document.getElementById("onboardSensitivity").value || "Not selected",
+  preference:document.getElementById("onboardPreference").value || "Not selected"
+ };
+ localStorage.setItem("strainReliefProfile",JSON.stringify(profile));
  localStorage.setItem("strainReliefOnboarding","done");
+ loadProfile();
  showPageById("home");
+ showToast("Profile saved");
+}
+function resetOnboarding(){
+ showPageById("onboardingPage");
+}
+function loadProfile(){
+ const profile=JSON.parse(localStorage.getItem("strainReliefProfile")||"null");
+ const box=document.getElementById("profileBox");
+ if(!box)return;
+ if(!profile){
+  box.innerHTML="No profile saved yet. Complete onboarding or use the quiz below.";
+  return;
+ }
+ box.innerHTML=`
+  <div class="profile-pill"><strong>Priority:</strong> ${profile.priority}</div>
+  <div class="profile-pill"><strong>THC Sensitivity:</strong> ${profile.sensitivity}</div>
+  <div class="profile-pill"><strong>Preferred Direction:</strong> ${profile.preference}</div>
+ `;
 }
 function toggleFilter(type){
  if(type==="anxiety"){lowAnxietyMode=!lowAnxietyMode;document.getElementById("lowAnxietyBtn").classList.toggle("active")}
@@ -796,7 +793,7 @@ function buildInsight(symptom,experience,goal){
 function strainCard(s,index){
  return `
  <div class="match pressable">
-  <div class="image-banner ${s.image}"><span>${s.emoji}</span><div class="visual-label">${s.level.toUpperCase()} THC</div></div>
+  <div class="image-banner ${s.image}"><span>${s.emoji}</span></div>
   <h3>${index+1}. ${s.name}</h3>
   ${tags(s.effects)}
   <div class="score-box">
@@ -861,7 +858,7 @@ function openDetails(name){
  if(!s)return;
  addRecent(name);loadRecent();
  document.getElementById("modalContent").innerHTML=`
-  <div class="image-banner ${s.image}"><span>${s.emoji}</span><div class="visual-label">${s.level.toUpperCase()} THC</div></div>
+  <div class="image-banner ${s.image}"><span>${s.emoji}</span></div>
   <h2>${s.name}</h2>
   ${tags(s.effects)}
   <div class="score-box">
@@ -944,6 +941,39 @@ function showPage(id,btn){
  window.scrollTo(0,0);
 }
 function showPageById(id){showPage(id,null)}
+ 
+function loadCollections(){
+ document.getElementById("collectionsBox").innerHTML=collections.map((c,i)=>`
+  <div class="collection-card pressable" onclick="openCollection(${i})">
+   <h3>${c.title}</h3>
+   <p>${c.desc}</p>
+  </div>
+ `).join("");
+}
+function openCollection(i){
+ const c=collections[i];
+ const found=strains.filter(c.filter);
+ document.getElementById("searchResults").innerHTML=`<h2>${c.title}</h2><p>${c.desc}</p><div class="carousel">${found.map((s,index)=>strainCard(s,index)).join("")}</div>`;
+ showPageById("searchPage");
+}
+function loadArticles(){
+ document.getElementById("articleBox").innerHTML=articles.map((a,i)=>`
+  <div class="article-card pressable" onclick="openArticle(${i})">
+   <h3>${a.title}</h3>
+   <p>${a.body.slice(0,110)}...</p>
+  </div>
+ `).join("");
+}
+function openArticle(i){
+ const a=articles[i];
+ document.getElementById("modalContent").innerHTML=`
+  <h2>${a.title}</h2>
+  <p>${a.body}</p>
+  <div class="warning"><strong>Reminder:</strong><br>Educational only. Cannabis affects everyone differently. Follow local laws and do not drive while impaired.</div>
+  <button class="close" onclick="closeDetails()">Close</button>
+ `;
+ document.getElementById("detailModal").style.display="flex";
+}
  
 function loadTrending(){
  document.getElementById("trendingBox").innerHTML=strains.slice(0,12).map(s=>`
@@ -1080,6 +1110,9 @@ loadTerpenes();
 loadCategories();
 loadJournalSelect();
 loadJournal();
+loadCollections();
+loadArticles();
+loadProfile();
 setupPWA();
  
 if(!localStorage.getItem("strainReliefOnboarding")){
