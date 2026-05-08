@@ -1,121 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>StrainRelief</title>
 
 <style>
+:root{
+  --bg:#eaffec;
+  --card:#ffffff;
+  --text:#1f1f1f;
+  --muted:#5d5d5d;
+  --green:#1f8f4d;
+  --green-dark:#176f3b;
+  --soft:#f1fff3;
+  --warn:#fff6df;
+}
+
+body.dark{
+  --bg:#0f1712;
+  --card:#18231c;
+  --text:#f4fff5;
+  --muted:#c4d0c6;
+  --green:#38b96b;
+  --green-dark:#2a9b58;
+  --soft:#203326;
+  --warn:#332b18;
+}
 
 body{
-font-family:Arial,sans-serif;
-background:linear-gradient(to bottom right,#efffed,#dff7e1);
-margin:0;
-padding:20px;
-color:#222;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  margin:0;
+  padding:22px;
+  color:var(--text);
 }
 
 .container{
-max-width:700px;
-margin:auto;
-}
-
-.hero{
-background:white;
-padding:30px;
-border-radius:25px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-margin-bottom:20px;
-}
-
-h1{
-font-size:42px;
-margin-bottom:10px;
-color:#1f8f4d;
-}
-
-.subtitle{
-font-size:18px;
-color:#555;
-line-height:1.5;
+  max-width:780px;
+  margin:auto;
 }
 
 .card{
-background:white;
-padding:25px;
-border-radius:25px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-margin-bottom:20px;
+  background:var(--card);
+  padding:28px;
+  border-radius:28px;
+  margin-bottom:22px;
+  box-shadow:0 8px 24px rgba(0,0,0,.10);
 }
 
-h2{
-margin-top:0;
+.hero h1{
+  font-size:52px;
+  color:var(--green);
+  margin:20px 0 10px;
 }
 
-select{
-width:100%;
-padding:15px;
-border-radius:15px;
-border:1px solid #ccc;
-font-size:16px;
-margin-top:10px;
-}
-
-button{
-background:#1f8f4d;
-color:white;
-border:none;
-padding:15px;
-border-radius:15px;
-font-size:16px;
-width:100%;
-margin-top:15px;
-cursor:pointer;
-font-weight:bold;
-}
-
-button:hover{
-background:#18733e;
-}
-
-.result{
-margin-top:20px;
-background:#efffed;
-padding:20px;
-border-radius:20px;
-line-height:1.7;
-display:none;
+p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:18px;
 }
 
 .badge{
-display:inline-block;
-background:#1f8f4d;
-color:white;
-padding:6px 12px;
-border-radius:20px;
-font-size:14px;
-margin-right:8px;
-margin-bottom:8px;
+  display:inline-block;
+  background:var(--green);
+  color:white;
+  padding:10px 18px;
+  border-radius:999px;
+  margin:5px;
+  font-size:16px;
+}
+
+select, textarea{
+  width:100%;
+  box-sizing:border-box;
+  padding:16px;
+  border-radius:18px;
+  border:1px solid #ccc;
+  margin-top:14px;
+  font-size:17px;
+}
+
+button{
+  width:100%;
+  background:var(--green);
+  color:white;
+  border:none;
+  border-radius:18px;
+  padding:18px;
+  margin-top:16px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+button:hover{
+  background:var(--green-dark);
+}
+
+.secondary{
+  background:#444;
+}
+
+.result{
+  display:none;
+  margin-top:22px;
+}
+
+.match{
+  background:var(--soft);
+  padding:22px;
+  border-radius:24px;
+  margin-bottom:18px;
+}
+
+.match h3{
+  color:var(--green);
+  font-size:26px;
+  margin-bottom:8px;
+}
+
+.info{
+  background:rgba(31,143,77,.12);
+  padding:14px;
+  border-radius:16px;
+  margin-top:12px;
+  line-height:1.6;
 }
 
 .warning{
-background:#fff7e6;
-padding:18px;
-border-radius:20px;
-margin-top:20px;
-font-size:14px;
-line-height:1.6;
+  background:var(--warn);
+  padding:20px;
+  border-radius:22px;
+  margin-top:20px;
+  line-height:1.7;
+}
+
+.favorite{
+  font-size:15px;
+  color:var(--muted);
+  margin-top:10px;
 }
 
 .footer{
-text-align:center;
-margin-top:30px;
-font-size:13px;
-color:#666;
+  text-align:center;
+  color:var(--muted);
+  margin:30px 0;
 }
 
+.small{
+  font-size:14px;
+}
 </style>
 </head>
 
@@ -123,291 +157,293 @@ color:#666;
 
 <div class="container">
 
-<div class="hero">
+<div class="card hero">
+  <span class="badge">Pain</span>
+  <span class="badge">Stress</span>
+  <span class="badge">Sleep</span>
+  <span class="badge">Mood</span>
 
-<div class="badge">Pain</div>
-<div class="badge">Stress</div>
-<div class="badge">Sleep</div>
-<div class="badge">Mood</div>
+  <h1>🌿 StrainRelief</h1>
 
-<h1>🌿 StrainRelief</h1>
+  <p>
+    A cannabis wellness education tool that helps users discover strain directions based on stress, pain, sleep, mood, and personal comfort level.
+  </p>
 
-<p class="subtitle">
-A cannabis wellness education tool that helps users discover strain directions based on stress, pain, sleep, mood, and personal comfort level.
-</p>
-
+  <button onclick="toggleDark()">Toggle Dark Mode</button>
 </div>
 
 <div class="card">
+  <h2>What are you dealing with?</h2>
 
-<h2>What are you dealing with?</h2>
+  <select id="symptom">
+    <option value="">Select your symptom</option>
+    <option>Anxiety</option>
+    <option>Body Pain</option>
+    <option>Stress</option>
+    <option>Sleep Trouble</option>
+    <option>Low Mood</option>
+    <option>Appetite Loss</option>
+  </select>
 
-<select id="symptom">
-<option value="">Select your symptom</option>
-<option>Anxiety</option>
-<option>Body Pain</option>
-<option>Stress</option>
-<option>Sleep Trouble</option>
-<option>Low Mood</option>
-<option>Appetite Loss</option>
-</select>
+  <select id="experience">
+    <option value="">Select experience level</option>
+    <option>Beginner</option>
+    <option>Some Experience</option>
+    <option>Experienced</option>
+  </select>
 
-<select id="experience">
-<option value="">Select experience level</option>
-<option>Beginner</option>
-<option>Some Experience</option>
-<option>Experienced</option>
-</select>
+  <select id="goal">
+    <option value="">Desired feeling</option>
+    <option>Relaxed</option>
+    <option>Sleepy</option>
+    <option>Focused</option>
+    <option>Uplifted</option>
+    <option>Calm but Functional</option>
+  </select>
 
-<select id="goal">
-<option value="">Desired feeling</option>
-<option>Relaxed</option>
-<option>Sleepy</option>
-<option>Focused</option>
-<option>Uplifted</option>
-<option>Calm but Functional</option>
-</select>
+  <button onclick="findStrain()">Find My Match</button>
 
-<button onclick="findStrain()">
-Find My Match
-</button>
+  <div class="result" id="result"></div>
 
-<div class="result" id="result"></div>
-
-<div class="warning">
-<strong>Important:</strong><br><br>
-
-StrainRelief is for educational wellness information only. This app does not diagnose, treat, cure, or prevent medical conditions. Cannabis affects everyone differently. Follow local laws and consult a licensed healthcare professional when necessary.
+  <div class="warning">
+    <strong>Important:</strong><br><br>
+    StrainRelief is for educational wellness information only. This app does not diagnose, treat, cure, or prevent medical conditions. Cannabis affects everyone differently. Follow local laws and consult a licensed healthcare professional when necessary.
+  </div>
 </div>
 
+<div class="card">
+  <h2>Saved Favorite</h2>
+  <p id="favoriteText">No favorite saved yet.</p>
 </div>
 
 <div class="footer">
-StrainRelief © 2026
+  StrainRelief © 2026
 </div>
 
 </div>
 
 <script>
+const data = {
+  "Anxiety": [
+    {
+      name:"Harlequin",
+      type:"CBD-dominant Hybrid",
+      thc:"Low to moderate THC",
+      cbd:"High CBD",
+      terpenes:"Myrcene, Pinene, Beta-Caryophyllene",
+      use:"Day or evening",
+      why:"A calmer direction for people who want relief without an intense high.",
+      warning:"Avoid very high THC products if you are anxiety-prone."
+    },
+    {
+      name:"ACDC",
+      type:"CBD-dominant Hybrid",
+      thc:"Very low THC",
+      cbd:"Very high CBD",
+      terpenes:"Myrcene, Pinene, Beta-Caryophyllene",
+      use:"Daytime friendly",
+      why:"Good for beginners or THC-sensitive users.",
+      warning:"Effects can be subtle compared with THC-heavy products."
+    }
+  ],
+
+  "Body Pain": [
+    {
+      name:"Cannatonic",
+      type:"Balanced THC/CBD Hybrid",
+      thc:"Low to moderate THC",
+      cbd:"Moderate to high CBD",
+      terpenes:"Myrcene, Pinene, Caryophyllene",
+      use:"Day or evening",
+      why:"Balanced option for body discomfort while staying functional.",
+      warning:"Start low if you are new."
+    },
+    {
+      name:"Northern Lights",
+      type:"Indica",
+      thc:"Moderate to high THC",
+      cbd:"Low CBD",
+      terpenes:"Myrcene, Caryophyllene, Limonene",
+      use:"Evening / nighttime",
+      why:"Commonly chosen for body relaxation and winding down.",
+      warning:"May cause drowsiness or couch-lock."
+    }
+  ],
+
+  "Stress": [
+    {
+      name:"Blue Dream",
+      type:"Balanced Hybrid",
+      thc:"Moderate THC",
+      cbd:"Low CBD",
+      terpenes:"Myrcene, Pinene, Caryophyllene",
+      use:"Day or evening",
+      why:"Often described as relaxed but still uplifting.",
+      warning:"High-THC batches may not be ideal for anxiety-prone users."
+    },
+    {
+      name:"Cannatonic",
+      type:"Balanced THC/CBD Hybrid",
+      thc:"Low to moderate THC",
+      cbd:"Moderate to high CBD",
+      terpenes:"Myrcene, Pinene, Caryophyllene",
+      use:"Anytime",
+      why:"A softer balanced option for stress relief direction.",
+      warning:"Ask for lab-tested products when possible."
+    }
+  ],
+
+  "Sleep Trouble": [
+    {
+      name:"Granddaddy Purple",
+      type:"Indica-leaning",
+      thc:"Moderate to high THC",
+      cbd:"Low CBD",
+      terpenes:"Myrcene, Caryophyllene, Pinene",
+      use:"Nighttime only",
+      why:"A classic sleepy relaxation direction.",
+      warning:"Do not drive or operate anything after use."
+    },
+    {
+      name:"Northern Lights",
+      type:"Indica",
+      thc:"Moderate to high THC",
+      cbd:"Low CBD",
+      terpenes:"Myrcene, Caryophyllene, Limonene",
+      use:"Nighttime",
+      why:"Often associated with deep relaxation.",
+      warning:"Beginners should start very low."
+    }
+  ],
+
+  "Low Mood": [
+    {
+      name:"Blue Dream",
+      type:"Balanced Hybrid",
+      thc:"Moderate THC",
+      cbd:"Low CBD",
+      terpenes:"Myrcene, Pinene, Caryophyllene",
+      use:"Daytime / afternoon",
+      why:"Uplifting but not usually as intense as some sativas.",
+      warning:"Avoid if THC makes you anxious."
+    },
+    {
+      name:"Sour Diesel",
+      type:"Sativa-leaning",
+      thc:"High THC",
+      cbd:"Low CBD",
+      terpenes:"Limonene, Caryophyllene, Myrcene",
+      use:"Daytime",
+      why:"Energetic, uplifting direction for experienced users.",
+      warning:"Not beginner-friendly. May increase anxiety."
+    }
+  ],
+
+  "Appetite Loss": [
+    {
+      name:"Girl Scout Cookies",
+      type:"Hybrid",
+      thc:"High THC",
+      cbd:"Low CBD",
+      terpenes:"Caryophyllene, Limonene, Humulene",
+      use:"Evening",
+      why:"Often associated with hunger and relaxation.",
+      warning:"High THC. Beginners should be careful."
+    }
+  ]
+};
 
 function findStrain(){
+  const symptom = document.getElementById("symptom").value;
+  const experience = document.getElementById("experience").value;
+  const goal = document.getElementById("goal").value;
+  const result = document.getElementById("result");
 
-let symptom =
-document.getElementById("symptom").value;
+  if(!symptom){
+    result.style.display="block";
+    result.innerHTML="<div class='match'>Please select a symptom first.</div>";
+    return;
+  }
 
-let experience =
-document.getElementById("experience").value;
+  let matches = data[symptom] || [];
 
-let goal =
-document.getElementById("goal").value;
+  let html = `<h2>Your Recommended Strain Directions</h2>`;
 
-let resultBox =
-document.getElementById("result");
+  matches.forEach((item, index)=>{
+    html += `
+    <div class="match">
+      <h3>${index+1}. ${item.name}</h3>
+      <p><strong>Type:</strong> ${item.type}</p>
+      <p><strong>THC:</strong> ${item.thc}</p>
+      <p><strong>CBD:</strong> ${item.cbd}</p>
+      <p><strong>Terpenes:</strong> ${item.terpenes}</p>
+      <p><strong>Best Use:</strong> ${item.use}</p>
 
-let recommendation = "";
+      <div class="info">
+        <strong>Why this direction:</strong><br>
+        ${item.why}
+      </div>
 
-if(symptom === "Anxiety"){
+      <div class="warning">
+        <strong>Safety note:</strong><br>
+        ${item.warning}
+      </div>
 
-recommendation =
-`
-<h2>Recommended Direction</h2>
+      <button onclick="saveFavorite('${item.name}')">Save ${item.name}</button>
+    </div>`;
+  });
 
-<b>Strain Types:</b>
-CBD-dominant hybrids
+  if(experience === "Beginner"){
+    html += `
+    <div class="warning">
+      <strong>Beginner Tip:</strong><br>
+      Start low and go slow. Consider lower THC or balanced THC/CBD products first.
+    </div>`;
+  }
 
-<br><br>
+  if(goal === "Focused"){
+    html += `
+    <div class="info">
+      <strong>Focus Tip:</strong><br>
+      Ask about Pinene-forward strains and avoid heavy sleepy indicas during the day.
+    </div>`;
+  }
 
-<b>Examples:</b>
-Harlequin, ACDC
+  if(goal === "Sleepy"){
+    html += `
+    <div class="info">
+      <strong>Sleep Tip:</strong><br>
+      Ask about Myrcene-forward indica products and use only when you are done for the night.
+    </div>`;
+  }
 
-<br><br>
+  html += `
+  <div class="info">
+    <strong>What to ask at a dispensary:</strong><br>
+    “I’m looking for something for ${symptom}. I prefer ${goal || "a balanced feeling"} and my experience level is ${experience || "not selected"}. What lower-risk options match that?”
+  </div>`;
 
-<b>Suggested Effects:</b>
-Calm, clear-headed, functional
-
-<br><br>
-
-<b>Warning:</b>
-Avoid extremely high THC products if you are anxiety-prone.
-`;
-
+  result.style.display="block";
+  result.innerHTML=html;
 }
 
-else if(symptom === "Body Pain"){
-
-recommendation =
-`
-<h2>Recommended Direction</h2>
-
-<b>Strain Types:</b>
-Indica or balanced hybrids
-
-<br><br>
-
-<b>Examples:</b>
-Northern Lights, Cannatonic
-
-<br><br>
-
-<b>Suggested Effects:</b>
-Body relaxation, comfort, stress relief
-
-<br><br>
-
-<b>Helpful Terpenes:</b>
-Myrcene, Caryophyllene
-`;
-
+function saveFavorite(name){
+  localStorage.setItem("favoriteStrain", name);
+  document.getElementById("favoriteText").innerText = "Saved favorite: " + name;
 }
 
-else if(symptom === "Stress"){
-
-recommendation =
-`
-<h2>Recommended Direction</h2>
-
-<b>Strain Types:</b>
-Balanced calming hybrids
-
-<br><br>
-
-<b>Examples:</b>
-Blue Dream, Cannatonic
-
-<br><br>
-
-<b>Suggested Effects:</b>
-Relaxed, uplifted, calm
-`;
-
+function loadFavorite(){
+  const saved = localStorage.getItem("favoriteStrain");
+  if(saved){
+    document.getElementById("favoriteText").innerText = "Saved favorite: " + saved;
+  }
 }
 
-else if(symptom === "Sleep Trouble"){
-
-recommendation =
-`
-<h2>Recommended Direction</h2>
-
-<b>Strain Types:</b>
-Nighttime indica strains
-
-<br><br>
-
-<b>Examples:</b>
-Granddaddy Purple, Northern Lights
-
-<br><br>
-
-<b>Suggested Effects:</b>
-Sleepy, heavy relaxation
-
-<br><br>
-
-<b>Warning:</b>
-May cause couch-lock or drowsiness.
-`;
-
+function toggleDark(){
+  document.body.classList.toggle("dark");
 }
 
-else if(symptom === "Low Mood"){
-
-recommendation =
-`
-<h2>Recommended Direction</h2>
-
-<b>Strain Types:</b>
-Uplifting hybrids or sativa-leaning strains
-
-<br><br>
-
-<b>Examples:</b>
-Blue Dream, Sour Diesel
-
-<br><br>
-
-<b>Suggested Effects:</b>
-Energetic, creative, uplifted
-
-<br><br>
-
-<b>Warning:</b>
-Some high-THC products may increase anxiety.
-`;
-
-}
-
-else if(symptom === "Appetite Loss"){
-
-recommendation =
-`
-<h2>Recommended Direction</h2>
-
-<b>Strain Types:</b>
-Relaxing hybrids
-
-<br><br>
-
-<b>Examples:</b>
-Girl Scout Cookies
-
-<br><br>
-
-<b>Suggested Effects:</b>
-Hungry, relaxed, euphoric
-`;
-
-}
-
-else{
-
-recommendation =
-`
-Please select a symptom.
-`;
-
-}
-
-if(experience === "Beginner"){
-
-recommendation +=
-`
-<br><br>
-
-<b>Beginner Tip:</b>
-Start with low THC or balanced THC/CBD products and begin with a very small dose.
-`;
-
-}
-
-if(goal === "Focused"){
-
-recommendation +=
-`
-<br><br>
-
-<b>Focus Direction:</b>
-Look for strains with Pinene terpene and avoid heavy indica products during daytime use.
-`;
-
-}
-
-if(goal === "Sleepy"){
-
-recommendation +=
-`
-<br><br>
-
-<b>Sleep Direction:</b>
-Look for indica strains with Myrcene terpene.
-`;
-
-}
-
-resultBox.style.display = "block";
-resultBox.innerHTML = recommendation;
-
-}
-
+loadFavorite();
 </script>
 
 </body>
