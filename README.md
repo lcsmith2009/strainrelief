@@ -1,37 +1,19 @@
-# StrainRelief Next Level Upgrade
+# StrainRelief Launch Upgrade v2
 
-Upload/replace these files in the GitHub root:
+Upload/replace all files in GitHub root. Delete old instruction .txt files if still present.
 
-- index.html
-- app.js
-- style.css
-- manifest.json
-- service-worker.js
-- logo.png
-- icon-192.png
-- icon-512.png
+Included upgrades:
+- Bottom nav fixed for small screens
+- Modal scroll lock
+- Install banner
+- Recently viewed
+- Remove/clear saved favorites
+- Delete/clear journal entries
+- Add journal note from modal
+- Why This Match explanation
+- Terpene education cards
+- Improved search/filter behavior
+- Service worker cache v40
+- 100 strain directions
 
-Delete old instruction files:
-- ADD-YOUR-LOGO-HERE.txt
-- DEPLOY-INSTRUCTIONS.txt
-- UPLOAD_INSTRUCTIONS.txt
-
-## Included upgrades
-
-- Transparent logo file included
-- Fixed PWA icons
-- 80 strain database
-- Search by strain, terpene, mood, THC/CBD, or goal
-- Filters
-- Interactive strain profile modals
-- Match quiz with Low Anxiety Mode
-- Saved favorites
-- Wellness journal
-- Education hub
-- Terpene explorer
-- Daily wellness direction
-- Install app banner
-- Safer-use wording
-- Offline cache update with v30 service worker
-
-Educational only. Not medical advice.
+Educational only. Not medical advice. Follow local laws. Do not drive while impaired.
