@@ -520,3 +520,159 @@ button{
 .nav{
   border-top:1px solid rgba(255,255,255,.07);
 }
+
+
+/* Step 4: Smooth app-like motion upgrade */
+.page{
+  animation:pageFade .28s ease both;
+}
+
+@keyframes pageFade{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.card,
+.mini-card,
+.match,
+.terpene,
+.journal-entry,
+.article-card,
+.collection-card{
+  animation:softRise .34s ease both;
+}
+
+@keyframes softRise{
+  from{
+    opacity:0;
+    transform:translateY(14px) scale(.985);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+button,
+.nav button,
+.tag,
+.badge,
+.tap-pill{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease,
+    color .18s ease,
+    filter .18s ease;
+}
+
+button:active,
+.nav button:active,
+.tag:active,
+.badge:active,
+.tap-pill:active{
+  transform:scale(.96);
+}
+
+.modal{
+  animation:modalBackdrop .22s ease both;
+}
+
+@keyframes modalBackdrop{
+  from{background:rgba(0,0,0,0);}
+  to{background:rgba(0,0,0,.72);}
+}
+
+.modal-content{
+  animation:modalSlideUp .28s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes modalSlideUp{
+  from{
+    opacity:0;
+    transform:translateY(42px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.detail-hero,
+.image-banner{
+  animation:heroGlowIn .45s ease both;
+}
+
+@keyframes heroGlowIn{
+  from{
+    opacity:.82;
+    filter:saturate(.85) brightness(.9);
+    transform:scale(.985);
+  }
+  to{
+    opacity:1;
+    filter:saturate(1) brightness(1);
+    transform:scale(1);
+  }
+}
+
+.fill{
+  animation:meterGrow 1s ease both;
+}
+
+@keyframes meterGrow{
+  from{
+    transform:scaleX(0);
+    transform-origin:left;
+  }
+  to{
+    transform:scaleX(1);
+    transform-origin:left;
+  }
+}
+
+.logo-mark,
+.brand-logo-img{
+  animation:logoPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes logoPulse{
+  0%,100%{
+    filter:drop-shadow(0 0 18px rgba(82,232,144,.22));
+  }
+  50%{
+    filter:drop-shadow(0 0 34px rgba(82,232,144,.42));
+  }
+}
+
+.toast{
+  animation:toastPop .22s ease both;
+}
+
+@keyframes toastPop{
+  from{
+    opacity:0;
+    transform:translateX(-50%) translateY(12px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
+  }
+}
