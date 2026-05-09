@@ -1,33 +1,22 @@
-# StrainRelief Pro Upgrade v3
+# StrainRelief Pro Upgrade v4
 
-Upload/replace everything in your GitHub root.
+Upload/replace every file in your GitHub root.
 
-Files included:
-- index.html
-- app.js
-- style.css
-- manifest.json
-- service-worker.js
-- logo.png
-- icon-192.png
-- icon-512.png
-- README.md
-
-Upgrades included:
-- 100 strain directions
+Includes:
+- 133 strain directions
+- bigger strain database
 - AI-style match explanations
-- mood tracker chart for journal
-- improved onboarding/quick start in Learn
+- mood tracker chart
+- improved Learn/Education Hub
 - dispensary prep checklist
-- privacy/terms text inside Learn
-- improved saved favorites controls
-- improved journal controls
+- privacy/terms text
+- saved favorites controls
+- journal controls
 - recently viewed
-- installable PWA support
-- updated service worker cache v50
-- safer educational wording
+- improved mobile UI
+- installable PWA
+- updated cache: strainrelief-v60
 
-Important:
-- Real dispensary locator, cloud accounts, and push notifications require a backend/API later.
-- This version includes the front-end structure and local-only features.
-- Educational only. Not medical advice. Follow local laws. Do not drive while impaired.
+After uploading, wait for Vercel, refresh twice, and reinstall the app if your phone keeps old cache.
+
+Educational only. Not medical advice. Follow local laws. Do not drive while impaired.
