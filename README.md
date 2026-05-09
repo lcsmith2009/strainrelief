@@ -1,44 +1,36 @@
-# StrainRelief Premium Upgrade v7
+# StrainRelief Premium Images Upgrade v8
 
-Upload/replace every file in your GitHub repo root.
+Upload/replace everything in your GitHub repo root.
 
-Files included:
+## Files/folders included
 - index.html
 - app.js
 - style.css
 - manifest.json
 - service-worker.js
+- README.md
 - logo.png
 - logo-hero.png
 - logo-mark.png
 - icon-192.png
 - icon-512.png
+- images/strains/*.webp
 
-Upgrades included:
-- Sharper transparent logo assets
-- Better hero logo sizing/spacing
-- 150 strain directions
-- Trending Today
-- Beginner Friendly / Tonight / Stress quick buttons
-- Recently Viewed
-- Search filters
-- AI-style match explanation
-- Circular match score UI
-- Match quiz with Low Anxiety Mode
-- Saved favorites
-- Wellness journal
-- Mood tracker chart
-- Terpene Explorer
-- Dispensary Prep checklist
-- Privacy + Terms
-- About / Contact / Medical Disclaimer education cards
-- PWA install support
-- New cache version: strainrelief-v90
+## New upgrade
+- Added premium generated WEBP strain artwork for every strain direction
+- Added lazy loading for mobile speed
+- Added fallback strain image
+- Updated strain cards to show artwork instead of plain emoji cards
+- Updated strain detail modal to show large artwork
+- Kept safe educational wording
+- Kept saved favorites, journal, mood tracker, search, matching, terpene explorer, and PWA support
+- Cache version updated to strainrelief-v100
 
-Important after upload:
-1. Upload/replace all files.
-2. Wait for Vercel deployment.
-3. Open Chrome and refresh twice.
-4. If the installed app still shows old files, uninstall/reinstall the StrainRelief app.
+## After upload
+1. Upload all files and the whole `images` folder.
+2. Wait for Vercel to finish deployment.
+3. Open the site in Chrome.
+4. Refresh twice.
+5. If your installed app shows old images, uninstall and reinstall the PWA.
 
 Educational only. Not medical advice. Follow local laws. Do not drive while impaired.
