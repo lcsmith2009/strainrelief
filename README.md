@@ -1,6 +1,6 @@
-# StrainRelief Final Upgrade v6
+# StrainRelief Premium Upgrade v7
 
-Upload/replace every file in the GitHub root.
+Upload/replace every file in your GitHub repo root.
 
 Files included:
 - index.html
@@ -9,36 +9,36 @@ Files included:
 - manifest.json
 - service-worker.js
 - logo.png
-- logo-wide.png
 - logo-hero.png
+- logo-mark.png
 - icon-192.png
 - icon-512.png
 
-What's upgraded:
-- Cleaner transparent logo display with no black rectangle
-- Larger hero logo spacing
-- 151 strain directions
-- Trending Today section
-- Quick home buttons: Beginner Friendly / Tonight / Stress
-- AI-style match explanations
+Upgrades included:
+- Sharper transparent logo assets
+- Better hero logo sizing/spacing
+- 150 strain directions
+- Trending Today
+- Beginner Friendly / Tonight / Stress quick buttons
+- Recently Viewed
+- Search filters
+- AI-style match explanation
 - Circular match score UI
 - Match quiz with Low Anxiety Mode
 - Saved favorites
 - Wellness journal
 - Mood tracker chart
-- Recently viewed strains
 - Terpene Explorer
 - Dispensary Prep checklist
-- Privacy + Terms section
+- Privacy + Terms
 - About / Contact / Medical Disclaimer education cards
 - PWA install support
-- New service worker cache: strainrelief-v80
+- New cache version: strainrelief-v90
 
-After upload:
-1. Replace all current GitHub files with these.
-2. Wait for Vercel to redeploy.
-3. Open the app in Chrome.
-4. Refresh twice.
-5. If the installed app still shows the old version, uninstall StrainRelief and reinstall it.
+Important after upload:
+1. Upload/replace all files.
+2. Wait for Vercel deployment.
+3. Open Chrome and refresh twice.
+4. If the installed app still shows old files, uninstall/reinstall the StrainRelief app.
 
 Educational only. Not medical advice. Follow local laws. Do not drive while impaired.
