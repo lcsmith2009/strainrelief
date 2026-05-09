@@ -32,16 +32,14 @@
   <main>
     <section id="home" class="page active">
       <div class="daily-card">
-        <div>
-          <span class="eyebrow">Daily Wellness Direction</span>
-          <h2 id="dailyTitle">CBD-forward calm</h2>
-          <p id="dailyText">Start low, go slow, and track how you feel.</p>
-        </div>
+        <span class="eyebrow">Daily Wellness Direction</span>
+        <h2 id="dailyTitle">CBD-forward calm</h2>
+        <p id="dailyText">Start low, go slow, and track how you feel.</p>
       </div>
 
       <div class="section-title">
         <h2>Popular Strain Directions</h2>
-        <p>Tap any card for a full profile.</p>
+        <p>Tap any card for a full profile with terpenes, THC/CBD direction, caution notes, and similar strains.</p>
       </div>
       <div id="featuredGrid" class="grid"></div>
     </section>
@@ -49,7 +47,7 @@
     <section id="search" class="page">
       <div class="section-title">
         <h2>Search Strains</h2>
-        <p>Search by strain, mood, terpene, or use direction.</p>
+        <p>Search by strain, mood, terpene, type, or use direction.</p>
       </div>
       <input id="searchInput" class="search-input" placeholder="Search Blue Dream, sleep, limonene, CBD..." />
       <div class="filter-row" id="filterRow"></div>
@@ -82,6 +80,16 @@
           <option value="high">Experienced</option>
         </select>
 
+        <label>Preferred time</label>
+        <select id="timeSelect">
+          <option value="">Any time</option>
+          <option value="Daytime">Daytime</option>
+          <option value="Evening">Evening</option>
+          <option value="Nighttime">Nighttime</option>
+        </select>
+
+        <label class="toggle-row"><input type="checkbox" id="lowAnxietyToggle"> Low Anxiety Mode</label>
+
         <button onclick="runMatcher()">Find My Direction</button>
       </div>
       <div id="matchResults" class="grid"></div>
@@ -93,7 +101,7 @@
         <p>Your favorites and personal notes stay on this device.</p>
       </div>
 
-      <div class="panel">
+      <div class="panel empty-polish">
         <h3>Saved Favorites</h3>
         <div id="savedList" class="mini-list"></div>
       </div>
@@ -121,9 +129,18 @@
         <h2>Education Hub</h2>
         <p>Simple cannabis education with safer, non-medical wording.</p>
       </div>
+      <div id="terpeneExplorer" class="panel"></div>
       <div id="learnGrid" class="grid"></div>
     </section>
   </main>
+</div>
+
+<div id="installBanner" class="install-banner hidden">
+  <div>
+    <strong>Install StrainRelief</strong>
+    <p>Quick access from your home screen.</p>
+  </div>
+  <button id="installBtn">Install</button>
 </div>
 
 <nav class="bottom-nav">
