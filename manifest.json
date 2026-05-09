@@ -1,7 +1,7 @@
 {
   "name": "StrainRelief",
   "short_name": "StrainRelief",
-  "description": "Cannabis wellness education app.",
+  "description": "Cannabis wellness education app for exploring strain directions, terpenes, favorites, and journaling.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
