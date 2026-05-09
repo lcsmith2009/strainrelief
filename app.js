@@ -1,56 +1,194 @@
-
-const strainSeeds=[
-["Harlequin","🌱","CBD-dominant Hybrid","Calm","Clear-headed","CBD-forward"],
-["ACDC","🪴","CBD-dominant Hybrid","Functional","Calm","Low intoxication"],
-["Cannatonic","🌿","Balanced THC/CBD","Balanced","Calm","Body comfort"],
-["Northern Lights","🌙","Indica","Sleep","Evening","Relaxation"],
-["Blue Dream","💙","Hybrid","Mood","Creative","Balanced"],
-["Granddaddy Purple","🍇","Indica","Sleep","Calm","Stress"],
-["Sour Diesel","⚡","Sativa","Energy","Daytime","Mood"],
-["Girl Scout Cookies","🍪","Hybrid","Balanced","Relaxation","Mood"],
-["Pineapple Express","🍍","Hybrid","Happy","Daytime","Creative"],
-["Jack Herer","🌸","Sativa","Focus","Energy","Mood"],
-["Purple Punch","🫐","Indica","Evening","Sleep","Relaxation"],
-["Lemon Haze","🍋","Sativa","Daytime","Mood","Creative"],
-["Ringo's Gift","🎁","CBD-forward","Calm","Beginner","Stress"],
-["Charlotte's Web","🕊️","CBD-forward","Calm","Low THC","Stress"],
-["Maui Wowie","🏝️","Sativa","Energy","Mood","Daytime"],
-["Durban Poison","☀️","Sativa","Focus","Daytime","Energy"],
-["White Widow","🕸️","Hybrid","Balanced","Mood","Relaxation"],
-["Wedding Cake","🎂","Indica-dominant","Relaxation","Mood","Evening"],
-["Gelato","🍨","Hybrid","Mood","Relaxation","Creative"],
-["OG Kush","🌲","Hybrid","Relaxation","Stress","Mood"],
-["Bubba Kush","🛋️","Indica","Sleep","Calm","Evening"],
-["Zkittlez","🌈","Indica","Relaxation","Mood","Calm"],
-["Super Silver Haze","✨","Sativa","Energy","Focus","Daytime"],
-["Green Crack","🟢","Sativa","Focus","Energy","Mood"],
-["LA Confidential","🌃","Indica","Sleep","Calm","Evening"],
-["Remedy","🧘","CBD-forward","Calm","Stress","Low THC"],
-["Pennywise","🪙","Balanced THC/CBD","Calm","Body comfort","Stress"],
-["Mango Kush","🥭","Indica","Relaxation","Mood","Evening"],
-["Strawberry Cough","🍓","Sativa","Mood","Creative","Daytime"],
-["Chemdawg","⛽","Hybrid","Balanced","Relaxation","Mood"]
+const strains=[
+{
+name:"Harlequin",
+emoji:"🌱",
+type:"CBD-dominant Hybrid",
+tags:["Calm","Clear-headed","CBD-forward"],
+insight:"Often chosen by users seeking calmer lower-intensity daytime directions."
+},
+{
+name:"ACDC",
+emoji:"🪴",
+type:"CBD-forward Hybrid",
+tags:["Functional","Calm","Low intoxication"],
+insight:"Frequently associated with low-intensity daytime wellness directions."
+},
+{
+name:"Blue Dream",
+emoji:"💙",
+type:"Balanced Hybrid",
+tags:["Mood","Creative","Balanced"],
+insight:"Often connected with daytime balance and mood-focused experiences."
+},
+{
+name:"Northern Lights",
+emoji:"🌙",
+type:"Indica",
+tags:["Sleep","Evening","Relaxation"],
+insight:"Commonly associated with nighttime wind-down routines."
+},
+{
+name:"Granddaddy Purple",
+emoji:"🍇",
+type:"Indica",
+tags:["Relaxation","Evening","Sleep"],
+insight:"Often selected for evening comfort and calming sessions."
+},
+{
+name:"Sour Diesel",
+emoji:"⚡",
+type:"Sativa",
+tags:["Energy","Daytime","Focus"],
+insight:"Commonly associated with energetic daytime experiences."
+},
+{
+name:"Girl Scout Cookies",
+emoji:"🍪",
+type:"Hybrid",
+tags:["Balanced","Mood","Relaxation"],
+insight:"Popular balanced option often associated with stress direction."
+},
+{
+name:"Pineapple Express",
+emoji:"🍍",
+type:"Hybrid",
+tags:["Happy","Creative","Daytime"],
+insight:"Frequently connected with upbeat daytime sessions."
+},
+{
+name:"Jack Herer",
+emoji:"🌸",
+type:"Sativa",
+tags:["Focus","Energy","Mood"],
+insight:"Often selected for focus-oriented daytime experiences."
+},
+{
+name:"Purple Punch",
+emoji:"🫐",
+type:"Indica",
+tags:["Sleep","Calm","Evening"],
+insight:"Known for heavier nighttime wellness directions."
+},
+{
+name:"Lemon Haze",
+emoji:"🍋",
+type:"Sativa",
+tags:["Creative","Daytime","Mood"],
+insight:"Bright daytime direction with citrus-inspired profile."
+},
+{
+name:"Charlotte's Web",
+emoji:"🕊️",
+type:"CBD-forward",
+tags:["Calm","Stress","Low THC"],
+insight:"CBD-forward option commonly associated with gentle experiences."
+}
 ];
 
-const container=document.getElementById("strain-list");
+const strainList=document.getElementById("strain-list");
+const searchInput=document.getElementById("searchInput");
 
-strainSeeds.forEach(strain=>{
+const modal=document.getElementById("modal");
+const closeModal=document.getElementById("closeModal");
+
+const modalTitle=document.getElementById("modalTitle");
+const modalType=document.getElementById("modalType");
+const modalEmoji=document.getElementById("modalEmoji");
+const modalTags=document.getElementById("modalTags");
+const modalInsight=document.getElementById("modalInsight");
+
+const saveBtn=document.getElementById("saveBtn");
+const shareBtn=document.getElementById("shareBtn");
+
+let activeStrain=null;
+
+function renderStrains(filter=""){
+strainList.innerHTML="";
+
+strains
+.filter(strain=>
+strain.name.toLowerCase().includes(filter.toLowerCase()) ||
+strain.tags.join(" ").toLowerCase().includes(filter.toLowerCase())
+)
+.forEach(strain=>{
+
 const card=document.createElement("div");
-card.className="card";
+card.className="strain-card";
 
 card.innerHTML=`
-<div class="emoji">${strain[1]}</div>
-<h2>${strain[0]}</h2>
-<p>${strain[2]}</p>
-
-<div class="tags">
-<span>${strain[3]}</span>
-<span>${strain[4]}</span>
-<span>${strain[5]}</span>
+<div class="card-top">
+<div class="card-emoji">${strain.emoji}</div>
+<div>
+<h2>${strain.name}</h2>
+<p>${strain.type}</p>
+</div>
 </div>
 
-<button onclick="alert('${strain[0]} saved!')">View Direction</button>
+<div class="tags">
+${strain.tags.map(tag=>`<span>${tag}</span>`).join("")}
+</div>
+
+<button class="view-btn">View Direction</button>
 `;
 
-container.appendChild(card);
+card.querySelector(".view-btn").addEventListener("click",()=>openModal(strain));
+
+strainList.appendChild(card);
 });
+}
+
+function openModal(strain){
+activeStrain=strain;
+
+modalTitle.textContent=strain.name;
+modalType.textContent=strain.type;
+modalEmoji.textContent=strain.emoji;
+modalInsight.textContent=strain.insight;
+
+modalTags.innerHTML="";
+
+strain.tags.forEach(tag=>{
+const span=document.createElement("span");
+span.textContent=tag;
+modalTags.appendChild(span);
+});
+
+modal.classList.remove("hidden");
+}
+
+closeModal.addEventListener("click",()=>{
+modal.classList.add("hidden");
+});
+
+saveBtn.addEventListener("click",()=>{
+if(!activeStrain)return;
+
+let saved=JSON.parse(localStorage.getItem("savedStrains")||"[]");
+
+if(!saved.includes(activeStrain.name)){
+saved.push(activeStrain.name);
+localStorage.setItem("savedStrains",JSON.stringify(saved));
+alert(activeStrain.name+" saved!");
+}else{
+alert("Already saved.");
+}
+});
+
+shareBtn.addEventListener("click",()=>{
+if(!activeStrain)return;
+
+if(navigator.share){
+navigator.share({
+title:activeStrain.name,
+text:"Check out this strain direction on StrainRelief"
+});
+}else{
+alert("Sharing not supported on this device.");
+}
+});
+
+searchInput.addEventListener("input",(e)=>{
+renderStrains(e.target.value);
+});
+
+renderStrains();

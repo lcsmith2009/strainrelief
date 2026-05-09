@@ -1,11 +1,10 @@
-
 {
 "name":"StrainRelief",
 "short_name":"StrainRelief",
-"start_url":".",
+"start_url":"./",
 "display":"standalone",
-"background_color":"#02160d",
-"theme_color":"#4df08a",
+"background_color":"#03140c",
+"theme_color":"#49f08c",
 "icons":[
 {
 "src":"icon-192.png",

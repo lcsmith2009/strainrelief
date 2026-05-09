@@ -1,12 +1,12 @@
+# StrainRelief Pro Upgrade
 
-UPDATED STRAINRELIEF FILES
-
-Includes:
-- 30 strains
-- restored logo support
-- responsive cards
-- wellness styling
-- PWA manifest
-- working app structure
-
-Upload ALL files into GitHub and redeploy on Vercel.
+NEW FEATURES:
+- Premium UI glow redesign
+- Search functionality
+- Interactive strain modals
+- Save favorites with localStorage
+- Share button
+- Mobile-first redesign
+- Better structure
+- Wellness-focused educational wording
+- Improved spacing and polish

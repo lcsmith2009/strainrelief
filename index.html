@@ -1,31 +1,82 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>StrainRelief</title>
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
 
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+
 <header class="hero">
 <img src="logo.png" class="logo" onerror="this.style.display='none'">
 <h1>StrainRelief</h1>
-<p>Cannabis wellness education platform</p>
+<p>Explore cannabis wellness directions educationally.</p>
 </header>
 
-<section class="search-wrap">
-<input placeholder="Search Blue Dream, Harlequin">
+<section class="search-section">
+<input id="searchInput" type="text" placeholder="Search strains, moods, terpene directions...">
 </section>
 
-<section class="grid" id="strain-list"></section>
+<section class="top-buttons">
+<button class="filter-btn active">Popular</button>
+<button class="filter-btn">CBD</button>
+<button class="filter-btn">Sleep</button>
+<button class="filter-btn">Daytime</button>
+</section>
+
+<section class="stats-row">
+<div class="stat-card">
+<h3>30+</h3>
+<p>Strains</p>
+</div>
+
+<div class="stat-card">
+<h3>Educational</h3>
+<p>Wellness-first</p>
+</div>
+</section>
+
+<section id="strain-list" class="strain-grid"></section>
+
+<div id="modal" class="modal hidden">
+<div class="modal-content">
+<button id="closeModal" class="close-btn">✕</button>
+
+<div class="modal-hero">
+<div class="modal-emoji" id="modalEmoji"></div>
+
+<div>
+<h2 id="modalTitle"></h2>
+<p id="modalType"></p>
+</div>
+</div>
+
+<div class="modal-section">
+<h3>Associated With</h3>
+<div id="modalTags" class="tags"></div>
+</div>
+
+<div class="modal-section">
+<h3>Wellness Insight</h3>
+<p id="modalInsight"></p>
+</div>
+
+<div class="modal-buttons">
+<button id="saveBtn">Save Favorite</button>
+<button id="shareBtn">Share</button>
+</div>
+</div>
+</div>
 
 <footer>
 <p>StrainRelief © 2026</p>
-<p>Educational only • Follow local laws • Do not drive impaired</p>
+<p>Educational only • Cannabis affects everyone differently • Follow local laws.</p>
 </footer>
 
 <script src="app.js"></script>
