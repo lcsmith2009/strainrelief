@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#071b11" />
+<meta name="description" content="StrainRelief is a cannabis wellness education app for exploring strain directions, terpenes, THC guidance, favorites, and wellness journaling." />
+<title>StrainRelief</title>
+<link rel="icon" type="image/png" href="icon-512.png" />
+<link rel="apple-touch-icon" href="icon-512.png" />
+<link rel="manifest" href="manifest.json" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dark">
+
+<div class="container">
+
+<section id="onboardingPage" class="page hidden">
+  <div class="card hero">
+    <div class="logo-mark">🌿</div>
+    <h2>Set Up StrainRelief</h2>
+    <p>Personalize your cannabis wellness education experience. This is educational only, not medical advice.</p>
+  </div>
+
+  <div class="card">
+    <h2>Your Wellness Profile</h2>
+    <select id="onboardPriority">
+      <option value="">What matters most?</option>
+      <option>Lower Anxiety</option>
+      <option>Better Sleep</option>
+      <option>Body Comfort</option>
+      <option>Daytime Focus</option>
+      <option>Mood Support</option>
+      <option>Appetite Support</option>
+    </select>
+
+    <select id="onboardSensitivity">
+      <option value="">THC sensitivity</option>
+      <option>Very sensitive</option>
+      <option>Somewhat sensitive</option>
+      <option>Not very sensitive</option>
+      <option>Not sure yet</option>
+    </select>
+
+    <select id="onboardPreference">
+      <option value="">Preferred direction</option>
+      <option>CBD-forward</option>
+      <option>Balanced THC/CBD</option>
+      <option>THC-forward</option>
+      <option>Not sure yet</option>
+    </select>
+  </div>
+
+  <div class="grid">
+    <div class="slide"><h3>🌿 Educational Only</h3><p>This app helps you explore directions associated with strains, terpenes, THC/CBD, and personal comfort goals.</p></div>
+    <div class="slide"><h3>🐢 Start Low</h3><p>Start low and go slow, especially with THC or if you are newer to cannabis.</p></div>
+    <div class="slide"><h3>⚖️ Follow Local Laws</h3><p>Only use cannabis where legal and never drive or operate machinery while impaired.</p></div>
+    <div class="slide"><h3>📝 Track Your Experience</h3><p>Use the journal to remember serving size, time of day, and how you felt.</p></div>
+  </div>
+  <button onclick="finishOnboarding()">Save My Profile</button>
+</section>
+
+<section id="home" class="page">
+
+  <div class="card hero pressable">
+    <h2>Welcome to StrainRelief</h2>
+    <p>Explore cannabis wellness directions with match scores, terpene notes, THC guidance, safer-use reminders, journal tracking, and dispensary confidence.</p>
+  </div>
+
+  <div class="card pressable">
+    <span class="badge">Pain</span>
+    <span class="badge">Stress</span>
+    <span class="badge">Sleep</span>
+    <span class="badge">Mood</span>
+    <span class="badge">Terpenes</span>
+
+    <div class="brand-header">
+      <img
+        class="brand-logo-img"
+        src="file_000000005e4471f5adb34dc4ed32fd3c.png"
+        alt="StrainRelief Logo"
+      />
+      <h1 class="sr-only">StrainRelief</h1>
+    </div>
+
+    <p>A cannabis wellness education platform for exploring strain directions based on comfort goals, THC sensitivity, terpene profiles, and personal preference.</p>
+
+    <button class="mode pressable" onclick="toggleDark()">🌙 Toggle Light / Dark Mode</button>
+    <button class="pressable install-box" id="installBtn">Install StrainRelief</button>
+  </div>
+
+  <div class="card daily">
+    <h2>Daily Wellness Tip</h2>
+    <p id="dailyTip"></p>
+  </div>
+
+  <div class="card">
+    <h2>Your Saved Profile</h2>
+    <div id="profileBox" class="profile-summary">No profile saved yet. Complete onboarding or use the quiz below.</div>
+    <button class="mode" onclick="resetOnboarding()">Edit Wellness Profile</button>
+  </div>
+
+  <div class="card">
+    <h2>Collections</h2>
+    <div class="grid" id="collectionsBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>Quick Categories</h2>
+    <div class="grid" id="categoryCards"></div>
+  </div>
+
+  <div class="card">
+    <h2>Your Preferences</h2>
+
+    <select id="symptom">
+      <option value="">Select your symptom</option>
+      <option>Anxiety</option>
+      <option>Body Pain</option>
+      <option>Stress</option>
+      <option>Sleep Trouble</option>
+      <option>Low Mood</option>
+      <option>Appetite Loss</option>
+      <option>Headache</option>
+      <option>Muscle Soreness</option>
+    </select>
+
+    <select id="experience">
+      <option value="">Select experience level</option>
+      <option>Beginner</option>
+      <option>Some Experience</option>
+      <option>Experienced</option>
+    </select>
+
+    <select id="goal">
+      <option value="">Desired feeling</option>
+      <option>Relaxed</option>
+      <option>Sleepy</option>
+      <option>Focused</option>
+      <option>Uplifted</option>
+      <option>Calm but Functional</option>
+    </select>
+
+    <h3>Safety Filters</h3>
+
+    <div class="row">
+      <button id="lowAnxietyBtn" class="filter pressable" onclick="toggleFilter('anxiety')">Low Anxiety Mode</button>
+      <button id="nightBtn" class="filter pressable" onclick="toggleFilter('night')">Night Mode</button>
+    </div>
+
+    <button class="pressable" onclick="findStrain()">Find My Match</button>
+
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+      <p id="loaderText">Analyzing terpenes...</p>
+    </div>
+
+    <div class="result" id="result"></div>
+
+    <div class="warning">
+      <strong>Important:</strong><br><br>
+      StrainRelief is educational only. It does not diagnose, treat, cure, or prevent medical conditions. Cannabis affects everyone differently. Follow local laws, avoid driving while impaired, and consult a licensed healthcare professional when necessary.
+    </div>
+  </div>
+
+</section>
+
+<section id="searchPage" class="page hidden">
+  <div class="card">
+    <h2>Search Strains</h2>
+    <input id="searchInput" placeholder="Search Blue Dream, Harlequin, Myrcene, sleep..." oninput="searchStrains()" />
+
+    <div class="category-tabs" id="categoryTabs"></div>
+
+    <h2>Trending + Popular Directions</h2>
+    <div class="grid" id="trendingBox"></div>
+
+    <div id="searchResults"></div>
+  </div>
+</section>
+
+<section id="terpenesPage" class="page hidden">
+  <div class="card">
+    <h2>Terpene Guide</h2>
+    <div class="grid" id="terpeneBox"></div>
+  </div>
+</section>
+
+<section id="journalPage" class="page hidden">
+  <div class="card">
+    <h2>Wellness Journal</h2>
+    <p>Track your personal experience. This is not medical advice.</p>
+
+    <select id="journalStrain"></select>
+    <select id="journalMood">
+      <option value="">How did it feel?</option>
+      <option>Calm</option>
+      <option>Relaxed</option>
+      <option>Sleepy</option>
+      <option>Focused</option>
+      <option>Too intense</option>
+      <option>Not noticeable</option>
+    </select>
+    <textarea id="journalNotes" placeholder="Notes: serving size, time of day, comfort level, anything to remember..."></textarea>
+    <button onclick="saveJournal()">Save Journal Entry</button>
+
+    <div id="journalList"></div>
+  </div>
+</section>
+
+<section id="favoritesPage" class="page hidden">
+
+  <div class="card">
+    <h2>Saved Favorite</h2>
+    <p id="favoriteText">No favorite saved yet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Recently Viewed</h2>
+    <p id="recentText">No recently viewed strains yet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Recently Searched</h2>
+    <p id="recentSearchText">No recent searches yet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Dispensary Checklist</h2>
+    <p>Show this when shopping:</p>
+    <div class="info" id="checklist">
+      Preferred strain: none yet<br>
+      Ask for lab-tested products.<br>
+      Ask about THC, CBD, terpenes, serving size, onset time, and beginner-friendly options.
+    </div>
+  </div>
+
+</section>
+
+
+<section id="educationPage" class="page hidden">
+  <div class="card">
+    <h2>Education Hub</h2>
+    <p>Simple cannabis wellness education. No medical claims. No diagnosis. No treatment promises.</p>
+    <div class="grid" id="articleBox"></div>
+  </div>
+</section>
+
+<section id="infoPage" class="page hidden">
+  <div class="card">
+    <h2>About StrainRelief</h2>
+    <p>StrainRelief is a cannabis wellness education app that helps users explore strain directions, terpene profiles, and lower-risk shopping questions.</p>
+
+    <h3>Medical Disclaimer</h3>
+    <p>StrainRelief is educational only. It does not provide medical advice and does not diagnose, treat, cure, or prevent any medical condition. Cannabis affects everyone differently. Speak with a licensed healthcare professional when necessary.</p>
+
+    <h3>Legal Reminder</h3>
+    <p>Follow all local laws. Only use cannabis where legal. Do not drive or operate machinery while impaired.</p>
+
+    <h3>Privacy</h3>
+    <p>This version stores favorites, recent searches, onboarding status, and journal entries locally on your device using browser storage. No account system is active in this version.</p>
+
+    <h3>Terms</h3>
+    <p>By using StrainRelief, you understand the app is informational and educational. You are responsible for your own decisions and for following applicable laws.</p>
+
+    <h3>Install App</h3>
+    <p>Add StrainRelief to your home screen for an app-like experience. If the install button does not appear, use your browser menu and choose “Add to Home screen.”</p>
+
+    <h3>Contact</h3>
+    <p>Add your business contact email here when ready.</p>
+  </div>
+</section>
+
+<div class="footer">
+  StrainRelief © 2026<br>
+  <span class="legal-link" onclick="showPageById('infoPage')">About</span>
+  <span class="legal-link" onclick="showPageById('infoPage')">Privacy</span>
+  <span class="legal-link" onclick="showPageById('infoPage')">Medical Disclaimer</span>
+  <span class="legal-link" onclick="showPageById('educationPage')">Education Hub</span>
+</div>
+
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showPage('home', this)">Home</button>
+  <button onclick="showPage('searchPage', this)">Search</button>
+  <button onclick="showPage('terpenesPage', this)">Terpenes</button>
+  <button onclick="showPage('journalPage', this)">Journal</button>
+  <button onclick="showPage('favoritesPage', this)">Saved</button>
+  <button onclick="showPage('educationPage', this)">Learn</button>
+  <button onclick="showPage('infoPage', this)">Info</button>
+</div>
+
+<div class="toast" id="toast">Saved!</div>
+
+<div class="modal" id="detailModal">
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
