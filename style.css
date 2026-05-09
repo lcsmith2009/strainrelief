@@ -405,3 +405,118 @@ button{
 @media(min-width:760px){
   .detail-grid{grid-template-columns:1fr 1fr}
 }
+
+
+/* Step 3: Premium strain visual atmosphere */
+.image-banner,
+.detail-hero{
+  position:relative;
+  isolation:isolate;
+}
+
+.image-banner::before,
+.detail-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,.28), transparent 18%),
+    radial-gradient(circle at 82% 72%, rgba(82,232,144,.20), transparent 28%),
+    linear-gradient(135deg, rgba(255,255,255,.08), transparent);
+  z-index:-1;
+}
+
+.image-banner span,
+.detail-hero > *{
+  position:relative;
+  z-index:2;
+}
+
+.img-cbd{
+  background:
+    radial-gradient(circle at 22% 22%, rgba(223,255,231,.95), transparent 18%),
+    radial-gradient(circle at 70% 70%, rgba(82,232,144,.42), transparent 28%),
+    linear-gradient(135deg,#0c2f1c,#2ecc71 58%,#83ffd0);
+}
+.img-night{
+  background:
+    radial-gradient(circle at 25% 20%, rgba(181,167,255,.78), transparent 18%),
+    radial-gradient(circle at 78% 75%, rgba(82,232,144,.25), transparent 32%),
+    linear-gradient(135deg,#050817,#19234f 55%,#3a1f68);
+}
+.img-day{
+  background:
+    radial-gradient(circle at 25% 22%, rgba(255,243,155,.95), transparent 18%),
+    radial-gradient(circle at 78% 72%, rgba(82,232,144,.38), transparent 28%),
+    linear-gradient(135deg,#155e36,#42d884 58%,#d9ff93);
+}
+.img-dessert{
+  background:
+    radial-gradient(circle at 75% 22%, rgba(255,223,158,.92), transparent 20%),
+    radial-gradient(circle at 25% 75%, rgba(82,232,144,.22), transparent 30%),
+    linear-gradient(135deg,#2e160e,#6b341f 52%,#b86b35);
+}
+.img-bright{
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,241,118,.96), transparent 18%),
+    radial-gradient(circle at 78% 76%, rgba(82,232,144,.30), transparent 28%),
+    linear-gradient(135deg,#7c5608,#f9a825 48%,#1f8f4d);
+}
+
+.match,
+.mini-card,
+.detail-section,
+.detail-stat,
+.score-box,
+.info,
+.warning{
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.match:hover,
+.mini-card:hover,
+.article-card:hover,
+.collection-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 22px 50px rgba(0,0,0,.24);
+}
+
+.match,
+.mini-card,
+.article-card,
+.collection-card{
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.detail-hero{
+  min-height:190px;
+  overflow:hidden;
+}
+
+.detail-hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(90deg,rgba(0,0,0,.12),rgba(0,0,0,.04));
+  z-index:1;
+  pointer-events:none;
+}
+
+.detail-emoji{
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.tag{
+  backdrop-filter:blur(8px);
+}
+
+.tap-pill{
+  box-shadow:0 0 22px rgba(82,232,144,.16);
+}
+
+.nav{
+  border-top:1px solid rgba(255,255,255,.07);
+}
