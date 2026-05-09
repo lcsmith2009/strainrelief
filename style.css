@@ -676,3 +676,67 @@ button:active,
     scroll-behavior:auto!important;
   }
 }
+
+.skeleton{
+  animation:pulse 1.5s infinite;
+  background:linear-gradient(90deg,#1a1a1a,#2a2a2a,#1a1a1a);
+  background-size:200% 100%;
+  border-radius:20px;
+  min-height:120px;
+}
+@keyframes pulse{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+
+.splash-screen{
+  position:fixed;
+  inset:0;
+  background:#02140c;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  transition:0.5s;
+}
+
+.splash-logo{
+  font-size:70px;
+  margin-bottom:10px;
+}
+
+.install-banner{
+  position:fixed;
+  bottom:90px;
+  left:16px;
+  right:16px;
+  background:#103a25;
+  border:1px solid #39ff9c;
+  border-radius:20px;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:999;
+  box-shadow:0 0 25px rgba(57,255,156,.25);
+}
+
+.install-banner button{
+  background:#39ff9c;
+  color:black;
+  border:none;
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:bold;
+}
+
+.fade-in{
+  animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}

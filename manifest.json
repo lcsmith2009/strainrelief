@@ -1,5 +1,5 @@
 {
-  "name": "StrainRelief",
+  "theme_color":"#39ff9c","background_color":"#02140c","name": "StrainRelief",
   "short_name": "StrainRelief",
   "description": "Cannabis wellness education app for exploring strain directions, terpenes, THC guidance, favorites, and wellness journaling.",
   "start_url": "./",

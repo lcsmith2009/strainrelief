@@ -1,0 +1,17 @@
+UPLOAD STEPS
+
+1. Extract ZIP
+2. Upload ALL files into your GitHub root
+3. Commit changes
+4. Wait for Vercel deployment
+5. Clear app cache or reinstall PWA
+
+NEW UPGRADES INCLUDED:
+- splash screen
+- install app popup
+- loading skeletons
+- more strains
+- smoother animations
+- upgraded cache handling
+- premium transitions
+- enhanced PWA support

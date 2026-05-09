@@ -1,4 +1,4 @@
-const CACHE_NAME = "strainrelief-v7";
+const CACHE_NAME = "strainrelief-v10";
 const APP_SHELL = [
   "./",
   "./index.html",

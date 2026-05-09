@@ -564,3 +564,12 @@ setupPWA();
 if(!localStorage.getItem("strainReliefOnboarding")){
  showPageById("onboardingPage");
 }
+window.addEventListener('load',()=>{
+  const splash=document.getElementById('splashScreen');
+  if(splash){
+    setTimeout(()=>{
+      splash.style.opacity='0';
+      setTimeout(()=> splash.remove(),500);
+    },1800);
+  }
+});
