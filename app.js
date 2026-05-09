@@ -290,28 +290,68 @@ function openDetails(name){
  const s=strains.find(x=>x.name===name);
  if(!s)return;
  addRecent(name);loadRecent();
+
+ const levelLabel = s.level === "high" ? "Higher THC Caution" : s.level === "mid" ? "Moderate Intensity" : "Lower Intensity";
+ const vibeLine = s.effects.join(" • ");
+ const goodLine = s.good.join(" • ");
+
  document.getElementById("modalContent").innerHTML=`
-  <div class="image-banner ${s.image}"><span>${s.emoji}</span></div>
-  <h2>${s.name}</h2>
-  ${tags(s.effects)}
+  <div class="detail-hero ${s.image}">
+    <div class="detail-emoji">${s.emoji}</div>
+    <div>
+      <p class="eyebrow">Strain Profile</p>
+      <h2>${s.name}</h2>
+      <p>${s.type} · ${s.use}</p>
+    </div>
+  </div>
+
+  <div class="detail-chip-row">
+    <span class="tag gold">${levelLabel}</span>
+    <span class="tag">${s.intensity}</span>
+    <span class="tag">${s.use}</span>
+  </div>
+
+  <div class="detail-section">
+    <h3>Often Associated With</h3>
+    <p>${vibeLine}</p>
+    ${tags(s.effects)}
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-stat">
+      <strong>THC</strong>
+      <span>${s.thc}</span>
+      <div class="meter"><div class="thc-${s.level} fill"></div></div>
+    </div>
+    <div class="detail-stat">
+      <strong>CBD</strong>
+      <span>${s.cbd}</span>
+    </div>
+  </div>
+
   <div class="score-box">
     ${score("Match Score",s.match)}
     ${score("Beginner Friendly",s.beginner)}
     ${score("Relaxation",s.relax)}
     ${score("Sleep Support",s.sleep)}
   </div>
-  <p><strong>Type:</strong> ${s.type}</p>
-  <p><strong>Intensity:</strong> ${s.intensity}</p>
-  <p><strong>THC:</strong> ${s.thc}</p>
-  <p><strong>CBD:</strong> ${s.cbd}</p>
-  <p><strong>Terpenes:</strong> ${s.terpenes}</p>
-  <p><strong>Flavor / Aroma:</strong> ${s.flavor}</p>
-  <p><strong>Best Use:</strong> ${s.use}</p>
-  <div class="info"><strong>AI Wellness Insight:</strong><br>${s.insight}</div>
-  <div class="info"><strong>Good For:</strong><br>${tags(s.good)}</div>
-  <div class="warning"><strong>Avoid If:</strong><br>${tags(s.avoid)}</div>
+
+  <div class="detail-section">
+    <h3>Terpene Direction</h3>
+    <p>${s.terpenes}</p>
+  </div>
+
+  <div class="detail-section">
+    <h3>Flavor / Aroma</h3>
+    <p>${s.flavor}</p>
+  </div>
+
+  <div class="info"><strong>Wellness Insight:</strong><br>${s.insight}</div>
+  <div class="info"><strong>May Align With:</strong><br>${goodLine}<br><br>${tags(s.good)}</div>
+  <div class="warning"><strong>Avoid / Use Caution If:</strong><br>${tags(s.avoid)}</div>
   <div class="info"><strong>Similar Strains:</strong><br>${tags(s.similar)}</div>
   <div class="warning"><strong>Educational Safety Note:</strong><br>${s.warning}</div>
+
   <button onclick="saveFavorite('${s.name}')">Save ${s.name}</button>
   <button onclick="prefillJournal('${s.name}')">Add Journal Note</button>
   <button class="mode" onclick="shareStrain('${s.name}')">Share Recommendation</button>
@@ -410,8 +450,11 @@ function openArticle(i){
 
 function loadTrending(){
  document.getElementById("trendingBox").innerHTML=strains.slice(0,12).map(s=>`
-  <div class="mini-card pressable" onclick="openDetails('${s.name}')">
-   <h3>${s.emoji} ${s.name}</h3>
+  <div class="mini-card strain-tile pressable" onclick="openDetails('${s.name}')">
+   <div class="strain-tile-top">
+    <h3>${s.emoji} ${s.name}</h3>
+    <span class="tap-pill">Tap</span>
+   </div>
    <p>${s.type}</p>
    ${tags(s.effects)}
   </div>
