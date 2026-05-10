@@ -62,3 +62,15 @@ Added:
 - Bottom nav entrance and active pulse
 - Moving card glow/parallax-style light
 - Cache-busted service worker v10
+
+
+## v11 Modal Scroll Fix
+
+Fixed:
+- Long strain profiles creating huge blank gaps
+- Buttons floating outside the modal
+- Page-behind-modal scroll conflicts
+- Mobile overflow clipping
+- Close button disappearing while scrolling
+- Modal content not fitting on Android/mobile screens
+- Service worker cache bumped to v11

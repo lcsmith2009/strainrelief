@@ -184,3 +184,188 @@ button:not(.ghost):not(.nav-btn):active:before{transform:translateX(120%)}
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal-on-scroll{opacity:1!important;transform:none!important;filter:none!important}
 }
+
+
+
+/* === StrainRelief v11 Modal Scroll + Mobile Overflow Fix === */
+html.sr-modal-open,
+body.sr-modal-open{
+  overflow:hidden !important;
+  overscroll-behavior:none !important;
+}
+
+.modal{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100dvh !important;
+  max-height:100dvh !important;
+  overflow:hidden !important;
+  align-items:flex-end !important;
+  justify-content:center !important;
+  padding:clamp(10px,2.8vw,18px) !important;
+  box-sizing:border-box !important;
+  background:rgba(0,0,0,.62) !important;
+  z-index:9999 !important;
+}
+
+.modal.show,
+.modal.active{
+  display:flex !important;
+}
+
+.modal-card{
+  position:relative !important;
+  width:min(100%,760px) !important;
+  max-width:760px !important;
+  height:auto !important;
+  max-height:92dvh !important;
+  min-height:0 !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  overscroll-behavior:contain !important;
+  -webkit-overflow-scrolling:touch !important;
+  border-radius:34px 34px 0 0 !important;
+  padding:clamp(22px,5vw,42px) clamp(18px,4.5vw,38px) calc(128px + env(safe-area-inset-bottom)) !important;
+  box-sizing:border-box !important;
+  scroll-behavior:smooth;
+}
+
+.modal-card > *{
+  max-width:100% !important;
+}
+
+.modal-card .panel,
+.modal-card .pro-card,
+.modal-card .education-card,
+.modal-card .section-title{
+  min-height:auto !important;
+  margin-bottom:22px !important;
+}
+
+.modal-art,
+.modal-card .art-wrap{
+  width:100% !important;
+  max-height:34dvh !important;
+  min-height:0 !important;
+  aspect-ratio:1.35/1 !important;
+  margin-bottom:24px !important;
+  border-radius:28px !important;
+}
+
+.modal-art img,
+.modal-card .art-wrap img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+.close,
+.modal .close,
+.modal-card .close{
+  position:sticky !important;
+  top:0 !important;
+  float:right !important;
+  z-index:50 !important;
+  margin-left:auto !important;
+  margin-bottom:8px !important;
+  width:64px !important;
+  height:64px !important;
+  min-width:64px !important;
+  min-height:64px !important;
+  border-radius:999px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:rgba(38,38,38,.92) !important;
+  backdrop-filter:blur(12px) !important;
+}
+
+.modal-card .actions,
+.modal-card .button-row,
+.modal-card .modal-actions{
+  position:relative !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:14px !important;
+  padding-bottom:20px !important;
+  margin-top:24px !important;
+}
+
+.modal-card button{
+  max-width:100% !important;
+  white-space:normal !important;
+}
+
+.modal-card h1,
+.modal-card h2,
+.modal-card h3,
+.modal-card .strain-title{
+  overflow-wrap:anywhere !important;
+  word-break:normal !important;
+  line-height:.98 !important;
+}
+
+.modal-card .tags,
+.modal-card .tag-row,
+.modal-card .chip-row{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:12px !important;
+  max-width:100% !important;
+}
+
+@media (max-width:700px){
+  .modal{
+    padding:0 !important;
+    align-items:flex-end !important;
+  }
+  .modal-card{
+    width:100vw !important;
+    max-width:100vw !important;
+    max-height:94dvh !important;
+    border-radius:32px 32px 0 0 !important;
+    padding:24px 20px calc(132px + env(safe-area-inset-bottom)) !important;
+  }
+  .modal-art,
+  .modal-card .art-wrap{
+    max-height:28dvh !important;
+    border-radius:26px !important;
+  }
+  .modal-card h1{
+    font-size:clamp(3.25rem,13vw,5.4rem) !important;
+  }
+  .modal-card h2{
+    font-size:clamp(2.4rem,10vw,4rem) !important;
+  }
+  .modal-card p{
+    font-size:clamp(1.15rem,4.7vw,1.65rem) !important;
+    line-height:1.45 !important;
+  }
+  .modal-card .panel,
+  .modal-card .pro-card,
+  .modal-card .education-card,
+  .modal-card .section-title{
+    padding:28px 22px !important;
+    border-radius:28px !important;
+  }
+}
+
+@media (max-width:420px){
+  .modal-card{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+  .close,
+  .modal .close,
+  .modal-card .close{
+    width:58px !important;
+    height:58px !important;
+    min-width:58px !important;
+    min-height:58px !important;
+  }
+  .modal-art,
+  .modal-card .art-wrap{
+    max-height:24dvh !important;
+  }
+}

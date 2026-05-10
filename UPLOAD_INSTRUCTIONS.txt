@@ -1,25 +1,17 @@
-STRAINRELIEF MICRO-INTERACTIONS FINAL V10
+STRAINRELIEF MODAL SCROLL FIX FINAL V11
 
 Upload everything in this ZIP to GitHub.
 
-KEEP:
+Replace all existing files with these updated files.
+
+IMPORTANT:
+Keep the images folder exactly like this:
 images/strains/
 
-Replace:
-index.html
-app.js
-style.css
-manifest.json
-service-worker.js
-README.md
-logo.png
-logo-hero.png
-logo-mark.png
-icon-192.png
-icon-512.png
-
-Then:
-1. Wait for Vercel.
-2. Open the live site.
+After GitHub upload:
+1. Wait for Vercel to finish deployment.
+2. Open https://strainrelief.vercel.app/
 3. Refresh twice.
-4. If the installed app shows old files, uninstall/reinstall the PWA.
+4. If installed PWA still shows old behavior, uninstall and reinstall it.
+
+This version fixes the strain profile modal scrolling/blank-space issue.
