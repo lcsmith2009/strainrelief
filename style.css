@@ -961,3 +961,113 @@ body:after{content:"";position:fixed;inset:auto -20% 0 -20%;height:48svh;backgro
 .match-pop-in{animation:srV25CardIn .45s var(--ease) both}.bottom-nav button.active{box-shadow:0 0 22px rgba(116,255,173,.30),0 0 42px rgba(79,195,255,.10)!important}.toast{animation:srV25Toast .24s var(--ease) both}@keyframes srV25Toast{from{opacity:0;transform:translateX(-50%) translateY(10px) scale(.96)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
 @media(max-width:420px){.live-hero-strip{grid-template-columns:82px 1fr;padding:10px}.live-hero-strip img{width:82px;height:82px}.lively-stat-row strong{font-size:24px}.quest-card{min-width:137px}#home #trendingGrid .strain-card{min-width:86vw}.vibe-chip{min-width:128px}}
 @supports not (color:color-mix(in srgb, red 50%, transparent)){.vibe-chip{background:rgba(72,233,135,.13)!important;border-color:rgba(72,233,135,.24)!important}.quest-card{background:rgba(72,233,135,.08)}}
+
+/* === StrainRelief v26 Home polish pass: locked hero, brighter chips, tighter lively layout === */
+:root{--sr-nav-h:92px;}
+body{padding-bottom:calc(var(--sr-nav-h) + 22px + env(safe-area-inset-bottom))!important;}
+#home .hero{
+  padding:24px 24px 28px!important;
+  margin-top:14px!important;
+  min-height:0!important;
+  contain:layout paint;
+}
+#home .hero .brand-logo{
+  width:min(86vw,620px)!important;
+  height:clamp(92px,22vw,150px)!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:0 auto 14px!important;
+  display:block!important;
+}
+#home .hero h1{margin-top:0!important;}
+#home .hero p{margin-bottom:0!important;}
+#home .hero-actions{margin-top:24px!important;}
+.quick-row{
+  gap:12px!important;
+  margin:14px 0 20px!important;
+}
+.quick-row button{
+  background:linear-gradient(135deg,#63ffa2,#7bf7bd)!important;
+  color:#03130b!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 14px 36px rgba(93,255,179,.20), inset 0 1px 0 rgba(255,255,255,.24)!important;
+  opacity:1!important;
+  filter:none!important;
+  text-shadow:none!important;
+  min-height:58px!important;
+}
+.quick-row button:nth-child(2){background:linear-gradient(135deg,#65f6b3,#7ad7ff)!important;}
+.quick-row button:nth-child(3){background:linear-gradient(135deg,#69ffa7,#83ff8d)!important;}
+.quick-row button:nth-child(4){background:linear-gradient(135deg,#74ffad,#6be4ff)!important;}
+#smartInsights{overflow:hidden!important;}
+#smartInsights .panel-head{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  align-items:start!important;
+  gap:12px!important;
+}
+#smartInsights .panel-head h3{
+  font-size:clamp(38px,10vw,58px)!important;
+  line-height:.94!important;
+  max-width:100%!important;
+  overflow-wrap:anywhere!important;
+}
+#smartInsights .panel-head .small-btn{
+  justify-self:start!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  text-align:center!important;
+  padding:12px 16px!important;
+  background:rgba(255,255,255,.075)!important;
+  border:1px solid rgba(116,255,173,.22)!important;
+}
+.lively-dashboard,.smart-insights,#categoryRibbons,.section-title,#home .pro-card,#home .daily-card{
+  margin-top:18px!important;
+  margin-bottom:18px!important;
+}
+.lively-dashboard{padding:22px!important;}
+.section-micro-head{padding-right:2px!important;}
+.quest-carousel,.vibe-ribbon,.recent-carousel,#home #trendingGrid{
+  padding-bottom:10px!important;
+  scroll-padding-left:4px!important;
+}
+.lively-section-title,.section-title{
+  overflow:visible!important;
+}
+#home .section-title h2{
+  font-size:clamp(40px,10vw,58px)!important;
+  line-height:.94!important;
+}
+#home #trendingGrid .strain-card{min-width:min(80vw,330px)!important;}
+.recent-card{min-width:155px!important;}
+.bottom-nav{
+  gap:6px!important;
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom))!important;
+}
+.bottom-nav button{
+  border-radius:18px!important;
+  padding:8px 4px!important;
+  min-height:64px!important;
+  font-size:12.5px!important;
+}
+.bottom-nav button span{font-size:18px!important;line-height:1!important;}
+.install-banner,.compare-tray{bottom:calc(var(--sr-nav-h) + 6px)!important;}
+.compare-tray{bottom:calc(var(--sr-nav-h) + 72px)!important;}
+
+@media(max-width:420px){
+  :root{--sr-nav-h:86px;}
+  body{padding-left:12px!important;padding-right:12px!important;padding-top:10px!important;}
+  #home .hero{padding:22px 20px 26px!important;margin-top:10px!important;}
+  #home .hero .brand-logo{height:clamp(84px,24vw,132px)!important;width:min(92vw,560px)!important;margin-bottom:12px!important;}
+  #home .hero h1{font-size:clamp(44px,12vw,66px)!important;line-height:.93!important;}
+  #home .hero p{font-size:16px!important;line-height:1.55!important;}
+  .quick-row{grid-template-columns:1fr 1fr!important;gap:10px!important;}
+  .quick-row button{min-height:54px!important;font-size:16px!important;padding:12px 10px!important;}
+  .lively-dashboard{padding:20px!important;}
+  .lively-dashboard .panel-head{grid-template-columns:1fr auto!important;align-items:start!important;}
+  .lively-dashboard .panel-head .small-btn{max-width:96px!important;white-space:normal!important;line-height:1.05!important;}
+  .bottom-nav{gap:6px!important;}
+  .bottom-nav button{min-height:62px!important;border-radius:18px!important;}
+  #home #trendingGrid .strain-card{min-width:84vw!important;}
+}
