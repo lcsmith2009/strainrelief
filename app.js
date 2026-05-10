@@ -122,7 +122,7 @@ const read=(k,f=[])=>{try{return JSON.parse(localStorage.getItem(k)||JSON.string
 localStorage.removeItem("srCompare");
 function safeName(n){return String(n).replace(/\\/g,"\\\\").replace(/\'/g,"\\\'")}
 function showToast(m){const t=$("toast"); if(!t)return; t.textContent=m;t.style.display="block";t.classList.add("show");setTimeout(()=>{t.classList.remove("show");t.style.display="none"},1800)}
-function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id)?.classList.add("active");document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));let i=["home","search","recommend","saved","learn"].indexOf(id);if(i>=0)document.querySelectorAll(".nav-btn")[i].classList.add("active");window.scrollTo({top:0,behavior:"smooth"});if(id==="saved")renderSaved();if(id==="home")renderRecentHome();setTimeout(()=>{srAttachReveal();srAnimateMeters()},70)}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id)?.classList.add("active");document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));let i=["home","search","recommend","saved","learn"].indexOf(id);if(i>=0)document.querySelectorAll(".nav-btn")[i].classList.add("active");window.scrollTo({top:0,behavior:"smooth"});if(id==="saved")renderSaved();if(id==="home"){renderRecentHome();renderSmartInsights();}setTimeout(()=>{srAttachReveal();srAnimateMeters()},70)}
 function jumpFilter(f){currentFilter=f;showPage("search");renderFilters();renderSearch()}
 function cardHTML(s){return `<article class="strain-card" onclick="openModal('${safeName(s.name)}')"><div class="card-hero"><img src="${strainImage(s)}" alt="${s.name} real cannabis flower image" loading="lazy" onerror="repairStrainImage(this, '${safeName(s.name)}')"></div><span class="eyebrow">${s.type}</span><h3>${s.name}</h3><p>${s.insight}</p><div class="tags">${s.tags.slice(0,4).map(t=>`<span class="tag">${t}</span>`).join("")}</div></article>`}
 function getDailySeed(date=new Date()){
@@ -879,3 +879,27 @@ function renderEducation(){
 }
 function srRefreshV19(){dailyTip();renderFeatured();renderSearch();renderSaved();renderRecentHome();renderEducation();updateStats();srAttachReveal();srAnimateMeters();}
 setTimeout(srRefreshV19,220);
+
+
+function renderSmartInsights(){
+ const box=$("smartInsights"); if(!box) return;
+ const saved=savedRecords();
+ const journal=journalRecords();
+ let insights=[];
+ if(saved.length){
+   const latest=getStrain(saved[0].name)||{};
+   insights.push(`<div class="smart-card"><span>🧠 Personalized Insight</span><h3>Because you saved ${latest.name||"recent directions"}</h3><p>You seem to prefer ${latest.type||"balanced"} directions with ${(latest.goals||['calming']).slice(0,2).join(' + ')} style exploration.</p></div>`);
+ }
+ if(journal.length){
+   const moods={}; journal.forEach(j=>moods[j.mood]=(moods[j.mood]||0)+1);
+   const top=Object.entries(moods).sort((a,b)=>b[1]-a[1])[0];
+   if(top) insights.push(`<div class="smart-card"><span>📈 Mood Trend</span><h3>Your top journal mood: ${top[0]}</h3><p>StrainRelief is noticing more ${top[0].toLowerCase()}-style experiences in your saved wellness journal.</p></div>`)
+ }
+ const hour=new Date().getHours();
+ const tod=hour<12?'daytime clarity':hour<18?'balanced daytime':'evening wind-down';
+ insights.push(`<div class="smart-card"><span>⏰ Time-Based Direction</span><h3>Recommended for right now</h3><p>Your current exploration window leans toward ${tod} educational directions.</p></div>`);
+ if(!saved.length&&!journal.length){
+   insights=[`<div class="smart-card"><span>✨ Smart Recommendations</span><h3>Your app will learn your preferences</h3><p>Save strains and journal experiences to unlock personalized wellness direction insights.</p></div>`]
+ }
+ box.innerHTML=`<div class="panel-head"><h3>Smart Recommendations</h3></div><div class="smart-grid">${insights.join('')}</div>`;
+}
