@@ -1,4 +1,4 @@
-const CACHE_NAME="strainrelief-modal-scroll-fix-final-v11";
+const CACHE_NAME="strainrelief-v16-compare-safe-merge";
 const APP_SHELL=["./","./index.html","./style.css","./app.js","./manifest.json","./logo.png","./logo-hero.png","./logo-mark.png","./icon-192.png","./icon-512.png","./images/strains/fallback.webp"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(APP_SHELL)).catch(()=>null));self.skipWaiting()});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))));self.clients.claim()});
