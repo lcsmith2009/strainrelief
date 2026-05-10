@@ -554,3 +554,138 @@ function animatePremiumMeters(){
     requestAnimationFrame(()=>setTimeout(()=>el.style.width=w,120));
   });
 }
+
+
+/* === v17 Growth Upgrade: motion, personalization, onboarding, AI-style summaries, sharing, PWA polish === */
+function srPreferenceSnapshot(){
+  const goal=$('goalSelect')?.value||'';
+  const sens=$('sensitivitySelect')?.value||'';
+  const time=$('timeSelect')?.value||'';
+  const saved=savedRecords().map(x=>getStrain(x.name)).filter(Boolean);
+  const journal=read('srJournal',[]).map(x=>getStrain(x.strain)).filter(Boolean);
+  const picked=[...saved,...journal];
+  const goals=[goal,...picked.flatMap(s=>s.goals||[])].filter(Boolean);
+  const terps=picked.flatMap(s=>s.terpenes||[]);
+  return {goal,sens,time,goals,terps,hasHistory:picked.length>0||!!goal||!!sens||!!time};
+}
+function personalizedFitScore(s){
+  const pref=srPreferenceSnapshot();
+  let pts=s.score||72;
+  const text=searchableText(s);
+  if(pref.goal && text.includes(pref.goal.toLowerCase())) pts+=18;
+  if(pref.time && text.includes(pref.time.toLowerCase())) pts+=10;
+  if(pref.sens==='low' && (text.includes('very low')||text.includes('low thc')||text.includes('high cbd')||text.includes('cbd-forward'))) pts+=18;
+  if(pref.sens==='low' && text.includes('high thc')) pts-=28;
+  if(pref.sens==='high' && text.includes('high thc')) pts+=8;
+  pref.goals.forEach(g=>{ if(g && text.includes(String(g).toLowerCase())) pts+=3; });
+  (s.terpenes||[]).forEach(t=>{ if(pref.terps.includes(t)) pts+=4; });
+  return Math.max(32,Math.min(99,Math.round(pts)));
+}
+function aiDirectionSummary(s){
+  const thc=thcLevelValue(s.thc), cbd=cbdLevelValue(s.cbd);
+  const lowRisk=(cbd>=70&&thc<=40)||String(s.type).toLowerCase().includes('cbd');
+  const timing=s.time||'flexible timing';
+  const terp=(s.terpenes||[])[0]||'terpene profile';
+  const caution=thc>=70?'Use extra caution if THC-sensitive or anxiety-prone.':(lowRisk?'This leans lower-intoxication, but effects can still vary.':'Compare THC level, timing, and terpene notes before choosing.');
+  return `${s.name} may be worth exploring for ${((s.goals||[]).slice(0,2).join(' and ')||s.category).toLowerCase()} directions. It leans ${timing.toLowerCase()}, with ${terp} as a key terpene note. ${caution} Educational only — ask for lab-tested products and follow local laws.`;
+}
+function cardHTML(s){
+  const fit=personalizedFitScore(s);
+  return `<article class="strain-card upgraded-card" onclick="openModal('${safeName(s.name)}')"><div class="card-hero"><img src="${s.image}" alt="${s.name} strain direction artwork" loading="lazy" onerror="this.src='images/strains/fallback.webp'"></div><div class="card-topline"><span class="eyebrow">${s.type}</span><b>${fit}% fit</b></div><h3>${s.name}</h3><p>${aiDirectionSummary(s)}</p><div class="tags">${s.tags.slice(0,4).map(t=>`<span class="tag">${t}</span>`).join("")}</div></article>`
+}
+function renderFeatured(){
+  const seed=getDailySeed();
+  const categories=['CBD','Sleep','Mood','Stress','Body Comfort','Focus','Daytime','Appetite'];
+  const todaysCategory=categories[seed%categories.length];
+  let pool=strains.filter(s=>searchableText(s).includes(todaysCategory.toLowerCase()));
+  if(pool.length<8) pool=[...strains];
+  const mixed=dailyShuffle(pool,`trending-${new Date().toDateString()}`).slice(0,12).sort((a,b)=>a.name.localeCompare(b.name));
+  $('trendingGrid').innerHTML=mixed.map(cardHTML).join('');
+  srAttachReveal(); srAnimateMeters();
+}
+function renderSearch(){
+  const input=$('searchInput'); const q=(input?.value||'').toLowerCase().trim();
+  const filtered=sortedStrains().filter(s=>{const text=searchableText(s);return(!q||text.includes(q))&&(currentFilter==='All'||text.includes(currentFilter.toLowerCase()))});
+  $('strainGrid').innerHTML=filtered.length?filtered.map(cardHTML).join(''):`<div class="empty-state upgraded-empty search-empty"><span>⌕</span><strong>No matching direction yet.</strong><br>Try a strain name, terpene like limonene, a goal like sleep, or clear filters.</div>`;
+  srAttachReveal();
+}
+function dailyTip(){
+  const seed=getDailySeed();
+  const dailyThemes=[
+    {label:'Lower-risk lean',match:s=>cbdLevelValue(s.cbd)>=70&&thcLevelValue(s.thc)<=40,text:'Today’s direction leans toward lower THC and higher CBD education.'},
+    {label:'Evening wind-down',match:s=>String(s.time).toLowerCase().includes('evening')||String(s.time).toLowerCase().includes('night'),text:'Today’s direction highlights evening-style options.'},
+    {label:'Daytime clarity',match:s=>String(s.time).toLowerCase().includes('day'),text:'Today’s direction highlights daytime-style options.'},
+    {label:'Body comfort',match:s=>searchableText(s).includes('body comfort'),text:'Today’s direction focuses on body-comfort education.'},
+    {label:'Stress support',match:s=>searchableText(s).includes('stress'),text:'Today’s direction focuses on stress-style exploration.'},
+    {label:'Mood check',match:s=>searchableText(s).includes('mood'),text:'Today’s direction focuses on mood-style exploration.'},
+    {label:'Terpene spotlight',match:s=>(s.terpenes||[]).length,text:'Today’s direction is terpene-led.'}
+  ];
+  const theme=dailyThemes[seed%dailyThemes.length];
+  let pool=strains.filter(theme.match); if(!pool.length) pool=[...strains];
+  const pick=dailyShuffle(pool,`daily-wellness-${new Date().toDateString()}`)[0];
+  const terp=(pick.terpenes||[])[seed%Math.max(1,(pick.terpenes||[]).length)]||'terpene profile';
+  $('dailyTitle').textContent=`${theme.label}: ${pick.name}`;
+  $('dailyText').textContent=`${theme.text} Spotlight terpene: ${terp}. ${aiDirectionSummary(pick)}`;
+}
+function launchOnboarding(){
+  if(localStorage.getItem('srOnboardingDone')==='yes')return;
+  if(document.getElementById('onboardingModal'))return;
+  const wrap=document.createElement('div');
+  wrap.id='onboardingModal';wrap.className='onboarding-modal';
+  wrap.innerHTML=`<div class="onboarding-card pro-onboard"><button class="close-onboard" onclick="finishOnboarding()">×</button><span class="eyebrow">Welcome to StrainRelief</span><h2>Explore smarter. Stay safer.</h2><div class="onboarding-steps"><div><strong>1</strong><span>Match by goal, THC sensitivity, and time of day.</span></div><div><strong>2</strong><span>Compare two strain directions side-by-side.</span></div><div><strong>3</strong><span>Save favorites and journal what you learn.</span></div></div><p>Educational only. Not medical advice. Follow local laws, ask for lab-tested products, and do not drive while impaired.</p><button onclick="finishOnboarding()">Start Exploring</button></div>`;
+  document.body.appendChild(wrap);
+}
+function compareWhyMatters(a,b,shared){
+  if(!b)return 'Add one more strain to compare THC/CBD direction, timing, terpene overlap, and caution notes.';
+  const aThc=thcLevelValue(a.thc), bThc=thcLevelValue(b.thc), aCbd=cbdLevelValue(a.cbd), bCbd=cbdLevelValue(b.cbd);
+  const parts=[];
+  if(aThc===bThc) parts.push(`${a.name} and ${b.name} show a similar THC direction`); else parts.push(`${aThc<bThc?a.name:b.name} leans lower THC`);
+  if(aCbd===bCbd) parts.push(`both show a similar CBD direction`); else parts.push(`${aCbd>bCbd?a.name:b.name} leans higher CBD`);
+  if(String(a.time||'').toLowerCase()===String(b.time||'').toLowerCase()) parts.push(`both lean ${String(a.time||'similar timing').toLowerCase()}`); else parts.push(`${a.name} leans ${String(a.time||'one timing').toLowerCase()}, while ${b.name} leans ${String(b.time||'another timing').toLowerCase()}`);
+  parts.push(shared.length?`Shared terpene direction: ${shared.slice(0,3).join(', ')}.`:'They do not share a main terpene direction in this profile.');
+  return `${parts.join('; ')} Educational only — cannabis affects everyone differently.`;
+}
+function shareCompare(){
+  const c=read('srCompare',[]).map(getStrain).filter(Boolean);
+  if(c.length<2){showToast('Add two strains to share a comparison');return;}
+  const [a,b]=c; const shared=[...new Set((a.terpenes||[]).filter(t=>(b.terpenes||[]).includes(t)))];
+  const text=`StrainRelief comparison: ${a.name} vs ${b.name}. ${compareWhyMatters(a,b,shared)} Follow local laws.`;
+  if(navigator.share) navigator.share({title:`${a.name} vs ${b.name}`,text,url:location.href}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' '+location.href).then(()=>showToast('Comparison copied'));
+}
+function shareStrain(name){
+  const s=getStrain(name); const text=s?`StrainRelief direction: ${s.name}. ${aiDirectionSummary(s)}`:`StrainRelief wellness direction: ${name}. Educational only. Follow local laws.`;
+  if(navigator.share)navigator.share({title:'StrainRelief',text,url:location.href}).catch(()=>{});else navigator.clipboard.writeText(text+' '+location.href).then(()=>showToast('Copied share text'));
+}
+function openCompare(){
+  const c=read('srCompare',[]).map(getStrain).filter(Boolean);
+  if(!c.length){showToast('Add a strain to compare first');return;}
+  const [a,b]=c;
+  const shared=c.length>1?[...new Set((a.terpenes||[]).filter(t=>(b.terpenes||[]).includes(t)))]:[...new Set(c.flatMap(s=>s.terpenes||[]))];
+  const allTerps=[...new Set(c.flatMap(s=>s.terpenes||[]))];
+  const pairScore=c.length>1?comparePairScore(a,b,shared):compareFitScore(a,null);
+  const cards=c.map((s,idx)=>{const other=c[idx===0?1:0];return `<article class="compare-card compact premium-mini ${other?'has-opponent':''}">
+    <div class="compare-card-img"><img src="${s.image}" onerror="this.src='images/strains/fallback.webp'" alt="${s.name}"></div>
+    <div class="compare-card-title"><span class="eyebrow">${s.category}</span><h3>${s.name}</h3><p>${s.type}</p><em>${compareBadgeFor(s,other)}</em></div>
+    <div class="mini-meter-pair">${compareMeter('THC',thcLevelValue(s.thc),s.thc)}${compareMeter('CBD',cbdLevelValue(s.cbd),s.cbd)}</div>
+    <button class="compare-open-profile" onclick="openModal('${safeName(s.name)}')">Open ${s.name}</button>
+  </article>`}).join('');
+  const rows=[['type','Type'],['thc','THC'],['cbd','CBD'],['time','Best time'],['category','Category'],['flavor','Flavor']].map(([key,label])=>`<div class="compare-row polished compact-row"><strong>${label}</strong>${c.map(s=>`<span class="${compareCellClass(key,s,c)}">${s[key]||''}</span>`).join('')}</div>`).join('');
+  const winnerNote=c.length>1?`<div class="compare-winner-grid premium-winners"><div><strong>Lower THC</strong><span>${strongerDirectionWinner(a,b,'lowerThc')}</span></div><div><strong>Higher CBD</strong><span>${strongerDirectionWinner(a,b,'higherCbd')}</span></div><div><strong>Timing</strong><span>${strongerDirectionWinner(a,b,'timing')}</span></div><div><strong>Direction</strong><span>${strongerDirectionWinner(a,b,'category')}</span></div></div>`:'';
+  const guidance=c.length<2?`<div class="empty-state compare-hint"><strong>Add one more strain.</strong><br>Open another strain profile and tap Compare to unlock the full side-by-side view.</div>`:`<div class="panel compare-insight polished premium-top-read"><div class="compare-match-score"><strong>${pairScore}%</strong><span>similar direction match</span></div><h3>Quick Read</h3><p>${compareWhyMatters(a,b,shared)}</p>${winnerNote}</div>`;
+  document.getElementById('modalBody').innerHTML=`<div class="compare-premium compare-full polished compact-premium">
+    <div class="compare-sticky-title premium-vs"><span class="compare-name-stack">${c.length>1?`<b>${a.name}</b><i>vs</i><b>${b.name}</b>`:`<b>${a.name}</b>`}</span><button class="small-btn ghost" onclick="clearCompare();closeModal()">Clear</button></div>
+    <span class="eyebrow">Side-by-side</span><h2>Compare Directions</h2><p>Compare educational strain profiles before saving or journaling.</p>${guidance}
+    <div class="compare-card-grid polished compact-cards">${cards}</div><div class="compare-table polished compact-table">${rows}</div>
+    <div class="panel terpene-overlap-card compact-terps"><h3>Terpene overlap</h3><p>${shared.length?'Shared terpene directions between these picks.':'Each pick leans on different terpene directions.'}</p><div class="tags">${(shared.length?shared:allTerps).map(t=>`<span class="tag ${shared.includes(t)?'hot':''}">${t}</span>`).join('')}</div></div>
+    <div class="sticky-modal-actions compare-bottom-actions"><button onclick="clearCompare();closeModal()">Clear Compare</button>${c.length>1?`<button class="ghost" onclick="shareCompare()">Share Compare</button>`:''}${c.map(s=>`<button class="ghost" onclick="openModal('${safeName(s.name)}')">Open ${s.name}</button>`).join('')}</div>
+  </div>`;
+  document.getElementById('strainModal').classList.remove('hidden');document.documentElement.classList.add('sr-modal-open');document.body.classList.add('sr-modal-open');renderCompareTray();setTimeout(()=>document.querySelector('.modal-card')?.scrollTo(0,0),40);
+}
+function srMaybeInstallNudge(){
+  const standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  if(standalone||localStorage.getItem('srInstallDismissed')==='yes')return;
+  setTimeout(()=>{ if(!$('installBanner'))return; $('installBanner').classList.remove('hidden'); },3500);
+}
+function srRefreshV17(){dailyTip();renderFeatured();renderSearch();renderSaved();renderRecentHome();updateStats();srAttachReveal();srAnimateMeters();srMaybeInstallNudge();setTimeout(launchOnboarding,1200)}
+setTimeout(srRefreshV17,120);
