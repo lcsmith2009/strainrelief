@@ -165,3 +165,91 @@
 .terpene-overlap-card{margin:14px 0!important;padding:18px!important}.terpene-overlap-card h3{font-size:clamp(30px,8vw,46px)}.terpene-overlap-card p{font-size:15px!important;line-height:1.45!important}.terpene-overlap-card .tag.hot{background:linear-gradient(135deg,var(--green),var(--green2));color:#03130b;border-color:transparent}.compare-bottom-actions{margin-top:16px!important}.compare-bottom-actions button{font-size:15px!important;min-height:54px}
 @media(min-width:700px){.compare-row.polished{grid-template-columns:.75fr repeat(2,1fr)}.compare-winner-grid{grid-template-columns:repeat(3,1fr)}.compare-card.compact .compare-card-img img{height:145px}}
 @media(max-width:420px){.compare-premium h2{font-size:clamp(40px,12vw,58px)!important}.compare-full.polished>p{font-size:15px}.compare-card-grid.polished{gap:10px}.compare-card.compact{padding:11px}.compare-card.compact .compare-card-img img{height:112px}.compare-card-title h3{font-size:31px}.compare-row.polished>*{font-size:14px}.compare-bottom-actions{grid-template-columns:1fr 1fr!important}}
+
+
+/* === StrainRelief v16.2 Compare Toolbar + True Row Polish === */
+/* Keep compare context inside the modal without covering content while scrolling. */
+.compare-sticky-title{
+  position:relative!important;
+  top:auto!important;
+  z-index:2!important;
+  margin:0 0 16px!important;
+  padding:12px 14px!important;
+  background:linear-gradient(145deg,rgba(8,31,19,.92),rgba(5,22,13,.82))!important;
+  border:1px solid rgba(72,233,135,.22)!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.20)!important;
+}
+.compare-sticky-title span{
+  font-size:14px!important;
+  max-width:calc(100% - 76px)!important;
+}
+
+/* Make side-by-side comparison rows readable on phones instead of long stacked lists. */
+.compare-table.polished{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:22px;
+  padding:10px;
+}
+.compare-row.polished{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:18px!important;
+  padding:7px 0!important;
+}
+.compare-row.polished strong{
+  grid-column:1/-1!important;
+  padding:10px 12px!important;
+  border-radius:16px!important;
+  background:rgba(72,233,135,.09)!important;
+}
+.compare-row.polished span{
+  min-height:54px;
+  display:flex;
+  align-items:center;
+  line-height:1.25!important;
+  overflow-wrap:anywhere;
+}
+.compare-row.polished span.win{
+  background:rgba(72,233,135,.18)!important;
+  border-color:rgba(72,233,135,.32)!important;
+  box-shadow:inset 4px 0 0 var(--green),0 0 22px rgba(72,233,135,.08)!important;
+}
+.compare-row.polished span.note{box-shadow:inset 4px 0 0 rgba(116,255,173,.45)!important;}
+
+/* Tighter compare cards and cleaner open buttons. */
+.compare-card.compact{padding:10px!important;}
+.compare-card.compact .compare-meter-row{margin:7px 0!important;}
+.compare-open-profile{
+  min-height:50px!important;
+  font-size:15px!important;
+  letter-spacing:.01em;
+}
+
+/* Mobile: stack the bottom actions so long strain names never wrap awkwardly. */
+@media(max-width:520px){
+  .compare-bottom-actions{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  .compare-bottom-actions button{
+    width:100%!important;
+    min-height:56px!important;
+    font-size:16px!important;
+    white-space:normal!important;
+    line-height:1.15!important;
+  }
+  .compare-premium h2{font-size:clamp(38px,11vw,56px)!important;}
+  .compare-full.polished>p{font-size:15px!important;}
+}
+
+/* Keep the close button above the compare toolbar but less visually intrusive. */
+.modal-card .close{
+  width:54px!important;
+  height:54px!important;
+  font-size:28px!important;
+  background:rgba(38,38,38,.86)!important;
+}
