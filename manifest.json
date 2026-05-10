@@ -1,13 +1,18 @@
 {
   "name": "StrainRelief",
   "short_name": "StrainRelief",
-  "description": "Cannabis wellness education app for exploring strain directions, terpenes, favorites, and wellness journaling.",
+  "description": "Cannabis wellness education app for exploring strain directions, terpenes, favorites, comparison, and wellness journaling.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#03140c",
-  "theme_color": "#48e987",
+  "theme_color": "#06190f",
   "orientation": "portrait-primary",
+  "categories": [
+    "health",
+    "education",
+    "lifestyle"
+  ],
   "icons": [
     {
       "src": "icon-192.png",
