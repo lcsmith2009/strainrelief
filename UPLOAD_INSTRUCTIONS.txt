@@ -1,7 +1,21 @@
-Upload these files to GitHub exactly as-is.
+STRAINRELIEF 10/10 FINAL V9
 
-IMPORTANT:
-- Keep the folder path: images/strains/
-- Do not upload only the files inside the images folder. Upload the folder too.
-- Replace app.js, style.css, index.html, manifest.json, service-worker.js, and the logo/icon files.
-- After Vercel deploys, refresh twice.
+Upload everything in this ZIP to GitHub.
+
+KEEP:
+images/strains/
+
+Replace:
+index.html
+app.js
+style.css
+manifest.json
+service-worker.js
+README.md
+logo.png
+logo-hero.png
+logo-mark.png
+icon-192.png
+icon-512.png
+
+Then wait for Vercel, refresh twice, and reinstall the PWA if old cache appears.

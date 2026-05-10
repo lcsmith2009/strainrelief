@@ -1,36 +1,46 @@
-# StrainRelief Premium Images Upgrade v8
+# StrainRelief 10/10 Final Upgrade v9
 
-Upload/replace everything in your GitHub repo root.
+This is the full upgraded package. Upload/replace everything in your GitHub repo root.
 
-## Files/folders included
-- index.html
-- app.js
-- style.css
-- manifest.json
-- service-worker.js
-- README.md
-- logo.png
-- logo-hero.png
-- logo-mark.png
-- icon-192.png
-- icon-512.png
-- images/strains/*.webp
+## What is included
 
-## New upgrade
-- Added premium generated WEBP strain artwork for every strain direction
-- Added lazy loading for mobile speed
-- Added fallback strain image
-- Updated strain cards to show artwork instead of plain emoji cards
-- Updated strain detail modal to show large artwork
-- Kept safe educational wording
-- Kept saved favorites, journal, mood tracker, search, matching, terpene explorer, and PWA support
-- Cache version updated to strainrelief-v100
+- Premium transparent logo system
+- Real WEBP strain artwork folder
+- Large strain database
+- Search filters
+- Trending Today
+- Recently Viewed
+- Match Me quiz
+- Low Anxiety Mode
+- AI-style recommendation explanations
+- Circular match score UI
+- Saved favorites
+- Wellness Journal
+- Mood Tracker chart
+- Education Hub
+- Onboarding quick-start cards
+- Terpene Explorer
+- Dispensary prep checklist
+- Privacy, safety, legal, and medical disclaimer wording
+- PWA install support
+- Offline cache refresh
+- Mobile-first app-store style polish
+- Animated page transitions and modal polish
+
+## Upload instructions
+
+Upload ALL files and folders exactly as they appear in this ZIP.
+
+Very important:
+- Keep the folder path: `images/strains/`
+- Do not flatten the image files.
+- Replace the old app.js, style.css, index.html, manifest.json, service-worker.js, and logo/icon files.
 
 ## After upload
-1. Upload all files and the whole `images` folder.
-2. Wait for Vercel to finish deployment.
-3. Open the site in Chrome.
-4. Refresh twice.
-5. If your installed app shows old images, uninstall and reinstall the PWA.
+
+1. Wait for Vercel deployment.
+2. Open https://strainrelief.vercel.app/
+3. Refresh twice.
+4. If the installed PWA still shows old files, uninstall and reinstall the app.
 
 Educational only. Not medical advice. Follow local laws. Do not drive while impaired.

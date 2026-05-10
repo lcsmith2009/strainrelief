@@ -7,3 +7,91 @@
 .modal-art img{width:100%;max-height:360px;object-fit:cover;display:block}
 .brand-logo{image-rendering:auto}
 @media(max-width:380px){.strain-art img{min-height:185px}.modal-art img{max-height:280px}}
+
+
+/* === StrainRelief 10/10 Final v9 polish === */
+:root{
+  --final-glow: 0 0 42px rgba(72,233,135,.28);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(72,233,135,.26),transparent 28%),
+    radial-gradient(circle at 88% 10%,rgba(116,255,173,.13),transparent 32%),
+    linear-gradient(180deg,#020d07,#06190f 52%,#020b06)!important;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(72,233,135,.035) 1px,transparent 1px),
+    linear-gradient(rgba(72,233,135,.02) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 80%);
+  z-index:-1;
+}
+.hero,.daily-card,.panel,.strain-card,.education-card,.section-title,.pro-card{
+  border-color:rgba(255,255,255,.09)!important;
+  box-shadow:0 30px 85px rgba(0,0,0,.46)!important;
+}
+.brand-logo{
+  background:transparent!important;
+  object-fit:contain!important;
+  image-rendering:auto!important;
+  filter:drop-shadow(0 0 34px rgba(72,233,135,.24))!important;
+}
+button{
+  transition:transform .16s ease, filter .22s ease, box-shadow .22s ease!important;
+}
+button:hover,button:active{
+  filter:saturate(1.08)!important;
+}
+.page{animation:srFadeUp .32s ease both}
+@keyframes srFadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.strain-card,.panel,.hero,.daily-card,.pro-card,.section-title{
+  overflow:hidden;
+}
+.strain-card:before,.panel:before,.hero:before,.daily-card:before,.pro-card:before,.section-title:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 20% 0%,rgba(116,255,173,.11),transparent 38%);
+  pointer-events:none;
+}
+.art-wrap{
+  border-radius:30px!important;
+  box-shadow:inset 0 0 40px rgba(72,233,135,.13), 0 0 25px rgba(72,233,135,.08)!important;
+}
+.art-wrap img{
+  transition:transform .35s ease, filter .35s ease!important;
+}
+.strain-card:active .art-wrap img{
+  transform:scale(1.035);
+  filter:saturate(1.08);
+}
+.modal-card{
+  animation:srSlideUp .26s ease both;
+}
+@keyframes srSlideUp{from{transform:translateY(22px);opacity:.92}to{transform:translateY(0);opacity:1}}
+.toast{
+  transition:.22s ease;
+}
+.toast.show{
+  opacity:1!important;
+  transform:translateX(-50%) translateY(0)!important;
+}
+.install-banner{
+  border-color:rgba(72,233,135,.28)!important;
+  box-shadow:var(--final-glow),0 25px 70px rgba(0,0,0,.42)!important;
+}
+.score-ring{
+  box-shadow:0 0 28px rgba(72,233,135,.24)!important;
+}
+.caution{
+  background:linear-gradient(145deg,rgba(73,52,21,.92),rgba(34,26,12,.82))!important;
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
