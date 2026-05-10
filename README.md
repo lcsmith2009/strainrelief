@@ -1,3 +1,11 @@
-# StrainRelief v12 Upgrade
 
-Upload these files to the root of the GitHub repo. Keep your existing images, icons, logos, and images/strains folder.
+## v18 Real Image System
+This build adds a real cannabis-flower photo system using live photo URLs plus local WebP fallback support.
+For verified strain-specific photos, upload WebP files to:
+
+`images/strains/strain-name.webp`
+
+Example:
+`images/strains/blue-dream.webp`
+
+The app will keep working even if a photo URL or local file fails.
