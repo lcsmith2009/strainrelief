@@ -44,3 +44,21 @@ Very important:
 4. If the installed PWA still shows old files, uninstall and reinstall the app.
 
 Educational only. Not medical advice. Follow local laws. Do not drive while impaired.
+
+
+## v10 Micro-Interaction Upgrade
+
+Added:
+- Smooth page transitions
+- Scroll reveal animations
+- Tap feedback
+- Luxury modal slide-up animation
+- Button shine effect
+- Floating logo motion
+- Image sheen effect
+- Animated score ring
+- Animated journal chart bars
+- Focus glow on inputs
+- Bottom nav entrance and active pulse
+- Moving card glow/parallax-style light
+- Cache-busted service worker v10

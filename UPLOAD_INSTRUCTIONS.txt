@@ -1,4 +1,4 @@
-STRAINRELIEF 10/10 FINAL V9
+STRAINRELIEF MICRO-INTERACTIONS FINAL V10
 
 Upload everything in this ZIP to GitHub.
 
@@ -18,4 +18,8 @@ logo-mark.png
 icon-192.png
 icon-512.png
 
-Then wait for Vercel, refresh twice, and reinstall the PWA if old cache appears.
+Then:
+1. Wait for Vercel.
+2. Open the live site.
+3. Refresh twice.
+4. If the installed app shows old files, uninstall/reinstall the PWA.
