@@ -2088,3 +2088,36 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V49 HERO TEXT + COMPACT FORCE
+   ====================================================== */
+(function(){
+  function runV49(){
+    const home = document.querySelector('#home');
+    if(!home) return;
+    const hero = home.querySelector('.hero,.hero-card,.home-hero,[class*="hero"]') || home.querySelector('section');
+    if(hero){
+      hero.style.minHeight='auto'; hero.style.height='auto'; hero.style.maxHeight='58vh';
+      hero.style.padding='14px 14px 12px'; hero.style.marginBottom='10px';
+    }
+    home.querySelectorAll('h1').forEach(h=>{
+      if(/find\s+your\s+wellness/i.test(h.textContent || '')){
+        h.innerHTML='Find Your Wellness<br>Direction.';
+        h.style.fontSize='clamp(1.95rem, 7.4vw, 2.55rem)'; h.style.lineHeight='.96';
+        h.style.margin='4px 0 6px'; h.style.textAlign='center'; h.style.textTransform='none';
+      }
+    });
+    home.querySelectorAll('p').forEach(p=>{
+      if(/Explore cannabis strain directions/i.test(p.textContent || '')){
+        p.textContent='Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.';
+        p.style.display='block'; p.style.overflow='visible'; p.style.textOverflow='clip'; p.style.whiteSpace='normal';
+        p.style.webkitLineClamp='unset'; p.style.maxHeight='none'; p.style.fontSize='.98rem'; p.style.lineHeight='1.24'; p.style.textAlign='center';
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{runV49(); setTimeout(runV49,300); setTimeout(runV49,1200);});
+  window.addEventListener('pageshow',()=>setTimeout(runV49,250));
+  window.addEventListener('hashchange',()=>setTimeout(runV49,250));
+})();
