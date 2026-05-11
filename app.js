@@ -2172,3 +2172,68 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     };
   }
 })();
+
+
+/* =========================
+   V45 TRUE TERPENE RANDOMIZER
+   ========================= */
+
+(function(){
+
+const RANDOM_POOL = [
+"Blue Dream","Granddaddy Purple","Harlequin","Wedding Cake","Gelato","Pineapple Express",
+"Jack Herer","Purple Punch","Runtz","Apple Fritter","Ghost Train Haze","Jillybean",
+"Permanent Marker","Banana OG","Animal Cookies","Afghan Kush","Maui Wowie",
+"Do-Si-Dos","Ice Cream Cake","Cherry Pie","Tangie","White Widow","Papaya",
+"Bruce Banner","MAC","Oreoz","Sunset Sherbet","Slurricane","Bubba Kush",
+"Green Crack","Sour Diesel","Northern Lights","Cannatonic","ACDC","Zkittlez",
+"Rainbow Belts","Forbidden Fruit","Trainwreck","Skywalker OG","Blueberry"
+];
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function applyRandomTerpenes(){
+
+  const cards = document.querySelectorAll(
+    "#terpeneExplorer .terpene-card, #learn .terpene-card"
+  );
+
+  cards.forEach((card,index)=>{
+
+    let row = card.querySelector(".tags,.strain-tags,.example-strains");
+
+    if(!row) return;
+
+    row.innerHTML = "";
+
+    const chosen = shuffle(RANDOM_POOL).slice(index % 3, (index % 3) + 4);
+
+    chosen.forEach(name=>{
+      const chip = document.createElement("button");
+      chip.className = "tag";
+      chip.type = "button";
+      chip.textContent = name;
+      row.appendChild(chip);
+    });
+
+  });
+
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  setTimeout(applyRandomTerpenes,300);
+  setTimeout(applyRandomTerpenes,1200);
+});
+
+window.addEventListener("hashchange", ()=>{
+  setTimeout(applyRandomTerpenes,300);
+});
+
+})();

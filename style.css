@@ -4228,3 +4228,47 @@ section#home h1 {
 #learn .terpene-card .tags > *:nth-child(3n) {
   background: linear-gradient(135deg, #8bf7bf, #b990ff) !important;
 }
+
+
+/* =========================
+   V45 CLEANUP
+   ========================= */
+
+/* Remove redundant journal mood pills entirely */
+#saved .journal-feelings,
+#saved .feelings-row,
+#saved .quick-feelings,
+#saved .mood-pills,
+#saved .chip-row,
+#saved .chips,
+#saved .option-pills,
+#saved .feeling-pill-row,
+#saved [class*="feeling-pill"],
+#saved [class*="mood-pill"]{
+    display:none !important;
+}
+
+/* Hero description no longer clipped */
+#home .hero p,
+#home .hero-description,
+#home .hero-subtitle,
+#home .hero-text p{
+    overflow: visible !important;
+    text-overflow: unset !important;
+    white-space: normal !important;
+    display:block !important;
+    -webkit-line-clamp: unset !important;
+    max-height:none !important;
+}
+
+/* Slightly tighter hero */
+#home .hero,
+#home .hero-card{
+    padding-bottom:16px !important;
+}
+
+/* Terpene chips look more randomized visually */
+#learn .terpene-card .tags,
+#terpeneExplorer .tags{
+    gap:12px !important;
+}
