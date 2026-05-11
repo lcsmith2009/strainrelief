@@ -3934,3 +3934,94 @@ html body #home .daily-card p{
     min-height:36px !important;
   }
 }
+
+
+
+/* ======================================================
+   V42 FINAL HERO TITLE CASE + SEARCH + RANDOM TERPENES
+   ====================================================== */
+
+/* Home hero: make headline intentional, centered, and two-line on mobile */
+html body #home .hero,
+html body #home header.hero,
+html body .page#home .hero,
+html body .page.active#home .hero{
+  text-align:center !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  padding-top:18px !important;
+  padding-bottom:18px !important;
+}
+
+html body #home .hero h1,
+html body #home header.hero h1,
+html body .page#home .hero h1{
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  max-width:390px !important;
+  line-height:.94 !important;
+  letter-spacing:-.055em !important;
+  text-wrap:balance !important;
+}
+
+html body #home .hero h1 .hero-line,
+html body #home header.hero h1 .hero-line{
+  display:block !important;
+}
+
+html body #home .hero p,
+html body #home header.hero p{
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  max-width:560px !important;
+}
+
+/* Keep hero compact without making it tiny */
+@media(max-width:480px){
+  html body #home .hero h1,
+  html body #home header.hero h1{
+    font-size:clamp(32px,9.8vw,43px) !important;
+  }
+  html body #home .hero,
+  html body #home header.hero{
+    min-height:auto !important;
+  }
+}
+
+/* Search page: content should appear immediately, not feel empty */
+html body #search.page,
+html body section#search.page{
+  padding-top:12px !important;
+}
+
+html body #search .section-hero,
+html body #search .page-hero,
+html body #search .hero{
+  margin-top:0 !important;
+  padding-top:18px !important;
+  padding-bottom:18px !important;
+  min-height:auto !important;
+}
+
+html body #search input[type="search"],
+html body #search input,
+html body #search .search-input,
+html body #search .searchbar{
+  margin-top:10px !important;
+  position:relative !important;
+  z-index:2 !important;
+}
+
+/* Terpene explorer: keep visual rhythm dynamic, not alphabetized-looking */
+html body #terpeneExplorer > *,
+html body .terpene-explorer > *,
+html body [data-section="terpenes"] > *{
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease !important;
+}
+
+html body #terpeneExplorer > *:active,
+html body .terpene-explorer > *:active{
+  transform:scale(.985) !important;
+}

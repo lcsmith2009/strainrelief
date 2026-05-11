@@ -1,14 +1,10 @@
-# StrainRelief
+# StrainRelief V42
 
-## V41 Force Visible Hero + Terpene Rotation
+## Updates
+- Changed Home hero headline to Title Case: “Find Your Wellness Direction.”
+- Forces the Home hero headline into a cleaner centered 2-line layout.
+- Keeps Terpene Explorer randomized instead of alphabetized.
+- Improves Search page immediate visibility.
+- Preserves previous motion, scroll, bottom nav, and layout polish.
 
-### Updates
-- Force-centers the visible Home hero text.
-- Shrinks hero logo/headline/buttons with higher-specificity CSS.
-- Makes the hero change obvious on deployment.
-- Adds daily seeded terpene explorer reordering.
-- Adds visual variation to terpene blocks.
-- Preserves V38.1 scroll fix and V39 motion polish.
-- Only README.md included.
-
-Educational wellness app. Not medical advice.
+Educational cannabis wellness app. Not medical advice.
