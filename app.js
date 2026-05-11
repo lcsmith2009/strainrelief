@@ -2795,3 +2795,92 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   document.addEventListener("visibilitychange",()=>{ if(!document.hidden) setTimeout(run,100); });
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+
+/* === V60 APP FEEL & MOTION UPDATE === */
+(function(){
+  const MOTION_SELECTOR = '.hero,.daily-card,.panel,.pro-card,.strain-card,.section-title,.education-card,.mini-item,.quick-row,.stat-row,.learn-detail-list > *,#smartInsights > *,#trendingGrid > *,#strainGrid > *';
+  let motionObserver;
+  function prefersReduced(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function markMotion(root=document){
+    if(prefersReduced()) return;
+    const items=[...root.querySelectorAll(MOTION_SELECTOR)].filter(el=>!el.dataset.srV60Motion);
+    items.forEach((el,i)=>{
+      el.dataset.srV60Motion='yes';
+      el.classList.add('sr-motion-ready');
+      el.style.setProperty('--sr-delay', Math.min(i*35, 210)+'ms');
+      if(motionObserver) motionObserver.observe(el);
+    });
+  }
+  function initObserver(){
+    if(prefersReduced()) return;
+    if(motionObserver) return;
+    motionObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('sr-motion-in');
+          entry.target.classList.remove('sr-motion-ready');
+          motionObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+  }
+  function ripple(e){
+    const target=e.target.closest('button,.filter-chip,.mini-item');
+    if(!target || target.disabled || prefersReduced()) return;
+    const rect=target.getBoundingClientRect();
+    target.style.setProperty('--rx',(e.clientX-rect.left)+'px');
+    target.style.setProperty('--ry',(e.clientY-rect.top)+'px');
+    target.classList.remove('sr-ripple');
+    void target.offsetWidth;
+    target.classList.add('sr-ripple','sr-pressing');
+    setTimeout(()=>target.classList.remove('sr-ripple'),620);
+  }
+  function releasePress(){
+    document.querySelectorAll('.sr-pressing').forEach(el=>el.classList.remove('sr-pressing'));
+  }
+  function livelyCards(e){
+    const card=e.target.closest('.card-glow,.strain-card,.panel,.daily-card,.pro-card');
+    if(!card) return;
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+  }
+  function pulseDaily(){
+    const d=document.querySelector('#home .daily-card');
+    if(!d || prefersReduced()) return;
+    d.classList.remove('sr-spotlight-pulse');
+    void d.offsetWidth;
+    d.classList.add('sr-spotlight-pulse');
+  }
+  function refreshMotion(){
+    initObserver();
+    markMotion(document);
+    setTimeout(pulseDaily,80);
+  }
+  document.addEventListener('pointerdown',ripple,{passive:true});
+  ['pointerup','pointercancel','pointerleave','touchend','touchcancel','blur','scroll'].forEach(evt=>document.addEventListener(evt,releasePress,{passive:true}));
+  document.addEventListener('pointermove',livelyCards,{passive:true});
+  window.addEventListener('load',()=>setTimeout(refreshMotion,260));
+  window.addEventListener('pageshow',()=>setTimeout(refreshMotion,160));
+  const mo=new MutationObserver(()=>requestAnimationFrame(refreshMotion));
+  document.addEventListener('DOMContentLoaded',()=>{
+    refreshMotion();
+    mo.observe(document.body,{childList:true,subtree:true});
+  });
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==='function'){
+    window.showPage=function(id){
+      oldShowPage(id);
+      setTimeout(refreshMotion,80);
+    };
+  }
+  const oldSurprise=window.surpriseMe;
+  if(typeof oldSurprise==='function'){
+    window.surpriseMe=function(){
+      oldSurprise();
+      setTimeout(refreshMotion,80);
+    };
+  }
+  window.srV60RefreshMotion=refreshMotion;
+})();
