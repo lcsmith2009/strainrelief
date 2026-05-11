@@ -2253,3 +2253,116 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener("pageshow",()=>setTimeout(applyV51,200));
   window.addEventListener("resize",()=>setTimeout(applyV51,100));
 })();
+
+
+/* ======================================================
+   V52 runtime fix — restore hero tiles + compact spacing.
+   ====================================================== */
+(function(){
+  function applyV52(){
+    const home = document.querySelector("#home");
+    if(!home) return;
+
+    const hero = home.querySelector(".hero,.hero-card,.home-hero,.heroPanel,[class*='hero']") || home.querySelector("section");
+    if(!hero) return;
+
+    const shortPhone = window.innerHeight <= 900;
+    Object.assign(hero.style, {
+      minHeight:"0",
+      height:"auto",
+      maxHeight: shortPhone ? "470px" : "505px",
+      padding: shortPhone ? "9px 16px 11px" : "10px 16px 12px",
+      margin:"4px 10px 8px",
+      overflow:"hidden",
+      display:"block"
+    });
+
+    // Restore the 150 / Daily / Smart metric tiles
+    hero.querySelectorAll("*").forEach(el=>{
+      const txt = (el.textContent || "").trim().toLowerCase().replace(/\s+/g," ");
+      const cls = (el.className || "").toString().toLowerCase();
+
+      if (
+        cls.includes("stats") || cls.includes("metric") ||
+        txt === "150 strains" || txt === "daily picks" || txt === "smart match" ||
+        txt === "150" || txt === "daily" || txt === "smart"
+      ) {
+        el.style.display = "";
+      }
+    });
+
+    const statContainers = Array.from(hero.querySelectorAll(".stats,.hero-metrics,.hero-stats,.heroStats,.metric-row,.metrics-row"));
+    statContainers.forEach(row=>{
+      Object.assign(row.style,{
+        display:"grid",
+        gridTemplateColumns:"repeat(3,1fr)",
+        gap:"7px",
+        margin:"7px 0 0",
+        padding:"0",
+        minHeight:"0",
+        height:"auto"
+      });
+      Array.from(row.children).forEach(card=>{
+        Object.assign(card.style,{
+          display:"flex",
+          minHeight: shortPhone ? "34px" : "38px",
+          height: shortPhone ? "34px" : "38px",
+          padding:"4px 5px",
+          borderRadius:"14px",
+          alignItems:"center",
+          justifyContent:"center",
+          flexDirection:"column",
+          fontSize:".62rem",
+          lineHeight:".95",
+          textAlign:"center"
+        });
+      });
+    });
+
+    home.querySelectorAll("h1").forEach(h=>{
+      if(/find\s+your\s+wellness/i.test(h.textContent || "")){
+        h.innerHTML = "Find Your Wellness<br>Direction.";
+        Object.assign(h.style, {
+          fontSize: shortPhone ? "clamp(1.38rem, 5.1vw, 1.68rem)" : "clamp(1.45rem, 5.4vw, 1.78rem)",
+          lineHeight:".95",
+          margin:"0 auto 6px",
+          textAlign:"center",
+          letterSpacing:"-0.055em"
+        });
+      }
+    });
+
+    hero.querySelectorAll("p").forEach(p=>{
+      if(/Explore directions by mood|Explore cannabis strain directions/i.test(p.textContent || "")){
+        p.textContent = "Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.";
+        Object.assign(p.style, {
+          display:"-webkit-box",
+          overflow:"hidden",
+          textOverflow:"ellipsis",
+          whiteSpace:"normal",
+          webkitLineClamp:"2",
+          webkitBoxOrient:"vertical",
+          maxHeight:"2.4em",
+          fontSize:".72rem",
+          lineHeight:"1.12",
+          textAlign:"center",
+          margin:"0 auto 8px",
+          maxWidth:"92%"
+        });
+      }
+    });
+
+    hero.querySelectorAll("button,.btn").forEach(btn=>{
+      Object.assign(btn.style,{
+        minHeight: shortPhone ? "31px" : "33px",
+        height: shortPhone ? "31px" : "33px",
+        padding:"6px 10px",
+        marginTop:"5px"
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{applyV52(); setTimeout(applyV52,300); setTimeout(applyV52,1200);});
+  window.addEventListener("pageshow",()=>setTimeout(applyV52,200));
+  window.addEventListener("resize",()=>setTimeout(applyV52,100));
+})();

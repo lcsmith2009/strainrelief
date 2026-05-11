@@ -1,7 +1,7 @@
-# StrainRelief V51 Hero Actually Short
+# StrainRelief V52 Compact Hero Tiles Back
 
-## What changed
-- The Home hero is capped at a real phone-friendly height.
-- The 150 / Daily / Smart hero tiles are hidden on mobile because they were making the hero longer.
-- Daily Wellness Direction should now appear on the first screen after refresh.
-- Description stays visible and no longer gets cut off.
+## Fixes
+- Restores 150 / Daily / Smart tiles.
+- Compresses the hero by reducing empty vertical spacing.
+- Keeps the Home description readable in 2 lines.
+- Goal: hero + Daily Wellness Direction visible on first screen after refresh.
