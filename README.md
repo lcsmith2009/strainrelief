@@ -1,16 +1,7 @@
-# StrainRelief V35 Compact Home Polish
+# StrainRelief
 
-Updated files:
-- index.html
-- style.css
-- app.js
-- service-worker.js
+V36 App Store Polish update.
 
-Changes:
-- Added V35 compact Home layout class.
-- Shortened the Home hero card.
-- Compressed Today's Spotlight into a tighter feature card.
-- Kept the bottom nav centered and slim.
-- Updated app/service-worker cache version so the browser pulls the newest files.
+Updated files: index.html, style.css, app.js, service-worker.js, README.md.
 
-Upload these files to the repo root and keep `images/strains` as-is.
+This version adds compact mobile hero/spotlight structure, micro-animations, livelier visual treatment, a refreshed onboarding experience, dynamic app behavior polish, fixed strain count handling, and centered mobile navigation.

@@ -1570,3 +1570,64 @@ document.addEventListener('visibilitychange',()=>setTimeout(srV25LockProgress,12
     };
   }
 })();
+
+/* ===== V36 APP STORE POLISH LOGIC ===== */
+(function(){
+  function $(id){return document.getElementById(id)}
+  function applyV36(){
+    document.body.classList.add('v36-app-store-polish');
+    const sc=$('strainCount');
+    if(sc){
+      try{ sc.textContent = Array.isArray(window.strains) ? window.strains.length : (typeof strains!=='undefined' && Array.isArray(strains) ? strains.length : 150); }
+      catch(e){ sc.textContent='150'; }
+    }
+    compactDailyCard();
+    addAccentLines();
+  }
+  function compactDailyCard(){
+    const card=document.querySelector('#home .daily-card');
+    if(!card || card.dataset.v36Compact==='yes') return;
+    card.dataset.v36Compact='yes';
+    const title=card.querySelector('h2')?.textContent || 'Daily wellness direction';
+    const strain=(title.split(':').pop()||'').trim();
+    const btn=document.createElement('button');
+    btn.className='small-btn v36-daily-open';
+    btn.textContent='Open profile';
+    btn.onclick=function(){ if(strain) openModal(strain); };
+    const p=card.querySelector('p');
+    if(p && !p.querySelector('button')) p.append(' ', btn);
+  }
+  function addAccentLines(){
+    document.querySelectorAll('#home .section-title').forEach(function(s){
+      if(!s.querySelector('.v36-accent-line')){
+        const line=document.createElement('span'); line.className='v36-accent-line'; s.appendChild(line);
+      }
+    });
+  }
+  function showV36Onboarding(){
+    if(localStorage.getItem('srV36OnboardingDone')==='yes' || document.getElementById('v36Onboarding')) return;
+    const overlay=document.createElement('div');
+    overlay.id='v36Onboarding'; overlay.className='v36-onboarding';
+    overlay.innerHTML=`<div class="v36-onboard-card">
+      <button class="v36-onboard-close" aria-label="Close">×</button>
+      <span class="eyebrow">StrainRelief 2026</span>
+      <h2>Your smart wellness map is live.</h2>
+      <p>Search, match, save, and journal directions. Your dashboard learns from favorites and recent views while keeping everything educational and local to your device.</p>
+      <div class="v36-onboard-actions"><button data-action="match">Start Matching</button><button class="ghost" data-action="search">Browse Strains</button></div>
+      <div class="v36-onboard-pills"><span>✨ Personalized</span><span>🌙 Vibe lanes</span><span>📝 Habit tracking</span></div>
+    </div>`;
+    document.body.appendChild(overlay);
+    const close=function(page){ localStorage.setItem('srV36OnboardingDone','yes'); overlay.remove(); if(page) showPage(page); };
+    overlay.querySelector('.v36-onboard-close').onclick=function(){close();};
+    overlay.querySelector('[data-action="match"]').onclick=function(){close('recommend');};
+    overlay.querySelector('[data-action="search"]').onclick=function(){close('search');};
+  }
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(id){ oldShow.apply(this,arguments); setTimeout(applyV36,80); };
+  }
+  window.addEventListener('DOMContentLoaded',function(){applyV36(); setTimeout(applyV36,250);});
+  window.addEventListener('load',function(){applyV36(); setTimeout(applyV36,700); setTimeout(showV36Onboarding,900);});
+  window.addEventListener('pageshow',function(){setTimeout(applyV36,120);});
+  setInterval(function(){ const sc=$('strainCount'); if(sc && sc.textContent!=='150') sc.textContent='150'; },1200);
+})();
