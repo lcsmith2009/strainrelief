@@ -2366,3 +2366,228 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener("pageshow",()=>setTimeout(applyV52,200));
   window.addEventListener("resize",()=>setTimeout(applyV52,100));
 })();
+
+/* ======================================================
+   V53 FINAL PATCH — first-screen home fit, real terpene randomness,
+   clean journal, and proper Learn section order.
+   ====================================================== */
+(function(){
+  const VERSION = "v53-first-screen-fit-random-terpenes";
+
+  function fisherYates(items){
+    const a = [...items];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function sampleStrainsForTerpene(name, count=4){
+    const pool = (Array.isArray(window.strains) ? window.strains : (typeof strains !== "undefined" ? strains : []))
+      .filter(s => (s.terpenes || []).includes(name));
+    const fallback = (Array.isArray(window.strains) ? window.strains : (typeof strains !== "undefined" ? strains : []));
+    return fisherYates(pool.length ? pool : fallback).slice(0, count);
+  }
+
+  function strainButtonHTML(s){
+    const safe = (typeof safeName === "function") ? safeName(s.name) : String(s.name).replace(/'/g,"\\'");
+    return `<button type="button" onclick="openModal('${safe}')">${s.name}</button>`;
+  }
+
+  function terpeneBlockHTML(t){
+    const name = t[0], short = t[1];
+    const info = (typeof terpeneInfo === "function") ? terpeneInfo(name) : short;
+    const examples = sampleStrainsForTerpene(name, 4).map(strainButtonHTML).join("");
+    return `<details class="learn-detail terpene-detail" open><summary><strong>${name}</strong><span>${short}</span></summary><div><p>${info}</p><div class="learn-example-row" data-random-terpene="${name}">${examples}</div></div></details>`;
+  }
+
+  function renderEducationV53(){
+    const tList = (typeof terpenes !== "undefined" && Array.isArray(terpenes)) ? terpenes : [];
+    const onboarding = document.getElementById("onboardingSlides");
+    const explorer = document.getElementById("terpeneExplorer");
+    const locator = document.getElementById("locatorBox");
+    const terms = document.getElementById("termsBox");
+    const learnGrid = document.getElementById("learnGrid");
+
+    if(onboarding){
+      onboarding.innerHTML=`<h3>Quick Start</h3><div class="quick-start-grid"><button class="quick-start-action" onclick="srOpenQuickStart('search')"><strong>1. Search</strong><span>Find strain directions by name, effect, or terpene.</span><small>Tap to explore →</small></button><button class="quick-start-action" onclick="srOpenQuickStart('recommend')"><strong>2. Match</strong><span>Use your goal, timing, and THC sensitivity.</span><small>Start matching →</small></button><button class="quick-start-action" onclick="srOpenQuickStart('saved')"><strong>3. Save + Journal</strong><span>Track favorites and wellness notes locally.</span><small>Open tracker →</small></button></div>`;
+    }
+
+    if(explorer){
+      explorer.innerHTML=`<h3>Terpene Explorer</h3><p>Tap a terpene to expand beginner notes and example strain directions. Examples reshuffle each refresh.</p><div class="learn-detail-list terpene-list">${fisherYates(tList).map(terpeneBlockHTML).join("")}</div>`;
+    }
+
+    if(locator){
+      locator.innerHTML=`<h3>Dispensary Prep</h3><p>Use this checklist when shopping legally. Ask questions before buying and compare products by lab results, serving size, and onset time.</p><div class="checklist"><div>✅ Lab-tested product / COA</div><div>✅ THC percentage and CBD percentage</div><div>✅ Terpene profile</div><div>✅ Serving size or dose guidance</div><div>✅ Expected onset time and duration</div><div>✅ Beginner-friendly or lower-THC options</div><div>✅ Avoid driving while impaired</div><div>✅ Follow local laws</div></div><button onclick="copyChecklist()">Copy Checklist</button>`;
+    }
+
+    if(terms){
+      terms.innerHTML=`<h3>Privacy + Terms</h3><p>Favorites, recent views, and journal entries stay locally on this device. Compare picks clear when the app restarts. StrainRelief is educational only and does not provide medical advice.</p>`;
+    }
+
+    if(learnGrid && typeof education !== "undefined"){
+      learnGrid.innerHTML=education.map(e=>`<div class="education-card"><h3>${e.title}</h3><p>${e.body}</p></div>`).join('');
+    }
+  }
+
+  // Override the older renderEducation safely.
+  window.renderEducation = renderEducationV53;
+
+  function compactHomeV53(){
+    const home = document.getElementById("home");
+    if(!home) return;
+    const hero = home.querySelector("header.hero");
+    if(!hero) return;
+
+    const shortPhone = window.matchMedia("(max-width: 430px) and (max-height: 880px)").matches;
+    Object.assign(hero.style, {
+      minHeight:"0",
+      height: shortPhone ? "min(52svh, 396px)" : "min(54svh, 418px)",
+      maxHeight: shortPhone ? "396px" : "418px",
+      padding: shortPhone ? "8px 14px 9px" : "10px 14px 11px",
+      margin:"4px 8px 7px",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"space-between",
+      gap: shortPhone ? "4px" : "5px",
+      overflow:"hidden"
+    });
+
+    const logo = hero.querySelector(".brand-logo");
+    if(logo){
+      Object.assign(logo.style, {
+        height: shortPhone ? "35px" : "40px",
+        maxHeight: shortPhone ? "35px" : "40px",
+        width:"auto",
+        maxWidth:"58vw",
+        margin:"0 auto 2px",
+        objectFit:"contain"
+      });
+    }
+
+    const h1 = hero.querySelector("h1");
+    if(h1){
+      h1.innerHTML = "Find Your Wellness<br>Direction.";
+      Object.assign(h1.style, {
+        fontSize: shortPhone ? "clamp(1.34rem, 5vw, 1.62rem)" : "clamp(1.48rem, 5.35vw, 1.82rem)",
+        lineHeight:".94",
+        margin:"0 auto 3px",
+        textAlign:"center",
+        letterSpacing:"-0.06em",
+        maxWidth:"96%"
+      });
+    }
+
+    const copy = hero.querySelector("p");
+    if(copy){
+      copy.textContent = "Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.";
+      Object.assign(copy.style, {
+        display:"-webkit-box",
+        overflow:"hidden",
+        textOverflow:"ellipsis",
+        whiteSpace:"normal",
+        webkitLineClamp:"2",
+        webkitBoxOrient:"vertical",
+        maxHeight:"2.35em",
+        fontSize: shortPhone ? ".68rem" : ".73rem",
+        lineHeight: shortPhone ? "1.08" : "1.13",
+        margin:"0 auto 3px",
+        maxWidth:"92%",
+        textAlign:"center"
+      });
+    }
+
+    const actions = hero.querySelector(".hero-actions");
+    if(actions){
+      Object.assign(actions.style, {
+        display:"grid",
+        gridTemplateColumns:"1fr",
+        gap: shortPhone ? "5px" : "6px",
+        margin:"4px 0 0"
+      });
+      actions.querySelectorAll("button").forEach(btn=>Object.assign(btn.style, {
+        minHeight: shortPhone ? "30px" : "34px",
+        height: shortPhone ? "30px" : "34px",
+        padding:"5px 10px",
+        margin:"0",
+        fontSize: shortPhone ? ".73rem" : ".79rem"
+      }));
+    }
+
+    const strip = hero.querySelector(".hero-mini-strip");
+    if(strip){
+      Object.assign(strip.style, {
+        display:"grid",
+        gridTemplateColumns:"repeat(3, minmax(0, 1fr))",
+        gap: shortPhone ? "6px" : "7px",
+        margin:"6px 0 0",
+        padding:"0",
+        minHeight:"0",
+        height:"auto"
+      });
+      strip.querySelectorAll("span").forEach(card=>Object.assign(card.style, {
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        justifyContent:"center",
+        minHeight: shortPhone ? "30px" : "34px",
+        height: shortPhone ? "30px" : "34px",
+        padding:"4px",
+        borderRadius:"14px",
+        fontSize: shortPhone ? ".54rem" : ".58rem",
+        lineHeight:".95",
+        textAlign:"center"
+      }));
+    }
+
+    const daily = home.querySelector(".daily-card");
+    if(daily){
+      Object.assign(daily.style, {
+        margin:"7px 8px 12px",
+        padding: shortPhone ? "12px 14px 13px" : "14px 16px 15px",
+        minHeight: shortPhone ? "118px" : "132px",
+        overflow:"visible"
+      });
+    }
+  }
+
+  function cleanJournalV53(){
+    const chips = document.getElementById("journalMoodChips");
+    if(chips){ chips.innerHTML = ""; chips.style.display = "none"; }
+    document.querySelectorAll(".mood-chip-row,.journal-feelings,.feelings-row,.quick-feelings,.mood-pills,.journal-mood-pills").forEach(el=>{
+      el.innerHTML = "";
+      el.style.display = "none";
+    });
+  }
+
+  function refreshTerpenesV53(){
+    const learnActive = document.getElementById("learn")?.classList.contains("active");
+    const explorer = document.getElementById("terpeneExplorer");
+    if(!explorer) return;
+    const badOrder = explorer.textContent && explorer.textContent.indexOf("Terpene Explorer") > 80;
+    if(learnActive || badOrder || !explorer.querySelector(".terpene-detail")) renderEducationV53();
+  }
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(id){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(()=>{ compactHomeV53(); cleanJournalV53(); if(id === "learn") renderEducationV53(); }, 30);
+      return result;
+    };
+  }
+
+  function runAll(){
+    compactHomeV53();
+    cleanJournalV53();
+    refreshTerpenesV53();
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{ runAll(); setTimeout(runAll,250); setTimeout(runAll,900); setTimeout(runAll,1800); });
+  window.addEventListener("pageshow",()=>setTimeout(runAll,160));
+  window.addEventListener("resize",()=>setTimeout(compactHomeV53,80));
+  document.addEventListener("visibilitychange",()=>{ if(!document.hidden) setTimeout(runAll,120); });
+
+  window.StrainReliefPatchVersion = VERSION;
+})();
