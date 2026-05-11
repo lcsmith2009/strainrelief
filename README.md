@@ -1,13 +1,16 @@
-# StrainRelief
+# StrainRelief V35 Compact Home Polish
 
-## V35 Compact Cards Fix
+Updated files:
+- index.html
+- style.css
+- app.js
+- service-worker.js
 
-### Updated
-- Home hero is now forced smaller on mobile.
-- Today's Spotlight card is forced shorter.
-- Spotlight image height is capped.
-- Daily Wellness card remains compact.
-- Bottom nav fix from V34 is preserved.
-- Only README.md is included.
+Changes:
+- Added V35 compact Home layout class.
+- Shortened the Home hero card.
+- Compressed Today's Spotlight into a tighter feature card.
+- Kept the bottom nav centered and slim.
+- Updated app/service-worker cache version so the browser pulls the newest files.
 
-Educational wellness app. Not medical advice.
+Upload these files to the repo root and keep `images/strains` as-is.
