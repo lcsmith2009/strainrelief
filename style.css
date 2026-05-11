@@ -3012,3 +3012,202 @@ body.v37-native-tight main{padding-bottom:132px!important;}
   body.v37-native-tight #home .v27-spotlight-art img{height:124px!important;}
 }
 @media(prefers-reduced-motion:reduce){body.v37-native-tight:after{animation:none!important}}
+
+
+/* === V38 Immersion Polish: tighter hero, compact spotlight, premium artwork, native feel === */
+body.v38-immersion{
+  --sr-app-width:min(100%, 430px);
+  padding-top:10px!important;
+  overscroll-behavior-y:contain;
+}
+body.v38-immersion #home{
+  max-width:430px;
+  margin-inline:auto;
+}
+body.v38-immersion #home .hero{
+  padding:10px 16px 12px!important;
+  margin:4px 4px 14px!important;
+  border-radius:25px!important;
+  min-height:0!important;
+  height:auto!important;
+}
+body.v38-immersion #home .hero .brand-logo{
+  width:min(66vw,285px)!important;
+  height:44px!important;
+  max-height:44px!important;
+  margin:0 auto 8px!important;
+}
+body.v38-immersion #home .hero .eyebrow{
+  font-size:10px!important;
+  letter-spacing:.115em!important;
+  margin:0 0 4px!important;
+}
+body.v38-immersion #home .hero h1{
+  font-size:clamp(27px,7.8vw,34px)!important;
+  line-height:.96!important;
+  letter-spacing:-.06em!important;
+  margin:0 0 7px!important;
+  max-width:12.5ch!important;
+}
+body.v38-immersion #home .hero p{
+  font-size:12.4px!important;
+  line-height:1.32!important;
+  margin:0 0 8px!important;
+  -webkit-line-clamp:2!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v38-immersion #home .hero .v27-live-pill,
+body.v38-immersion #home .hero .hero-live-pill{
+  min-height:30px!important;
+  height:30px!important;
+  padding:5px 10px!important;
+  margin:7px 0 8px!important;
+  font-size:11.5px!important;
+}
+body.v38-immersion #home .hero-actions{gap:7px!important;margin:6px 0 0!important;}
+body.v38-immersion #home .hero-actions button{
+  height:37px!important;
+  min-height:37px!important;
+  padding:7px 12px!important;
+  border-radius:16px!important;
+  font-size:13px!important;
+}
+body.v38-immersion #home .hero-mini-strip{
+  margin-top:8px!important;
+  gap:7px!important;
+}
+body.v38-immersion #home .hero-mini-strip span{
+  min-height:35px!important;
+  padding:6px 6px!important;
+  border-radius:14px!important;
+  font-size:10.5px!important;
+}
+body.v38-immersion #home .hero-mini-strip strong{font-size:16px!important;}
+
+/* tighter top cards */
+body.v38-immersion #home .daily-card{
+  padding:14px 16px!important;
+  margin:10px 4px 12px!important;
+  border-radius:22px!important;
+}
+body.v38-immersion #home .daily-card h2{font-size:clamp(25px,7.3vw,34px)!important;line-height:1!important;margin:3px 0 8px!important;}
+body.v38-immersion #home .daily-card p{font-size:13.8px!important;line-height:1.34!important;}
+body.v38-immersion #home .quick-row{margin:8px 4px 10px!important;gap:8px!important;}
+body.v38-immersion #home .quick-row button{height:36px!important;min-height:36px!important;border-radius:15px!important;font-size:12.5px!important;}
+body.v38-immersion #home .pro-card{padding:14px 16px!important;margin:10px 4px 12px!important;border-radius:22px!important;}
+body.v38-immersion #home .pro-card h2{font-size:30px!important;margin-bottom:10px!important;}
+body.v38-immersion #home .stat-row{gap:8px!important;}
+body.v38-immersion #home .stat-row div{min-height:70px!important;border-radius:18px!important;padding:10px 6px!important;}
+body.v38-immersion #home .stat-row strong{font-size:30px!important;}
+body.v38-immersion #home .stat-row span{font-size:11px!important;}
+
+/* spotlight: compact native feature instead of tall web card */
+body.v38-immersion #home .v27-spotlight{
+  margin:12px 4px!important;
+  border-radius:22px!important;
+}
+body.v38-immersion #home .v27-spotlight-inner{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 122px!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:14px!important;
+  min-height:0!important;
+}
+body.v38-immersion #home .v27-spotlight-copy h2{
+  font-size:clamp(26px,7.5vw,35px)!important;
+  line-height:.98!important;
+  margin:3px 0 7px!important;
+}
+body.v38-immersion #home .v27-spotlight-copy p{
+  font-size:13px!important;
+  line-height:1.32!important;
+  margin:0 0 9px!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v38-immersion #home .v27-spotlight-copy button{height:34px!important;min-height:34px!important;font-size:12.5px!important;padding:7px 12px!important;}
+body.v38-immersion #home .v27-spotlight-art{
+  width:122px!important;
+  min-width:122px!important;
+  max-width:122px!important;
+  height:126px!important;
+  min-height:126px!important;
+  max-height:126px!important;
+  border-radius:18px!important;
+}
+body.v38-immersion #home .v27-spotlight-art img{height:126px!important;width:100%!important;object-fit:cover!important;transform:none!important;}
+body.v38-immersion #home .v27-spotlight-art span{font-size:10px!important;padding:5px 8px!important;max-width:88%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* premium generated artwork system */
+body.v38-immersion .card-hero,
+body.v38-immersion .sr-image-shell,
+body.v38-immersion .v27-spotlight-art,
+body.v38-immersion .recent-card img,
+body.v38-immersion .recent-mini-card img,
+body.v38-immersion .saved-card img,
+body.v38-immersion .modal-art{
+  background:radial-gradient(circle at 35% 20%,rgba(255,255,255,.18),transparent 34%),linear-gradient(135deg,rgba(116,255,173,.24),rgba(92,170,255,.13),rgba(188,118,255,.12))!important;
+}
+body.v38-immersion .card-hero img,
+body.v38-immersion .v27-spotlight-art img,
+body.v38-immersion .recent-card img,
+body.v38-immersion .recent-mini-card img,
+body.v38-immersion .saved-card img,
+body.v38-immersion .modal-art img{
+  filter:saturate(1.18) contrast(1.04) brightness(1.03)!important;
+}
+body.v38-immersion .strain-card{
+  transform:translateZ(0);
+  transition:transform .18s var(--ease), box-shadow .25s ease, border-color .25s ease!important;
+}
+body.v38-immersion .strain-card:active{transform:scale(.985) translateY(1px)!important;}
+body.v38-immersion button:active{transform:scale(.985)!important;}
+
+/* section rhythm: less vertical bulk, more app snap */
+body.v38-immersion #home .smart-insights,
+body.v38-immersion #home #wellnessDashboard,
+body.v38-immersion #home .wellness-dashboard{
+  padding:16px!important;
+  margin:12px 4px!important;
+  border-radius:22px!important;
+}
+body.v38-immersion #home .smart-insights h2,
+body.v38-immersion #home #wellnessDashboard h2,
+body.v38-immersion #home .wellness-dashboard h2{font-size:clamp(30px,8vw,40px)!important;line-height:.96!important;}
+body.v38-immersion #home .section-title{margin:14px 4px 4px!important;padding:4px 0!important;}
+body.v38-immersion #home .section-title h2{font-size:clamp(32px,8.6vw,42px)!important;}
+body.v38-immersion #home #trendingGrid .strain-card{min-width:min(79vw,300px)!important;max-width:min(79vw,300px)!important;padding:12px!important;}
+body.v38-immersion #home #trendingGrid .strain-card .card-hero{height:134px!important;}
+body.v38-immersion #home #trendingGrid .strain-card .card-hero img{height:134px!important;}
+body.v38-immersion #home #trendingGrid .strain-card h3{font-size:27px!important;}
+body.v38-immersion #home #recentHome .recent-card,
+body.v38-immersion #home #recentHome .recent-mini-card{min-width:142px!important;max-width:156px!important;}
+
+/* native scroll polish */
+body.v38-immersion .v27-carousel,
+body.v38-immersion #trendingGrid,
+body.v38-immersion #recentHome{scroll-padding-inline:18px!important;}
+body.v38-immersion .v27-rise{animation:srV38Rise .38s var(--ease) both;animation-delay:var(--v27-delay,0ms)}
+@keyframes srV38Rise{from{opacity:.58;transform:translateY(10px) scale(.992)}to{opacity:1;transform:none}}
+body.v38-immersion .card-glow:before{animation:srV38Glow 5.5s ease-in-out infinite alternate;}
+@keyframes srV38Glow{from{opacity:.45;filter:blur(0)}to{opacity:.78;filter:blur(1px)}}
+
+@media(max-width:390px){
+  body.v38-immersion #home .hero{padding:9px 14px 11px!important;margin:3px 2px 12px!important;}
+  body.v38-immersion #home .hero .brand-logo{height:40px!important;max-height:40px!important;width:min(68vw,260px)!important;}
+  body.v38-immersion #home .hero h1{font-size:26px!important;}
+  body.v38-immersion #home .hero p{font-size:12px!important;}
+  body.v38-immersion #home .hero-actions button{height:35px!important;min-height:35px!important;}
+  body.v38-immersion #home .hero-mini-strip span{min-height:32px!important;}
+  body.v38-immersion #home .v27-spotlight-inner{grid-template-columns:minmax(0,1fr) 108px!important;gap:9px!important;padding:12px!important;}
+  body.v38-immersion #home .v27-spotlight-art{width:108px!important;min-width:108px!important;max-width:108px!important;height:112px!important;min-height:112px!important;max-height:112px!important;}
+  body.v38-immersion #home .v27-spotlight-art img{height:112px!important;}
+  body.v38-immersion #home .v27-spotlight-copy h2{font-size:25px!important;}
+  body.v38-immersion #home .v27-spotlight-copy p{font-size:12px!important;}
+}
+@media(prefers-reduced-motion:reduce){body.v38-immersion .v27-rise,body.v38-immersion .card-glow:before{animation:none!important}}

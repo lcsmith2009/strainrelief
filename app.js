@@ -1631,3 +1631,68 @@ document.addEventListener('visibilitychange',()=>setTimeout(srV25LockProgress,12
   window.addEventListener('pageshow',function(){setTimeout(applyV36,120);});
   setInterval(function(){ const sc=$('strainCount'); if(sc && sc.textContent!=='150') sc.textContent='150'; },1200);
 })();
+
+
+/* ===== V38 IMMERSION POLISH LOGIC ===== */
+(function(){
+  function hashText(str){let h=0;str=String(str||'strain');for(let i=0;i<str.length;i++){h=(h*31+str.charCodeAt(i))>>>0}return h;}
+  function pickPalette(s){
+    const cat=String(s?.category||'').toLowerCase(), name=String(s?.name||'').toLowerCase(), terp=(s?.terpenes||[])[0]||'';
+    if(cat.includes('sleep')||name.includes('purple')) return ['#101837','#6d5dfc','#111f13','#d9c7ff'];
+    if(cat.includes('focus')||String(s?.time||'').toLowerCase().includes('day')) return ['#062633','#58dfff','#0c2717','#d9fbff'];
+    if(cat.includes('mood')||name.includes('gelato')||name.includes('cookies')) return ['#291333','#ff68c8','#0c2717','#fff0fb'];
+    if(cat.includes('appetite')) return ['#30230a','#ffd45f','#0b2115','#fff6d5'];
+    if(cat.includes('body')) return ['#142033','#b78cff','#0b2115','#eee3ff'];
+    if(cat.includes('cbd')||name.includes('harlequin')) return ['#062a19','#74ffad','#08261c','#e9fff1'];
+    return ['#082114','#5cff96','#10324a','#effff4'];
+  }
+  function svgArt(s){
+    s=s||{}; const name=String(s.name||'Strain'); const cat=String(s.category||'Direction'); const h=hashText(name); const [bg,a,b,text]=pickPalette(s);
+    const x1=18+(h%22), x2=58+((h>>3)%20), y1=22+((h>>5)%18), y2=60+((h>>7)%18);
+    const leafA=`M ${x1} 86 C 38 48, 65 45, 88 18 C 84 57, 64 78, ${x1} 86 Z`;
+    const leafB=`M ${x2} 88 C 78 44, 111 39, 136 14 C 130 61, 103 82, ${x2} 88 Z`;
+    const leafC=`M 84 112 C 54 78, 70 52, 92 26 C 111 61, 111 92, 84 112 Z`;
+    const display=name.length>22?name.slice(0,21)+'…':name;
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="${display}">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="${bg}"/><stop offset=".55" stop-color="${b}"/><stop offset="1" stop-color="${a}" stop-opacity=".85"/></linearGradient>
+        <radialGradient id="r" cx="30%" cy="18%" r="75%"><stop stop-color="${a}" stop-opacity=".55"/><stop offset=".52" stop-color="${bg}" stop-opacity=".18"/><stop offset="1" stop-color="#020d07"/></radialGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="420" height="300" rx="34" fill="url(#g)"/>
+      <rect x="18" y="18" width="384" height="264" rx="32" fill="url(#r)" stroke="${a}" stroke-opacity=".35"/>
+      <circle cx="332" cy="58" r="72" fill="${a}" opacity=".10"/>
+      <circle cx="74" cy="234" r="96" fill="${a}" opacity=".10"/>
+      <g transform="translate(116,48) scale(1.35)" filter="url(#glow)">
+        <path d="${leafA}" fill="${a}" opacity=".95"/>
+        <path d="${leafB}" fill="${a}" opacity=".9"/>
+        <path d="${leafC}" fill="${a}" opacity=".82"/>
+        <path d="M92 28 C88 70,90 103,82 133" stroke="${text}" stroke-width="4" opacity=".55" fill="none"/>
+      </g>
+      <g opacity=".85"><path d="M36 252 C110 220,160 226,212 244 S334 265,388 220" stroke="${a}" stroke-width="2" fill="none" opacity=".32"/><path d="M28 38 C84 72,152 64,218 40 S324 24,394 54" stroke="${text}" stroke-width="1.4" fill="none" opacity=".18"/></g>
+      <rect x="26" y="218" width="150" height="42" rx="21" fill="#03130b" opacity=".72"/>
+      <text x="46" y="245" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="900" fill="${text}">${cat}</text>
+      <text x="236" y="252" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="950" text-anchor="middle" fill="${text}" opacity=".96">${display}</text>
+    </svg>`;
+    return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+  }
+  try{
+    window.strainImage = strainImage = function(s){ return svgArt(s); };
+    window.repairStrainImage = repairStrainImage = function(img,name){ const s=(typeof getStrain==='function'&&getStrain(name))||{name:name,category:'Direction'}; img.src=svgArt(s); img.style.display='block'; };
+  }catch(e){}
+  function applyV38(){
+    document.body.classList.add('v38-immersion');
+    try{ document.getElementById('strainCount').textContent='150'; }catch(e){}
+    document.querySelectorAll('#home .strain-card,.panel,.daily-card,.pro-card,.section-title').forEach((el,i)=>{el.classList.add('v27-rise');el.style.setProperty('--v27-delay',`${Math.min(i,16)*22}ms`);});
+  }
+  function rerenderV38(){
+    applyV38();
+    try{ renderFeatured(); renderRecentHome(); renderSmartInsights&&renderSmartInsights(); renderWellnessDashboard&&renderWellnessDashboard(); }catch(e){}
+    setTimeout(applyV38,60);
+  }
+  const oldShow=window.showPage||showPage;
+  if(typeof oldShow==='function') window.showPage=showPage=function(id){ oldShow.apply(this,arguments); setTimeout(rerenderV38,90); };
+  window.addEventListener('DOMContentLoaded',()=>setTimeout(rerenderV38,100));
+  window.addEventListener('load',()=>{setTimeout(rerenderV38,250);setTimeout(rerenderV38,900);});
+  window.addEventListener('pageshow',()=>setTimeout(rerenderV38,180));
+})();

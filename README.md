@@ -1,15 +1,14 @@
-# StrainRelief
+# StrainRelief V38 Immersion Polish
 
-V36 App Store Polish update.
+Updated files only.
 
-Updated files: index.html, style.css, app.js, service-worker.js, README.md.
+## Changed
+- Tighter Home hero section
+- Compact Today's Spotlight layout
+- Premium generated strain artwork fallback system
+- More native-app motion and tap feedback
+- Better carousel sizing and section rhythm
+- Kept bottom nav centered
+- Kept strain count locked at 150
 
-This version adds compact mobile hero/spotlight structure, micro-animations, livelier visual treatment, a refreshed onboarding experience, dynamic app behavior polish, fixed strain count handling, and centered mobile navigation.
-
-
-## V37 Native Tight Polish
-- Compressed Home hero again for mobile.
-- Compressed Today's Spotlight image/card.
-- Added stronger native-app snap carousels on Home.
-- Added animated ambient background and touch shimmer feedback.
-- Locked floating bottom nav centered on mobile.
+Educational cannabis wellness app only. Not medical advice.
