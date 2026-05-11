@@ -7719,3 +7719,265 @@ body.v67-learn-search-fix #srBackTop{
     max-height:80px !important;
   }
 }
+
+
+/* ======================================================
+   V68 SMART DENSITY REPAIR
+   - fixes search load-more properly
+   - locks terpene layout: alphabetized, description under title
+   - reduces bottom dead space further
+====================================================== */
+body.v68-smart-density-repair{
+  padding-bottom:calc(78px + env(safe-area-inset-bottom))!important;
+  overflow-x:hidden!important;
+}
+body.v68-smart-density-repair .app-shell,
+body.v68-smart-density-repair main,
+body.v68-smart-density-repair .page{
+  min-height:0!important;
+  height:auto!important;
+}
+body.v68-smart-density-repair .page{
+  padding-bottom:calc(78px + env(safe-area-inset-bottom))!important;
+  margin-bottom:0!important;
+}
+body.v68-smart-density-repair .page.active > *:last-child,
+body.v68-smart-density-repair #recentHome,
+body.v68-smart-density-repair #strainGrid,
+body.v68-smart-density-repair #matchHistory,
+body.v68-smart-density-repair #journalEntries,
+body.v68-smart-density-repair #savedResults,
+body.v68-smart-density-repair #learnGrid{
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+  min-height:0!important;
+}
+body.v68-smart-density-repair .section-title,
+body.v68-smart-density-repair .panel,
+body.v68-smart-density-repair .daily-card,
+body.v68-smart-density-repair .pro-card,
+body.v68-smart-density-repair .education-card{
+  margin-top:10px!important;
+  margin-bottom:10px!important;
+}
+body.v68-smart-density-repair .section-title{
+  padding-top:10px!important;
+  padding-bottom:8px!important;
+}
+body.v68-smart-density-repair .section-title h2{
+  font-size:clamp(2.05rem,8vw,3.15rem)!important;
+}
+
+/* Keep bottom nav centered and out of the way */
+body.v68-smart-density-repair .bottom-nav{
+  position:fixed!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  width:min(660px, calc(100vw - 28px))!important;
+  max-width:calc(100vw - 28px)!important;
+  bottom:calc(10px + env(safe-area-inset-bottom))!important;
+  z-index:99999!important;
+}
+
+/* Smaller, quieter back-to-top */
+body.v68-smart-density-repair #srBackTop{
+  width:38px!important;
+  height:38px!important;
+  right:18px!important;
+  bottom:calc(88px + env(safe-area-inset-bottom))!important;
+  font-size:16px!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.36),0 0 14px rgba(72,233,135,.18)!important;
+  opacity:.92!important;
+}
+
+/* Recent viewed: no giant height, tighter cards */
+body.v68-smart-density-repair #home #recentHome{
+  display:flex!important;
+  overflow-x:auto!important;
+  gap:12px!important;
+  padding:4px 8px 2px!important;
+  margin-bottom:0!important;
+  max-height:220px!important;
+  align-items:stretch!important;
+  scrollbar-width:none!important;
+}
+body.v68-smart-density-repair #home #recentHome::-webkit-scrollbar{display:none!important;}
+body.v68-smart-density-repair #home #recentHome .recent-card,
+body.v68-smart-density-repair #home #recentHome .recent-mini-card,
+body.v68-smart-density-repair #home #recentHome .mini-item{
+  min-width:138px!important;
+  max-width:154px!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:10px!important;
+  margin:0!important;
+  border-radius:22px!important;
+}
+
+/* Compact search cards stay, but image/text alignment cleaned */
+body.v68-smart-density-repair #search .strain-card{
+  display:grid!important;
+  grid-template-columns:82px minmax(0,1fr)!important;
+  column-gap:12px!important;
+  align-items:center!important;
+  min-height:110px!important;
+  padding:12px!important;
+  margin:0 0 10px!important;
+  border-radius:24px!important;
+}
+body.v68-smart-density-repair #search .strain-card .card-hero{
+  width:82px!important;
+  height:82px!important;
+  min-width:82px!important;
+  margin:0!important;
+  grid-row:1 / span 4!important;
+  border-radius:19px!important;
+  overflow:hidden!important;
+}
+body.v68-smart-density-repair #search .strain-card .card-hero img{
+  width:100%!important;
+  height:100%!important;
+  max-height:82px!important;
+  object-fit:cover!important;
+}
+body.v68-smart-density-repair #search .strain-card h3{
+  font-size:clamp(1.35rem,6.1vw,1.9rem)!important;
+  line-height:.98!important;
+  margin:0 0 4px!important;
+}
+body.v68-smart-density-repair #search .strain-card p{
+  font-size:.86rem!important;
+  line-height:1.25!important;
+  margin:0 0 7px!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v68-smart-density-repair #search .strain-card .tags{
+  gap:6px!important;
+  overflow:hidden!important;
+  flex-wrap:nowrap!important;
+}
+body.v68-smart-density-repair #search .strain-card .tag{
+  font-size:11px!important;
+  padding:7px 10px!important;
+  white-space:nowrap!important;
+}
+body.v68-smart-density-repair #srShowMoreStrains{
+  display:block!important;
+  margin:14px auto 2px!important;
+  width:min(440px,86vw)!important;
+}
+
+/* Terpene Explorer: clean vertical accordion */
+body.v68-smart-density-repair #terpeneExplorer{
+  display:block!important;
+  padding:18px!important;
+  margin:10px 0!important;
+}
+body.v68-smart-density-repair #terpeneExplorer > h3:first-child{
+  margin:0 0 6px!important;
+  font-size:clamp(2rem,8vw,3rem)!important;
+}
+body.v68-smart-density-repair #terpeneExplorer > p:nth-child(2){
+  margin:0 0 14px!important;
+  line-height:1.35!important;
+}
+body.v68-smart-density-repair #terpeneExplorer .learn-detail-list{
+  display:grid!important;
+  gap:10px!important;
+}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail{
+  margin:0!important;
+  padding:0!important;
+  border-radius:24px!important;
+  overflow:hidden!important;
+}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail > summary,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail > summary{
+  position:relative!important;
+  display:block!important;
+  padding:15px 58px 15px 16px!important;
+  list-style:none!important;
+  cursor:pointer!important;
+  min-height:0!important;
+}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail > summary::-webkit-details-marker,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail > summary::-webkit-details-marker{display:none!important;}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail > summary strong,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail > summary strong{
+  display:block!important;
+  color:#72ffad!important;
+  font-size:clamp(1.28rem,5.5vw,1.75rem)!important;
+  line-height:1.05!important;
+  margin:0 0 8px!important;
+}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail > summary span,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail > summary span{
+  display:block!important;
+  color:rgba(245,255,247,.78)!important;
+  font-size:1rem!important;
+  line-height:1.32!important;
+  margin:0!important;
+  max-width:100%!important;
+}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail > summary::after,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail > summary::after{
+  content:"+"!important;
+  position:absolute!important;
+  right:16px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:38px!important;
+  height:38px!important;
+  border-radius:999px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:rgba(90,255,150,.14)!important;
+  color:#7cffad!important;
+  font-weight:900!important;
+  font-size:1.25rem!important;
+}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail[open] > summary::after,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail[open] > summary::after{content:"–"!important;}
+body.v68-smart-density-repair #terpeneExplorer details.terpene-detail > div,
+body.v68-smart-density-repair #terpeneExplorer details.learn-detail > div{
+  padding:0 16px 15px!important;
+}
+body.v68-smart-density-repair #terpeneExplorer .learn-example-row{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:9px!important;
+  overflow:visible!important;
+  margin:0!important;
+}
+body.v68-smart-density-repair #terpeneExplorer .learn-example-row button{
+  min-width:0!important;
+  width:100%!important;
+  padding:11px 8px!important;
+  font-size:.88rem!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* End-card spacing cleanup */
+body.v68-smart-density-repair #matchHistory,
+body.v68-smart-density-repair #journalEntries,
+body.v68-smart-density-repair #learnGrid{
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+}
+body.v68-smart-density-repair #matchHistory + *,
+body.v68-smart-density-repair #journalEntries + *,
+body.v68-smart-density-repair #learnGrid + *{margin-top:10px!important;}
+
+@media(max-width:420px){
+  body.v68-smart-density-repair{padding-left:12px!important;padding-right:12px!important;}
+  body.v68-smart-density-repair .bottom-nav{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;}
+  body.v68-smart-density-repair .page{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important;}
+  body.v68-smart-density-repair #srBackTop{width:36px!important;height:36px!important;right:18px!important;bottom:calc(86px + env(safe-area-inset-bottom))!important;}
+}

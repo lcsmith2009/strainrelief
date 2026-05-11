@@ -1,13 +1,14 @@
-# StrainRelief V67 Learn + Search Fix
+# StrainRelief V68 Smart Density Repair
 
-Fixes included:
-- Removed the broken “Show more strains” button.
-- Kept Search page cards compact.
-- All Search strains display normally again.
-- Learn page terpenes are alphabetized.
-- Only strain examples reshuffle on refresh.
-- Terpene description now sits under the terpene name, not beside it.
-- Expanded terpene view now shows only strain buttons, not duplicate description text.
-- Slightly reduced page bottom dead space.
+Updates:
+- Fixed Search page Show More so only 40 strains display first, then loads more correctly.
+- Kept compact Search cards.
+- Alphabetized terpenes.
+- Kept terpene examples randomized only.
+- Fixed terpene card layout so description sits under the terpene name, not beside it.
+- Expanded terpene cards now show only strain buttons.
+- Further reduced bottom dead space and tightened section spacing.
+- Kept bottom nav centered.
+- Shrunk the Back to Top button.
 
-Upload the full ZIP contents to GitHub, wait for Vercel to finish deployment, then refresh the app.
+Upload all files to GitHub and wait for Vercel deployment.

@@ -3388,3 +3388,145 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion=VERSION;
 })();
+
+
+/* ======================================================
+   V68 SMART DENSITY REPAIR JS
+====================================================== */
+(function(){
+  const VERSION="v68-smart-density-repair";
+  const SEARCH_BATCH=40;
+  let visibleCount=SEARCH_BATCH;
+  let lastSearchKey="";
+
+  function srAllStrains(){ try{return strains||[]}catch(e){return []} }
+  function srAllTerpenes(){ try{return terpenes||[]}catch(e){return []} }
+  function srShuffle(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function srSafeName(name){try{return safeName(name)}catch(e){return String(name||"").replace(/\\/g,"\\\\").replace(/'/g,"\\'");}}
+
+  function srExamplesForTerpene(name){
+    const all=srAllStrains();
+    const exact=all.filter(s=>Array.isArray(s.terpenes)&&s.terpenes.includes(name));
+    const pool=exact.length?exact:all;
+    return srShuffle(pool).slice(0,4);
+  }
+
+  function renderTerpeneExplorerV68(){
+    const explorer=document.getElementById("terpeneExplorer");
+    if(!explorer)return;
+    const sorted=[...srAllTerpenes()].sort((a,b)=>String(a[0]||"").localeCompare(String(b[0]||""),undefined,{sensitivity:"base"}));
+    const html=sorted.map((t)=>{
+      const name=t[0]||"";
+      const short=t[1]||"";
+      const examples=srExamplesForTerpene(name).map(s=>{
+        const n=s.name||"Explore";
+        return `<button type="button" onclick="openModal('${srSafeName(n)}')" title="${n}">${n}</button>`;
+      }).join("");
+      return `<details class="learn-detail terpene-detail">
+        <summary><strong>${name}</strong><span>${short}</span></summary>
+        <div><div class="learn-example-row">${examples}</div></div>
+      </details>`;
+    }).join("");
+    explorer.innerHTML=`<h3>Terpene Explorer</h3><p>Tap a terpene to expand beginner notes and example strain directions. Strain examples reshuffle each refresh.</p><div class="learn-detail-list terpene-list">${html}</div>`;
+  }
+
+  function filteredSearchList(){
+    let q="";
+    try{q=(document.getElementById("searchInput")?.value||"").toLowerCase().trim()}catch(e){}
+    let cf="All";
+    try{cf=currentFilter||"All"}catch(e){}
+    const base=(typeof sortedStrains==="function"?sortedStrains():srAllStrains());
+    return base.filter(s=>{
+      let text="";
+      try{text=searchableText(s)}catch(e){text=JSON.stringify(s).toLowerCase();}
+      return (!q||text.includes(q))&&(cf==="All"||text.includes(String(cf).toLowerCase()));
+    });
+  }
+
+  function renderSearchV68(reset=false){
+    const grid=document.getElementById("strainGrid");
+    if(!grid)return;
+    let q=(document.getElementById("searchInput")?.value||"").toLowerCase().trim();
+    let cf="All"; try{cf=currentFilter||"All"}catch(e){}
+    const key=q+"|"+cf;
+    if(reset||key!==lastSearchKey){visibleCount=SEARCH_BATCH;lastSearchKey=key;}
+    const filtered=filteredSearchList();
+    const visible=filtered.slice(0,visibleCount);
+    grid.innerHTML=visible.length?visible.map(cardHTML).join(""):`<div class="panel"><h3>No matches yet</h3><p>Try another strain, goal, terpene, or feeling.</p></div>`;
+    grid.querySelectorAll(".strain-card").forEach(card=>card.classList.add("compact-search-card"));
+    let btn=document.getElementById("srShowMoreStrains");
+    if(!btn){
+      btn=document.createElement("button");
+      btn.id="srShowMoreStrains";
+      btn.type="button";
+      btn.className="btn primary";
+      grid.insertAdjacentElement("afterend",btn);
+      btn.addEventListener("click",()=>{visibleCount=Math.min(visibleCount+SEARCH_BATCH,filteredSearchList().length);renderSearchV68(false);});
+    }
+    const remaining=Math.max(0,filtered.length-visibleCount);
+    if(filtered.length>visibleCount){
+      btn.hidden=false;
+      btn.disabled=false;
+      btn.textContent=`Show more strains (${Math.min(visibleCount+SEARCH_BATCH, filtered.length)}/${filtered.length})`;
+    }else if(filtered.length>SEARCH_BATCH){
+      btn.hidden=false;
+      btn.disabled=true;
+      btn.textContent=`All ${filtered.length} strains shown`;
+    }else{
+      btn.hidden=true;
+    }
+    try{srAttachReveal()}catch(e){}
+  }
+
+  function patchSearchFunctions(){
+    try{
+      renderSearch=function(){renderSearchV68(false)};
+      const input=document.getElementById("searchInput");
+      if(input&&!input.dataset.v68Search){
+        input.dataset.v68Search="1";
+        input.addEventListener("input",()=>renderSearchV68(true));
+      }
+    }catch(e){}
+  }
+
+  function patchFilterFunctions(){
+    try{setFilter=function(f){currentFilter=f;visibleCount=SEARCH_BATCH;renderFilters();renderSearchV68(true)}}catch(e){}
+    try{clearSearch=function(){document.getElementById("searchInput").value="";currentFilter="All";visibleCount=SEARCH_BATCH;renderFilters();renderSearchV68(true)}}catch(e){}
+    try{jumpFilter=function(f){currentFilter=f;visibleCount=SEARCH_BATCH;showPage("search");renderFilters();renderSearchV68(true)}}catch(e){}
+  }
+
+  function lockNav(){
+    const nav=document.querySelector(".bottom-nav");
+    if(!nav)return;
+    Object.assign(nav.style,{position:"fixed",left:"50%",right:"auto",transform:"translateX(-50%)",width:"min(660px, calc(100vw - 28px))",maxWidth:"calc(100vw - 28px)",bottom:"calc(10px + env(safe-area-inset-bottom))",zIndex:"99999"});
+  }
+
+  function killDeadSpace(){
+    ["recentHome","strainGrid","matchHistory","journalEntries","savedResults","learnGrid"].forEach(id=>{
+      const el=document.getElementById(id); if(!el)return;
+      el.style.minHeight="0"; el.style.paddingBottom="0"; el.style.marginBottom="0";
+    });
+  }
+
+  function runV68(){
+    document.body.classList.add(VERSION);
+    lockNav(); killDeadSpace(); patchSearchFunctions(); patchFilterFunctions();
+    const active=document.querySelector(".page.active")?.id;
+    if(active==="learn") renderTerpeneExplorerV68();
+    if(active==="search") renderSearchV68(false);
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{runV68();setTimeout(runV68,250);setTimeout(runV68,900);setTimeout(runV68,1800);});
+  window.addEventListener("pageshow",()=>setTimeout(runV68,120));
+  window.addEventListener("resize",()=>setTimeout(lockNav,80));
+
+  const oldShowPage=showPage;
+  showPage=function(id){
+    const result=oldShowPage.apply(this,arguments);
+    setTimeout(()=>{if(id==="learn")renderTerpeneExplorerV68(); if(id==="search")renderSearchV68(true); runV68();},120);
+    setTimeout(runV68,650);
+    return result;
+  };
+
+  window.StrainReliefPatchVersion=VERSION;
+})();
