@@ -5991,3 +5991,182 @@ section#home [class*="hero"]{
   #home .daily-card p{font-size:.70rem!important;line-height:1.1!important;}
   .bottom-nav button{height:52px!important;min-height:52px!important;}
 }
+
+/* === StrainRelief V56: first-screen fit lock ===
+   Goal: hero + Daily Wellness card + bottom nav visible on first load. */
+@media (max-width: 760px){
+  body{
+    padding-top:8px !important;
+    padding-left:12px !important;
+    padding-right:12px !important;
+    padding-bottom:calc(100px + env(safe-area-inset-bottom)) !important;
+  }
+  #home{
+    padding-bottom:calc(112px + env(safe-area-inset-bottom)) !important;
+  }
+  #home .hero.card-glow,
+  #home header.hero,
+  #home .hero{
+    width:calc(100vw - 24px) !important;
+    height:clamp(276px, 39svh, 305px) !important;
+    max-height:305px !important;
+    min-height:0 !important;
+    margin:4px auto 6px !important;
+    padding:7px 14px 8px !important;
+    border-radius:24px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:space-between !important;
+    gap:2px !important;
+    overflow:hidden !important;
+  }
+  #home .hero .brand-logo{
+    width:min(48vw,210px) !important;
+    height:25px !important;
+    max-height:25px !important;
+    margin:0 auto !important;
+    object-fit:contain !important;
+  }
+  #home .hero .eyebrow{
+    font-size:.50rem !important;
+    line-height:1 !important;
+    letter-spacing:.105em !important;
+    margin:0 auto !important;
+    text-align:center !important;
+  }
+  #home .hero h1{
+    font-size:clamp(1.22rem, 5vw, 1.55rem) !important;
+    line-height:.91 !important;
+    margin:0 auto !important;
+    max-width:13.5ch !important;
+    text-align:center !important;
+  }
+  #home .hero p{
+    font-size:.61rem !important;
+    line-height:1.06 !important;
+    max-width:36ch !important;
+    margin:0 auto !important;
+    text-align:center !important;
+    display:block !important;
+    overflow:visible !important;
+  }
+  #home .hero .v27-live-pill,
+  #home .hero .hero-live-pill,
+  #home .hero .live-pill,
+  #home .hero [class*="live"]:not(.live-hero-strip){
+    min-height:19px !important;
+    height:19px !important;
+    padding:3px 9px !important;
+    margin:1px auto 2px !important;
+    font-size:.58rem !important;
+    gap:6px !important;
+  }
+  #home .hero .v27-live-pill span{
+    width:8px !important;height:8px !important;min-width:8px !important;
+  }
+  #home .hero-actions{
+    gap:4px !important;
+    margin:2px 0 0 !important;
+  }
+  #home .hero-actions button{
+    height:26px !important;
+    min-height:26px !important;
+    padding:0 9px !important;
+    font-size:.66rem !important;
+    border-radius:999px !important;
+  }
+  #home .hero-mini-strip{
+    display:grid !important;
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+    gap:6px !important;
+    margin:3px 0 0 !important;
+  }
+  #home .hero-mini-strip span{
+    height:24px !important;
+    min-height:24px !important;
+    padding:2px 3px !important;
+    border-radius:12px !important;
+    font-size:.48rem !important;
+    line-height:.86 !important;
+  }
+  #home .hero-mini-strip strong{
+    font-size:.72rem !important;
+    line-height:.82 !important;
+  }
+  #home .daily-card{
+    width:calc(100vw - 24px) !important;
+    height:96px !important;
+    min-height:96px !important;
+    max-height:96px !important;
+    margin:6px auto 8px !important;
+    padding:9px 12px !important;
+    border-radius:21px !important;
+    overflow:hidden !important;
+  }
+  #home .daily-card .eyebrow{
+    font-size:.56rem !important;
+    line-height:1 !important;
+    letter-spacing:.115em !important;
+  }
+  #home .daily-card h2{
+    font-size:clamp(1.08rem, 4.7vw, 1.38rem) !important;
+    line-height:.92 !important;
+    margin:3px 0 4px !important;
+    letter-spacing:-.055em !important;
+  }
+  #home .daily-card p{
+    font-size:.66rem !important;
+    line-height:1.08 !important;
+    max-height:2.25em !important;
+    overflow:hidden !important;
+    margin:0 !important;
+  }
+  #home .daily-card .small-btn,
+  #home .daily-card button{
+    height:22px !important;
+    min-height:22px !important;
+    padding:0 9px !important;
+    font-size:.62rem !important;
+  }
+  .bottom-nav{
+    width:calc(100vw - 24px) !important;
+    max-width:390px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    bottom:calc(8px + env(safe-area-inset-bottom)) !important;
+    padding:6px !important;
+    gap:6px !important;
+    border-radius:21px !important;
+  }
+  .bottom-nav button{
+    height:50px !important;
+    min-height:50px !important;
+    border-radius:16px !important;
+    font-size:.69rem !important;
+    padding:4px 2px !important;
+  }
+}
+
+@media (max-width:430px) and (max-height:850px){
+  #home .hero.card-glow,
+  #home header.hero,
+  #home .hero{
+    height:clamp(255px, 36svh, 282px) !important;
+    max-height:282px !important;
+    padding:6px 12px 7px !important;
+  }
+  #home .hero .brand-logo{height:23px!important;max-height:23px!important;}
+  #home .hero h1{font-size:clamp(1.12rem, 4.65vw, 1.38rem)!important;}
+  #home .hero p{font-size:.57rem!important;line-height:1.04!important;}
+  #home .hero .v27-live-pill,
+  #home .hero .hero-live-pill,
+  #home .hero .live-pill,
+  #home .hero [class*="live"]:not(.live-hero-strip){height:18px!important;min-height:18px!important;font-size:.54rem!important;}
+  #home .hero-actions button{height:24px!important;min-height:24px!important;font-size:.62rem!important;}
+  #home .hero-mini-strip span{height:22px!important;min-height:22px!important;}
+  #home .daily-card{height:90px!important;min-height:90px!important;max-height:90px!important;padding:8px 12px!important;}
+  #home .daily-card h2{font-size:clamp(1rem,4.3vw,1.28rem)!important;}
+  #home .daily-card p{font-size:.62rem!important;line-height:1.05!important;}
+  .bottom-nav button{height:48px!important;min-height:48px!important;}
+}
