@@ -1,10 +1,10 @@
-# StrainRelief V42
+# StrainRelief V43
 
 ## Updates
-- Changed Home hero headline to Title Case: “Find Your Wellness Direction.”
-- Forces the Home hero headline into a cleaner centered 2-line layout.
-- Keeps Terpene Explorer randomized instead of alphabetized.
-- Improves Search page immediate visibility.
-- Preserves previous motion, scroll, bottom nav, and layout polish.
+- Fixed Wellness Journal quick feeling pills visibility
+- Added true random Terpene Explorer examples and card ordering
+- Forced hero title to “Find Your Wellness Direction.”
+- Preserved bottom navigation layout
+- Updated cache/service worker version
 
-Educational cannabis wellness app. Not medical advice.
+Educational only. Not medical advice.

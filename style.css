@@ -4025,3 +4025,57 @@ html body #terpeneExplorer > *:active,
 html body .terpene-explorer > *:active{
   transform:scale(.985) !important;
 }
+
+
+
+/* ======================================================
+   V43 JOURNAL + TRUE RANDOM TERPENES + HERO FORCE
+   ====================================================== */
+
+/* Wellness journal quick feelings fix */
+.journal-feelings,
+.feelings-row,
+.quick-feelings,
+.mood-pills{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  overflow:visible !important;
+  padding:6px 2px 10px !important;
+}
+
+.journal-feelings button,
+.feelings-row button,
+.quick-feelings button,
+.mood-pills button,
+.feeling-pill,
+.mood-pill{
+  min-width:max-content !important;
+  padding:10px 16px !important;
+  border-radius:999px !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+}
+
+/* Force visible hero title case */
+#home h1,
+.hero h1{
+  text-transform:none !important;
+  text-align:center !important;
+}
+
+/* Terpene explorer visual randomness */
+#terpeneExplorer .tag,
+#terpeneExplorer .strain-pill,
+#terpeneExplorer .mini-tag{
+  transition:all .22s ease !important;
+}
+
+#terpeneExplorer .tag:nth-child(3n){
+  border-color:rgba(120,160,255,.45) !important;
+}
+#terpeneExplorer .tag:nth-child(4n){
+  border-color:rgba(180,120,255,.45) !important;
+}
