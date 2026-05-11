@@ -408,21 +408,22 @@ function copyChecklist(){navigator.clipboard.writeText("Ask for lab-tested produ
 function dailyTip(){
   const seed=getDailySeed();
   const dailyThemes=[
-    {label:"Lower-risk lean",match:s=>cbdLevelValue(s.cbd)>=70&&thcLevelValue(s.thc)<=40,text:"Today’s direction leans toward lower THC and higher CBD education. Compare lab-tested options, start low, and follow local laws."},
-    {label:"Evening wind-down",match:s=>String(s.time).toLowerCase().includes("evening")||String(s.time).toLowerCase().includes("night"),text:"Today’s direction highlights evening-style options. Avoid driving while impaired and give effects time before deciding anything."},
-    {label:"Daytime clarity",match:s=>String(s.time).toLowerCase().includes("day"),text:"Today’s direction highlights daytime-style options. Look for terpene notes, THC level, and lower-risk choices before saving."},
-    {label:"Body comfort",match:s=>searchableText(s).toLowerCase().includes("body comfort"),text:"Today’s direction focuses on body-comfort education. Cannabis affects everyone differently, so compare nearby directions carefully."},
-    {label:"Stress support",match:s=>searchableText(s).toLowerCase().includes("stress"),text:"Today’s direction focuses on stress-style exploration. This is educational only, not treatment advice."},
-    {label:"Mood check",match:s=>searchableText(s).toLowerCase().includes("mood"),text:"Today’s direction focuses on mood-style exploration. Review THC sensitivity and caution notes before choosing anything."},
-    {label:"Terpene spotlight",match:s=>(s.terpenes||[]).length,text:"Today’s direction is terpene-led. Compare aroma, timing, THC/CBD direction, and caution notes before saving or journaling."}
+    {label:'Low-THC lane',match:s=>cbdLevelValue(s.cbd)>=70&&thcLevelValue(s.thc)<=40,text:'Lower-THC and CBD-forward education for a slower, safer comparison.'},
+    {label:'Evening wind-down',match:s=>String(s.time).toLowerCase().includes('evening')||String(s.time).toLowerCase().includes('night'),text:'A calmer evening-style direction to compare before saving or journaling.'},
+    {label:'Daytime clarity',match:s=>String(s.time).toLowerCase().includes('day'),text:'A daytime-style direction for focus, mood, and terpene comparison.'},
+    {label:'Body comfort',match:s=>searchableText(s).includes('body comfort'),text:'A body-comfort direction with terpene notes worth checking.'},
+    {label:'Stress support',match:s=>searchableText(s).includes('stress'),text:'A stress-style direction with lower-risk shopping questions in mind.'},
+    {label:'Mood check',match:s=>searchableText(s).includes('mood'),text:'A mood-style direction to compare by timing, THC, and terpenes.'},
+    {label:'Terpene spotlight',match:s=>(s.terpenes||[]).length,text:'A terpene-led direction for today’s quick exploration.'}
   ];
   const theme=dailyThemes[seed%dailyThemes.length];
-  let pool=strains.filter(theme.match);
-  if(!pool.length) pool=[...strains];
-  const pick=dailyShuffle(pool,"daily-wellness")[0];
-  const terp=(pick.terpenes||[])[seed%(pick.terpenes||[""]).length]||"terpene profile";
-  $("dailyTitle").textContent=`${theme.label}: ${pick.name}`;
-  $("dailyText").textContent=`${theme.text} Today’s terpene spotlight: ${terp}. Educational only — start low, use lab-tested products, and follow local laws.`;
+  let pool=strains.filter(theme.match); if(!pool.length) pool=[...strains];
+  const pick=dailyShuffle(pool,`daily-wellness-${new Date().toDateString()}`)[0];
+  const terp=(pick.terpenes||[])[seed%Math.max(1,(pick.terpenes||[]).length)]||'terpene profile';
+  const title=$('dailyTitle');
+  const text=$('dailyText');
+  if(title) title.textContent=`${theme.label}: ${pick.name}`;
+  if(text) text.innerHTML=`${theme.text} <strong>Spotlight:</strong> ${terp}. <button class="inline-link" onclick="openModal('${safeName(pick.name)}')">Open profile</button>`;
 }
 function updateStats(){
   const strainCountEl=$("strainCount");
@@ -705,20 +706,22 @@ function renderSearch(){
 function dailyTip(){
   const seed=getDailySeed();
   const dailyThemes=[
-    {label:'Lower-risk lean',match:s=>cbdLevelValue(s.cbd)>=70&&thcLevelValue(s.thc)<=40,text:'Today’s direction leans toward lower THC and higher CBD education.'},
-    {label:'Evening wind-down',match:s=>String(s.time).toLowerCase().includes('evening')||String(s.time).toLowerCase().includes('night'),text:'Today’s direction highlights evening-style options.'},
-    {label:'Daytime clarity',match:s=>String(s.time).toLowerCase().includes('day'),text:'Today’s direction highlights daytime-style options.'},
-    {label:'Body comfort',match:s=>searchableText(s).includes('body comfort'),text:'Today’s direction focuses on body-comfort education.'},
-    {label:'Stress support',match:s=>searchableText(s).includes('stress'),text:'Today’s direction focuses on stress-style exploration.'},
-    {label:'Mood check',match:s=>searchableText(s).includes('mood'),text:'Today’s direction focuses on mood-style exploration.'},
-    {label:'Terpene spotlight',match:s=>(s.terpenes||[]).length,text:'Today’s direction is terpene-led.'}
+    {label:'Low-THC lane',match:s=>cbdLevelValue(s.cbd)>=70&&thcLevelValue(s.thc)<=40,text:'Lower-THC and CBD-forward education for a slower, safer comparison.'},
+    {label:'Evening wind-down',match:s=>String(s.time).toLowerCase().includes('evening')||String(s.time).toLowerCase().includes('night'),text:'A calmer evening-style direction to compare before saving or journaling.'},
+    {label:'Daytime clarity',match:s=>String(s.time).toLowerCase().includes('day'),text:'A daytime-style direction for focus, mood, and terpene comparison.'},
+    {label:'Body comfort',match:s=>searchableText(s).includes('body comfort'),text:'A body-comfort direction with terpene notes worth checking.'},
+    {label:'Stress support',match:s=>searchableText(s).includes('stress'),text:'A stress-style direction with lower-risk shopping questions in mind.'},
+    {label:'Mood check',match:s=>searchableText(s).includes('mood'),text:'A mood-style direction to compare by timing, THC, and terpenes.'},
+    {label:'Terpene spotlight',match:s=>(s.terpenes||[]).length,text:'A terpene-led direction for today’s quick exploration.'}
   ];
   const theme=dailyThemes[seed%dailyThemes.length];
   let pool=strains.filter(theme.match); if(!pool.length) pool=[...strains];
   const pick=dailyShuffle(pool,`daily-wellness-${new Date().toDateString()}`)[0];
   const terp=(pick.terpenes||[])[seed%Math.max(1,(pick.terpenes||[]).length)]||'terpene profile';
-  $('dailyTitle').textContent=`${theme.label}: ${pick.name}`;
-  $('dailyText').textContent=`${theme.text} Spotlight terpene: ${terp}. ${aiDirectionSummary(pick)}`;
+  const title=$('dailyTitle');
+  const text=$('dailyText');
+  if(title) title.textContent=`${theme.label}: ${pick.name}`;
+  if(text) text.innerHTML=`${theme.text} <strong>Spotlight:</strong> ${terp}. <button class="inline-link" onclick="openModal('${safeName(pick.name)}')">Open profile</button>`;
 }
 function launchOnboarding(){
   if(localStorage.getItem('srOnboardingDone')==='yes')return;

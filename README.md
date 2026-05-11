@@ -1,11 +1,15 @@
+# StrainRelief
 
-## v18 Real Image System
-This build adds a real cannabis-flower photo system using live photo URLs plus local WebP fallback support.
-For verified strain-specific photos, upload WebP files to:
+V31 home polish build.
 
-`images/strains/strain-name.webp`
+Updated files:
+- index.html
+- style.css
+- app.js
+- service-worker.js
 
-Example:
-`images/strains/blue-dream.webp`
-
-The app will keep working even if a photo URL or local file fails.
+Notes:
+- No extra README.txt files are included.
+- Daily Wellness card is fixed so text does not get cut off.
+- Home layout is tighter, more lively, and more mobile-friendly.
+- Bottom navigation is slimmer so it blocks less content.
