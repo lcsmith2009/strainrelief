@@ -1,17 +1,14 @@
-# StrainRelief V69 Final Spacing + Learn Polish
+# StrainRelief V70 Final Dead-Space + Navigation Polish
 
-Real update based on the latest screenshots/video feedback.
+What changed:
+- Removed stacked body + page bottom padding that was causing giant blank zones.
+- Hid the floating back-to-top button because it was competing with the bottom nav.
+- Re-centered and re-locked the bottom nav.
+- Tightened Search cards again for faster scanning.
+- Rebuilt Search batching so “Show more strains” only appears when there are more hidden results.
+- Kept terpenes alphabetized.
+- Kept only strain examples randomized on refresh.
+- Cleaned the Terpene Explorer accordion so the description appears only under the terpene name, not duplicated inside the expanded area.
+- Cache-busted CSS, JS, and service worker to V70.
 
-Changes:
-- Tightened bottom spacing without breaking the bottom nav.
-- Kept compact Search cards and made Show More actually progressive.
-- Search now starts with 40 strains and loads 40 more per tap.
-- Alphabetized terpenes on Learn page.
-- Only strain examples reshuffle on refresh.
-- Terpene description now sits under the terpene name, not beside it.
-- Expanded terpene cards show only randomized strain buttons, not duplicate description text.
-- Shrunk and quieted the Back-to-Top button.
-- Re-locked nav centering.
-- Added hard cache busting: v69-final-spacing-learn-polish.
-
-Upload the full contents to GitHub and wait for Vercel to finish deployment.
+Upload all files to GitHub, wait for Vercel to deploy, then hard refresh or clear app cache if the PWA still shows an older version.

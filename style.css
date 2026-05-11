@@ -8286,3 +8286,349 @@ body.v69-final-spacing-learn-polish #srBackTop.show{
   body.v69-final-spacing-learn-polish #search .strain-card .card-hero img,
   body.v69-final-spacing-learn-polish #search .strain-card img{height:76px!important;max-height:76px!important;}
 }
+
+
+/* ======================================================
+   V70 FINAL DEAD-SPACE + NAV POLISH
+   Deploy marker: V70_FINAL_DEADSPACE_NAV_POLISH_DEPLOY_MARKER
+   Goal: no stacked body/page bottom padding, no loud up-arrow,
+   working search batches, cleaner Learn accordions.
+====================================================== */
+
+body.v70-final-deadspace-nav-polish{
+  padding-top:10px !important;
+  padding-left:14px !important;
+  padding-right:14px !important;
+  padding-bottom:0 !important;
+  min-height:auto !important;
+  overflow-x:hidden !important;
+}
+
+body.v70-final-deadspace-nav-polish .app-shell,
+body.v70-final-deadspace-nav-polish main{
+  min-height:0 !important;
+  height:auto !important;
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+}
+
+body.v70-final-deadspace-nav-polish .page{
+  min-height:0 !important;
+  height:auto !important;
+  padding-bottom:calc(76px + env(safe-area-inset-bottom)) !important;
+  margin-bottom:0 !important;
+}
+
+body.v70-final-deadspace-nav-polish .page:not(.active){
+  display:none !important;
+}
+
+body.v70-final-deadspace-nav-polish #home,
+body.v70-final-deadspace-nav-polish #search,
+body.v70-final-deadspace-nav-polish #recommend,
+body.v70-final-deadspace-nav-polish #saved,
+body.v70-final-deadspace-nav-polish #learn{
+  min-height:0 !important;
+}
+
+body.v70-final-deadspace-nav-polish #recentHome,
+body.v70-final-deadspace-nav-polish #strainGrid,
+body.v70-final-deadspace-nav-polish #matchedHistory,
+body.v70-final-deadspace-nav-polish #matchHistory,
+body.v70-final-deadspace-nav-polish #matchResults,
+body.v70-final-deadspace-nav-polish #journalList,
+body.v70-final-deadspace-nav-polish #journalEntries,
+body.v70-final-deadspace-nav-polish #savedList,
+body.v70-final-deadspace-nav-polish #savedResults,
+body.v70-final-deadspace-nav-polish #learnGrid,
+body.v70-final-deadspace-nav-polish .mini-list,
+body.v70-final-deadspace-nav-polish .grid{
+  min-height:0 !important;
+  height:auto !important;
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+}
+
+/* Reduce final gaps without crushing the design */
+body.v70-final-deadspace-nav-polish .panel,
+body.v70-final-deadspace-nav-polish .section-title,
+body.v70-final-deadspace-nav-polish .daily-card,
+body.v70-final-deadspace-nav-polish .pro-card,
+body.v70-final-deadspace-nav-polish .education-card{
+  margin-top:10px !important;
+  margin-bottom:10px !important;
+}
+
+body.v70-final-deadspace-nav-polish .section-title{
+  padding:14px 16px !important;
+}
+
+/* Keep nav centered and calm */
+body.v70-final-deadspace-nav-polish .bottom-nav{
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  transform:translateX(-50%) !important;
+  bottom:calc(10px + env(safe-area-inset-bottom)) !important;
+  width:min(660px, calc(100vw - 24px)) !important;
+  max-width:calc(100vw - 24px) !important;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:7px !important;
+  padding:7px !important;
+  border-radius:27px !important;
+  z-index:99999 !important;
+}
+
+body.v70-final-deadspace-nav-polish .bottom-nav button{
+  height:58px !important;
+  min-height:58px !important;
+  padding:8px 4px !important;
+  border-radius:19px !important;
+}
+
+/* Remove the floating up-arrow for now: it was visual clutter. */
+body.v70-final-deadspace-nav-polish #srBackTop{
+  display:none !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+/* Search: compact and truly batched */
+body.v70-final-deadspace-nav-polish #search .search-wrap{
+  margin-bottom:6px !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .filter-row{
+  gap:8px !important;
+  margin-bottom:10px !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .filter-chip{
+  padding:10px 13px !important;
+  font-size:.9rem !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card{
+  display:grid !important;
+  grid-template-columns:74px minmax(0,1fr) !important;
+  column-gap:11px !important;
+  align-items:center !important;
+  min-height:98px !important;
+  padding:10px !important;
+  margin:0 0 7px !important;
+  border-radius:21px !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card .card-hero{
+  width:74px !important;
+  min-width:74px !important;
+  height:74px !important;
+  max-height:74px !important;
+  margin:0 !important;
+  border-radius:17px !important;
+  overflow:hidden !important;
+  grid-row:1 / span 4 !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card .card-hero img,
+body.v70-final-deadspace-nav-polish #search .strain-card img{
+  width:100% !important;
+  height:74px !important;
+  max-height:74px !important;
+  object-fit:cover !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card h3{
+  font-size:clamp(1.26rem,5.6vw,1.68rem) !important;
+  line-height:1 !important;
+  margin:0 0 3px !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card p{
+  font-size:.81rem !important;
+  line-height:1.22 !important;
+  margin:0 0 6px !important;
+  display:-webkit-box !important;
+  -webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card .eyebrow,
+body.v70-final-deadspace-nav-polish #search .strain-card small{
+  font-size:9.5px !important;
+  letter-spacing:.11em !important;
+  margin:0 0 2px !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card .tags{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  gap:5px !important;
+  overflow:hidden !important;
+}
+
+body.v70-final-deadspace-nav-polish #search .strain-card .tag,
+body.v70-final-deadspace-nav-polish #search .strain-card .chip{
+  font-size:10px !important;
+  padding:5px 8px !important;
+  max-width:104px !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+body.v70-final-deadspace-nav-polish #srShowMoreStrains{
+  display:block !important;
+  margin:10px auto 0 !important;
+  min-width:min(76vw,340px) !important;
+  max-width:340px !important;
+  padding:14px 20px !important;
+  border-radius:999px !important;
+}
+
+body.v70-final-deadspace-nav-polish #srShowMoreStrains[hidden],
+body.v70-final-deadspace-nav-polish #srShowMoreStrains.is-hidden{
+  display:none !important;
+}
+
+/* Recent viewed: reduce the giant perceived blank under carousel */
+body.v70-final-deadspace-nav-polish #home #recentHome{
+  min-height:0 !important;
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+}
+
+body.v70-final-deadspace-nav-polish #home #recentHome .recent-card,
+body.v70-final-deadspace-nav-polish #home #recentHome .recent-mini-card,
+body.v70-final-deadspace-nav-polish #home #recentHome .mini-item{
+  margin-bottom:0 !important;
+}
+
+/* Learn: alphabetized cards, description under terpene, only strain buttons expand */
+body.v70-final-deadspace-nav-polish #terpeneExplorer{
+  padding:16px !important;
+  margin:10px 0 !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer > h3:first-child{
+  margin:0 0 6px !important;
+  line-height:1 !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer > p:nth-child(2){
+  margin:0 0 12px !important;
+  line-height:1.32 !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer .learn-detail-list,
+body.v70-final-deadspace-nav-polish #terpeneExplorer .terpene-list{
+  display:grid !important;
+  gap:9px !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail{
+  padding:0 !important;
+  margin:0 !important;
+  border-radius:22px !important;
+  overflow:hidden !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail > summary,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail > summary{
+  list-style:none !important;
+  display:block !important;
+  position:relative !important;
+  padding:14px 56px 14px 14px !important;
+  min-height:0 !important;
+  cursor:pointer !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail > summary::-webkit-details-marker,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail > summary::-webkit-details-marker{display:none!important;}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail > summary strong,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail > summary strong{
+  display:block !important;
+  color:#66ff9e !important;
+  font-size:clamp(1.35rem,5.7vw,1.8rem) !important;
+  line-height:1.05 !important;
+  margin:0 0 8px !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail > summary span,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail > summary span{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  font-size:.98rem !important;
+  line-height:1.34 !important;
+  color:rgba(238,255,242,.76) !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail > summary::after,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail > summary::after{
+  content:'+' !important;
+  position:absolute !important;
+  top:50% !important;
+  right:14px !important;
+  transform:translateY(-50%) !important;
+  width:36px !important;
+  height:36px !important;
+  border-radius:999px !important;
+  display:grid !important;
+  place-items:center !important;
+  background:rgba(79,255,148,.15) !important;
+  color:#76ffad !important;
+  font-weight:900 !important;
+  font-size:1.18rem !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail[open] > summary::after,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail[open] > summary::after{
+  content:'–' !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.terpene-detail > div,
+body.v70-final-deadspace-nav-polish #terpeneExplorer details.learn-detail > div{
+  padding:0 14px 14px !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer .learn-example-row{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:8px !important;
+  margin-top:0 !important;
+}
+
+body.v70-final-deadspace-nav-polish #terpeneExplorer .learn-example-row button{
+  width:100% !important;
+  min-width:0 !important;
+  padding:10px 8px !important;
+  font-size:.82rem !important;
+  line-height:1.05 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+/* Utility: tiny finish line, only if JS adds it on very short pages */
+body.v70-final-deadspace-nav-polish .sr-page-end{
+  display:none !important;
+}
+
+@media(max-width:420px){
+  body.v70-final-deadspace-nav-polish{padding-left:12px!important;padding-right:12px!important;padding-bottom:0!important;}
+  body.v70-final-deadspace-nav-polish .page{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important;}
+  body.v70-final-deadspace-nav-polish .bottom-nav{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;gap:6px!important;padding:7px!important;}
+  body.v70-final-deadspace-nav-polish .bottom-nav button{height:58px!important;min-height:58px!important;}
+  body.v70-final-deadspace-nav-polish #search .strain-card{grid-template-columns:72px minmax(0,1fr)!important;min-height:96px!important;}
+  body.v70-final-deadspace-nav-polish #search .strain-card .card-hero{width:72px!important;height:72px!important;min-width:72px!important;}
+  body.v70-final-deadspace-nav-polish #search .strain-card .card-hero img,
+  body.v70-final-deadspace-nav-polish #search .strain-card img{height:72px!important;max-height:72px!important;}
+}

@@ -3675,3 +3675,134 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion=VERSION;
 })();
+
+
+/* ======================================================
+   V70 FINAL DEAD-SPACE + NAV POLISH JS
+====================================================== */
+(function(){
+  const VERSION='v70-final-deadspace-nav-polish';
+  const SEARCH_BATCH=42;
+  let visibleCount=SEARCH_BATCH;
+  let lastKey='';
+
+  function strainsList(){ try{return Array.isArray(strains)?strains:[]}catch(e){return[]} }
+  function terpenesList(){ try{return Array.isArray(terpenes)?terpenes:[]}catch(e){return[]} }
+  function shuffle(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function escaped(name){ try{return safeName(name)}catch(e){return String(name||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");} }
+  function txt(s){ try{return searchableText(s)}catch(e){return JSON.stringify(s||{}).toLowerCase()} }
+  function alphaStrains(){ try{return sortedStrains()}catch(e){return [...strainsList()].sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')))} }
+
+  function filteredSearch(){
+    const q=(document.getElementById('searchInput')?.value||'').toLowerCase().trim();
+    let cf='All'; try{cf=currentFilter||'All'}catch(e){}
+    return alphaStrains().filter(s=>{
+      const text=txt(s);
+      return (!q||text.includes(q)) && (cf==='All'||text.includes(String(cf).toLowerCase()));
+    });
+  }
+
+  function renderSearchV70(reset){
+    const grid=document.getElementById('strainGrid'); if(!grid) return;
+    let cf='All'; try{cf=currentFilter||'All'}catch(e){}
+    const q=(document.getElementById('searchInput')?.value||'').toLowerCase().trim();
+    const key=q+'|'+cf;
+    if(reset || key!==lastKey){visibleCount=SEARCH_BATCH; lastKey=key;}
+    const all=filteredSearch();
+    const visible=all.slice(0,visibleCount);
+    grid.innerHTML=visible.length ? visible.map(cardHTML).join('') : `<div class="panel"><h3>No matches yet</h3><p>Try another strain, goal, terpene, or feeling.</p></div>`;
+    grid.querySelectorAll('.strain-card').forEach(card=>card.classList.add('compact-search-card'));
+
+    let btn=document.getElementById('srShowMoreStrains');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='srShowMoreStrains';
+      btn.type='button';
+      btn.className='btn primary';
+      grid.insertAdjacentElement('afterend',btn);
+    }
+    btn.onclick=()=>{visibleCount=Math.min(visibleCount+SEARCH_BATCH, filteredSearch().length); renderSearchV70(false);};
+    if(all.length>visibleCount){
+      btn.hidden=false; btn.classList.remove('is-hidden'); btn.disabled=false;
+      btn.textContent=`Show more strains (${Math.min(visibleCount+SEARCH_BATCH, all.length)}/${all.length})`;
+    }else{
+      btn.hidden=true; btn.classList.add('is-hidden'); btn.disabled=true;
+    }
+    try{srAttachReveal()}catch(e){}
+  }
+
+  function examplesFor(name){
+    const all=strainsList();
+    const exact=all.filter(s=>Array.isArray(s.terpenes)&&s.terpenes.includes(name));
+    return shuffle(exact.length?exact:all).slice(0,4);
+  }
+
+  function renderLearnV70(){
+    const explorer=document.getElementById('terpeneExplorer'); if(!explorer) return;
+    const sorted=[...terpenesList()].sort((a,b)=>String(a[0]||'').localeCompare(String(b[0]||''),undefined,{sensitivity:'base'}));
+    const html=sorted.map(t=>{
+      const name=t[0]||'';
+      const desc=t[1]||'';
+      const buttons=examplesFor(name).map(s=>{
+        const n=s.name||'Explore';
+        return `<button type="button" onclick="openModal('${escaped(n)}')" title="${n}">${n}</button>`;
+      }).join('');
+      return `<details class="learn-detail terpene-detail"><summary><strong>${name}</strong><span>${desc}</span></summary><div><div class="learn-example-row">${buttons}</div></div></details>`;
+    }).join('');
+    explorer.innerHTML=`<h3>Terpene Explorer</h3><p>Tap a terpene to expand example strain directions. Strain examples reshuffle each refresh.</p><div class="learn-detail-list terpene-list">${html}</div>`;
+  }
+
+  function lockNav(){
+    const nav=document.querySelector('.bottom-nav'); if(!nav) return;
+    Object.assign(nav.style,{position:'fixed',left:'50%',right:'auto',transform:'translateX(-50%)',width:'min(660px, calc(100vw - 24px))',maxWidth:'calc(100vw - 24px)',bottom:'calc(10px + env(safe-area-inset-bottom))',zIndex:'99999'});
+  }
+
+  function killBackTop(){
+    const old=document.getElementById('srBackTop');
+    if(old){ old.classList.remove('show'); old.style.display='none'; old.style.opacity='0'; old.style.pointerEvents='none'; }
+  }
+
+  function killStackedDeadSpace(){
+    document.body.style.paddingBottom='0';
+    document.querySelectorAll('.app-shell, main, .page, .grid, .mini-list, #recentHome, #strainGrid, #matchedHistory, #matchHistory, #matchResults, #journalList, #journalEntries, #savedList, #savedResults, #learnGrid').forEach(el=>{
+      el.style.minHeight='0';
+      el.style.marginBottom='0';
+    });
+    document.querySelectorAll('#recentHome,#strainGrid,#matchedHistory,#matchHistory,#matchResults,#journalList,#journalEntries,#savedList,#savedResults,#learnGrid').forEach(el=>{
+      el.style.paddingBottom='0';
+    });
+  }
+
+  function patchSearchFns(){
+    try{renderSearch=function(){renderSearchV70(false)}}catch(e){}
+    try{setFilter=function(f){currentFilter=f;visibleCount=SEARCH_BATCH;lastKey='';renderFilters();renderSearchV70(true)}}catch(e){}
+    try{clearSearch=function(){const i=document.getElementById('searchInput'); if(i)i.value=''; currentFilter='All'; visibleCount=SEARCH_BATCH; lastKey=''; renderFilters(); renderSearchV70(true)}}catch(e){}
+    try{jumpFilter=function(f){currentFilter=f;visibleCount=SEARCH_BATCH;lastKey='';showPage('search');renderFilters();renderSearchV70(true)}}catch(e){}
+    const input=document.getElementById('searchInput');
+    if(input&&!input.dataset.v70Search){input.dataset.v70Search='1';input.addEventListener('input',()=>renderSearchV70(true));}
+  }
+
+  function run(){
+    document.body.classList.add(VERSION);
+    lockNav(); killBackTop(); killStackedDeadSpace(); patchSearchFns();
+    const active=document.querySelector('.page.active')?.id;
+    if(active==='learn') renderLearnV70();
+    if(active==='search') renderSearchV70(false);
+    window.StrainReliefPatchVersion=VERSION;
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{run();setTimeout(run,250);setTimeout(run,900);setTimeout(run,1800);});
+  window.addEventListener('pageshow',()=>setTimeout(run,120));
+  window.addEventListener('resize',()=>setTimeout(run,80));
+  window.addEventListener('scroll',killBackTop,{passive:true});
+
+  const previous=window.showPage;
+  if(typeof previous==='function'){
+    window.showPage=function(id){
+      const result=previous.apply(this,arguments);
+      setTimeout(()=>{ if(id==='learn')renderLearnV70(); if(id==='search')renderSearchV70(true); run(); },120);
+      setTimeout(run,650);
+      return result;
+    };
+  }
+})();
