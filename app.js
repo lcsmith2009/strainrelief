@@ -2565,7 +2565,7 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     const learnActive = document.getElementById("learn")?.classList.contains("active");
     const explorer = document.getElementById("terpeneExplorer");
     if(!explorer) return;
-    const badOrder = explorer.textContent && explorer.textContent.indexOf("Terpene Explorer") > 80;
+    const badOrder = false;
     if(learnActive || badOrder || !explorer.querySelector(".terpene-detail")) renderEducationV53();
   }
 
@@ -2884,3 +2884,74 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   }
   window.srV60RefreshMotion=refreshMotion;
 })();
+
+
+/* ===== V61 TERPENE + LAYOUT CLEANUP ===== */
+
+function fixTerpeneExplorerV61(){
+  const explorer = document.getElementById("terpeneExplorer");
+  if(!explorer) return;
+
+  const headings = [...explorer.querySelectorAll("h1,h2,h3")]
+    .filter(h => /Terpene Explorer/i.test(h.textContent || ""));
+
+  if(headings.length > 1){
+    headings.slice(1).forEach(el => el.remove());
+  }
+
+  const descs = [...explorer.querySelectorAll("p")]
+    .filter(p => /Tap a terpene to expand/i.test(p.textContent || ""));
+
+  if(descs.length > 1){
+    descs.slice(1).forEach(el => el.remove());
+  }
+
+  const firstHeading = explorer.querySelector("h1,h2,h3");
+  const firstDesc = explorer.querySelector("p");
+
+  if(firstHeading && explorer.firstChild !== firstHeading){
+    explorer.prepend(firstHeading);
+  }
+
+  if(firstDesc && firstHeading && firstHeading.nextSibling !== firstDesc){
+    firstHeading.insertAdjacentElement("afterend", firstDesc);
+  }
+}
+
+function tightenEmptySpaceV61(){
+  [
+    "#recentlyViewed",
+    "#matchHistory",
+    "#journalEntries",
+    "#searchResults"
+  ].forEach(sel=>{
+    const el=document.querySelector(sel);
+    if(el){
+      el.style.paddingBottom="0px";
+      el.style.marginBottom="0px";
+    }
+  });
+
+  document.querySelectorAll(".strain-card,.panel,.education-card").forEach(card=>{
+    card.style.marginBottom="14px";
+  });
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  setTimeout(()=>{
+    fixTerpeneExplorerV61();
+    tightenEmptySpaceV61();
+  },300);
+
+  setTimeout(()=>{
+    fixTerpeneExplorerV61();
+    tightenEmptySpaceV61();
+  },1200);
+});
+
+window.addEventListener("pageshow",()=>{
+  setTimeout(()=>{
+    fixTerpeneExplorerV61();
+    tightenEmptySpaceV61();
+  },300);
+});

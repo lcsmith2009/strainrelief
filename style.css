@@ -6772,3 +6772,110 @@ body.v60-motion-polish .sr-spotlight-pulse{
   }
   body.v60-motion-polish .sr-motion-ready{opacity:1!important;transform:none!important;filter:none!important;}
 }
+
+
+/* ===== V61 FLOW + SPACING SYSTEM ===== */
+
+section,
+.page-section,
+.content-section{
+  margin-bottom:18px !important;
+}
+
+.hero,
+.daily-card,
+.panel,
+.strain-card,
+.education-card,
+.section-title,
+.pro-card{
+  margin:14px 0 !important;
+}
+
+.recently-viewed,
+.recent-history,
+.match-history,
+.saved-history,
+.recent-entries{
+  margin-bottom:10px !important;
+  padding-bottom:6px !important;
+}
+
+.strain-grid,
+.strain-results,
+.search-results,
+#searchResults{
+  gap:14px !important;
+  padding-bottom:10px !important;
+}
+
+.strain-card{
+  min-height:auto !important;
+  margin-bottom:14px !important;
+}
+
+.strain-card:last-child,
+.search-card:last-child{
+  margin-bottom:0 !important;
+}
+
+#recentlyViewed,
+#matchHistory,
+#journalEntries,
+#searchResults,
+#savedResults{
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+}
+
+.page{
+  padding-bottom:110px !important;
+}
+
+.learn-detail-list,
+.terpene-list{
+  gap:14px !important;
+}
+
+.v48-terpene-heading{
+  margin-bottom:14px !important;
+}
+
+#learn .panel:last-child,
+#saved .panel:last-child,
+#search .panel:last-child,
+#match .panel:last-child{
+  margin-bottom:8px !important;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+/* tighter mobile rhythm */
+@media(max-width:768px){
+
+  .hero,
+  .daily-card,
+  .panel,
+  .strain-card,
+  .education-card,
+  .section-title,
+  .pro-card{
+    padding:20px !important;
+    margin:12px 0 !important;
+  }
+
+  .strain-card{
+    margin-bottom:12px !important;
+  }
+
+  .search-results,
+  #searchResults{
+    gap:12px !important;
+  }
+
+  h1{
+    line-height:.96 !important;
+  }
+}
