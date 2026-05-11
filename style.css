@@ -2782,3 +2782,233 @@ body.v36-app-store-polish main{padding-bottom:116px!important;}
 @media(prefers-reduced-motion:reduce){
   body.v36-app-store-polish *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
 }
+
+
+/* === V37 Native Tight Polish: smaller hero + spotlight, more app-like movement === */
+body.v37-native-tight{
+  padding-left:clamp(10px,3vw,16px)!important;
+  padding-right:clamp(10px,3vw,16px)!important;
+  overflow-x:hidden!important;
+}
+body.v37-native-tight:after{
+  content:"";position:fixed;inset:-20%;z-index:-2;pointer-events:none;
+  background:radial-gradient(circle at 15% 18%,rgba(101,255,155,.16),transparent 30%),radial-gradient(circle at 86% 28%,rgba(91,179,255,.13),transparent 30%),radial-gradient(circle at 70% 82%,rgba(188,118,255,.08),transparent 32%);
+  animation:srV37Ambient 14s ease-in-out infinite alternate;
+}
+@keyframes srV37Ambient{from{transform:translate3d(-1.5%,0,0) scale(1)}to{transform:translate3d(1.5%,-1%,0) scale(1.03)}}
+
+/* HOME HERO: force true compact mobile height */
+body.v37-native-tight #home .hero{
+  padding:14px 20px 16px!important;
+  margin:8px 8px 18px!important;
+  border-radius:26px!important;
+  min-height:0!important;
+  max-height:none!important;
+  display:block!important;
+}
+body.v37-native-tight #home .hero .brand-logo{
+  width:min(74vw,360px)!important;
+  height:58px!important;
+  max-height:58px!important;
+  margin:0 auto 8px!important;
+  object-fit:contain!important;
+}
+body.v37-native-tight #home .hero .eyebrow{
+  font-size:10.5px!important;
+  letter-spacing:.12em!important;
+  margin-bottom:5px!important;
+}
+body.v37-native-tight #home .hero h1{
+  font-size:clamp(30px,8.7vw,40px)!important;
+  line-height:.95!important;
+  letter-spacing:-.065em!important;
+  margin:0 0 8px!important;
+  max-width:12ch!important;
+}
+body.v37-native-tight #home .hero p{
+  font-size:13.5px!important;
+  line-height:1.38!important;
+  margin:0 0 10px!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:3!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v37-native-tight #home .hero .v27-live-pill,
+body.v37-native-tight #home .hero .hero-live-pill{
+  min-height:34px!important;
+  padding:7px 12px!important;
+  font-size:12.5px!important;
+  margin:8px 0 10px!important;
+  width:max-content!important;
+  max-width:100%!important;
+}
+body.v37-native-tight #home .hero-actions{
+  gap:8px!important;
+  margin-top:8px!important;
+}
+body.v37-native-tight #home .hero-actions button{
+  height:43px!important;
+  min-height:43px!important;
+  padding:8px 12px!important;
+  border-radius:18px!important;
+  font-size:14px!important;
+}
+body.v37-native-tight #home .hero-mini-strip{
+  margin-top:10px!important;
+  gap:8px!important;
+}
+body.v37-native-tight #home .hero-mini-strip span{
+  min-height:42px!important;
+  padding:7px 8px!important;
+  border-radius:16px!important;
+  font-size:11px!important;
+}
+body.v37-native-tight #home .hero-mini-strip strong{font-size:18px!important;line-height:1!important;}
+
+/* Daily card: never cut off text, but stay compact */
+body.v37-native-tight #home .daily-card{
+  padding:16px 18px!important;
+  margin:12px 8px!important;
+  border-radius:24px!important;
+}
+body.v37-native-tight #home .daily-card h2{
+  font-size:clamp(28px,8vw,38px)!important;
+  line-height:1!important;
+  margin:4px 0 10px!important;
+}
+body.v37-native-tight #home .daily-card p{
+  font-size:14.5px!important;
+  line-height:1.38!important;
+  margin:0!important;
+}
+body.v37-native-tight #home .daily-card button,
+body.v37-native-tight #home .daily-card .inline-link,
+body.v37-native-tight #home .daily-card .v36-daily-open{
+  height:32px!important;min-height:32px!important;padding:6px 12px!important;border-radius:999px!important;font-size:12.5px!important;margin-left:6px!important;vertical-align:baseline!important;
+}
+
+/* TODAY'S SPOTLIGHT: true compact feature card */
+body.v37-native-tight #home .v27-spotlight{
+  margin:14px 8px!important;
+  padding:0!important;
+  border-radius:24px!important;
+}
+body.v37-native-tight #home .v27-spotlight-inner{
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+  padding:16px!important;
+}
+body.v37-native-tight #home .v27-spotlight-copy h2{
+  font-size:clamp(30px,8.5vw,42px)!important;
+  line-height:.98!important;
+  margin:4px 0 8px!important;
+  white-space:normal!important;
+}
+body.v37-native-tight #home .v27-spotlight-copy p{
+  font-size:14px!important;
+  line-height:1.36!important;
+  margin:0 0 10px!important;
+  -webkit-line-clamp:2!important;
+}
+body.v37-native-tight #home .v27-spotlight-copy button{
+  height:36px!important;min-height:36px!important;padding:8px 14px!important;border-radius:999px!important;font-size:13px!important;
+}
+body.v37-native-tight #home .v27-spotlight-art{
+  width:100%!important;
+  height:138px!important;
+  min-height:138px!important;
+  max-height:138px!important;
+  border-radius:18px!important;
+}
+body.v37-native-tight #home .v27-spotlight-art img{
+  height:138px!important;
+  object-fit:cover!important;
+  object-position:center 42%!important;
+  transform:scale(1.04)!important;
+}
+body.v37-native-tight #home .quick-row{
+  margin:10px 8px 12px!important;
+  gap:8px!important;
+}
+body.v37-native-tight #home .quick-row button{
+  height:40px!important;min-height:40px!important;padding:8px!important;border-radius:16px!important;font-size:13px!important;
+}
+
+/* Make home feel more native/app-like with snap carousels */
+body.v37-native-tight #home #trendingGrid,
+body.v37-native-tight #home #recentHome{
+  display:flex!important;
+  overflow-x:auto!important;
+  gap:12px!important;
+  scroll-snap-type:x mandatory!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:4px 8px 16px!important;
+  margin-left:-2px!important;
+  scrollbar-width:none!important;
+}
+body.v37-native-tight #home #trendingGrid::-webkit-scrollbar,
+body.v37-native-tight #home #recentHome::-webkit-scrollbar{display:none!important;}
+body.v37-native-tight #home #trendingGrid .strain-card{
+  min-width:min(82vw,320px)!important;
+  max-width:min(82vw,320px)!important;
+  scroll-snap-align:center!important;
+  padding:14px!important;
+  border-radius:24px!important;
+}
+body.v37-native-tight #home #trendingGrid .strain-card .card-hero img{height:148px!important;}
+body.v37-native-tight #home #trendingGrid .strain-card h3{font-size:30px!important;line-height:1!important;}
+body.v37-native-tight #home #trendingGrid .strain-card p{font-size:14px!important;line-height:1.35!important;-webkit-line-clamp:2!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;overflow:hidden!important;}
+body.v37-native-tight #home #recentHome .mini-item,
+body.v37-native-tight #home #recentHome .recent-mini-card{
+  min-width:150px!important;
+  max-width:170px!important;
+  scroll-snap-align:start!important;
+  border-radius:22px!important;
+}
+
+/* Smaller section headers */
+body.v37-native-tight #home .section-title{
+  margin:14px 6px 6px!important;
+  padding:6px 0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+}
+body.v37-native-tight #home .section-title h2{font-size:clamp(34px,9vw,44px)!important;line-height:.94!important;}
+body.v37-native-tight #home .section-title p{font-size:14px!important;line-height:1.35!important;margin:8px 0 0!important;}
+body.v37-native-tight #home .pro-card,
+body.v37-native-tight #home .smart-insights,
+body.v37-native-tight #home .panel{border-radius:24px!important;margin-left:8px!important;margin-right:8px!important;}
+
+/* Native touch feedback + shimmer */
+body.v37-native-tight button{position:relative;overflow:hidden;}
+body.v37-native-tight button:after{content:"";position:absolute;inset:-80% -30%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.16),transparent);transform:translateX(-120%);transition:transform .55s ease;pointer-events:none;}
+body.v37-native-tight button:active:after{transform:translateX(120%);}
+body.v37-native-tight .strain-card,
+body.v37-native-tight .panel,
+body.v37-native-tight .daily-card,
+body.v37-native-tight .pro-card{will-change:transform;}
+body.v37-native-tight .strain-card:active,
+body.v37-native-tight .panel:active{transform:translateY(-1px) scale(.992)!important;}
+
+/* Keep nav centered and never clipped */
+body.v37-native-tight .bottom-nav{
+  left:50%!important;right:auto!important;transform:translateX(-50%)!important;
+  width:min(376px,calc(100vw - 24px))!important;max-width:376px!important;
+  bottom:calc(12px + env(safe-area-inset-bottom))!important;
+  border-radius:22px!important;
+}
+body.v37-native-tight main{padding-bottom:132px!important;}
+
+@media(max-width:390px){
+  body.v37-native-tight #home .hero{padding:12px 16px 14px!important;margin:6px 4px 14px!important;}
+  body.v37-native-tight #home .hero .brand-logo{height:50px!important;max-height:50px!important;width:min(78vw,310px)!important;}
+  body.v37-native-tight #home .hero h1{font-size:30px!important;}
+  body.v37-native-tight #home .hero p{font-size:12.5px!important;line-height:1.32!important;-webkit-line-clamp:3!important;}
+  body.v37-native-tight #home .hero-actions button{height:40px!important;min-height:40px!important;}
+  body.v37-native-tight #home .hero-mini-strip span{min-height:38px!important;}
+  body.v37-native-tight #home .v27-spotlight-art{height:124px!important;min-height:124px!important;max-height:124px!important;}
+  body.v37-native-tight #home .v27-spotlight-art img{height:124px!important;}
+}
+@media(prefers-reduced-motion:reduce){body.v37-native-tight:after{animation:none!important}}
