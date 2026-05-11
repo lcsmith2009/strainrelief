@@ -3806,3 +3806,101 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     };
   }
 })();
+
+
+/* ======================================================
+   V71 HOME ALIGNMENT + NAV CLEARANCE JS — REAL
+====================================================== */
+(function(){
+  const VERSION = 'v71-home-alignment-nav-clearance-real';
+
+  function ensureV71Body(){
+    document.body.classList.add(VERSION);
+  }
+
+  function centerNav(){
+    const nav = document.querySelector('.bottom-nav');
+    if(!nav) return;
+    Object.assign(nav.style, {
+      position:'fixed',
+      left:'50%',
+      right:'auto',
+      transform:'translateX(-50%)',
+      bottom:'calc(10px + env(safe-area-inset-bottom))',
+      width:'min(660px, calc(100vw - 24px))',
+      maxWidth:'calc(100vw - 24px)',
+      zIndex:'99999'
+    });
+  }
+
+  function makeDailyButtonReachable(){
+    const daily = document.querySelector('#home .daily-card');
+    if(!daily) return;
+    let btn = daily.querySelector('button, .small-btn');
+    if(!btn){
+      const title = (document.getElementById('dailyTitle')?.textContent || '').replace(/^.*?:\s*/, '').trim();
+      if(title){
+        btn = document.createElement('button');
+        btn.type='button';
+        btn.className='small-btn';
+        btn.textContent='Open profile';
+        btn.onclick=function(){
+          try{ if(typeof openModal === 'function') openModal(title); }catch(e){}
+        };
+        daily.appendChild(btn);
+      }
+    }
+  }
+
+  function ensureBackTop(){
+    let btn = document.getElementById('srBackTop');
+    if(!btn){
+      btn = document.createElement('button');
+      btn.id = 'srBackTop';
+      btn.className = 'sr-back-top';
+      btn.type = 'button';
+      btn.setAttribute('aria-label','Back to top');
+      btn.textContent = '↑';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+    }
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    btn.classList.toggle('show', y > 520);
+  }
+
+  function clearBadBottomSpacers(){
+    document.querySelectorAll('.page, #home, #search, #recommend, #saved, #learn').forEach(el=>{
+      el.style.minHeight = 'auto';
+    });
+  }
+
+  function run(){
+    ensureV71Body();
+    centerNav();
+    makeDailyButtonReachable();
+    clearBadBottomSpacers();
+    ensureBackTop();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    run();
+    setTimeout(run, 250);
+    setTimeout(run, 900);
+    setTimeout(run, 1800);
+  });
+  window.addEventListener('resize', () => setTimeout(run, 80));
+  window.addEventListener('scroll', ensureBackTop, {passive:true});
+  window.addEventListener('pageshow', () => setTimeout(run, 100));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === 'function'){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 80);
+      setTimeout(run, 500);
+      return result;
+    };
+  }
+
+  window.StrainReliefPatchVersion = VERSION;
+})();

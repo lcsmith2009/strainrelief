@@ -1,14 +1,11 @@
-# StrainRelief V70 Final Dead-Space + Navigation Polish
+# StrainRelief V71 Home Alignment + Nav Clearance Fix REAL
 
-What changed:
-- Removed stacked body + page bottom padding that was causing giant blank zones.
-- Hid the floating back-to-top button because it was competing with the bottom nav.
-- Re-centered and re-locked the bottom nav.
-- Tightened Search cards again for faster scanning.
-- Rebuilt Search batching so “Show more strains” only appears when there are more hidden results.
-- Kept terpenes alphabetized.
-- Kept only strain examples randomized on refresh.
-- Cleaned the Terpene Explorer accordion so the description appears only under the terpene name, not duplicated inside the expanded area.
-- Cache-busted CSS, JS, and service worker to V70.
+Fixes:
+- Re-centers the Home hero card.
+- Makes the Home hero more compact without removing the 150 / Daily / Smart tiles.
+- Keeps the Daily Wellness Direction card fully visible and clickable above the bottom nav on first load/refresh.
+- Uses the Learn page spacing style as the standard for bottom nav clearance.
+- Restores a smaller, subtle back-to-top button.
+- Cache-busts CSS, JS, and service worker to v71.
 
-Upload all files to GitHub, wait for Vercel to deploy, then hard refresh or clear app cache if the PWA still shows an older version.
+Upload all files to GitHub, wait for Vercel, then hard refresh / reinstall PWA if needed.
