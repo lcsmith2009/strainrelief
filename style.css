@@ -4259,10 +4259,6 @@ section#home h1 {
 }
 
 
-/* ======================================================
-   V46 REAL FIXES — CLEAN JOURNAL + HERO TEXT + TERPENE RANDOM
-   ====================================================== */
-
 /* Home hero description: do NOT cut off */
 #home p,
 #home .hero p,
@@ -4375,4 +4371,87 @@ section#home [class*="hero"]{
   white-space:nowrap !important;
   overflow:visible !important;
   text-overflow:clip !important;
+}
+
+
+/* ======================================================
+   V47 RECOVERY FIX
+   Restores clean layout, removes journal duplicate pills,
+   and fixes hero copy clipping without breaking sections.
+   ====================================================== */
+
+/* Home hero copy should not be cut off */
+#home .hero p,
+#home .hero-card p,
+#home .home-hero p,
+#home [class*="hero"] p {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  max-height: none !important;
+}
+
+/* Keep hero title centered/title case, but do not over-shrink layout */
+#home h1,
+#home .hero h1,
+#home .home-hero h1 {
+  text-transform: none !important;
+  text-align: center !important;
+}
+
+/* Hide ONLY the redundant visual mood-pill container in Wellness Journal.
+   The dropdown stays. The form spacing stays. */
+#saved .journal-feelings,
+#saved .feelings-row,
+#saved .quick-feelings,
+#saved .mood-pills,
+#saved .journal-mood-pills,
+#saved .feeling-pill-row,
+#saved .quick-mood-row,
+#saved [data-feeling-pills],
+#saved [data-journal-pills] {
+  display: none !important;
+}
+
+/* Hide standalone journal button rows when they contain only mood buttons */
+#saved .v47-hide-journal-pills {
+  display: none !important;
+}
+
+/* Clean up the ghost block/overlay behind removed pills */
+#saved .wellness-journal,
+#saved .journal-card,
+#saved .journal-form,
+#saved [class*="journal"] {
+  overflow: visible !important;
+}
+
+#saved textarea,
+#saved .journal-notes {
+  margin-top: 18px !important;
+}
+
+/* Terpene chips: keep them contained and readable */
+#learn .terpene-card .tags,
+#learn .terpene-card .strain-tags,
+#learn .terpene-card .example-strains,
+#terpeneExplorer .tags,
+#terpeneExplorer .strain-tags,
+#terpeneExplorer .example-strains {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding-bottom: 8px !important;
+}
+
+#learn .terpene-card .tags > *,
+#terpeneExplorer .tags > *,
+.v47-terpene-chip {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
 }

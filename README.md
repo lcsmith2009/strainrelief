@@ -1,11 +1,8 @@
-# StrainRelief V46
+# StrainRelief V47 Recovery Clean
 
-## Real fixes
-- Removed redundant Wellness Journal mood pills at DOM level.
-- Kept the “How did it feel?” dropdown as the only mood selector.
-- Fixed Home hero description clipping.
-- Added stronger Terpene Explorer randomization that replaces visible example chips after page render.
-- Added cache-busting query strings for style.css and app.js.
-- Bumped service worker cache to v46.
-
-Educational only. Not medical advice.
+## Fixes
+- Removed the bad V46 layout patch.
+- Hides redundant Wellness Journal mood pills while keeping the dropdown.
+- Fixes hero description clipping.
+- Safely randomizes Terpene Explorer examples without moving text around.
+- Keeps bottom nav unchanged.
