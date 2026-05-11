@@ -1,14 +1,17 @@
-# StrainRelief V68 Smart Density Repair
+# StrainRelief V69 Final Spacing + Learn Polish
 
-Updates:
-- Fixed Search page Show More so only 40 strains display first, then loads more correctly.
-- Kept compact Search cards.
-- Alphabetized terpenes.
-- Kept terpene examples randomized only.
-- Fixed terpene card layout so description sits under the terpene name, not beside it.
-- Expanded terpene cards now show only strain buttons.
-- Further reduced bottom dead space and tightened section spacing.
-- Kept bottom nav centered.
-- Shrunk the Back to Top button.
+Real update based on the latest screenshots/video feedback.
 
-Upload all files to GitHub and wait for Vercel deployment.
+Changes:
+- Tightened bottom spacing without breaking the bottom nav.
+- Kept compact Search cards and made Show More actually progressive.
+- Search now starts with 40 strains and loads 40 more per tap.
+- Alphabetized terpenes on Learn page.
+- Only strain examples reshuffle on refresh.
+- Terpene description now sits under the terpene name, not beside it.
+- Expanded terpene cards show only randomized strain buttons, not duplicate description text.
+- Shrunk and quieted the Back-to-Top button.
+- Re-locked nav centering.
+- Added hard cache busting: v69-final-spacing-learn-polish.
+
+Upload the full contents to GitHub and wait for Vercel to finish deployment.
