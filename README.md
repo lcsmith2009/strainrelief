@@ -1,14 +1,13 @@
 # StrainRelief
 
-## V33
-Hero compression + centered navigation fix.
+## V34 Force Mobile Hero + Nav Fix
 
-### Fixes
-- Reduced oversized hero height
-- Tightened logo spacing
-- Reduced heading footprint
-- Better mobile text wrapping
-- Fixed floating bottom nav centering
-- Improved mobile safe-area spacing
+### What changed
+- Force-compressed the Home hero card
+- Reduced logo, headline, paragraph, and button heights
+- Tightened hero spacing
+- Re-centered the bottom navigation using viewport width
+- Prevented the nav from being wider than the phone screen
+- Removed README.txt files; only README.md remains
 
 Educational use only.
