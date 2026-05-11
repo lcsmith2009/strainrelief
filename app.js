@@ -2121,3 +2121,63 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener('pageshow',()=>setTimeout(runV49,250));
   window.addEventListener('hashchange',()=>setTimeout(runV49,250));
 })();
+
+
+/* ======================================================
+   V50 FIRST SCREEN HOME COMPRESSION
+   ====================================================== */
+(function(){
+  function applyV50(){
+    const home = document.querySelector("#home");
+    if(!home) return;
+
+    const hero = home.querySelector(".hero,.hero-card,.home-hero,.heroPanel,[class*='hero']") || home.querySelector("section");
+    if(hero){
+      Object.assign(hero.style, {
+        minHeight:"0",
+        height:"auto",
+        maxHeight:"52vh",
+        padding:"8px 12px 9px",
+        margin:"4px 8px 8px",
+        borderRadius:"24px",
+        gap:"6px"
+      });
+    }
+
+    home.querySelectorAll("h1").forEach(h=>{
+      if(/find\s+your\s+wellness/i.test(h.textContent || "")){
+        h.innerHTML = "Find Your Wellness<br>Direction.";
+        Object.assign(h.style, {
+          fontSize:"clamp(1.48rem, 5.8vw, 1.95rem)",
+          lineHeight:".93",
+          margin:"2px auto 4px",
+          textAlign:"center",
+          letterSpacing:"-0.065em"
+        });
+      }
+    });
+
+    home.querySelectorAll("p").forEach(p=>{
+      if(/Explore directions by mood|Explore cannabis strain directions/i.test(p.textContent || "")){
+        p.textContent = "Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.";
+        Object.assign(p.style, {
+          display:"block",
+          overflow:"visible",
+          textOverflow:"clip",
+          whiteSpace:"normal",
+          webkitLineClamp:"unset",
+          maxHeight:"none",
+          fontSize:".78rem",
+          lineHeight:"1.08",
+          textAlign:"center",
+          margin:"2px auto 5px",
+          maxWidth:"92%"
+        });
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{applyV50(); setTimeout(applyV50,250); setTimeout(applyV50,1000);});
+  window.addEventListener("pageshow",()=>setTimeout(applyV50,200));
+  window.addEventListener("hashchange",()=>setTimeout(applyV50,200));
+})();

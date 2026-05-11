@@ -1,5 +1,6 @@
-# StrainRelief V49 Compact Home Hero
+# StrainRelief V50 First Screen Fit
 
-- Shortens the Home hero.
-- Fixes clipped hero description.
-- Helps Daily Wellness Direction appear on the first screen.
+## Fix
+- Compresses Home hero harder so Daily Wellness Direction appears on the first screen.
+- Keeps hero description visible and no longer cut off.
+- Reduces hero logo, headline, buttons, badge, stat tiles, spacing, and padding.
