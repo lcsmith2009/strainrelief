@@ -1,10 +1,10 @@
-# StrainRelief V43
+# StrainRelief V44
 
-## Updates
-- Fixed Wellness Journal quick feeling pills visibility
-- Added true random Terpene Explorer examples and card ordering
-- Forced hero title to “Find Your Wellness Direction.”
-- Preserved bottom navigation layout
-- Updated cache/service worker version
+## Fixes
+- Wellness Journal feeling options no longer crop to one or two letters.
+- Terpene Explorer now replaces visible examples with true random strain samples from the full strain pool/fallback list.
+- Home hero headline remains title-case and centered.
+- Cache/service worker version bumped so Vercel/PWA refreshes more reliably.
+- README.txt files removed; only README.md remains.
 
-Educational only. Not medical advice.
+Educational cannabis wellness app. Not medical advice.
