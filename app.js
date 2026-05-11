@@ -3132,3 +3132,158 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion="v63-nav-spacing-repair";
 })();
+
+
+/* ======================================================
+   V64 PREMIUM MOTION PASS
+   Adds responsive tap feel, haptic-style feedback, stable nav center,
+   reveal animations, compact spacing cleanup, and no feature breakage.
+====================================================== */
+(function(){
+  const VERSION = "v64-premium-motion-pass";
+
+  function navLock(){
+    const nav=document.querySelector('.bottom-nav');
+    if(!nav) return;
+    Object.assign(nav.style,{
+      position:'fixed', left:'50%', right:'auto', transform:'translateX(-50%)',
+      width:'min(660px, calc(100vw - 28px))', maxWidth:'calc(100vw - 28px)',
+      bottom:'calc(10px + env(safe-area-inset-bottom))', zIndex:'99999', boxSizing:'border-box'
+    });
+  }
+
+  function pulse(el){
+    if(!el || el.dataset.srPulsing === '1') return;
+    el.dataset.srPulsing='1';
+    el.animate([
+      {transform:'scale(1)', filter:'brightness(1)'},
+      {transform:'scale(.965)', filter:'brightness(1.12)'},
+      {transform:'scale(1)', filter:'brightness(1)'}
+    ], {duration:220, easing:'cubic-bezier(.18,.89,.32,1.28)'}).onfinish=()=>{el.dataset.srPulsing='0'};
+  }
+
+  function lightHaptic(){
+    try{ if(navigator.vibrate) navigator.vibrate(8); }catch(e){}
+  }
+
+  function addTapFeel(){
+    document.querySelectorAll('button,.strain-card,.mini-item,.learn-detail,.filter-chip').forEach(el=>{
+      if(el.dataset.srTapReady) return;
+      el.dataset.srTapReady='1';
+      el.addEventListener('pointerdown',()=>{pulse(el); lightHaptic();},{passive:true});
+    });
+  }
+
+  function revealVisible(){
+    const items=[...document.querySelectorAll('.page.active .strain-card,.page.active .mini-item,.page.active .panel,.page.active .daily-card,.page.active .pro-card,.page.active .section-title')];
+    if(!('IntersectionObserver' in window)) return;
+    if(window.srRevealObserverV64) window.srRevealObserverV64.disconnect();
+    window.srRevealObserverV64 = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('sr-visible');
+          entry.target.style.opacity='1';
+          entry.target.style.transform='translateY(0)';
+          window.srRevealObserverV64.unobserve(entry.target);
+        }
+      });
+    },{threshold:.08, rootMargin:'0px 0px -8% 0px'});
+    items.forEach((el,i)=>{
+      if(el.classList.contains('sr-visible')) return;
+      el.style.opacity='.001';
+      el.style.transform='translateY(12px)';
+      el.style.transition='opacity .36s cubic-bezier(.2,.8,.2,1), transform .36s cubic-bezier(.2,.8,.2,1)';
+      el.style.transitionDelay=Math.min(i*18, 140)+'ms';
+      window.srRevealObserverV64.observe(el);
+    });
+  }
+
+  function compactDeadZones(){
+    ['recentHome','strainGrid','matchHistory','journalEntries','savedResults'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.style.minHeight='0px';
+      el.style.paddingBottom='0px';
+      el.style.marginBottom='0px';
+    });
+    document.querySelectorAll('#search .strain-card').forEach(card=>{
+      card.style.margin='0';
+      card.style.minHeight='0';
+      const img=card.querySelector('.card-hero img');
+      if(img){ img.style.height='142px'; img.style.maxHeight='142px'; img.style.objectFit='cover'; }
+    });
+  }
+
+  function stableTerpeneHeader(){
+    const explorer=document.getElementById('terpeneExplorer');
+    if(!explorer) return;
+    const heads=[...explorer.querySelectorAll('h1,h2,h3')].filter(h=>/Terpene Explorer/i.test(h.textContent||''));
+    const descs=[...explorer.querySelectorAll('p')].filter(p=>/Tap a terpene to expand/i.test(p.textContent||''));
+    heads.slice(1).forEach(h=>h.remove());
+    descs.slice(1).forEach(p=>p.remove());
+    const head=heads[0] || explorer.querySelector('h1,h2,h3');
+    const desc=descs[0] || explorer.querySelector('p');
+    if(head && explorer.firstElementChild!==head) explorer.prepend(head);
+    if(head && desc && head.nextElementSibling!==desc) head.insertAdjacentElement('afterend', desc);
+  }
+
+  function animateCounters(){
+    document.querySelectorAll('.stat-row strong, .hero-mini-strip strong').forEach(el=>{
+      const raw=(el.textContent||'').trim();
+      const num=parseInt(raw,10);
+      if(!Number.isFinite(num) || el.dataset.srCounted==='1') return;
+      el.dataset.srCounted='1';
+      const start=0, dur=520, t0=performance.now();
+      function step(now){
+        const p=Math.min(1,(now-t0)/dur);
+        const eased=1-Math.pow(1-p,3);
+        el.textContent=Math.round(start+(num-start)*eased);
+        if(p<1) requestAnimationFrame(step); else el.textContent=raw;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  function run(){
+    navLock();
+    compactDeadZones();
+    stableTerpeneHeader();
+    addTapFeel();
+    revealVisible();
+    animateCounters();
+  }
+
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==='function'){
+    window.showPage=function(){
+      const result=oldShowPage.apply(this, arguments);
+      setTimeout(run,60);
+      setTimeout(run,360);
+      return result;
+    };
+  }
+
+  const oldOpenModal=window.openModal;
+  if(typeof oldOpenModal==='function'){
+    window.openModal=function(){
+      const result=oldOpenModal.apply(this, arguments);
+      setTimeout(()=>{
+        const modal=document.querySelector('.modal:not(.hidden) .modal-card');
+        if(modal){
+          modal.animate([{opacity:0, transform:'translateY(18px) scale(.975)'},{opacity:1, transform:'translateY(0) scale(1)'}],{duration:320,easing:'cubic-bezier(.2,.8,.2,1)'});
+        }
+      },20);
+      return result;
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    run();
+    setTimeout(run,350);
+    setTimeout(run,1200);
+  });
+  window.addEventListener('pageshow',()=>setTimeout(run,160));
+  window.addEventListener('resize',()=>setTimeout(run,120));
+  document.addEventListener('scroll',()=>{ if(!window.srScrollTick){ window.srScrollTick=true; requestAnimationFrame(()=>{addTapFeel(); window.srScrollTick=false;}); } },{passive:true});
+  window.StrainReliefPatchVersion=VERSION;
+})();
