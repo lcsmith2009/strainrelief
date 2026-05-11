@@ -1,16 +1,14 @@
 # StrainRelief
 
-## V39 Motion + Differentiation Polish
+## V41 Force Visible Hero + Terpene Rotation
 
-### Fixed / Improved
-- Compressed Home hero another step.
-- Added subtle safe motion system.
-- Reduced oversized Daily Wellness, Spotlight, dashboard, and recommendation cards.
-- Added more visual differentiation by section.
-- Added category-inspired accent colors.
-- Preserved v38.1 mobile scroll fix.
-- Preserved centered bottom navigation.
-- Only README.md is included.
+### Updates
+- Force-centers the visible Home hero text.
+- Shrinks hero logo/headline/buttons with higher-specificity CSS.
+- Makes the hero change obvious on deployment.
+- Adds daily seeded terpene explorer reordering.
+- Adds visual variation to terpene blocks.
+- Preserves V38.1 scroll fix and V39 motion polish.
+- Only README.md included.
 
 Educational wellness app. Not medical advice.
-Cannabis affects everyone differently. Follow local laws.

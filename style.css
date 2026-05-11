@@ -3705,3 +3705,232 @@ body .daily-card{
     max-height:150px !important;
   }
 }
+
+
+/* ===== V40 HERO CENTER + TERPENE ROTATION ===== */
+
+#home .hero,
+body #home .hero{
+text-align:center !important;
+align-items:center !important;
+justify-content:center !important;
+}
+
+#home .hero h1{
+margin-left:auto !important;
+margin-right:auto !important;
+max-width:420px !important;
+font-size:clamp(25px,8vw,42px)!important;
+}
+
+#home .hero p{
+margin-left:auto !important;
+margin-right:auto !important;
+max-width:540px !important;
+}
+
+#home .hero .hero-actions{
+justify-content:center !important;
+}
+
+#home .hero .stat-row{
+justify-content:center !important;
+max-width:500px;
+margin-left:auto !important;
+margin-right:auto !important;
+}
+
+#home .hero .eyebrow{
+text-align:center !important;
+}
+
+#home .hero::before{
+opacity:.8;
+filter:blur(4px);
+}
+
+.terpene-card,
+.terpene-explorer-card{
+transition:transform .22s ease, box-shadow .22s ease;
+}
+
+.terpene-card:active,
+.terpene-explorer-card:active{
+transform:scale(.98);
+}
+
+
+
+/* ======================================================
+   V41 FORCE VISIBLE HERO + TERPENE UPDATE
+   ====================================================== */
+
+/* HERO: force centered editorial layout on the actual visible Home hero */
+html body #home header.hero,
+html body section#home header.hero.card-glow,
+html body #home .hero,
+html body .page.active#home .hero{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  padding:8px 14px 12px !important;
+  margin:8px 8px 10px !important;
+  min-height:0 !important;
+  height:auto !important;
+  border-radius:24px !important;
+}
+
+html body #home header.hero .brand-logo,
+html body #home .hero .brand-logo,
+html body #home header.hero img.brand-logo,
+html body section#home header.hero img{
+  width:min(64vw,300px) !important;
+  max-width:300px !important;
+  max-height:46px !important;
+  object-fit:contain !important;
+  margin:0 auto 3px !important;
+  display:block !important;
+}
+
+html body #home header.hero .eyebrow,
+html body #home .hero .eyebrow{
+  display:block !important;
+  width:100% !important;
+  text-align:center !important;
+  font-size:9px !important;
+  line-height:1 !important;
+  letter-spacing:.13em !important;
+  margin:0 0 5px !important;
+}
+
+html body #home header.hero h1,
+html body #home .hero h1,
+html body section#home header.hero h1{
+  width:100% !important;
+  max-width:340px !important;
+  margin:0 auto 6px !important;
+  text-align:center !important;
+  font-size:clamp(30px,9.4vw,44px) !important;
+  line-height:.92 !important;
+  letter-spacing:-2px !important;
+}
+
+html body #home header.hero p,
+html body #home .hero p,
+html body section#home header.hero p{
+  width:100% !important;
+  max-width:560px !important;
+  margin:0 auto 8px !important;
+  text-align:center !important;
+  font-size:12px !important;
+  line-height:1.28 !important;
+  opacity:.84 !important;
+}
+
+html body #home header.hero .hero-actions,
+html body #home .hero .hero-actions{
+  width:100% !important;
+  max-width:420px !important;
+  margin:8px auto 0 !important;
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1fr !important;
+  gap:6px !important;
+}
+
+html body #home header.hero .hero-actions button,
+html body #home .hero .hero-actions button{
+  height:38px !important;
+  min-height:38px !important;
+  padding:6px 6px !important;
+  font-size:11px !important;
+  border-radius:16px !important;
+  white-space:nowrap !important;
+}
+
+html body #home .hero-mini-strip,
+html body #home header.hero .hero-mini-strip{
+  width:100% !important;
+  max-width:420px !important;
+  margin:8px auto 0 !important;
+}
+
+html body #home header.hero::before,
+html body #home header.hero::after,
+html body #home .hero::before,
+html body #home .hero::after{
+  pointer-events:none !important;
+}
+
+/* Daily/spotlight slightly tighter so the first screen visibly changes too */
+html body #home .daily-card{
+  margin-top:8px !important;
+  padding:12px 14px !important;
+}
+
+html body #home .daily-card h2{
+  font-size:clamp(22px,6vw,30px) !important;
+}
+
+html body #home .daily-card p{
+  font-size:12.5px !important;
+  line-height:1.32 !important;
+}
+
+/* TERPENE: visual variation cards if rendered under learn */
+#terpeneExplorer .terpene-card:nth-child(1),
+#terpeneExplorer details:nth-child(1),
+#terpeneExplorer .learn-detail:nth-child(1){
+  background:linear-gradient(145deg,rgba(92,180,255,.14),rgba(5,24,14,.94)) !important;
+  border-color:rgba(92,180,255,.20) !important;
+}
+#terpeneExplorer .terpene-card:nth-child(2),
+#terpeneExplorer details:nth-child(2),
+#terpeneExplorer .learn-detail:nth-child(2){
+  background:linear-gradient(145deg,rgba(141,124,255,.14),rgba(5,24,14,.94)) !important;
+  border-color:rgba(141,124,255,.20) !important;
+}
+#terpeneExplorer .terpene-card:nth-child(3),
+#terpeneExplorer details:nth-child(3),
+#terpeneExplorer .learn-detail:nth-child(3){
+  background:linear-gradient(145deg,rgba(255,210,95,.14),rgba(5,24,14,.94)) !important;
+  border-color:rgba(255,210,95,.20) !important;
+}
+#terpeneExplorer .terpene-card:nth-child(4),
+#terpeneExplorer details:nth-child(4),
+#terpeneExplorer .learn-detail:nth-child(4){
+  background:linear-gradient(145deg,rgba(255,111,159,.14),rgba(5,24,14,.94)) !important;
+  border-color:rgba(255,111,159,.20) !important;
+}
+
+@media(max-width:390px){
+  html body #home header.hero .brand-logo,
+  html body #home .hero .brand-logo{
+    max-height:42px !important;
+    max-width:280px !important;
+  }
+
+  html body #home header.hero h1,
+  html body #home .hero h1{
+    font-size:29px !important;
+    max-width:320px !important;
+  }
+
+  html body #home header.hero p,
+  html body #home .hero p{
+    font-size:11.5px !important;
+  }
+
+  html body #home header.hero .hero-actions,
+  html body #home .hero .hero-actions{
+    grid-template-columns:1fr !important;
+    max-width:300px !important;
+  }
+
+  html body #home header.hero .hero-actions button,
+  html body #home .hero .hero-actions button{
+    height:36px !important;
+    min-height:36px !important;
+  }
+}
