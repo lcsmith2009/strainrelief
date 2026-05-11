@@ -3323,3 +3323,385 @@ main,
   -webkit-tap-highlight-color:transparent;
 }
 
+
+
+
+/* =========================================================
+   V39 CONTROLLED MOTION + DIFFERENTIATION POLISH
+   Preserves v38.1 scroll fix.
+   ========================================================= */
+
+/* Keep scroll working */
+html, body{
+  overflow-y:auto !important;
+  height:auto !important;
+  touch-action:pan-y !important;
+}
+
+/* 1. Hero: still premium, but less dominant */
+#home .hero,
+body #home .hero,
+.v39-polish #home .hero{
+  padding:7px 14px 11px !important;
+  margin:7px 8px 10px !important;
+  border-radius:24px !important;
+  min-height:0 !important;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(116,255,173,.14), transparent 31%),
+    radial-gradient(circle at 0% 95%, rgba(92,180,255,.10), transparent 29%),
+    linear-gradient(145deg, rgba(12,44,28,.95), rgba(4,19,11,.98)) !important;
+}
+
+#home .hero .brand-logo,
+body #home .hero .brand-logo,
+#home .hero img[src*="logo"]{
+  max-height:50px !important;
+  max-width:72% !important;
+  margin:0 auto 2px !important;
+}
+
+#home .hero h1,
+body #home .hero h1{
+  font-size:clamp(27px,8.8vw,46px) !important;
+  line-height:.92 !important;
+  letter-spacing:-1.8px !important;
+  margin:0 0 5px !important;
+  max-width:270px !important;
+}
+
+#home .hero p,
+body #home .hero p{
+  font-size:11.5px !important;
+  line-height:1.28 !important;
+  margin:0 0 7px !important;
+  opacity:.82 !important;
+}
+
+#home .hero .hero-actions,
+body #home .hero .hero-actions{
+  gap:6px !important;
+  margin-top:7px !important;
+}
+
+#home .hero button,
+#home .hero .primary-btn,
+#home .hero .secondary-btn{
+  height:38px !important;
+  min-height:38px !important;
+  padding:6px 10px !important;
+  font-size:13px !important;
+  border-radius:18px !important;
+}
+
+/* 2. Motion system: subtle, safe, no scroll lock */
+@keyframes srSoftFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+}
+@keyframes srGlowPulse{
+  0%,100%{box-shadow:0 14px 40px rgba(0,0,0,.34),0 0 22px rgba(72,233,135,.07)}
+  50%{box-shadow:0 16px 46px rgba(0,0,0,.38),0 0 34px rgba(72,233,135,.14)}
+}
+@keyframes srGradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes srShimmer{
+  0%{transform:translateX(-120%)}
+  100%{transform:translateX(120%)}
+}
+@keyframes srFadeUp{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.card-glow,
+.daily-card,
+.panel,
+.pro-card,
+.strain-card,
+.education-card{
+  animation:srFadeUp .38s ease both;
+}
+
+.daily-card,
+.pro-card,
+.smart-card,
+.wellness-metric,
+.habit-card{
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease !important;
+}
+
+.daily-card:active,
+.pro-card:active,
+.smart-card:active,
+.wellness-metric:active,
+.habit-card:active,
+.strain-card:active{
+  transform:scale(.985) !important;
+}
+
+.strain-card::after,
+.daily-card::after,
+.panel::after{
+  opacity:.72 !important;
+}
+
+button,
+.small-btn,
+.filter-chip,
+.quick-row button{
+  position:relative !important;
+  overflow:hidden !important;
+}
+
+button::before,
+.small-btn::before,
+.filter-chip::before,
+.quick-row button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(115deg, transparent, rgba(255,255,255,.24), transparent);
+  transform:translateX(-130%);
+  pointer-events:none;
+}
+
+button:active::before,
+.small-btn:active::before,
+.filter-chip:active::before,
+.quick-row button:active::before{
+  animation:srShimmer .55s ease;
+}
+
+/* 3. Oversized sections/cards: compact but readable */
+.daily-card,
+body .daily-card{
+  padding:14px 15px !important;
+  margin:10px 8px !important;
+  border-radius:22px !important;
+}
+
+.daily-card h2{
+  font-size:clamp(22px,6vw,32px) !important;
+  line-height:.98 !important;
+  margin-bottom:6px !important;
+}
+
+.daily-card p{
+  font-size:13px !important;
+  line-height:1.34 !important;
+  -webkit-line-clamp:3 !important;
+  margin-bottom:8px !important;
+}
+
+.pro-card,
+.panel,
+.section-title{
+  margin:10px 8px !important;
+}
+
+.pro-card{
+  padding:13px !important;
+  border-radius:22px !important;
+}
+
+.pro-card h2{
+  font-size:24px !important;
+}
+
+.stat-row div{
+  padding:8px 6px !important;
+  min-height:54px !important;
+}
+
+.stat-row strong{
+  font-size:22px !important;
+}
+
+.smart-card,
+.wellness-metric,
+.habit-card{
+  padding:11px !important;
+  border-radius:17px !important;
+}
+
+.smart-card h3{
+  font-size:18px !important;
+}
+
+.smart-card p{
+  font-size:12.5px !important;
+  line-height:1.32 !important;
+}
+
+/* Spotlight / large media cards */
+.spotlight-card,
+.today-spotlight,
+#todaySpotlight,
+#spotlight{
+  padding:15px !important;
+  margin:10px 8px !important;
+  border-radius:22px !important;
+}
+
+.spotlight-card img,
+.today-spotlight img,
+#todaySpotlight img,
+#spotlight img,
+.card-hero img{
+  max-height:170px !important;
+  height:170px !important;
+  object-fit:cover !important;
+  border-radius:18px !important;
+}
+
+.strain-card{
+  padding:12px !important;
+  border-radius:22px !important;
+}
+
+.strain-card h3{
+  font-size:23px !important;
+}
+
+.strain-card p{
+  font-size:12.5px !important;
+  line-height:1.3 !important;
+}
+
+/* 5. Stronger visual differentiation without becoming messy */
+#home .daily-card{
+  background:
+    radial-gradient(circle at 90% 0%, rgba(255,210,95,.18), transparent 30%),
+    linear-gradient(145deg, rgba(57,40,17,.88), rgba(8,31,19,.95)) !important;
+  border-color:rgba(255,210,95,.16) !important;
+}
+
+#home .pro-card{
+  background:
+    radial-gradient(circle at 0% 20%, rgba(92,180,255,.16), transparent 32%),
+    linear-gradient(145deg, rgba(8,36,46,.86), rgba(6,24,16,.96)) !important;
+  border-color:rgba(92,180,255,.16) !important;
+}
+
+#smartInsights,
+.smart-insights{
+  background:
+    radial-gradient(circle at 100% 0%, rgba(192,98,255,.16), transparent 31%),
+    linear-gradient(145deg, rgba(35,24,56,.88), rgba(6,24,16,.96)) !important;
+  border-color:rgba(192,98,255,.16) !important;
+}
+
+#home .section-title:nth-of-type(1),
+#home .section-title:nth-of-type(3){
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+
+.quick-row button:nth-child(1){
+  background:linear-gradient(135deg,#74ffad,#dfffee) !important;
+}
+.quick-row button:nth-child(2){
+  background:linear-gradient(135deg,#8d7cff,#dcd8ff) !important;
+}
+.quick-row button:nth-child(3){
+  background:linear-gradient(135deg,#5de8ff,#d8faff) !important;
+}
+.quick-row button:nth-child(4){
+  background:linear-gradient(135deg,#c9ff6a,#efffca) !important;
+}
+
+/* Category vibe accents on strain cards */
+.strain-card[data-strain]{
+  border-color:rgba(255,255,255,.10) !important;
+}
+
+.strain-card[data-strain*="Blue"],
+.strain-card[data-strain*="Focus"],
+.strain-card[data-strain*="Dream"]{
+  background:
+    radial-gradient(circle at 80% 5%, rgba(92,180,255,.14), transparent 30%),
+    linear-gradient(145deg, rgba(8,35,51,.92), rgba(5,22,13,.96)) !important;
+}
+
+.strain-card[data-strain*="Purple"],
+.strain-card[data-strain*="Night"],
+.strain-card[data-strain*="Northern"]{
+  background:
+    radial-gradient(circle at 80% 5%, rgba(141,124,255,.16), transparent 30%),
+    linear-gradient(145deg, rgba(31,24,65,.92), rgba(5,22,13,.96)) !important;
+}
+
+.strain-card[data-strain*="Lemon"],
+.strain-card[data-strain*="Orange"],
+.strain-card[data-strain*="Mango"]{
+  background:
+    radial-gradient(circle at 80% 5%, rgba(255,210,95,.17), transparent 30%),
+    linear-gradient(145deg, rgba(54,40,12,.90), rgba(5,22,13,.96)) !important;
+}
+
+.strain-card[data-strain*="Cherry"],
+.strain-card[data-strain*="Straw"],
+.strain-card[data-strain*="Pink"]{
+  background:
+    radial-gradient(circle at 80% 5%, rgba(255,111,159,.16), transparent 30%),
+    linear-gradient(145deg, rgba(56,23,43,.90), rgba(5,22,13,.96)) !important;
+}
+
+/* Section titles cleaner and less heavy */
+.section-title{
+  padding:5px 4px 2px !important;
+}
+
+.section-title h2{
+  font-size:clamp(23px,6.2vw,34px) !important;
+}
+
+.section-title p{
+  font-size:12.5px !important;
+  line-height:1.32 !important;
+}
+
+/* Floating nav preserved and slightly more tactile */
+.bottom-nav{
+  animation:srGlowPulse 4s ease-in-out infinite !important;
+}
+
+.bottom-nav button.active{
+  background-size:180% 180% !important;
+  animation:srGradientMove 5s ease infinite !important;
+}
+
+/* Respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+
+/* Very small phones */
+@media(max-width:390px){
+  #home .hero h1{
+    font-size:26px !important;
+  }
+  #home .hero p{
+    font-size:11px !important;
+  }
+  #home .hero .brand-logo{
+    max-height:46px !important;
+  }
+  .card-hero img,
+  .spotlight-card img,
+  .today-spotlight img,
+  #todaySpotlight img,
+  #spotlight img{
+    height:150px !important;
+    max-height:150px !important;
+  }
+}

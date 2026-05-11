@@ -1,21 +1,16 @@
 # StrainRelief
 
-## V38.1 Emergency Scroll Fix
+## V39 Motion + Differentiation Polish
 
-### Fixed
-- Restored mobile vertical scrolling.
-- Prevented decorative glow/ambient layers from trapping touch events.
-- Removed accidental body/html scroll locking.
-- Preserved bottom nav clickability.
-- Preserved modal internal scrolling.
-- Bumped service worker cache to force deployment update.
-
-### Files
-- index.html
-- style.css
-- app.js
-- manifest.json
-- service-worker.js
-- README.md
+### Fixed / Improved
+- Compressed Home hero another step.
+- Added subtle safe motion system.
+- Reduced oversized Daily Wellness, Spotlight, dashboard, and recommendation cards.
+- Added more visual differentiation by section.
+- Added category-inspired accent colors.
+- Preserved v38.1 mobile scroll fix.
+- Preserved centered bottom navigation.
+- Only README.md is included.
 
 Educational wellness app. Not medical advice.
+Cannabis affects everyone differently. Follow local laws.
