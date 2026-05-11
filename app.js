@@ -2181,3 +2181,75 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener("pageshow",()=>setTimeout(applyV50,200));
   window.addEventListener("hashchange",()=>setTimeout(applyV50,200));
 })();
+
+
+/* ======================================================
+   V51 REAL HERO FIX — remove mobile hero stat tiles
+   ====================================================== */
+(function(){
+  function applyV51(){
+    const home = document.querySelector("#home");
+    if(!home) return;
+
+    const hero = home.querySelector(".hero,.hero-card,.home-hero,.heroPanel,[class*='hero']") || home.querySelector("section");
+    if(!hero) return;
+
+    Object.assign(hero.style, {
+      minHeight:"0",
+      height:"auto",
+      maxHeight:(window.innerHeight <= 850 ? "405px" : "430px"),
+      padding:"12px 14px 14px",
+      margin:"4px 10px 8px",
+      overflow:"hidden",
+      display:"block"
+    });
+
+    hero.querySelectorAll("*").forEach(el=>{
+      const txt = (el.textContent || "").trim().toLowerCase();
+      const cls = (el.className || "").toString().toLowerCase();
+
+      if (
+        cls.includes("stats") || cls.includes("metric") ||
+        txt === "150 strains" || txt === "daily picks" || txt === "smart match"
+      ) {
+        el.style.display = "none";
+      }
+    });
+
+    home.querySelectorAll("h1").forEach(h=>{
+      if(/find\s+your\s+wellness/i.test(h.textContent || "")){
+        h.innerHTML = "Find Your Wellness<br>Direction.";
+        Object.assign(h.style, {
+          fontSize:"clamp(1.55rem, 5.8vw, 1.92rem)",
+          lineHeight:".96",
+          margin:"0 auto 7px",
+          textAlign:"center",
+          letterSpacing:"-0.06em"
+        });
+      }
+    });
+
+    hero.querySelectorAll("p").forEach(p=>{
+      if(/Explore directions by mood|Explore cannabis strain directions/i.test(p.textContent || "")){
+        p.textContent = "Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.";
+        Object.assign(p.style, {
+          display:"block",
+          overflow:"visible",
+          textOverflow:"clip",
+          whiteSpace:"normal",
+          webkitLineClamp:"unset",
+          maxHeight:"none",
+          fontSize:".78rem",
+          lineHeight:"1.15",
+          textAlign:"center",
+          margin:"0 auto 10px",
+          maxWidth:"92%"
+        });
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{applyV51(); setTimeout(applyV51,300); setTimeout(applyV51,1200);});
+  window.addEventListener("pageshow",()=>setTimeout(applyV51,200));
+  window.addEventListener("resize",()=>setTimeout(applyV51,100));
+})();
