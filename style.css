@@ -2042,3 +2042,146 @@ body:before{opacity:.68!important;animation:v27GridDrift 18s ease-in-out infinit
   .v31-home-polish .bottom-nav{left:8px!important;right:8px!important;gap:4px!important;}
   .v31-home-polish .bottom-nav button{min-height:48px!important;}
 }
+
+
+/* ===== V32 HOME POLISH ===== */
+
+body{
+padding-bottom:170px;
+}
+
+.hero{
+padding:18px 18px 22px;
+min-height:auto;
+}
+
+.brand-logo{
+max-height:120px;
+margin-bottom:2px;
+}
+
+.hero h1{
+font-size:clamp(34px,8vw,62px);
+line-height:.95;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:15px;
+line-height:1.45;
+margin-bottom:12px;
+}
+
+.hero-actions{
+gap:10px;
+margin-top:14px;
+}
+
+.hero-actions button{
+padding:14px 16px;
+border-radius:20px;
+font-size:16px;
+}
+
+.quick-row{
+gap:8px;
+margin-top:4px;
+}
+
+.quick-row button,
+.quick-row .stat-card,
+.quick-row .mini-stat{
+min-height:74px;
+}
+
+.daily-card{
+padding:20px;
+}
+
+.daily-card p{
+display:-webkit-box;
+-webkit-line-clamp:3;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.daily-card .small-btn,
+.daily-card button{
+margin-top:10px;
+}
+
+.bottom-nav,
+nav{
+bottom:18px !important;
+left:50%;
+transform:translateX(-50%);
+width:calc(100% - 26px);
+max-width:540px;
+border-radius:30px;
+backdrop-filter:blur(18px);
+box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
+
+.strain-card img,
+.spotlight-image,
+.feature-image{
+max-height:240px !important;
+object-fit:cover;
+border-radius:24px;
+}
+
+.strain-card{
+overflow:hidden;
+}
+
+.strain-card .tags,
+.strain-tags{
+margin-top:12px;
+gap:10px;
+}
+
+.sleep-theme{
+background:linear-gradient(145deg,rgba(57,48,118,.95),rgba(21,24,56,.92));
+}
+
+.focus-theme{
+background:linear-gradient(145deg,rgba(17,92,120,.92),rgba(7,33,52,.95));
+}
+
+.creative-theme{
+background:linear-gradient(145deg,rgba(120,66,30,.92),rgba(61,21,48,.95));
+}
+
+.body-theme{
+background:linear-gradient(145deg,rgba(28,92,42,.95),rgba(10,40,20,.92));
+}
+
+.cbd-theme{
+background:linear-gradient(145deg,rgba(22,92,82,.95),rgba(7,36,34,.92));
+}
+
+.section-title,
+.panel{
+backdrop-filter:blur(12px);
+}
+
+@media (max-width:640px){
+
+.hero{
+padding:16px 16px 20px;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.brand-logo{
+max-height:105px;
+}
+
+.hero-actions button{
+padding:13px 14px;
+font-size:15px;
+}
+
+}

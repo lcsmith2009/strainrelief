@@ -1,15 +1,28 @@
 # StrainRelief
 
-V31 home polish build.
+Premium cannabis wellness education web app.
 
-Updated files:
+## Current Version
+V32 – Home Polish Update
+
+## Included Files
 - index.html
 - style.css
 - app.js
+- manifest.json
 - service-worker.js
 
-Notes:
-- No extra README.txt files are included.
-- Daily Wellness card is fixed so text does not get cut off.
-- Home layout is tighter, more lively, and more mobile-friendly.
-- Bottom navigation is slimmer so it blocks less content.
+## Major Changes
+- Smaller premium home hero
+- Better mobile spacing
+- Larger bottom safe area for floating nav
+- Cleaner Daily Wellness card
+- Compact spotlight media area
+- Added category color theme system
+- Removed old TXT README clutter
+
+## Notes
+Educational wellness support only.
+Not medical advice.
+Cannabis affects everyone differently.
+Follow local laws and never drive while impaired.
