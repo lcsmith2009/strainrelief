@@ -7199,3 +7199,277 @@ body.v63-nav-spacing-repair #terpeneExplorer .learn-example-row button{
     font-size:11.5px !important;
   }
 }
+
+
+/* ======================================================
+   V65 REAL PREMIUM MOTION + DENSITY PASS
+   Deploy marker: V65_REAL_MOTION_POLISH_DEPLOY_MARKER
+====================================================== */
+
+:root{
+  --sr-ease: cubic-bezier(.2,.85,.2,1);
+  --sr-fast: 160ms;
+  --sr-med: 320ms;
+  --sr-slow: 720ms;
+}
+
+html{
+  scroll-behavior:smooth !important;
+}
+
+body.v65-real-motion-polish{
+  padding-left:14px !important;
+  padding-right:14px !important;
+  overflow-x:hidden !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+
+body.v65-real-motion-polish *{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* Fix nav center with final winning rules */
+body.v65-real-motion-polish .bottom-nav{
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  transform:translateX(-50%) !important;
+  bottom:calc(10px + env(safe-area-inset-bottom)) !important;
+  width:min(660px, calc(100vw - 28px)) !important;
+  max-width:calc(100vw - 28px) !important;
+  display:grid !important;
+  grid-template-columns:repeat(5, minmax(0, 1fr)) !important;
+  gap:8px !important;
+  padding:8px !important;
+  border-radius:28px !important;
+  background:rgba(2,18,10,.9) !important;
+  backdrop-filter:blur(22px) saturate(1.4) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(1.4) !important;
+  box-shadow:0 18px 60px rgba(0,0,0,.66), 0 0 34px rgba(70,255,150,.16) !important;
+  z-index:99999 !important;
+}
+
+body.v65-real-motion-polish .bottom-nav button{
+  width:100% !important;
+  min-width:0 !important;
+  height:62px !important;
+  min-height:62px !important;
+  border-radius:21px !important;
+  transition:
+    transform var(--sr-fast) var(--sr-ease),
+    box-shadow var(--sr-fast) var(--sr-ease),
+    filter var(--sr-fast) var(--sr-ease) !important;
+}
+
+body.v65-real-motion-polish .bottom-nav button:active{
+  transform:scale(.94) translateY(1px) !important;
+  filter:brightness(1.08) !important;
+}
+
+body.v65-real-motion-polish .bottom-nav button.active{
+  box-shadow:0 0 0 1px rgba(255,255,255,.12) inset, 0 10px 30px rgba(97,211,255,.2) !important;
+}
+
+/* Premium press behavior */
+body.v65-real-motion-polish button,
+body.v65-real-motion-polish .btn,
+body.v65-real-motion-polish .chip,
+body.v65-real-motion-polish .tag,
+body.v65-real-motion-polish .strain-card,
+body.v65-real-motion-polish .mini-item,
+body.v65-real-motion-polish .pro-card,
+body.v65-real-motion-polish .daily-card,
+body.v65-real-motion-polish .learn-detail,
+body.v65-real-motion-polish .panel{
+  transition:
+    transform var(--sr-fast) var(--sr-ease),
+    box-shadow var(--sr-med) var(--sr-ease),
+    border-color var(--sr-med) var(--sr-ease),
+    background var(--sr-med) var(--sr-ease),
+    opacity var(--sr-med) var(--sr-ease) !important;
+}
+
+body.v65-real-motion-polish button:active,
+body.v65-real-motion-polish .btn:active,
+body.v65-real-motion-polish .chip:active,
+body.v65-real-motion-polish .tag:active{
+  transform:scale(.965) !important;
+}
+
+body.v65-real-motion-polish .strain-card:active,
+body.v65-real-motion-polish .mini-item:active,
+body.v65-real-motion-polish .daily-card:active,
+body.v65-real-motion-polish .pro-card:active,
+body.v65-real-motion-polish .learn-detail:active{
+  transform:scale(.985) translateY(1px) !important;
+}
+
+/* Subtle section entrance */
+body.v65-real-motion-polish .page.active .hero,
+body.v65-real-motion-polish .page.active .daily-card,
+body.v65-real-motion-polish .page.active .pro-card,
+body.v65-real-motion-polish .page.active .section-title,
+body.v65-real-motion-polish .page.active .panel,
+body.v65-real-motion-polish .page.active .strain-card,
+body.v65-real-motion-polish .page.active .learn-detail{
+  animation:srRiseIn .45s var(--sr-ease) both;
+}
+
+@keyframes srRiseIn{
+  from{opacity:0; transform:translateY(14px) scale(.992);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+/* Premium glow movement */
+body.v65-real-motion-polish .hero::after,
+body.v65-real-motion-polish .daily-card::after,
+body.v65-real-motion-polish .pro-card::after{
+  animation:srGlowDrift 8s ease-in-out infinite alternate !important;
+}
+
+@keyframes srGlowDrift{
+  from{transform:translate3d(-8px,-4px,0) scale(1);}
+  to{transform:translate3d(10px,8px,0) scale(1.04);}
+}
+
+/* Real density pass: remove dead air */
+body.v65-real-motion-polish #recentHome,
+body.v65-real-motion-polish #strainGrid,
+body.v65-real-motion-polish #matchHistory,
+body.v65-real-motion-polish #journalEntries,
+body.v65-real-motion-polish #savedResults{
+  min-height:0 !important;
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+}
+
+body.v65-real-motion-polish .section-title,
+body.v65-real-motion-polish .panel,
+body.v65-real-motion-polish .daily-card,
+body.v65-real-motion-polish .pro-card,
+body.v65-real-motion-polish .education-card{
+  margin-top:12px !important;
+  margin-bottom:12px !important;
+}
+
+/* Recently Viewed compact */
+body.v65-real-motion-polish #recentHome{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+
+body.v65-real-motion-polish #recentHome .mini-item,
+body.v65-real-motion-polish #recentHome .recent-card{
+  min-height:0 !important;
+  padding:10px !important;
+  margin:0 !important;
+}
+
+/* Search page compact cards */
+body.v65-real-motion-polish #search .strain-card{
+  padding:15px !important;
+  margin:0 0 12px !important;
+  min-height:0 !important;
+  border-radius:24px !important;
+}
+
+body.v65-real-motion-polish #search .strain-card .card-hero{
+  margin-bottom:10px !important;
+}
+
+body.v65-real-motion-polish #search .strain-card .card-hero img{
+  height:142px !important;
+  max-height:142px !important;
+  object-fit:cover !important;
+}
+
+body.v65-real-motion-polish #search .strain-card h3{
+  font-size:clamp(1.8rem, 7.4vw, 2.35rem) !important;
+  line-height:.95 !important;
+  margin:0 0 7px !important;
+}
+
+body.v65-real-motion-polish #search .strain-card p{
+  font-size:.98rem !important;
+  line-height:1.35 !important;
+  margin:0 0 10px !important;
+}
+
+/* Terpene title lock */
+body.v65-real-motion-polish #terpeneExplorer{
+  display:block !important;
+  padding:18px !important;
+  margin-bottom:12px !important;
+}
+
+body.v65-real-motion-polish #terpeneExplorer > h3:first-child{
+  margin:0 0 8px !important;
+}
+
+body.v65-real-motion-polish #terpeneExplorer > p:nth-child(2){
+  margin:0 0 14px !important;
+}
+
+body.v65-real-motion-polish #terpeneExplorer .learn-detail-list{
+  display:grid !important;
+  gap:12px !important;
+}
+
+body.v65-real-motion-polish #terpeneExplorer .learn-example-row{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:10px !important;
+  overflow:visible !important;
+}
+
+body.v65-real-motion-polish #terpeneExplorer .learn-example-row button{
+  width:100% !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+
+/* Modal feel */
+body.v65-real-motion-polish .modal,
+body.v65-real-motion-polish .strain-modal{
+  animation:srModalIn .28s var(--sr-ease) both !important;
+}
+
+@keyframes srModalIn{
+  from{opacity:0; transform:translateY(18px) scale(.97);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  body.v65-real-motion-polish *,
+  body.v65-real-motion-polish *::before,
+  body.v65-real-motion-polish *::after{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+@media(max-width:420px){
+  body.v65-real-motion-polish{
+    padding-left:12px !important;
+    padding-right:12px !important;
+  }
+
+  body.v65-real-motion-polish .bottom-nav{
+    width:calc(100vw - 24px) !important;
+    max-width:calc(100vw - 24px) !important;
+    gap:6px !important;
+    padding:7px !important;
+  }
+
+  body.v65-real-motion-polish .bottom-nav button{
+    height:58px !important;
+    min-height:58px !important;
+    border-radius:19px !important;
+  }
+}

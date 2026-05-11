@@ -1,11 +1,17 @@
-# StrainRelief V63 Nav + Spacing Repair
+# StrainRelief V65 Real Premium Motion Update
 
-Fixes:
-- Re-centers bottom navigation with a hard CSS + JS lock.
-- Reduces dead space under Recently Viewed, Search, Match History, and Saved Journal.
-- Tightens Search page card spacing.
-- Keeps Terpene Explorer heading and description at the top.
-- Keeps terpene strain examples randomized.
-- Uses v63 cache-busting for CSS/JS/service worker.
+This is the real motion + density pass.
 
-Upload all files to GitHub and replace the existing files.
+What changed:
+- Hard cache-busted CSS and JS to v65.
+- Added visible deploy marker in index.html.
+- Re-centered bottom nav with stronger final CSS + JS lock.
+- Added premium press/tap animations.
+- Added card/section entrance animations.
+- Added subtle glow drift.
+- Tightened Search page cards.
+- Reduced dead space in Recently Viewed, Search, Match History, Saved, and Learn.
+- Stabilized Terpene Explorer title/description at the top.
+
+Important:
+After uploading, wait for Vercel to finish deployment. If the live site still looks unchanged, clear site data or uninstall/reinstall the PWA because the service worker may be serving cached files.
