@@ -3254,3 +3254,137 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   const oldShowPage=window.showPage; if(typeof oldShowPage==='function'){window.showPage=function(id){const result=oldShowPage.apply(this,arguments);setTimeout(()=>{if(id==='learn')renderTerpeneExplorerV66(); if(id==='search'){makeSearchCardsCompact();addSearchShowMore();} runV66();},90);setTimeout(runV66,500);return result;};}
   window.StrainReliefPatchVersion=VERSION;
 })();
+
+
+/* ======================================================
+   V67 LEARN + SEARCH FIX JS
+====================================================== */
+(function(){
+  const VERSION = "v67-learn-search-fix";
+
+  function getStrains(){
+    try{ if(Array.isArray(window.strains)) return window.strains; }catch(e){}
+    try{ if(Array.isArray(strains)) return strains; }catch(e){}
+    return [];
+  }
+
+  function getTerpenes(){
+    try{ if(Array.isArray(window.terpenes)) return window.terpenes; }catch(e){}
+    try{ if(Array.isArray(terpenes)) return terpenes; }catch(e){}
+    return [];
+  }
+
+  function shuffle(list){
+    const a=[...list];
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function safeNameV67(name){
+    try{ if(typeof safeName === "function") return safeName(name); }catch(e){}
+    return String(name || "").replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+  }
+
+  function examplesForTerpeneV67(name){
+    const all=getStrains();
+    const exact=all.filter(s => Array.isArray(s.terpenes) && s.terpenes.includes(name));
+    const pool=exact.length ? exact : all;
+    return shuffle(pool).slice(0,4);
+  }
+
+  function renderTerpeneExplorerV67(){
+    const explorer=document.getElementById("terpeneExplorer");
+    if(!explorer) return;
+
+    const sorted=[...getTerpenes()].sort((a,b)=>String(a[0]||"").localeCompare(String(b[0]||"")));
+    const html=sorted.map((t)=>{
+      const name=t[0] || "";
+      const short=t[1] || "";
+      const examples=examplesForTerpeneV67(name).map(s=>{
+        const n=s.name || "Explore";
+        return `<button type="button" onclick="openModal('${safeNameV67(n)}')" title="${n}">${n}</button>`;
+      }).join("");
+
+      return `<details class="learn-detail terpene-detail">
+        <summary><strong>${name}</strong><span>${short}</span></summary>
+        <div><div class="learn-example-row">${examples}</div></div>
+      </details>`;
+    }).join("");
+
+    explorer.innerHTML = `<h3>Terpene Explorer</h3>
+      <p>Tap a terpene to expand beginner notes and example strain directions. Strain examples reshuffle each refresh.</p>
+      <div class="learn-detail-list terpene-list">${html}</div>`;
+  }
+
+  function removeBrokenShowMoreV67(){
+    const btn=document.getElementById("srShowMoreStrains");
+    if(btn) btn.remove();
+
+    const grid=document.getElementById("strainGrid") || document.querySelector("#search .grid");
+    if(!grid) return;
+    grid.removeAttribute("data-visible-count");
+    grid.querySelectorAll(".strain-card").forEach(card=>{
+      card.style.display="";
+      card.classList.add("compact-search-card");
+    });
+  }
+
+  function tightenBottomV67(){
+    ["recentHome","strainGrid","matchHistory","journalEntries","savedResults"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.style.minHeight="0";
+      el.style.paddingBottom="0";
+      el.style.marginBottom="0";
+    });
+  }
+
+  function runV67(){
+    document.body.classList.add(VERSION);
+    removeBrokenShowMoreV67();
+    tightenBottomV67();
+
+    const learn=document.getElementById("learn");
+    if(learn && learn.classList.contains("active")){
+      renderTerpeneExplorerV67();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    runV67();
+    setTimeout(runV67,250);
+    setTimeout(runV67,900);
+    setTimeout(runV67,1800);
+  });
+
+  window.addEventListener("pageshow",()=>setTimeout(runV67,130));
+
+  const previousShowPage=window.showPage;
+  if(typeof previousShowPage === "function"){
+    window.showPage=function(id){
+      const result=previousShowPage.apply(this,arguments);
+      setTimeout(()=>{
+        if(id === "learn") renderTerpeneExplorerV67();
+        if(id === "search") removeBrokenShowMoreV67();
+        tightenBottomV67();
+      },120);
+      setTimeout(runV67,650);
+      return result;
+    };
+  }
+
+  // Patch renderSearch too, because it re-renders cards after typing/filtering.
+  const previousRenderSearch=window.renderSearch;
+  if(typeof previousRenderSearch === "function"){
+    window.renderSearch=function(){
+      const result=previousRenderSearch.apply(this,arguments);
+      setTimeout(removeBrokenShowMoreV67,50);
+      return result;
+    };
+  }
+
+  window.StrainReliefPatchVersion=VERSION;
+})();

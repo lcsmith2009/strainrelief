@@ -7522,3 +7522,200 @@ body.v66-density-smart-layout #terpeneExplorer .learn-example-row button{width:1
 body.v66-density-smart-layout #srBackTop{position:fixed!important;right:18px!important;bottom:calc(92px + env(safe-area-inset-bottom))!important;width:46px!important;height:46px!important;border-radius:999px!important;display:grid!important;place-items:center!important;border:1px solid rgba(116,255,173,.25)!important;background:rgba(20,240,120,.9)!important;color:#02150a!important;font-weight:900!important;box-shadow:0 18px 42px rgba(0,0,0,.45),0 0 22px rgba(78,255,145,.25)!important;z-index:99998!important;opacity:0!important;pointer-events:none!important;transform:translateY(8px) scale(.96)!important;transition:opacity .18s ease,transform .18s ease!important;}
 body.v66-density-smart-layout #srBackTop.show{opacity:1!important;pointer-events:auto!important;transform:translateY(0) scale(1)!important;}
 @media(max-width:420px){body.v66-density-smart-layout{padding-left:12px!important;padding-right:12px!important;}body.v66-density-smart-layout .bottom-nav{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;gap:6px!important;padding:7px!important;}body.v66-density-smart-layout .bottom-nav button{height:58px!important;min-height:58px!important;border-radius:19px!important;}body.v66-density-smart-layout #search .strain-card{grid-template-columns:84px minmax(0,1fr)!important;min-height:116px!important;column-gap:12px!important;padding:12px!important;}body.v66-density-smart-layout #search .strain-card .card-hero{width:84px!important;height:84px!important;min-width:84px!important;}body.v66-density-smart-layout #search .strain-card .card-hero img{max-height:84px!important;}}
+
+
+/* ======================================================
+   V67 LEARN + SEARCH FIX
+   Deploy marker: V67_LEARN_SEARCH_FIX_DEPLOY_MARKER
+====================================================== */
+
+body.v67-learn-search-fix{
+  padding-bottom:calc(86px + env(safe-area-inset-bottom)) !important;
+}
+
+/* Remove broken Show More UX */
+body.v67-learn-search-fix #srShowMoreStrains{
+  display:none !important;
+}
+
+/* Make all Search results visible while keeping compact cards */
+body.v67-learn-search-fix #search .strain-card{
+  display:grid !important;
+  grid-template-columns:92px minmax(0, 1fr) !important;
+  column-gap:14px !important;
+  align-items:center !important;
+  min-height:118px !important;
+  padding:12px !important;
+  margin:0 0 10px !important;
+}
+
+body.v67-learn-search-fix #search .strain-card .card-hero{
+  width:88px !important;
+  height:88px !important;
+  min-width:88px !important;
+  margin:0 !important;
+  border-radius:20px !important;
+  overflow:hidden !important;
+}
+
+body.v67-learn-search-fix #search .strain-card .card-hero img{
+  width:100% !important;
+  height:100% !important;
+  max-height:88px !important;
+  object-fit:cover !important;
+}
+
+body.v67-learn-search-fix #search .strain-card h3{
+  font-size:clamp(1.35rem, 6.2vw, 1.9rem) !important;
+  line-height:.98 !important;
+  margin:0 0 5px !important;
+}
+
+body.v67-learn-search-fix #search .strain-card p{
+  font-size:.86rem !important;
+  line-height:1.25 !important;
+  margin:0 0 7px !important;
+  -webkit-line-clamp:2 !important;
+}
+
+/* Learn page: alphabetized, clean accordion, description under terpene */
+body.v67-learn-search-fix #terpeneExplorer{
+  padding:18px !important;
+  margin:12px 0 !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer .learn-detail-list,
+body.v67-learn-search-fix #terpeneExplorer .terpene-list{
+  display:grid !important;
+  gap:10px !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail{
+  padding:0 !important;
+  margin:0 !important;
+  border-radius:24px !important;
+  overflow:hidden !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail > summary,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail > summary{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 42px !important;
+  grid-template-areas:"name icon" "desc icon" !important;
+  align-items:center !important;
+  gap:4px 12px !important;
+  padding:16px !important;
+  cursor:pointer !important;
+  list-style:none !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail > summary::-webkit-details-marker,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail > summary::-webkit-details-marker{
+  display:none !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail > summary strong,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail > summary strong{
+  grid-area:name !important;
+  display:block !important;
+  color:#72ffad !important;
+  font-size:clamp(1.25rem,5.6vw,1.7rem) !important;
+  line-height:1.05 !important;
+  margin:0 !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail > summary span,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail > summary span{
+  grid-area:desc !important;
+  display:block !important;
+  font-size:1rem !important;
+  line-height:1.35 !important;
+  color:rgba(245,255,247,.76) !important;
+  margin:6px 0 0 !important;
+  max-width:100% !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail > summary::after,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail > summary::after{
+  grid-area:icon !important;
+  content:"+" !important;
+  width:40px !important;
+  height:40px !important;
+  border-radius:999px !important;
+  display:grid !important;
+  place-items:center !important;
+  background:rgba(90,255,150,.14) !important;
+  color:#7cffad !important;
+  font-weight:900 !important;
+  font-size:1.35rem !important;
+  justify-self:end !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail[open] > summary::after,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail[open] > summary::after{
+  content:"–" !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer details.learn-detail > div,
+body.v67-learn-search-fix #terpeneExplorer details.terpene-detail > div{
+  padding:0 16px 16px !important;
+}
+
+/* Expanded area shows ONLY randomized strain buttons */
+body.v67-learn-search-fix #terpeneExplorer .learn-example-row{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  gap:9px !important;
+  margin-top:0 !important;
+  overflow:visible !important;
+}
+
+body.v67-learn-search-fix #terpeneExplorer .learn-example-row button{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  padding:11px 8px !important;
+  font-size:.88rem !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+/* Reduce obvious end-of-page dead space a little */
+body.v67-learn-search-fix .page{
+  padding-bottom:calc(84px + env(safe-area-inset-bottom)) !important;
+}
+
+body.v67-learn-search-fix #matchHistory,
+body.v67-learn-search-fix #journalEntries,
+body.v67-learn-search-fix #recentHome,
+body.v67-learn-search-fix #savedResults,
+body.v67-learn-search-fix #strainGrid{
+  margin-bottom:0 !important;
+  padding-bottom:0 !important;
+  min-height:0 !important;
+}
+
+body.v67-learn-search-fix #srBackTop{
+  bottom:calc(92px + env(safe-area-inset-bottom)) !important;
+}
+
+@media(max-width:420px){
+  body.v67-learn-search-fix #search .strain-card{
+    grid-template-columns:82px minmax(0,1fr) !important;
+    column-gap:11px !important;
+    min-height:108px !important;
+    padding:11px !important;
+  }
+
+  body.v67-learn-search-fix #search .strain-card .card-hero{
+    width:80px !important;
+    height:80px !important;
+    min-width:80px !important;
+  }
+
+  body.v67-learn-search-fix #search .strain-card .card-hero img{
+    max-height:80px !important;
+  }
+}
