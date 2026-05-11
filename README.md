@@ -1,12 +1,11 @@
-# StrainRelief V62 Flow Density Fix
+# StrainRelief V63 Nav + Spacing Repair
 
-Updates:
-- Reduced dead space under Recently Viewed, Search, Match History, and Saved Journal.
-- Tightened Search page strain card spacing and image height.
-- Stabilized Terpene Explorer title/description at the top.
-- Kept terpene example strains randomized on refresh.
-- Added v62 asset cache-busting for CSS, JS, and service worker.
-- Removed mood pills from Wellness Journal; the dropdown remains the main mood selector.
+Fixes:
+- Re-centers bottom navigation with a hard CSS + JS lock.
+- Reduces dead space under Recently Viewed, Search, Match History, and Saved Journal.
+- Tightens Search page card spacing.
+- Keeps Terpene Explorer heading and description at the top.
+- Keeps terpene strain examples randomized.
+- Uses v63 cache-busting for CSS/JS/service worker.
 
-Upload the full contents of this ZIP to GitHub, then wait for Vercel to redeploy.
-If the app still looks unchanged, hard refresh/clear site data because the PWA service worker may still be serving old cached files.
+Upload all files to GitHub and replace the existing files.

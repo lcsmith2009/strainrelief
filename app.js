@@ -3040,3 +3040,95 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener("resize",()=>setTimeout(tightenSpacingV62,120));
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V63 NAV LOCK + TERPENE CLEANUP
+====================================================== */
+(function(){
+  function centerBottomNavV63(){
+    const nav=document.querySelector(".bottom-nav");
+    if(!nav) return;
+    Object.assign(nav.style,{
+      position:"fixed",
+      left:"50%",
+      right:"auto",
+      transform:"translateX(-50%)",
+      width:"min(660px, calc(100vw - 28px))",
+      maxWidth:"calc(100vw - 28px)",
+      bottom:"calc(10px + env(safe-area-inset-bottom))",
+      boxSizing:"border-box",
+      zIndex:"9999"
+    });
+  }
+
+  function cleanupTerpeneExplorerV63(){
+    const explorer=document.getElementById("terpeneExplorer");
+    if(!explorer) return;
+
+    // Remove duplicate headings/descriptions inside explorer.
+    const heads=[...explorer.querySelectorAll("h1,h2,h3")].filter(h=>/Terpene Explorer/i.test(h.textContent||""));
+    heads.slice(1).forEach(h=>h.remove());
+
+    const descs=[...explorer.querySelectorAll("p")].filter(p=>/Tap a terpene to expand/i.test(p.textContent||""));
+    descs.slice(1).forEach(p=>p.remove());
+
+    const firstHead=heads[0] || explorer.querySelector("h1,h2,h3");
+    const firstDesc=descs[0] || explorer.querySelector("p");
+
+    if(firstHead && explorer.firstElementChild !== firstHead){
+      explorer.prepend(firstHead);
+    }
+    if(firstHead && firstDesc && firstHead.nextElementSibling !== firstDesc){
+      firstHead.insertAdjacentElement("afterend", firstDesc);
+    }
+
+    const learn=document.getElementById("learn");
+    if(learn){
+      [...learn.children].forEach(el=>{
+        if(el===explorer) return;
+        const text=(el.textContent||"").trim();
+        if(text==="Terpene Explorer" || /^Terpene Explorer\s*Tap a terpene/i.test(text)){
+          el.remove();
+        }
+      });
+    }
+  }
+
+  function tightenDeadZonesV63(){
+    ["recentHome","strainGrid","matchHistory","journalEntries","savedResults"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.style.minHeight="0";
+      el.style.marginBottom="0";
+      el.style.paddingBottom="0";
+    });
+  }
+
+  function runV63(){
+    centerBottomNavV63();
+    cleanupTerpeneExplorerV63();
+    tightenDeadZonesV63();
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    runV63();
+    setTimeout(runV63,300);
+    setTimeout(runV63,1200);
+  });
+
+  window.addEventListener("pageshow",()=>setTimeout(runV63,120));
+  window.addEventListener("resize",()=>setTimeout(centerBottomNavV63,80));
+
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==="function"){
+    window.showPage=function(){
+      const result=oldShowPage.apply(this,arguments);
+      setTimeout(runV63,80);
+      setTimeout(runV63,450);
+      return result;
+    };
+  }
+
+  window.StrainReliefPatchVersion="v63-nav-spacing-repair";
+})();
