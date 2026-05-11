@@ -2591,3 +2591,207 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+/* ======================================================
+   V55 First-screen fit patch
+   Forces the live DOM to match the compact mobile CSS even if
+   older runtime patches try to resize the hero afterward.
+   ====================================================== */
+(function(){
+  const VERSION = "v55-first-screen-fit-lock";
+
+  function compactHomeV55(){
+    const home = document.getElementById("home");
+    if(!home) return;
+    const hero = home.querySelector("header.hero,.hero");
+    if(!hero) return;
+    const compact = window.matchMedia("(max-width: 430px) and (max-height: 850px)").matches;
+
+    Object.assign(hero.style, {
+      width:"calc(100vw - 28px)",
+      height: compact ? "326px" : "342px",
+      maxHeight: compact ? "326px" : "342px",
+      minHeight:"0",
+      margin:"5px auto 6px",
+      padding: compact ? "7px 13px 8px" : "8px 14px 9px",
+      borderRadius:"24px",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"space-between",
+      alignItems:"stretch",
+      gap: compact ? "2px" : "3px",
+      overflow:"hidden"
+    });
+
+    const logo = hero.querySelector(".brand-logo");
+    if(logo){
+      Object.assign(logo.style, {
+        width:"auto",
+        maxWidth:"56vw",
+        height: compact ? "29px" : "32px",
+        maxHeight: compact ? "29px" : "32px",
+        margin:"0 auto 1px",
+        objectFit:"contain",
+        flex:"0 0 auto"
+      });
+    }
+
+    const h1 = hero.querySelector("h1");
+    if(h1){
+      h1.innerHTML = "Find Your Wellness<br>Direction.";
+      Object.assign(h1.style, {
+        fontSize: compact ? "clamp(1.34rem,5.2vw,1.58rem)" : "clamp(1.44rem,5.7vw,1.78rem)",
+        lineHeight:".92",
+        letterSpacing:"-.06em",
+        margin:"0 auto 3px",
+        textAlign:"center",
+        maxWidth:"12.8ch",
+        flex:"0 0 auto"
+      });
+    }
+
+    const eyebrow = hero.querySelector(".eyebrow");
+    if(eyebrow){
+      Object.assign(eyebrow.style, {
+        fontSize: compact ? ".51rem" : ".54rem",
+        lineHeight:"1",
+        letterSpacing:".115em",
+        margin:"0 auto 2px",
+        textAlign:"center",
+        width:"100%"
+      });
+    }
+
+    const copy = hero.querySelector("p");
+    if(copy){
+      copy.textContent = "Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.";
+      Object.assign(copy.style, {
+        fontSize: compact ? ".64rem" : ".68rem",
+        lineHeight: compact ? "1.08" : "1.12",
+        maxWidth:"35ch",
+        margin:"0 auto 3px",
+        textAlign:"center",
+        display:"block",
+        overflow:"visible",
+        whiteSpace:"normal",
+        maxHeight:"none",
+        flex:"0 0 auto"
+      });
+    }
+
+    const live = hero.querySelector(".v27-live-pill,.hero-live-pill,.live-pill");
+    if(live){
+      Object.assign(live.style, {
+        minHeight: compact ? "21px" : "23px",
+        height: compact ? "21px" : "23px",
+        width:"max-content",
+        maxWidth:"100%",
+        padding:"4px 10px",
+        margin: compact ? "2px auto 3px" : "2px auto 4px",
+        borderRadius:"999px",
+        fontSize: compact ? ".62rem" : ".67rem",
+        lineHeight:"1",
+        display:"inline-flex",
+        alignItems:"center",
+        justifyContent:"center",
+        gap:"7px",
+        flex:"0 0 auto"
+      });
+    }
+
+    const actions = hero.querySelector(".hero-actions");
+    if(actions){
+      Object.assign(actions.style, {
+        display:"grid",
+        gridTemplateColumns:"1fr",
+        gap: compact ? "4px" : "5px",
+        margin: compact ? "2px 0 0" : "3px 0 0",
+        flex:"0 0 auto"
+      });
+      actions.querySelectorAll("button").forEach(btn=>Object.assign(btn.style, {
+        width:"100%",
+        minHeight: compact ? "28px" : "30px",
+        height: compact ? "28px" : "30px",
+        padding:"0 10px",
+        margin:"0",
+        borderRadius:"999px",
+        fontSize: compact ? ".70rem" : ".74rem",
+        lineHeight:"1"
+      }));
+    }
+
+    const strip = hero.querySelector(".hero-mini-strip");
+    if(strip){
+      Object.assign(strip.style, {
+        display:"grid",
+        gridTemplateColumns:"repeat(3, minmax(0,1fr))",
+        gap: compact ? "5px" : "6px",
+        margin: compact ? "4px 0 0" : "5px 0 0",
+        padding:"0",
+        height:"auto",
+        minHeight:"0",
+        flex:"0 0 auto"
+      });
+      strip.querySelectorAll("span").forEach(card=>Object.assign(card.style, {
+        height: compact ? "27px" : "29px",
+        minHeight: compact ? "27px" : "29px",
+        padding:"3px",
+        borderRadius:"13px",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        justifyContent:"center",
+        lineHeight:".92",
+        fontSize: compact ? ".50rem" : ".52rem",
+        textAlign:"center"
+      }));
+      strip.querySelectorAll("strong").forEach(strong=>Object.assign(strong.style, {
+        fontSize: compact ? ".78rem" : ".82rem",
+        lineHeight:".86"
+      }));
+    }
+
+    const daily = home.querySelector(".daily-card");
+    if(daily){
+      Object.assign(daily.style, {
+        width:"calc(100vw - 28px)",
+        minHeight: compact ? "106px" : "112px",
+        height: compact ? "106px" : "112px",
+        maxHeight: compact ? "106px" : "112px",
+        margin:"6px auto 8px",
+        padding: compact ? "9px 13px" : "10px 14px",
+        borderRadius:"22px",
+        overflow:"hidden"
+      });
+      const title = daily.querySelector("h2");
+      if(title) Object.assign(title.style, {
+        fontSize: compact ? "clamp(1.23rem,5.1vw,1.55rem)" : "clamp(1.35rem,5.6vw,1.72rem)",
+        lineHeight:".95",
+        margin:"4px 0 5px"
+      });
+      const text = daily.querySelector("p");
+      if(text) Object.assign(text.style, {
+        fontSize: compact ? ".70rem" : ".74rem",
+        lineHeight: compact ? "1.1" : "1.14",
+        maxHeight:"2.5em",
+        overflow:"hidden"
+      });
+    }
+  }
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(id){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(compactHomeV55, 35);
+      return result;
+    };
+  }
+
+  function run(){ compactHomeV55(); }
+  document.addEventListener("DOMContentLoaded",()=>{ run(); setTimeout(run,80); setTimeout(run,350); setTimeout(run,1000); setTimeout(run,2000); });
+  window.addEventListener("pageshow",()=>setTimeout(run,120));
+  window.addEventListener("resize",()=>setTimeout(run,80));
+  document.addEventListener("visibilitychange",()=>{ if(!document.hidden) setTimeout(run,100); });
+  window.StrainReliefPatchVersion = VERSION;
+})();

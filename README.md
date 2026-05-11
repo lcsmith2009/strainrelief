@@ -1,21 +1,12 @@
-# StrainRelief V53
+# StrainRelief V55 — First-Screen Fit Lock
 
-Updated files for StrainRelief.
+Updated files for the compact mobile home screen.
 
-## What changed
-- Compressed the Home hero so Daily Wellness appears on the first screen.
-- Kept the 150 / Daily / Smart hero tiles back in one row.
-- Fixed the Home hero description so it does not cut off awkwardly.
-- Removed the extra Wellness Journal mood pills since the dropdown already handles mood.
-- Rebuilt Terpene Explorer so the title stays above the terpene cards.
-- Randomized terpene strain examples on each refresh instead of showing alphabetized strains.
-- Tightened mobile spacing and bottom navigation safe-area behavior.
+## Changed
+- Forces the Home hero shorter.
+- Keeps the 150 / Daily / Smart tiles.
+- Makes the Daily Wellness Direction card visible above the bottom nav on open/refresh.
+- Updates cache-busting query strings.
+- Updates service worker cache name so Vercel/mobile browsers pull the new build.
 
-## Upload
-Replace these files in GitHub:
-- index.html
-- style.css
-- app.js
-- manifest.json
-- service-worker.js
-- README.md
+Upload/replace: `index.html`, `style.css`, `app.js`, `service-worker.js`, and keep existing image/manifest files.
