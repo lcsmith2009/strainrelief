@@ -1,28 +1,14 @@
 # StrainRelief
 
-Premium cannabis wellness education web app.
+## V33
+Hero compression + centered navigation fix.
 
-## Current Version
-V32 – Home Polish Update
+### Fixes
+- Reduced oversized hero height
+- Tightened logo spacing
+- Reduced heading footprint
+- Better mobile text wrapping
+- Fixed floating bottom nav centering
+- Improved mobile safe-area spacing
 
-## Included Files
-- index.html
-- style.css
-- app.js
-- manifest.json
-- service-worker.js
-
-## Major Changes
-- Smaller premium home hero
-- Better mobile spacing
-- Larger bottom safe area for floating nav
-- Cleaner Daily Wellness card
-- Compact spotlight media area
-- Added category color theme system
-- Removed old TXT README clutter
-
-## Notes
-Educational wellness support only.
-Not medical advice.
-Cannabis affects everyone differently.
-Follow local laws and never drive while impaired.
+Educational use only.
