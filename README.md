@@ -1,14 +1,21 @@
-# StrainRelief V38 Immersion Polish
+# StrainRelief
 
-Updated files only.
+## V38.1 Emergency Scroll Fix
 
-## Changed
-- Tighter Home hero section
-- Compact Today's Spotlight layout
-- Premium generated strain artwork fallback system
-- More native-app motion and tap feedback
-- Better carousel sizing and section rhythm
-- Kept bottom nav centered
-- Kept strain count locked at 150
+### Fixed
+- Restored mobile vertical scrolling.
+- Prevented decorative glow/ambient layers from trapping touch events.
+- Removed accidental body/html scroll locking.
+- Preserved bottom nav clickability.
+- Preserved modal internal scrolling.
+- Bumped service worker cache to force deployment update.
 
-Educational cannabis wellness app only. Not medical advice.
+### Files
+- index.html
+- style.css
+- app.js
+- manifest.json
+- service-worker.js
+- README.md
+
+Educational wellness app. Not medical advice.
