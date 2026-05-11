@@ -1,10 +1,11 @@
-# StrainRelief V44
+# StrainRelief V46
 
-## Fixes
-- Wellness Journal feeling options no longer crop to one or two letters.
-- Terpene Explorer now replaces visible examples with true random strain samples from the full strain pool/fallback list.
-- Home hero headline remains title-case and centered.
-- Cache/service worker version bumped so Vercel/PWA refreshes more reliably.
-- README.txt files removed; only README.md remains.
+## Real fixes
+- Removed redundant Wellness Journal mood pills at DOM level.
+- Kept the “How did it feel?” dropdown as the only mood selector.
+- Fixed Home hero description clipping.
+- Added stronger Terpene Explorer randomization that replaces visible example chips after page render.
+- Added cache-busting query strings for style.css and app.js.
+- Bumped service worker cache to v46.
 
-Educational cannabis wellness app. Not medical advice.
+Educational only. Not medical advice.

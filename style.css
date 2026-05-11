@@ -4028,10 +4028,6 @@ html body .terpene-explorer > *:active{
 
 
 
-/* ======================================================
-   V43 JOURNAL + TRUE RANDOM TERPENES + HERO FORCE
-   ====================================================== */
-
 /* Wellness journal quick feelings fix */
 .journal-feelings,
 .feelings-row,
@@ -4081,13 +4077,6 @@ html body .terpene-explorer > *:active{
 }
 
 
-
-/* ======================================================
-   V44 REAL MOBILE FIXES
-   - journal feeling chips no longer cropped
-   - terpene examples visibly random
-   - hero stays compact/centered
-   ====================================================== */
 
 /* Home hero: compact but still premium */
 #home .hero,
@@ -4230,10 +4219,6 @@ section#home h1 {
 }
 
 
-/* =========================
-   V45 CLEANUP
-   ========================= */
-
 /* Remove redundant journal mood pills entirely */
 #saved .journal-feelings,
 #saved .feelings-row,
@@ -4271,4 +4256,123 @@ section#home h1 {
 #learn .terpene-card .tags,
 #terpeneExplorer .tags{
     gap:12px !important;
+}
+
+
+/* ======================================================
+   V46 REAL FIXES — CLEAN JOURNAL + HERO TEXT + TERPENE RANDOM
+   ====================================================== */
+
+/* Home hero description: do NOT cut off */
+#home p,
+#home .hero p,
+#home .hero-copy,
+#home .hero-description,
+#home .hero-subtitle,
+#home [class*="hero"] p{
+  display:block !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  white-space:normal !important;
+  -webkit-line-clamp:unset !important;
+  line-clamp:unset !important;
+  max-height:none !important;
+}
+
+/* Keep hero compact, not giant */
+#home .hero,
+#home .hero-card,
+#home .home-hero,
+section#home [class*="hero"]{
+  min-height:0 !important;
+  height:auto !important;
+  padding-top:18px !important;
+  padding-bottom:18px !important;
+}
+
+/* Hero title exact title case + centered */
+#home h1,
+#home .hero h1,
+#home .home-hero h1{
+  text-align:center !important;
+  text-transform:none !important;
+  line-height:.98 !important;
+}
+
+/* Wellness Journal: remove the redundant mood quick-pills completely.
+   The native dropdown already handles the feelings. */
+#saved .journal-feelings,
+#saved .feelings-row,
+#saved .quick-feelings,
+#saved .mood-pills,
+#saved .chip-row,
+#saved .option-pills,
+#saved .feeling-options,
+#saved .mood-options,
+#saved .quickMoodRow,
+#saved .quick-mood-row,
+#saved [data-journal-pills],
+#saved [data-feeling-pills],
+#saved .wellness-journal .tags,
+#saved .wellness-journal .chips,
+#saved .journal-card .tags,
+#saved .journal-card .chips,
+#saved .journal-form .tags,
+#saved .journal-form .chips{
+  display:none !important;
+  visibility:hidden !important;
+  height:0 !important;
+  max-height:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+
+/* Remove ugly translucent blocks that were behind mood chips */
+#saved .wellness-journal::before,
+#saved .journal-card::before,
+#saved .journal-form::before,
+#saved [class*="journal"]::before{
+  opacity:.08 !important;
+}
+
+/* Better spacing after dropdown once pills are gone */
+#saved textarea,
+#saved .journal-notes,
+#saved [placeholder*="Notes"]{
+  margin-top:16px !important;
+}
+
+/* Terpene Explorer chips: readable, wrap, and not horizontally clipped */
+#learn .terpene-card .tags,
+#learn .terpene-card .strain-tags,
+#learn .terpene-card .example-strains,
+#learn [data-terpene-examples],
+#terpeneExplorer .tags,
+#terpeneExplorer .strain-tags,
+#terpeneExplorer .example-strains,
+#terpeneExplorer [data-terpene-examples],
+.terpene-explorer .tags,
+.terpene-explorer .strain-tags,
+.terpene-explorer .example-strains{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  overflow:visible !important;
+  height:auto !important;
+  max-height:none !important;
+  white-space:normal !important;
+}
+
+#learn .terpene-card .tags > *,
+#terpeneExplorer .tags > *,
+.terpene-explorer .tags > *,
+.v46-terpene-chip{
+  min-width:max-content !important;
+  width:auto !important;
+  max-width:100% !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
 }
