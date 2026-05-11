@@ -6774,108 +6774,226 @@ body.v60-motion-polish .sr-spotlight-pulse{
 }
 
 
-/* ===== V61 FLOW + SPACING SYSTEM ===== */
+/* ======================================================
+   V62 FLOW DENSITY FIX
+   - tighter app-wide spacing
+   - tighter search cards
+   - fixed terpene explorer heading placement styling
+   - smaller dead zones under sections
+====================================================== */
 
-section,
-.page-section,
-.content-section{
-  margin-bottom:18px !important;
+body.v62-flow-density-fix{
+  padding-bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+  overflow-x:hidden !important;
 }
 
-.hero,
-.daily-card,
-.panel,
-.strain-card,
-.education-card,
-.section-title,
-.pro-card{
-  margin:14px 0 !important;
+body.v62-flow-density-fix .page{
+  padding-bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+  min-height: auto !important;
 }
 
-.recently-viewed,
-.recent-history,
-.match-history,
-.saved-history,
-.recent-entries{
-  margin-bottom:10px !important;
-  padding-bottom:6px !important;
+body.v62-flow-density-fix .section-title,
+body.v62-flow-density-fix .panel,
+body.v62-flow-density-fix .pro-card,
+body.v62-flow-density-fix .daily-card,
+body.v62-flow-density-fix .education-card{
+  margin-top: 14px !important;
+  margin-bottom: 14px !important;
 }
 
-.strain-grid,
-.strain-results,
-.search-results,
-#searchResults{
-  gap:14px !important;
-  padding-bottom:10px !important;
+body.v62-flow-density-fix .section-title{
+  padding: 18px 20px !important;
 }
 
-.strain-card{
-  min-height:auto !important;
-  margin-bottom:14px !important;
+body.v62-flow-density-fix .section-title h2{
+  margin-bottom: 7px !important;
 }
 
-.strain-card:last-child,
-.search-card:last-child{
-  margin-bottom:0 !important;
+body.v62-flow-density-fix .section-title p{
+  margin: 0 !important;
 }
 
-#recentlyViewed,
-#matchHistory,
-#journalEntries,
-#searchResults,
-#savedResults{
-  padding-bottom:0 !important;
-  margin-bottom:0 !important;
+/* Home dead-space tightening */
+body.v62-flow-density-fix #home .section-title,
+body.v62-flow-density-fix #home .daily-card,
+body.v62-flow-density-fix #home .pro-card,
+body.v62-flow-density-fix #home #smartInsights{
+  margin-bottom: 12px !important;
 }
 
-.page{
-  padding-bottom:110px !important;
+body.v62-flow-density-fix #recentHome,
+body.v62-flow-density-fix #trendingGrid,
+body.v62-flow-density-fix #smartInsights,
+body.v62-flow-density-fix #matchHistory,
+body.v62-flow-density-fix #journalEntries,
+body.v62-flow-density-fix #savedResults{
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
-.learn-detail-list,
-.terpene-list{
-  gap:14px !important;
+/* Search page density */
+body.v62-flow-density-fix #search .grid,
+body.v62-flow-density-fix #strainGrid{
+  gap: 12px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
-.v48-terpene-heading{
-  margin-bottom:14px !important;
+body.v62-flow-density-fix #search .strain-card{
+  padding: 16px !important;
+  margin: 0 0 12px 0 !important;
+  border-radius: 24px !important;
+  min-height: 0 !important;
 }
 
-#learn .panel:last-child,
-#saved .panel:last-child,
-#search .panel:last-child,
-#match .panel:last-child{
-  margin-bottom:8px !important;
+body.v62-flow-density-fix #search .strain-card .card-hero{
+  margin-bottom: 12px !important;
+  border-radius: 22px !important;
 }
 
-body{
-  overflow-x:hidden;
+body.v62-flow-density-fix #search .strain-card .card-hero img{
+  height: 160px !important;
+  max-height: 160px !important;
+  object-fit: cover !important;
 }
 
-/* tighter mobile rhythm */
-@media(max-width:768px){
+body.v62-flow-density-fix #search .strain-card h3{
+  font-size: clamp(1.9rem, 8vw, 2.45rem) !important;
+  line-height: .94 !important;
+  margin-bottom: 8px !important;
+}
 
-  .hero,
-  .daily-card,
-  .panel,
-  .strain-card,
-  .education-card,
-  .section-title,
-  .pro-card{
-    padding:20px !important;
-    margin:12px 0 !important;
+body.v62-flow-density-fix #search .strain-card p{
+  font-size: .98rem !important;
+  line-height: 1.35 !important;
+  margin: 0 0 12px !important;
+}
+
+body.v62-flow-density-fix #search .tags{
+  gap: 8px !important;
+}
+
+/* Match history / saved journal density */
+body.v62-flow-density-fix #recommend .panel,
+body.v62-flow-density-fix #saved .panel{
+  padding-bottom: 18px !important;
+}
+
+body.v62-flow-density-fix #matchHistory,
+body.v62-flow-density-fix #journalEntries{
+  display: grid !important;
+  gap: 10px !important;
+}
+
+body.v62-flow-density-fix #matchHistory > *,
+body.v62-flow-density-fix #journalEntries > *{
+  margin-bottom: 0 !important;
+}
+
+body.v62-flow-density-fix .empty-state{
+  padding: 18px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Recently viewed should not create a dead zone */
+body.v62-flow-density-fix #home #recentHome.mini-list{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  min-height: 0 !important;
+}
+
+body.v62-flow-density-fix #home #recentHome .mini-item{
+  min-height: 0 !important;
+  padding: 12px !important;
+}
+
+/* Terpene Explorer: one stable header at top */
+body.v62-flow-density-fix #terpeneExplorer{
+  display: block !important;
+  padding: 20px !important;
+  margin-bottom: 12px !important;
+  overflow: hidden !important;
+}
+
+body.v62-flow-density-fix #terpeneExplorer > h3:first-child{
+  margin: 0 0 8px !important;
+}
+
+body.v62-flow-density-fix #terpeneExplorer > p:nth-child(2){
+  margin: 0 0 16px !important;
+}
+
+body.v62-flow-density-fix #terpeneExplorer .learn-detail-list,
+body.v62-flow-density-fix #terpeneExplorer .terpene-list{
+  display: grid !important;
+  gap: 12px !important;
+  margin: 0 !important;
+}
+
+body.v62-flow-density-fix #terpeneExplorer .learn-detail{
+  margin: 0 !important;
+  padding: 16px !important;
+}
+
+body.v62-flow-density-fix #terpeneExplorer .learn-example-row{
+  display:grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  overflow: visible !important;
+  margin-top: 12px !important;
+}
+
+body.v62-flow-density-fix #terpeneExplorer .learn-example-row button{
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  padding: 12px 10px !important;
+  font-size: .9rem !important;
+}
+
+/* remove duplicate loose terpene headings if any old render leaks through */
+body.v62-flow-density-fix #learn > .section-title + #terpeneExplorer + .section-title,
+body.v62-flow-density-fix #learn > h2,
+body.v62-flow-density-fix #learn > h3{
+  display:none !important;
+}
+
+/* Mobile-specific density */
+@media(max-width: 480px){
+  body.v62-flow-density-fix{
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 
-  .strain-card{
-    margin-bottom:12px !important;
+  body.v62-flow-density-fix .bottom-nav{
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+    border-radius: 24px !important;
+    padding: 7px !important;
   }
 
-  .search-results,
-  #searchResults{
-    gap:12px !important;
+  body.v62-flow-density-fix .bottom-nav button{
+    height: 58px !important;
+    min-height: 58px !important;
+    border-radius: 18px !important;
   }
 
-  h1{
-    line-height:.96 !important;
+  body.v62-flow-density-fix #search .strain-card .card-hero img{
+    height: 148px !important;
+    max-height: 148px !important;
+  }
+
+  body.v62-flow-density-fix .section-title,
+  body.v62-flow-density-fix .panel,
+  body.v62-flow-density-fix .pro-card,
+  body.v62-flow-density-fix .daily-card,
+  body.v62-flow-density-fix .education-card{
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
   }
 }

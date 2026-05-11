@@ -2565,7 +2565,7 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     const learnActive = document.getElementById("learn")?.classList.contains("active");
     const explorer = document.getElementById("terpeneExplorer");
     if(!explorer) return;
-    const badOrder = false;
+    const badOrder = explorer.textContent && explorer.textContent.indexOf("Terpene Explorer") > 80;
     if(learnActive || badOrder || !explorer.querySelector(".terpene-detail")) renderEducationV53();
   }
 
@@ -2886,72 +2886,157 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 })();
 
 
-/* ===== V61 TERPENE + LAYOUT CLEANUP ===== */
+/* ======================================================
+   V62 FLOW + TERPENE STABILITY PATCH
+====================================================== */
+(function(){
+  const VERSION = "v62-flow-density-fix";
 
-function fixTerpeneExplorerV61(){
-  const explorer = document.getElementById("terpeneExplorer");
-  if(!explorer) return;
-
-  const headings = [...explorer.querySelectorAll("h1,h2,h3")]
-    .filter(h => /Terpene Explorer/i.test(h.textContent || ""));
-
-  if(headings.length > 1){
-    headings.slice(1).forEach(el => el.remove());
+  function getAllStrainsV62(){
+    if(Array.isArray(window.strains)) return window.strains;
+    try{ if(Array.isArray(strains)) return strains; }catch(e){}
+    return [];
   }
 
-  const descs = [...explorer.querySelectorAll("p")]
-    .filter(p => /Tap a terpene to expand/i.test(p.textContent || ""));
-
-  if(descs.length > 1){
-    descs.slice(1).forEach(el => el.remove());
+  function getTerpenesV62(){
+    try{ if(Array.isArray(terpenes)) return terpenes; }catch(e){}
+    return [];
   }
 
-  const firstHeading = explorer.querySelector("h1,h2,h3");
-  const firstDesc = explorer.querySelector("p");
-
-  if(firstHeading && explorer.firstChild !== firstHeading){
-    explorer.prepend(firstHeading);
-  }
-
-  if(firstDesc && firstHeading && firstHeading.nextSibling !== firstDesc){
-    firstHeading.insertAdjacentElement("afterend", firstDesc);
-  }
-}
-
-function tightenEmptySpaceV61(){
-  [
-    "#recentlyViewed",
-    "#matchHistory",
-    "#journalEntries",
-    "#searchResults"
-  ].forEach(sel=>{
-    const el=document.querySelector(sel);
-    if(el){
-      el.style.paddingBottom="0px";
-      el.style.marginBottom="0px";
+  function shuffleV62(arr){
+    const a=[...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
     }
+    return a;
+  }
+
+  function terpInfoV62(name, fallback){
+    try{
+      if(typeof terpeneInfo === "function") return terpeneInfo(name);
+    }catch(e){}
+    return fallback || "";
+  }
+
+  function safeNameV62(name){
+    try{
+      if(typeof safeName === "function") return safeName(name);
+    }catch(e){}
+    return String(name).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+  }
+
+  function terpeneExamplesV62(name){
+    const all=getAllStrainsV62();
+    const exact=all.filter(s => Array.isArray(s.terpenes) && s.terpenes.includes(name));
+    const pool=exact.length ? exact : all;
+    return shuffleV62(pool).slice(0,4);
+  }
+
+  function renderTerpeneExplorerV62(){
+    const explorer=document.getElementById("terpeneExplorer");
+    if(!explorer) return;
+
+    const tList=shuffleV62(getTerpenesV62());
+    const blocks=tList.map(t=>{
+      const name=t[0], short=t[1];
+      const info=terpInfoV62(name, short);
+      const examples=terpeneExamplesV62(name).map(s=>{
+        const n=s.name || "Explore";
+        return `<button type="button" onclick="openModal('${safeNameV62(n)}')" title="${n}">${n}</button>`;
+      }).join("");
+      return `<details class="learn-detail terpene-detail" open>
+        <summary><strong>${name}</strong><span>${short}</span></summary>
+        <div>
+          <p>${info}</p>
+          <div class="learn-example-row" data-random-terpene="${name}">${examples}</div>
+        </div>
+      </details>`;
+    }).join("");
+
+    explorer.innerHTML = `<h3>Terpene Explorer</h3>
+      <p>Tap a terpene to expand beginner notes and example strain directions. Examples reshuffle each refresh.</p>
+      <div class="learn-detail-list terpene-list">${blocks}</div>`;
+  }
+
+  function fixLearnOrderingV62(){
+    const learn=document.getElementById("learn");
+    const explorer=document.getElementById("terpeneExplorer");
+    const onboarding=document.getElementById("onboardingSlides");
+    if(!learn || !explorer) return;
+
+    // Keep explorer after onboarding, before locator, never after its own cards.
+    if(onboarding && onboarding.nextElementSibling !== explorer){
+      onboarding.insertAdjacentElement("afterend", explorer);
+    }
+
+    // Remove duplicate loose "Terpene Explorer" headers/descriptions outside the real explorer.
+    [...learn.children].forEach(el=>{
+      if(el === explorer) return;
+      const text=(el.textContent || "").trim();
+      if(/^Terpene Explorer\s*Tap a terpene/i.test(text) || text === "Terpene Explorer"){
+        if(!el.id || el.id !== "terpeneExplorer") el.remove();
+      }
+    });
+  }
+
+  function tightenSpacingV62(){
+    ["recentHome","strainGrid","matchHistory","journalEntries","savedResults"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){
+        el.style.paddingBottom="0px";
+        el.style.marginBottom="0px";
+        el.style.minHeight="0px";
+      }
+    });
+
+    document.querySelectorAll("#search .strain-card").forEach(card=>{
+      card.style.marginBottom="12px";
+      card.style.minHeight="0";
+      const img=card.querySelector(".card-hero img");
+      if(img) img.style.height = window.innerWidth <= 480 ? "148px" : "160px";
+    });
+  }
+
+  function runV62(){
+    fixLearnOrderingV62();
+    tightenSpacingV62();
+    const learn=document.getElementById("learn");
+    if(learn && learn.classList.contains("active")){
+      renderTerpeneExplorerV62();
+      fixLearnOrderingV62();
+    }
+  }
+
+  const oldShowPageV62=window.showPage;
+  if(typeof oldShowPageV62 === "function"){
+    window.showPage=function(id){
+      const result=oldShowPageV62.apply(this, arguments);
+      setTimeout(()=>{
+        if(id === "learn") renderTerpeneExplorerV62();
+        runV62();
+      }, 60);
+      setTimeout(runV62, 350);
+      return result;
+    };
+  }
+
+  // Override older renderEducation after all previous patches load.
+  window.renderEducationV62 = function(){
+    try{
+      if(typeof renderEducation === "function") renderEducation();
+    }catch(e){}
+    renderTerpeneExplorerV62();
+    fixLearnOrderingV62();
+    tightenSpacingV62();
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(runV62,150);
+    setTimeout(runV62,800);
+    setTimeout(runV62,1800);
   });
-
-  document.querySelectorAll(".strain-card,.panel,.education-card").forEach(card=>{
-    card.style.marginBottom="14px";
-  });
-}
-
-document.addEventListener("DOMContentLoaded",()=>{
-  setTimeout(()=>{
-    fixTerpeneExplorerV61();
-    tightenEmptySpaceV61();
-  },300);
-
-  setTimeout(()=>{
-    fixTerpeneExplorerV61();
-    tightenEmptySpaceV61();
-  },1200);
-});
-
-window.addEventListener("pageshow",()=>{
-  setTimeout(()=>{
-    fixTerpeneExplorerV61();
-    tightenEmptySpaceV61();
-  },300);
-});
+  window.addEventListener("pageshow",()=>setTimeout(runV62,250));
+  window.addEventListener("resize",()=>setTimeout(tightenSpacingV62,120));
+  window.StrainReliefPatchVersion = VERSION;
+})();
