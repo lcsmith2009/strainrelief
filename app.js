@@ -1923,10 +1923,15 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
 
 
+
+
+
 /* ======================================================
-   V47 SAFE PATCH
+   V48 REAL DOM PATCH
    ====================================================== */
 (function(){
+  const VERSION = "v48-real-layout-fix";
+
   const RANDOM_POOL = [
     "Blue Dream","Granddaddy Purple","Harlequin","Wedding Cake","Gelato","Pineapple Express",
     "Jack Herer","Purple Punch","Runtz","Apple Fritter","Ghost Train Haze","Jillybean",
@@ -1936,11 +1941,13 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     "Zkittlez","Rainbow Belts","Forbidden Fruit","Trainwreck","Skywalker OG","Blueberry",
     "Lemon Tree","Blue Cheese","Platinum Cookies","Georgia Pie","Pennywise","Purple Urkle",
     "Mimosa","GMO Cookies","Kush Mints","Tropicana Cookies","LA Confidential","Headband",
-    "Strawberry Cough","Lemon Haze","Super Silver Haze","Durban Poison","OG Kush"
+    "Strawberry Cough","Lemon Haze","Super Silver Haze","Durban Poison","OG Kush",
+    "Cereal Milk","Gary Payton","London Pound Cake","Grape Ape","Black Cherry Gelato",
+    "Motorbreath","Khalifa Kush","Lemon Cherry Gelato","Jealousy","Apples and Bananas"
   ];
 
-  function shuffle(a){
-    a=[...a];
+  function shuffle(arr){
+    const a = [...arr];
     for(let i=a.length-1;i>0;i--){
       const j=Math.floor(Math.random()*(i+1));
       [a[i],a[j]]=[a[j],a[i]];
@@ -1948,8 +1955,16 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     return a;
   }
 
-  function fixHeroCopy(){
-    document.querySelectorAll("#home h1,.hero h1,.home-hero h1").forEach(h=>{
+  function makeChip(name){
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="tag strain-pill v48-terpene-chip";
+    b.textContent=name;
+    return b;
+  }
+
+  function fixHomeHero(){
+    document.querySelectorAll("#home h1,.hero h1,.home-hero h1,#home [class*='hero'] h1").forEach(h=>{
       if(/find\s+your\s+wellness/i.test(h.textContent || "")){
         h.innerHTML = "Find Your Wellness<br>Direction.";
         h.style.textTransform = "none";
@@ -1959,74 +1974,117 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
     document.querySelectorAll("#home p,#home [class*='hero'] p").forEach(p=>{
       if(/Explore cannabis strain directions/i.test(p.textContent || "")){
-        p.style.whiteSpace = "normal";
-        p.style.overflow = "visible";
-        p.style.textOverflow = "clip";
-        p.style.webkitLineClamp = "unset";
-        p.style.maxHeight = "none";
+        p.textContent = "Explore cannabis strain directions by mood, sleep, stress, body comfort, THC sensitivity, and terpene profile.";
+        p.style.whiteSpace="normal";
+        p.style.overflow="visible";
+        p.style.textOverflow="clip";
+        p.style.webkitLineClamp="unset";
+        p.style.maxHeight="none";
+        p.style.textAlign="center";
       }
     });
   }
 
-  function removeOnlyJournalPillRows(){
-    const saved = document.querySelector("#saved");
+  function removeJournalMoodPills(){
+    const saved=document.querySelector("#saved");
     if(!saved) return;
+    const moodWords=/calm|relaxed|sleepy|focused|creative|hungry|clear-headed|too intense|not noticeable/i;
+    saved.querySelectorAll(".journal-feelings,.feelings-row,.quick-feelings,.mood-pills,.journal-mood-pills,.feeling-pill-row,.quick-mood-row,[data-feeling-pills],[data-journal-pills]").forEach(el=>el.remove());
 
-    const moodWords = /calm|relaxed|sleepy|focused|creative|hungry|clear-headed|too intense|not noticeable/i;
-
-    saved.querySelectorAll(".journal-feelings,.feelings-row,.quick-feelings,.mood-pills,.journal-mood-pills,.feeling-pill-row,.quick-mood-row,[data-feeling-pills],[data-journal-pills]").forEach(el=>{
-      el.classList.add("v47-hide-journal-pills");
-    });
-
-    // Find rows of mood buttons only. Mark the container, don't remove individual app buttons/nav.
-    saved.querySelectorAll("div, section").forEach(el=>{
-      const buttons = Array.from(el.children).filter(c => c.tagName === "BUTTON");
-      if(buttons.length >= 3){
-        const txt = el.textContent || "";
-        const hasMoodText = moodWords.test(txt);
-        const hasNavText = /home|search|match|saved|learn/i.test(txt);
-        const hasFormControls = el.querySelector("select, textarea, input");
-        if(hasMoodText && !hasNavText && !hasFormControls){
-          el.classList.add("v47-hide-journal-pills");
-        }
+    saved.querySelectorAll("div,section").forEach(el=>{
+      const directButtons=[...el.children].filter(c=>c.tagName==="BUTTON");
+      const txt=el.textContent||"";
+      const nav=/home|search|match|saved|learn/i.test(txt);
+      if(directButtons.length>=3 && moodWords.test(txt) && !nav && !el.querySelector("select,textarea,input")){
+        el.remove();
       }
     });
   }
 
-  function randomizeTerpeneExamplesSafely(){
-    const cards = document.querySelectorAll("#learn .terpene-card, #terpeneExplorer .terpene-card");
-    cards.forEach((card, idx)=>{
-      const row = card.querySelector(".tags,.strain-tags,.example-strains");
-      if(!row) return;
+  function fixTerpeneHeadingOrder(){
+    const learn=document.querySelector("#learn");
+    if(!learn) return;
 
-      const currentText = row.textContent || "";
-      const looksAlphabetized = /Acapulco|Alien|ACDC|Afghan|Amnesia|Animal|Banana/i.test(currentText);
-      if(!looksAlphabetized && row.dataset.v47Randomized === "true") return;
+    const terpTitle=[...learn.querySelectorAll("h1,h2,h3")].find(h => /^Terpene Explorer$/i.test((h.textContent||"").trim()));
+    if(!terpTitle) return;
 
-      row.innerHTML = "";
-      shuffle(RANDOM_POOL).slice(0,4).forEach(name=>{
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "tag v47-terpene-chip";
-        b.textContent = name;
-        row.appendChild(b);
-      });
-      row.dataset.v47Randomized = "true";
+    let heading=terpTitle.closest(".v48-terpene-heading");
+    if(!heading){
+      const desc = [...learn.querySelectorAll("p")].find(p => /Tap a terpene to expand/i.test(p.textContent||""));
+      heading=document.createElement("div");
+      heading.className="v48-terpene-heading";
+      terpTitle.parentNode.insertBefore(heading, terpTitle);
+      heading.appendChild(terpTitle);
+      if(desc) heading.appendChild(desc);
+    }
+
+    const firstCard=[...learn.querySelectorAll(".terpene-card, .card, article, div")].find(el=>{
+      const t=el.textContent||"";
+      return /Myrcene|Limonene|Pinene/i.test(t) && el !== heading && !heading.contains(el);
+    });
+
+    if(firstCard && firstCard.parentNode && firstCard.parentNode !== heading.parentNode){
+      firstCard.parentNode.insertBefore(heading, firstCard);
+    } else if(firstCard && heading.nextElementSibling !== firstCard){
+      firstCard.parentNode.insertBefore(heading, firstCard);
+    }
+  }
+
+  function randomizeTerpeneExamples(){
+    const learn=document.querySelector("#learn");
+    if(!learn) return;
+
+    const terpNames=/Myrcene|Limonene|Pinene|Caryophyllene|Linalool|Terpinolene|Humulene/i;
+
+    const cards=[...learn.querySelectorAll(".terpene-card,.card,article")].filter(card=>{
+      const text=card.textContent||"";
+      return terpNames.test(text) && text.length > 40;
+    });
+
+    // fallback: use the immediate boxes that have terpene names
+    const fallback=[...learn.querySelectorAll("div")].filter(card=>{
+      const text=card.textContent||"";
+      const rect=card.getBoundingClientRect();
+      return terpNames.test(text) && text.length > 40 && rect.height > 80 && rect.height < 700 && card.querySelector("h3,h4,strong");
+    });
+
+    const targetCards=(cards.length ? cards : fallback).slice(0,7);
+
+    targetCards.forEach((card,idx)=>{
+      let row=card.querySelector("[data-terpene-examples],.tags,.strain-tags,.example-strains");
+      if(!row){
+        row=document.createElement("div");
+        row.className="tags";
+        row.setAttribute("data-terpene-examples","true");
+        card.appendChild(row);
+      }
+
+      // Always replace if row has alphabet-looking early strains OR our v48 hasn't set it this page load.
+      if(row.dataset.v48Done === "true") return;
+
+      const chosen=shuffle(RANDOM_POOL).slice(0,4);
+      row.innerHTML="";
+      chosen.forEach(name=>row.appendChild(makeChip(name)));
+      row.dataset.v48Done="true";
     });
   }
 
-  function runV47(){
-    fixHeroCopy();
-    removeOnlyJournalPillRows();
-    randomizeTerpeneExamplesSafely();
+  function run(){
+    fixHomeHero();
+    removeJournalMoodPills();
+    fixTerpeneHeadingOrder();
+    randomizeTerpeneExamples();
   }
 
-  document.addEventListener("DOMContentLoaded", ()=>{
-    runV47();
-    setTimeout(runV47, 300);
-    setTimeout(runV47, 1200);
+  document.addEventListener("DOMContentLoaded",()=>{
+    run();
+    setTimeout(run,250);
+    setTimeout(run,900);
+    setTimeout(run,1800);
   });
-  window.addEventListener("pageshow", ()=>setTimeout(runV47, 250));
-  window.addEventListener("hashchange", ()=>setTimeout(runV47, 250));
-  document.addEventListener("click", ()=>setTimeout(runV47, 250), true);
+  window.addEventListener("pageshow",()=>setTimeout(run,250));
+  window.addEventListener("hashchange",()=>setTimeout(run,250));
+  document.addEventListener("click",()=>setTimeout(run,250),true);
+
+  window.StrainReliefPatchVersion = VERSION;
 })();

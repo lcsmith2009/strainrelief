@@ -1,8 +1,9 @@
-# StrainRelief V47 Recovery Clean
+# StrainRelief V48 Real Layout Fix
 
-## Fixes
-- Removed the bad V46 layout patch.
-- Hides redundant Wellness Journal mood pills while keeping the dropdown.
-- Fixes hero description clipping.
-- Safely randomizes Terpene Explorer examples without moving text around.
-- Keeps bottom nav unchanged.
+## Fixed
+- Compact Home hero so the Daily Wellness Direction card can appear on the first screen.
+- Unclipped the Home hero description.
+- Moved Terpene Explorer title/description above the terpene cards.
+- Randomizes terpene example strains from the full pool on each page load.
+- Keeps Wellness Journal mood pills removed.
+- Keeps bottom navigation unchanged.
