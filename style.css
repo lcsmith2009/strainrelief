@@ -2330,3 +2330,239 @@ body .bottom-nav button{
     height:54px !important;
   }
 }
+
+
+/* ===== V35 COMPACT HERO + SPOTLIGHT FIX ===== */
+/* Goal: make Home hero and Today's Spotlight clearly shorter on mobile. */
+
+/* Stronger Home hero compression */
+body #home .hero,
+body .home-hero,
+body .hero.home-hero,
+body section.hero:first-of-type{
+  padding:8px 16px 12px !important;
+  margin:8px 10px 12px !important;
+  min-height:0 !important;
+  height:auto !important;
+  border-radius:26px !important;
+}
+
+body #home .hero .brand-logo,
+body #home .hero img[alt*="StrainRelief"],
+body #home .hero img[src*="logo"],
+body .home-hero .brand-logo,
+body .home-hero img[alt*="StrainRelief"],
+body .home-hero img[src*="logo"]{
+  max-height:58px !important;
+  width:auto !important;
+  max-width:78% !important;
+  margin:0 auto 2px !important;
+  object-fit:contain !important;
+}
+
+body #home .hero .eyebrow,
+body .home-hero .eyebrow{
+  font-size:9px !important;
+  line-height:1.05 !important;
+  margin:0 0 4px !important;
+  letter-spacing:.11em !important;
+}
+
+body #home .hero h1,
+body .home-hero h1{
+  font-size:30px !important;
+  line-height:.95 !important;
+  letter-spacing:-1.7px !important;
+  margin:0 0 6px !important;
+  max-width:280px !important;
+}
+
+body #home .hero p,
+body .home-hero p{
+  font-size:12px !important;
+  line-height:1.28 !important;
+  margin:0 0 8px !important;
+}
+
+body #home .hero .live-pill,
+body #home .hero .live-indicator,
+body .home-hero .live-pill,
+body .home-hero .live-indicator{
+  padding:6px 11px !important;
+  font-size:12px !important;
+  line-height:1 !important;
+  margin:5px 0 8px !important;
+}
+
+body #home .hero button,
+body #home .hero .primary-btn,
+body #home .hero .secondary-btn,
+body .home-hero button,
+body .home-hero .primary-btn,
+body .home-hero .secondary-btn{
+  height:42px !important;
+  min-height:42px !important;
+  padding:7px 12px !important;
+  margin:0 !important;
+  font-size:14px !important;
+  border-radius:20px !important;
+}
+
+body #home .hero .hero-actions,
+body .home-hero .hero-actions{
+  gap:7px !important;
+  margin-top:8px !important;
+}
+
+body #home .hero .stat-row,
+body .home-hero .stat-row{
+  gap:7px !important;
+  margin-top:8px !important;
+}
+
+body #home .hero .stat-row div,
+body .home-hero .stat-row div{
+  min-height:42px !important;
+  padding:6px 5px !important;
+  border-radius:16px !important;
+}
+
+body #home .hero .stat-row strong,
+body .home-hero .stat-row strong{
+  font-size:19px !important;
+}
+
+body #home .hero .stat-row span,
+body .home-hero .stat-row span{
+  font-size:9px !important;
+}
+
+/* Daily wellness: keep compact */
+body #dailyWellness,
+body .daily-wellness,
+body .daily-card{
+  padding:20px 18px !important;
+  min-height:0 !important;
+}
+
+body #dailyWellness h2,
+body .daily-wellness h2,
+body .daily-card h2{
+  font-size:26px !important;
+  line-height:1.02 !important;
+  margin-bottom:10px !important;
+}
+
+/* Today's Spotlight: reduce the card height and image height */
+body .spotlight-card,
+body #todaySpotlight,
+body #spotlight,
+body [data-section="spotlight"],
+body .today-spotlight{
+  padding:20px 18px !important;
+  margin:14px 10px !important;
+  min-height:0 !important;
+  height:auto !important;
+  border-radius:26px !important;
+}
+
+body .spotlight-card h2,
+body .spotlight-card h3,
+body #todaySpotlight h2,
+body #todaySpotlight h3,
+body #spotlight h2,
+body #spotlight h3,
+body .today-spotlight h2,
+body .today-spotlight h3{
+  font-size:34px !important;
+  line-height:.95 !important;
+  letter-spacing:-1.5px !important;
+  margin:0 0 8px !important;
+}
+
+body .spotlight-card p,
+body #todaySpotlight p,
+body #spotlight p,
+body .today-spotlight p{
+  font-size:14px !important;
+  line-height:1.35 !important;
+  margin:0 0 12px !important;
+}
+
+body .spotlight-card button,
+body #todaySpotlight button,
+body #spotlight button,
+body .today-spotlight button{
+  height:42px !important;
+  min-height:42px !important;
+  padding:8px 16px !important;
+  font-size:14px !important;
+  border-radius:20px !important;
+  margin:0 0 12px !important;
+}
+
+body .spotlight-card img,
+body #todaySpotlight img,
+body #spotlight img,
+body .today-spotlight img{
+  max-height:230px !important;
+  height:230px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  border-radius:20px !important;
+}
+
+/* Catch common generated image/card wrappers */
+body .spotlight-card .strain-art,
+body .spotlight-card .strain-image,
+body .spotlight-card .card-art,
+body #todaySpotlight .strain-art,
+body #todaySpotlight .strain-image,
+body #todaySpotlight .card-art,
+body .today-spotlight .strain-art,
+body .today-spotlight .strain-image,
+body .today-spotlight .card-art{
+  max-height:230px !important;
+  height:230px !important;
+  overflow:hidden !important;
+  border-radius:20px !important;
+}
+
+@media(max-width:390px){
+  body #home .hero h1,
+  body .home-hero h1{
+    font-size:28px !important;
+  }
+
+  body #home .hero p,
+  body .home-hero p{
+    font-size:11.5px !important;
+  }
+
+  body #home .hero .brand-logo,
+  body .home-hero .brand-logo{
+    max-height:52px !important;
+  }
+
+  body .spotlight-card h2,
+  body .spotlight-card h3,
+  body #todaySpotlight h2,
+  body #todaySpotlight h3,
+  body #spotlight h2,
+  body #spotlight h3,
+  body .today-spotlight h2,
+  body .today-spotlight h3{
+    font-size:30px !important;
+  }
+
+  body .spotlight-card img,
+  body #todaySpotlight img,
+  body #spotlight img,
+  body .today-spotlight img,
+  body .spotlight-card .strain-art,
+  body .spotlight-card .strain-image,
+  body .spotlight-card .card-art{
+    max-height:200px !important;
+    height:200px !important;
+  }
+}

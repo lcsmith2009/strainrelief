@@ -1,13 +1,13 @@
 # StrainRelief
 
-## V34 Force Mobile Hero + Nav Fix
+## V35 Compact Cards Fix
 
-### What changed
-- Force-compressed the Home hero card
-- Reduced logo, headline, paragraph, and button heights
-- Tightened hero spacing
-- Re-centered the bottom navigation using viewport width
-- Prevented the nav from being wider than the phone screen
-- Removed README.txt files; only README.md remains
+### Updated
+- Home hero is now forced smaller on mobile.
+- Today's Spotlight card is forced shorter.
+- Spotlight image height is capped.
+- Daily Wellness card remains compact.
+- Bottom nav fix from V34 is preserved.
+- Only README.md is included.
 
-Educational use only.
+Educational wellness app. Not medical advice.
