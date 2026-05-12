@@ -4446,7 +4446,7 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
    Safe final polish only. Data/Search/Terpenes untouched.
 ====================================================== */
 (function(){
-  const VERSION='v99-final-mobile-ux-lock';
+  const VERSION='v100-final-polish-lock';
   function applyV99(){
     document.body.classList.add(VERSION,'v98-mobile-ux-polish');
     document.documentElement.style.overflowY='auto';
@@ -4483,6 +4483,61 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
   if(typeof oldSmart==='function'){
     window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV99,35);return out;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
+})();
+
+
+/* ======================================================
+   V100 FINAL POLISH LOCK BOOT
+   Non-destructive final polish. Preserves Search, Terpenes, data,
+   and normal vertical scrolling.
+====================================================== */
+(function(){
+  const VERSION='v100-final-polish-lock';
+  function applyV100(){
+    document.body.classList.add(VERSION,'v99-final-mobile-ux-lock','v98-mobile-ux-polish');
+    document.documentElement.style.overflowY='auto';
+    document.body.style.overflowY='auto';
+    document.body.style.overflowX='hidden';
+    document.body.style.touchAction='pan-y';
+
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      const h=Math.ceil(nav.getBoundingClientRect().height||68);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h+'px');
+    }
+
+    const smart=document.getElementById('smartInsights');
+    if(smart){
+      const title=smart.querySelector('.panel-head h3');
+      if(title) title.textContent='Smart Recommendations';
+    }
+
+    const trend=document.getElementById('trendingGrid');
+    if(trend){
+      trend.setAttribute('aria-label','Trending educational strain directions');
+      trend.style.webkitOverflowScrolling='touch';
+      trend.style.overscrollBehaviorX='contain';
+      trend.style.touchAction='pan-x';
+    }
+
+    document.querySelectorAll('.recent-carousel,.quest-carousel,.vibe-ribbon,.learn-example-row').forEach(row=>{
+      row.style.webkitOverflowScrolling='touch';
+      row.style.overscrollBehaviorX='contain';
+      row.style.touchAction='pan-x pan-y';
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{applyV100();setTimeout(applyV100,120);setTimeout(applyV100,600);});
+  window.addEventListener('pageshow',()=>setTimeout(applyV100,80));
+  window.addEventListener('resize',()=>setTimeout(applyV100,120));
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(){const out=oldShow.apply(this,arguments);setTimeout(applyV100,80);return out;};
+  }
+  const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV100,35);return out;};
   }
   window.StrainReliefPatchVersion=VERSION;
 })();
