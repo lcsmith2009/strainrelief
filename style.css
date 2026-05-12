@@ -15,7 +15,7 @@
   --warning:#d8ff7a;
   --shadow:0 20px 50px rgba(0,0,0,.34);
   --radius:30px;
-  --nav-h:108px;
+  --nav-h:96px;
   --safe-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 34px);
   color-scheme:dark;
 }
@@ -46,3 +46,115 @@ main{width:100%;display:block}.page{display:none;opacity:1;transform:none!import
 @media (max-width:430px){:root{--nav-h:102px;--safe-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 38px)}.app-shell{padding-inline:12px;padding-top:9px}.page>*+*{margin-top:13px}.hero{padding:16px 14px 14px;border-radius:30px}.brand-logo{width:min(73vw,300px);height:78px;max-height:78px;margin-bottom:4px}.hero .eyebrow{font-size:10.8px}.hero h1{font-size:clamp(33px,8.9vw,42px);line-height:.95;margin:5px auto}.hero p{font-size:13px}.hero-actions{gap:8px;margin-top:11px}.hero-actions button{padding:10px 6px!important;font-size:12.5px;min-height:41px}.hero-mini-strip{gap:7px;margin-top:9px}.hero-mini-strip span{padding:7px 4px 6px}.hero-mini-strip strong{font-size:27px}.daily-card{padding:17px 15px}.daily-card h2{font-size:clamp(34px,10.5vw,45px);margin:11px 0}.daily-card p{font-size:16.2px}.quick-row button{min-height:48px}.spotlight-card,.panel,.pro-card{padding:16px 14px;border-radius:27px}.spotlight-media{height:145px;min-height:145px}.live-hero-strip{grid-template-columns:68px minmax(0,1fr);gap:10px;padding:9px}.live-hero-strip img{width:68px;height:68px;border-radius:16px}.live-hero-strip h2{font-size:27px}.live-hero-strip p{font-size:13.5px}.panel-head h3{font-size:31px}.strain-card{flex:0 0 82vw;width:82vw;min-width:82vw;padding:14px}.card-hero{height:152px;min-height:152px}.stat-row,.lively-stat-row{gap:8px}.stat-row div,.lively-stat-row div{padding:11px 5px}.stat-row strong,.lively-stat-row strong{font-size:32px}.bottom-nav{height:84px;width:calc(100vw - 24px);border-radius:30px;gap:7px;padding:9px}.nav-btn{border-radius:22px}.nav-btn span{font-size:24px}.nav-btn b{font-size:12px}.section-title{padding-left:2px;padding-right:2px}.search-wrap{grid-template-columns:1fr}.modal{padding:10px}.modal-card{border-radius:28px}.detail-grid{grid-template-columns:1fr}.quest-card{flex-basis:162px}.recent-card{flex-basis:154px}}
 @media (max-width:370px){.hero-actions button{font-size:11.5px}.hero-mini-strip strong{font-size:24px}.nav-btn b{font-size:11px}.strain-card{flex-basis:84vw;width:84vw;min-width:84vw}.card-hero{height:145px;min-height:145px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* V93 EMERGENCY SCROLL + DATA RESTORE OVERRIDES
+   Goal: restore vertical scrolling everywhere, restore Search grid visibility,
+   restore full terpene explorer readability, and prevent horizontal carousel
+   rules from hijacking every page. */
+html,
+body{
+  height:auto !important;
+  min-height:100% !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  overscroll-behavior-y:auto !important;
+  touch-action:pan-y pinch-zoom !important;
+  position:static !important;
+}
+body.modal-open{
+  overflow:hidden !important;
+  touch-action:none !important;
+}
+.app-shell{
+  min-height:100dvh !important;
+  overflow:visible !important;
+  padding-bottom:calc(132px + env(safe-area-inset-bottom,0px)) !important;
+}
+.page{
+  min-height:auto !important;
+  overflow:visible !important;
+  touch-action:pan-y pinch-zoom !important;
+  padding-bottom:24px !important;
+}
+.page.active{display:block !important;}
+
+/* Search must be a normal vertical grid, not a horizontal carousel. */
+#strainGrid,
+#learnGrid,
+#matchResults{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr)) !important;
+  gap:16px !important;
+  overflow:visible !important;
+  max-width:100% !important;
+  padding:0 0 18px !important;
+  margin:0 !important;
+  touch-action:pan-y pinch-zoom !important;
+}
+#strainGrid .strain-card,
+#learnGrid .education-card,
+#matchResults .strain-card{
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  flex:initial !important;
+  scroll-snap-align:none !important;
+  touch-action:manipulation !important;
+}
+
+/* Only these rows should scroll horizontally. */
+#trendingGrid,
+.vibe-ribbon,
+.recent-carousel,
+.quest-carousel{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  -webkit-overflow-scrolling:touch !important;
+  touch-action:pan-x pan-y pinch-zoom !important;
+  scroll-snap-type:x proximity !important;
+  scrollbar-width:none !important;
+  padding:6px 4px 18px !important;
+  margin:0 -4px !important;
+  max-width:100% !important;
+}
+#trendingGrid::-webkit-scrollbar,
+.vibe-ribbon::-webkit-scrollbar,
+.recent-carousel::-webkit-scrollbar,
+.quest-carousel::-webkit-scrollbar{display:none !important;width:0 !important;height:0 !important;}
+#trendingGrid .strain-card{
+  flex:0 0 min(82vw,330px) !important;
+  width:min(82vw,330px) !important;
+  min-width:min(82vw,330px) !important;
+  touch-action:pan-x pan-y pinch-zoom !important;
+}
+
+/* Full terpene explorer restored. */
+.muted-copy{color:var(--muted);line-height:1.45;margin:0 0 14px;}
+.clean-list{margin:10px 0 0;padding-left:20px;color:var(--muted);line-height:1.5;}
+.terpene-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px;}
+.terpene-card{border:1px solid rgba(108,255,174,.18);border-radius:22px;background:rgba(255,255,255,.045);padding:15px;}
+.terpene-card span{display:block;color:#79ffb6;text-transform:uppercase;letter-spacing:.13em;font-weight:950;font-size:12px;margin-bottom:8px;}
+.terpene-card h4{font-size:21px;line-height:1.05;margin:0 0 8px;letter-spacing:-.04em;}
+.terpene-card p{color:var(--muted);margin:0 0 12px;line-height:1.38;}
+.example-strains{display:flex;flex-wrap:wrap;gap:8px;}
+.example-strains button{border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.06);color:var(--text);font-size:12px;font-weight:900;padding:8px 10px;}
+
+/* Bottom nav should not cover content. */
+.bottom-nav{height:auto !important;min-height:82px !important;bottom:calc(10px + env(safe-area-inset-bottom,0px)) !important;}
+.toast,.compare-tray,.install-banner{bottom:calc(116px + env(safe-area-inset-bottom,0px)) !important;}
+.back-to-top,.float-top{bottom:calc(118px + env(safe-area-inset-bottom,0px)) !important;}
+
+@media (max-width:520px){
+  .app-shell{padding-left:14px !important;padding-right:14px !important;padding-bottom:150px !important;}
+  #strainGrid,#matchResults{grid-template-columns:1fr !important;}
+  .hero{padding:16px 14px 14px !important;}
+  .brand-logo{height:74px !important;max-height:74px !important;}
+  .hero-actions{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:7px !important;}
+  .hero-actions button{font-size:12px !important;padding:10px 6px !important;min-width:0 !important;}
+  .hero-mini-strip span{min-width:0 !important;}
+  .panel,.pro-card,.daily-card,.spotlight-card{overflow:visible !important;}
+  .terpene-grid{grid-template-columns:1fr !important;}
+}
