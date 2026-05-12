@@ -9959,3 +9959,313 @@ body.v77-final-home-clearance #srBackTop{
     padding-bottom: 28px !important;
   }
 }
+
+
+/* ======================================================
+   V78 PREMIUM CARD / IMAGE UPGRADE
+   Goal:
+   - Fix tiny floating strain artwork.
+   - Make strain cards feel more premium and app-store ready.
+   - Add subtle section identity styling.
+   - Keep V77 Home layout intact.
+   - Avoid broad layout surgery.
+====================================================== */
+
+body.v78-premium-card-image{
+  --sr-card-radius: 28px;
+  --sr-card-border: rgba(118,255,174,.18);
+  --sr-card-bg: linear-gradient(145deg, rgba(7,45,28,.92), rgba(2,18,13,.96));
+}
+
+/* Preserve the successful V77 Home first-screen layout */
+body.v78-premium-card-image #home.home-page-v76 > header.home-hero-v76.hero.card-glow{
+  margin-bottom: 6px !important;
+}
+
+/* ---------- Section identity polish ---------- */
+
+body.v78-premium-card-image .section,
+body.v78-premium-card-image .content-section,
+body.v78-premium-card-image .home-section{
+  position: relative;
+}
+
+body.v78-premium-card-image .section-title,
+body.v78-premium-card-image .section-head,
+body.v78-premium-card-image .section-header{
+  position: relative;
+}
+
+body.v78-premium-card-image .section-title::after,
+body.v78-premium-card-image .section-head::after,
+body.v78-premium-card-image .section-header::after{
+  content:"";
+  display:block;
+  width:86px;
+  height:4px;
+  border-radius:999px;
+  margin-top:10px;
+  background:linear-gradient(90deg, #5cff9b, #69dfff, #b47cff);
+  box-shadow:0 0 18px rgba(92,255,155,.22);
+}
+
+/* Smart / recommendations get a soft purple-blue identity */
+body.v78-premium-card-image #home .smart-card,
+body.v78-premium-card-image #home .recommendation-card,
+body.v78-premium-card-image #home .recommendations,
+body.v78-premium-card-image #home [class*="recommend"]{
+  border-color:rgba(167,125,255,.22) !important;
+}
+
+/* Trending / recent horizontal sections get cleaner breathing */
+body.v78-premium-card-image #home .horizontal-scroll,
+body.v78-premium-card-image #home .card-row,
+body.v78-premium-card-image #home .scroll-row,
+body.v78-premium-card-image .horizontal-scroll,
+body.v78-premium-card-image .card-row,
+body.v78-premium-card-image .scroll-row{
+  scroll-padding-left:18px;
+  gap:14px !important;
+}
+
+/* ---------- Main strain cards: premium image scaling ---------- */
+
+/* Large / grid style strain cards */
+body.v78-premium-card-image .strain-card,
+body.v78-premium-card-image .strain-tile,
+body.v78-premium-card-image .strain-profile-card,
+body.v78-premium-card-image .trending-card,
+body.v78-premium-card-image .recent-card,
+body.v78-premium-card-image .result-card,
+body.v78-premium-card-image .recommendation-card{
+  position:relative !important;
+  overflow:hidden !important;
+  border-radius:var(--sr-card-radius) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(92,255,155,.12), transparent 38%),
+    radial-gradient(circle at 90% 12%, rgba(105,223,255,.10), transparent 36%),
+    var(--sr-card-bg) !important;
+  border:1px solid var(--sr-card-border) !important;
+  box-shadow:
+    0 18px 36px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.05) !important;
+}
+
+/* Image containers: remove giant empty padding */
+body.v78-premium-card-image .strain-card .strain-art,
+body.v78-premium-card-image .strain-card .card-art,
+body.v78-premium-card-image .strain-card .image-wrap,
+body.v78-premium-card-image .strain-card .thumb,
+body.v78-premium-card-image .strain-tile .strain-art,
+body.v78-premium-card-image .strain-tile .card-art,
+body.v78-premium-card-image .trending-card .strain-art,
+body.v78-premium-card-image .trending-card .card-art,
+body.v78-premium-card-image .recent-card .strain-art,
+body.v78-premium-card-image .recent-card .card-art,
+body.v78-premium-card-image .result-card .strain-art,
+body.v78-premium-card-image .result-card .card-art,
+body.v78-premium-card-image .recommendation-card .strain-art,
+body.v78-premium-card-image .recommendation-card .card-art{
+  overflow:hidden !important;
+  border-radius:22px !important;
+  min-height:0 !important;
+  background:
+    radial-gradient(circle at 55% 12%, rgba(255,255,255,.12), transparent 22%),
+    linear-gradient(135deg, rgba(92,255,155,.16), rgba(105,223,255,.12), rgba(255,108,213,.10)) !important;
+}
+
+/* Direct card images */
+body.v78-premium-card-image .strain-card img,
+body.v78-premium-card-image .strain-tile img,
+body.v78-premium-card-image .strain-profile-card img,
+body.v78-premium-card-image .trending-card img,
+body.v78-premium-card-image .recent-card img,
+body.v78-premium-card-image .result-card img,
+body.v78-premium-card-image .recommendation-card img{
+  width:100% !important;
+  height:100% !important;
+  min-height:96px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  display:block !important;
+  transform:scale(1.08) !important;
+  filter:saturate(1.12) contrast(1.04) !important;
+}
+
+/* Home horizontal feature cards: make artwork actually featured */
+body.v78-premium-card-image #home .trending-card,
+body.v78-premium-card-image #home .recent-card,
+body.v78-premium-card-image #home .strain-tile{
+  min-width:260px !important;
+  width:260px !important;
+  padding:14px !important;
+}
+
+body.v78-premium-card-image #home .trending-card img,
+body.v78-premium-card-image #home .recent-card img,
+body.v78-premium-card-image #home .strain-tile img{
+  min-height:128px !important;
+  max-height:150px !important;
+  border-radius:20px !important;
+}
+
+/* If the app uses picture/div wrappers before text, make first image area stronger */
+body.v78-premium-card-image #home .trending-card > img:first-child,
+body.v78-premium-card-image #home .recent-card > img:first-child,
+body.v78-premium-card-image #home .strain-tile > img:first-child{
+  height:138px !important;
+  margin-bottom:12px !important;
+}
+
+/* Search results are intentionally compact, but artwork should still read clearly */
+body.v78-premium-card-image #search .strain-card,
+body.v78-premium-card-image #search .result-card,
+body.v78-premium-card-image #search .strain-result{
+  min-height:132px !important;
+  padding:12px !important;
+  gap:12px !important;
+  display:grid !important;
+  grid-template-columns:112px minmax(0,1fr) !important;
+  align-items:center !important;
+}
+
+body.v78-premium-card-image #search .strain-card img,
+body.v78-premium-card-image #search .result-card img,
+body.v78-premium-card-image #search .strain-result img{
+  width:112px !important;
+  height:96px !important;
+  min-height:96px !important;
+  border-radius:18px !important;
+  object-fit:cover !important;
+}
+
+/* Fix cropped/overflowing chip row on compact search cards */
+body.v78-premium-card-image #search .chip-row,
+body.v78-premium-card-image #search .tags,
+body.v78-premium-card-image #search .card-tags{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:7px !important;
+  overflow:visible !important;
+}
+
+body.v78-premium-card-image #search .chip,
+body.v78-premium-card-image #search .tag,
+body.v78-premium-card-image .strain-card .chip,
+body.v78-premium-card-image .strain-card .tag{
+  max-width:100% !important;
+  white-space:nowrap !important;
+}
+
+/* ---------- Typography polish ---------- */
+body.v78-premium-card-image .strain-card h3,
+body.v78-premium-card-image .strain-card h2,
+body.v78-premium-card-image .strain-tile h3,
+body.v78-premium-card-image .trending-card h3,
+body.v78-premium-card-image .recent-card h3,
+body.v78-premium-card-image .result-card h3{
+  letter-spacing:-.045em !important;
+  line-height:.95 !important;
+  text-wrap:balance;
+}
+
+body.v78-premium-card-image .strain-card p,
+body.v78-premium-card-image .strain-tile p,
+body.v78-premium-card-image .result-card p,
+body.v78-premium-card-image .recommendation-card p{
+  line-height:1.22 !important;
+}
+
+/* Daily card title can wrap, but should not look oversized with long names */
+body.v78-premium-card-image #home .home-daily-v76.daily-card h2{
+  font-size:clamp(1.78rem, 6.4vw, 2.32rem) !important;
+  line-height:.95 !important;
+  text-wrap:balance;
+}
+
+/* ---------- Micro-interactions: premium, not flashy ---------- */
+body.v78-premium-card-image button,
+body.v78-premium-card-image .strain-card,
+body.v78-premium-card-image .strain-tile,
+body.v78-premium-card-image .result-card,
+body.v78-premium-card-image .recent-card,
+body.v78-premium-card-image .trending-card{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    filter .18s ease !important;
+  will-change:transform;
+}
+
+body.v78-premium-card-image button:active,
+body.v78-premium-card-image .strain-card:active,
+body.v78-premium-card-image .strain-tile:active,
+body.v78-premium-card-image .result-card:active,
+body.v78-premium-card-image .recent-card:active,
+body.v78-premium-card-image .trending-card:active{
+  transform:scale(.985) !important;
+}
+
+body.v78-premium-card-image .bottom-nav button:active{
+  transform:scale(.94) !important;
+}
+
+/* ---------- Empty space restraint ---------- */
+body.v78-premium-card-image .page{
+  padding-bottom:calc(106px + env(safe-area-inset-bottom)) !important;
+}
+
+body.v78-premium-card-image .page > section:last-child,
+body.v78-premium-card-image .page > .card:last-child,
+body.v78-premium-card-image .page > div:last-child{
+  margin-bottom:18px !important;
+}
+
+/* But keep Home first screen exactly controlled by V77 */
+body.v78-premium-card-image #home.home-page-v76{
+  padding-bottom:calc(118px + env(safe-area-inset-bottom)) !important;
+}
+
+/* ---------- Mobile specific balance ---------- */
+@media(max-width:430px){
+  body.v78-premium-card-image #home .trending-card,
+  body.v78-premium-card-image #home .recent-card,
+  body.v78-premium-card-image #home .strain-tile{
+    min-width:244px !important;
+    width:244px !important;
+    padding:13px !important;
+  }
+
+  body.v78-premium-card-image #home .trending-card > img:first-child,
+  body.v78-premium-card-image #home .recent-card > img:first-child,
+  body.v78-premium-card-image #home .strain-tile > img:first-child{
+    height:124px !important;
+  }
+
+  body.v78-premium-card-image #search .strain-card,
+  body.v78-premium-card-image #search .result-card,
+  body.v78-premium-card-image #search .strain-result{
+    grid-template-columns:96px minmax(0,1fr) !important;
+    min-height:118px !important;
+  }
+
+  body.v78-premium-card-image #search .strain-card img,
+  body.v78-premium-card-image #search .result-card img,
+  body.v78-premium-card-image #search .strain-result img{
+    width:96px !important;
+    height:84px !important;
+    min-height:84px !important;
+  }
+}
+
+/* Respect reduced motion */
+@media(prefers-reduced-motion: reduce){
+  body.v78-premium-card-image *,
+  body.v78-premium-card-image *::before,
+  body.v78-premium-card-image *::after{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+}
