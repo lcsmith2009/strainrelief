@@ -1,4 +1,4 @@
-const APP_VERSION="v47-recovery-clean";
+const APP_VERSION="v88-full-code-glitch-cleanup";
 const strains=[{"name": "Harlequin", "emoji": "🌱", "type": "CBD-dominant Hybrid", "category": "CBD", "thc": "Low to moderate THC", "cbd": "High CBD", "time": "Day or evening", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "tags": ["Calm", "Clear-headed", "CBD-forward"], "goals": ["Anxiety", "Stress", "Body Comfort"], "score": 94, "flavor": "Earthy, herbal, mild sweetness", "caution": ["Strong high seekers"], "insight": "Harlequin is often discussed as a calm, clear-headed, cbd-forward direction. Ask for lab-tested options and start low.", "image": "images/strains/harlequin.webp"}, {"name": "ACDC", "emoji": "🍃", "type": "CBD-forward Hybrid", "category": "CBD", "thc": "Very low THC", "cbd": "Very high CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "tags": ["Functional", "Calm", "Low intoxication"], "goals": ["Anxiety", "Stress"], "score": 91, "flavor": "Earthy, citrus, pine", "caution": ["Strong high seekers"], "insight": "ACDC is often discussed as a functional, calm, low intoxication direction. Ask for lab-tested options and start low.", "image": "images/strains/acdc.webp"}, {"name": "Cannatonic", "emoji": "🌿", "type": "Balanced THC/CBD Hybrid", "category": "CBD", "thc": "Low to moderate THC", "cbd": "Moderate to high CBD", "time": "Day or evening", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Calm", "Body comfort"], "goals": ["Stress", "Body Comfort"], "score": 89, "flavor": "Citrus, earthy, sweet", "caution": ["Strong high seekers"], "insight": "Cannatonic is often discussed as a balanced, calm, body comfort direction. Ask for lab-tested options and start low.", "image": "images/strains/cannatonic.webp"}, {"name": "Northern Lights", "emoji": "🌙", "type": "Indica", "category": "Sleep", "thc": "Moderate to high THC", "cbd": "Low CBD", "time": "Nighttime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleepy", "Relaxed", "Nighttime"], "goals": ["Sleep", "Stress"], "score": 88, "flavor": "Pine, earthy, sweet spice", "caution": ["Strong high seekers"], "insight": "Northern Lights is often discussed as a sleepy, relaxed, nighttime direction. Ask for lab-tested options and start low.", "image": "images/strains/northern-lights.webp"}, {"name": "Blue Dream", "emoji": "💙", "type": "Balanced Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Day or evening", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "tags": ["Mood", "Creative", "Balanced"], "goals": ["Mood", "Stress"], "score": 86, "flavor": "Berry, sweet, herbal", "caution": ["Strong high seekers"], "insight": "Blue Dream is often discussed as a mood, creative, balanced direction. Ask for lab-tested options and start low.", "image": "images/strains/blue-dream.webp"}, {"name": "Granddaddy Purple", "emoji": "🍇", "type": "Indica", "category": "Sleep", "thc": "Moderate to high THC", "cbd": "Low CBD", "time": "Nighttime", "terpenes": ["Myrcene", "Caryophyllene", "Pinene"], "tags": ["Relaxation", "Evening", "Sleep"], "goals": ["Sleep", "Stress"], "score": 92, "flavor": "Grape, berry, sweet earth", "caution": ["Strong high seekers"], "insight": "Granddaddy Purple is often discussed as a relaxation, evening, sleep direction. Ask for lab-tested options and start low.", "image": "images/strains/granddaddy-purple.webp"}, {"name": "Sour Diesel", "emoji": "⚡", "type": "Sativa", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Caryophyllene", "Myrcene"], "tags": ["Energy", "Daytime", "Focus"], "goals": ["Mood", "Focus"], "score": 80, "flavor": "Diesel, citrus, sharp herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sour Diesel is often discussed as a energy, daytime, focus direction. Ask for lab-tested options and start low.", "image": "images/strains/sour-diesel.webp"}, {"name": "Girl Scout Cookies", "emoji": "🍪", "type": "Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Mood", "Relaxation"], "goals": ["Mood", "Stress", "Appetite"], "score": 84, "flavor": "Sweet, earthy, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Girl Scout Cookies is often discussed as a balanced, mood, relaxation direction. Ask for lab-tested options and start low.", "image": "images/strains/girl-scout-cookies.webp"}, {"name": "Pineapple Express", "emoji": "🍍", "type": "Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Happy", "Creative", "Daytime"], "goals": ["Mood", "Focus"], "score": 83, "flavor": "Pineapple, citrus, tropical", "caution": ["Strong high seekers"], "insight": "Pineapple Express is often discussed as a happy, creative, daytime direction. Ask for lab-tested options and start low.", "image": "images/strains/pineapple-express.webp"}, {"name": "Jack Herer", "emoji": "🌸", "type": "Sativa-leaning Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Mood"], "goals": ["Mood", "Focus"], "score": 81, "flavor": "Pine, herbal, spice", "caution": ["Strong high seekers"], "insight": "Jack Herer is often discussed as a focus, energy, mood direction. Ask for lab-tested options and start low.", "image": "images/strains/jack-herer.webp"}, {"name": "Purple Punch", "emoji": "🫐", "type": "Indica-leaning Hybrid", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 87, "flavor": "Berry, grape, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Purple Punch is often discussed as a sleep, calm, evening direction. Ask for lab-tested options and start low.", "image": "images/strains/purple-punch.webp"}, {"name": "Lemon Haze", "emoji": "🍋", "type": "Sativa-leaning", "category": "Mood", "thc": "Moderate to high THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Myrcene", "Caryophyllene"], "tags": ["Creative", "Daytime", "Mood"], "goals": ["Mood", "Focus"], "score": 78, "flavor": "Lemon, citrus, sweet", "caution": ["Strong high seekers"], "insight": "Lemon Haze is often discussed as a creative, daytime, mood direction. Ask for lab-tested options and start low.", "image": "images/strains/lemon-haze.webp"}, {"name": "Ringo's Gift", "emoji": "🎁", "type": "CBD-dominant Hybrid", "category": "CBD", "thc": "Very low THC", "cbd": "Very high CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "tags": ["Calm", "Beginner", "Stress"], "goals": ["Anxiety", "Stress"], "score": 90, "flavor": "Mint, pine, earthy", "caution": ["Strong high seekers"], "insight": "Ringo's Gift is often discussed as a calm, beginner, stress direction. Ask for lab-tested options and start low.", "image": "images/strains/ringo-s-gift.webp"}, {"name": "Charlotte's Web", "emoji": "🕊️", "type": "CBD-forward", "category": "CBD", "thc": "Very low THC", "cbd": "Very high CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Humulene"], "tags": ["Calm", "Stress", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 88, "flavor": "Earthy, floral, pine", "caution": ["Strong high seekers"], "insight": "Charlotte's Web is often discussed as a calm, stress, low thc direction. Ask for lab-tested options and start low.", "image": "images/strains/charlotte-s-web.webp"}, {"name": "Maui Wowie", "emoji": "🏝️", "type": "Sativa", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Myrcene"], "tags": ["Energy", "Mood", "Daytime"], "goals": ["Mood", "Focus"], "score": 82, "flavor": "Tropical, citrus, sweet", "caution": ["Strong high seekers"], "insight": "Maui Wowie is often discussed as a energy, mood, daytime direction. Ask for lab-tested options and start low.", "image": "images/strains/maui-wowie.webp"}, {"name": "Durban Poison", "emoji": "☀️", "type": "Sativa", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Ocimene", "Pinene"], "tags": ["Focus", "Daytime", "Energy"], "goals": ["Mood", "Focus"], "score": 77, "flavor": "Sweet, pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Durban Poison is often discussed as a focus, daytime, energy direction. Ask for lab-tested options and start low.", "image": "images/strains/durban-poison.webp"}, {"name": "White Widow", "emoji": "🕸️", "type": "Balanced Hybrid", "category": "Mood", "thc": "Moderate to high THC", "cbd": "Low CBD", "time": "Day or evening", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Mood", "Relaxation"], "goals": ["Mood", "Stress"], "score": 79, "flavor": "Earthy, woody, pepper", "caution": ["Strong high seekers"], "insight": "White Widow is often discussed as a balanced, mood, relaxation direction. Ask for lab-tested options and start low.", "image": "images/strains/white-widow.webp"}, {"name": "Wedding Cake", "emoji": "🎂", "type": "Indica-dominant Hybrid", "category": "Appetite", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Myrcene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Appetite"], "score": 82, "flavor": "Vanilla, sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Wedding Cake is often discussed as a relaxation, mood, evening direction. Ask for lab-tested options and start low.", "image": "images/strains/wedding-cake.webp"}, {"name": "Gelato", "emoji": "🍨", "type": "Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Mood", "Relaxation", "Creative"], "goals": ["Mood", "Stress"], "score": 81, "flavor": "Creamy, sweet, berry", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Gelato is often discussed as a mood, relaxation, creative direction. Ask for lab-tested options and start low.", "image": "images/strains/gelato.webp"}, {"name": "OG Kush", "emoji": "🌲", "type": "Hybrid", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "tags": ["Relaxation", "Stress", "Mood"], "goals": ["Stress", "Body Comfort"], "score": 83, "flavor": "Fuel, pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "OG Kush is often discussed as a relaxation, stress, mood direction. Ask for lab-tested options and start low.", "image": "images/strains/og-kush.webp"}, {"name": "Bubba Kush", "emoji": "🛋️", "type": "Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 72, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Bubba Kush may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/bubba-kush.webp"}, {"name": "Zkittlez", "emoji": "🌈", "type": "Indica-dominant Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 73, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Zkittlez may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/zkittlez.webp"}, {"name": "Super Silver Haze", "emoji": "✨", "type": "Sativa-leaning Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 74, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Super Silver Haze may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/super-silver-haze.webp"}, {"name": "Green Crack", "emoji": "🟢", "type": "Balanced Hybrid", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 75, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Green Crack may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/green-crack.webp"}, {"name": "LA Confidential", "emoji": "🌃", "type": "Indica", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 76, "flavor": "Tropical, fruit", "caution": ["Strong high seekers"], "insight": "LA Confidential may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/la-confidential.webp"}, {"name": "Remedy", "emoji": "🧘", "type": "Sativa", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 77, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Remedy may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/remedy.webp"}, {"name": "Pennywise", "emoji": "🪙", "type": "CBD-forward Hybrid", "category": "Daytime", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 78, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Pennywise may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/pennywise.webp"}, {"name": "Mango Kush", "emoji": "🥭", "type": "Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 79, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Mango Kush may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/mango-kush.webp"}, {"name": "Strawberry Cough", "emoji": "🍓", "type": "Indica-dominant Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 80, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Strawberry Cough may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/strawberry-cough.webp"}, {"name": "Chemdawg", "emoji": "⛽", "type": "Sativa-leaning Hybrid", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 81, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Chemdawg may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/chemdawg.webp"}, {"name": "Apple Fritter", "emoji": "🍎", "type": "Balanced Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 82, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Apple Fritter may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/apple-fritter.webp"}, {"name": "Do-Si-Dos", "emoji": "🍩", "type": "Indica", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 83, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Do-Si-Dos may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/do-si-dos.webp"}, {"name": "Skywalker OG", "emoji": "🚀", "type": "Sativa", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 84, "flavor": "Sweet, earthy", "caution": ["Strong high seekers"], "insight": "Skywalker OG may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/skywalker-og.webp"}, {"name": "Banana Kush", "emoji": "🍌", "type": "CBD-forward Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 85, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Banana Kush may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/banana-kush.webp"}, {"name": "Ice Cream Cake", "emoji": "🍰", "type": "Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 86, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Ice Cream Cake may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/ice-cream-cake.webp"}, {"name": "Animal Cookies", "emoji": "🐾", "type": "Indica-dominant Hybrid", "category": "Stress", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 87, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Animal Cookies may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/animal-cookies.webp"}, {"name": "MAC 1", "emoji": "🧪", "type": "Sativa-leaning Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 88, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "MAC 1 may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/mac-1.webp"}, {"name": "Ghost Train Haze", "emoji": "🚂", "type": "Balanced Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 89, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Ghost Train Haze may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/ghost-train-haze.webp"}, {"name": "Forbidden Fruit", "emoji": "🍑", "type": "Indica", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 90, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Forbidden Fruit may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/forbidden-fruit.webp"}, {"name": "Sunset Sherbet", "emoji": "🌅", "type": "Sativa", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 91, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sunset Sherbet may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sunset-sherbet.webp"}, {"name": "Runtz", "emoji": "🍬", "type": "CBD-forward Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 92, "flavor": "Berry, dessert", "caution": ["Strong high seekers"], "insight": "Runtz may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/runtz.webp"}, {"name": "Mimosa", "emoji": "🍊", "type": "Hybrid", "category": "Appetite", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 93, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Mimosa may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/mimosa.webp"}, {"name": "Gorilla Glue #4", "emoji": "🦍", "type": "Indica-dominant Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 94, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Gorilla Glue #4 may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/gorilla-glue-4.webp"}, {"name": "Cereal Milk", "emoji": "🥛", "type": "Sativa-leaning Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 95, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Cereal Milk may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cereal-milk.webp"}, {"name": "Cherry Pie", "emoji": "🥧", "type": "Balanced Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 96, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Cherry Pie may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cherry-pie.webp"}, {"name": "Tahoe OG", "emoji": "🏔️", "type": "Indica", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 72, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Tahoe OG may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/tahoe-og.webp"}, {"name": "Bruce Banner", "emoji": "💥", "type": "Sativa", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 73, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Bruce Banner may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/bruce-banner.webp"}, {"name": "Lemon Cherry Gelato", "emoji": "🍒", "type": "CBD-forward Hybrid", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 74, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Lemon Cherry Gelato may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/lemon-cherry-gelato.webp"}, {"name": "Gary Payton", "emoji": "🏀", "type": "Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 75, "flavor": "Tropical, fruit", "caution": ["Strong high seekers"], "insight": "Gary Payton may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/gary-payton.webp"}, {"name": "Oreoz", "emoji": "🍫", "type": "Indica-dominant Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 76, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Oreoz may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/oreoz.webp"}, {"name": "Blackberry Kush", "emoji": "🫐", "type": "Sativa-leaning Hybrid", "category": "Daytime", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 77, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blackberry Kush may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blackberry-kush.webp"}, {"name": "Trainwreck", "emoji": "🚆", "type": "Balanced Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 78, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Trainwreck may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/trainwreck.webp"}, {"name": "Tangie", "emoji": "🍊", "type": "Indica", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 79, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Tangie may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/tangie.webp"}, {"name": "Afghan Kush", "emoji": "🏜️", "type": "Sativa", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 80, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Afghan Kush may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/afghan-kush.webp"}, {"name": "Lava Cake", "emoji": "🍫", "type": "CBD-forward Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 81, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Lava Cake may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/lava-cake.webp"}, {"name": "Slurricane", "emoji": "🌧️", "type": "Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 82, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Slurricane may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/slurricane.webp"}, {"name": "Papaya", "emoji": "🥭", "type": "Indica-dominant Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 83, "flavor": "Sweet, earthy", "caution": ["Strong high seekers"], "insight": "Papaya may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/papaya.webp"}, {"name": "Blue Cheese", "emoji": "🧀", "type": "Sativa-leaning Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 84, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blue Cheese may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blue-cheese.webp"}, {"name": "Critical Mass", "emoji": "⚖️", "type": "Balanced Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 85, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Critical Mass may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/critical-mass.webp"}, {"name": "Super Lemon Haze", "emoji": "🍋", "type": "Indica", "category": "Stress", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 86, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Super Lemon Haze may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/super-lemon-haze.webp"}, {"name": "Grape Ape", "emoji": "🛋️", "type": "Sativa", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 87, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Grape Ape may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/grape-ape.webp"}, {"name": "Tropicana Cookies", "emoji": "🌈", "type": "CBD-forward Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 88, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Tropicana Cookies may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/tropicana-cookies.webp"}, {"name": "Alien OG", "emoji": "✨", "type": "Hybrid", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 89, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Alien OG may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/alien-og.webp"}, {"name": "Platinum Cookies", "emoji": "🟢", "type": "Indica-dominant Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 90, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Platinum Cookies may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/platinum-cookies.webp"}, {"name": "Jillybean", "emoji": "🌃", "type": "Sativa-leaning Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 91, "flavor": "Berry, dessert", "caution": ["Strong high seekers"], "insight": "Jillybean may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/jillybean.webp"}, {"name": "Sweet Tooth", "emoji": "🧘", "type": "Balanced Hybrid", "category": "Appetite", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 92, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sweet Tooth may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sweet-tooth.webp"}, {"name": "Sundae Driver", "emoji": "🪙", "type": "Indica", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 93, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sundae Driver may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sundae-driver.webp"}, {"name": "Clementine", "emoji": "🥭", "type": "Sativa", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 94, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Clementine may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/clementine.webp"}, {"name": "Lemon Skunk", "emoji": "🍓", "type": "CBD-forward Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 95, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Lemon Skunk may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/lemon-skunk.webp"}, {"name": "Kosher Kush", "emoji": "⛽", "type": "Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 96, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Kosher Kush may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/kosher-kush.webp"}, {"name": "Blueberry", "emoji": "🍎", "type": "Indica-dominant Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 72, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blueberry may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blueberry.webp"}, {"name": "Sour Tsunami", "emoji": "🍩", "type": "Sativa-leaning Hybrid", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 73, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sour Tsunami may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sour-tsunami.webp"}, {"name": "Lifter", "emoji": "🚀", "type": "Balanced Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 74, "flavor": "Tropical, fruit", "caution": ["Strong high seekers"], "insight": "Lifter may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/lifter.webp"}, {"name": "Suzy Q", "emoji": "🍌", "type": "Indica", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 75, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Suzy Q may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/suzy-q.webp"}, {"name": "Elektra", "emoji": "🍰", "type": "Sativa", "category": "Daytime", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 76, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Elektra may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/elektra.webp"}, {"name": "Harle-Tsu", "emoji": "🐾", "type": "CBD-forward Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 77, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Harle-Tsu may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/harle-tsu.webp"}, {"name": "CBD Critical Cure", "emoji": "🧪", "type": "Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 78, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "CBD Critical Cure may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cbd-critical-cure.webp"}, {"name": "Valentine X", "emoji": "🚂", "type": "Indica-dominant Hybrid", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 79, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Valentine X may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/valentine-x.webp"}, {"name": "Quantum Kush", "emoji": "🍑", "type": "Sativa-leaning Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 80, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Quantum Kush may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/quantum-kush.webp"}, {"name": "Blue Thai", "emoji": "🌅", "type": "Balanced Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 81, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blue Thai may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blue-thai.webp"}, {"name": "Platinum OG", "emoji": "🍬", "type": "Indica", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 82, "flavor": "Sweet, earthy", "caution": ["Strong high seekers"], "insight": "Platinum OG may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/platinum-og.webp"}, {"name": "Black Domina", "emoji": "🍊", "type": "Sativa", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 83, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Black Domina may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/black-domina.webp"}, {"name": "Romulan", "emoji": "🦍", "type": "CBD-forward Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 84, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Romulan may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/romulan.webp"}, {"name": "Chocolate Thai", "emoji": "🥛", "type": "Hybrid", "category": "Stress", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 85, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Chocolate Thai may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/chocolate-thai.webp"}, {"name": "Acapulco Gold", "emoji": "🥧", "type": "Indica-dominant Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 86, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Acapulco Gold may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/acapulco-gold.webp"}, {"name": "Lamb's Bread", "emoji": "🏔️", "type": "Sativa-leaning Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 87, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Lamb's Bread may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/lamb-s-bread.webp"}, {"name": "Panama Red", "emoji": "💥", "type": "Balanced Hybrid", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 88, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Panama Red may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/panama-red.webp"}, {"name": "Blue Zushi", "emoji": "🍒", "type": "Indica", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 89, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blue Zushi may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blue-zushi.webp"}, {"name": "Amnesia Haze", "emoji": "🏀", "type": "Sativa", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 90, "flavor": "Berry, dessert", "caution": ["Strong high seekers"], "insight": "Amnesia Haze may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/amnesia-haze.webp"}, {"name": "Banana Cream", "emoji": "🍫", "type": "CBD-forward Hybrid", "category": "Appetite", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 91, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Banana Cream may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/banana-cream.webp"}, {"name": "Strawnana", "emoji": "🫐", "type": "Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 92, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Strawnana may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/strawnana.webp"}, {"name": "Member Berry", "emoji": "🚆", "type": "Indica-dominant Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 93, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Member Berry may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/member-berry.webp"}, {"name": "Space Queen", "emoji": "🍊", "type": "Sativa-leaning Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 94, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Space Queen may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/space-queen.webp"}, {"name": "Lemon Tree", "emoji": "🏜️", "type": "Balanced Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 95, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Lemon Tree may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/lemon-tree.webp"}, {"name": "Cactus Breath", "emoji": "🍫", "type": "Indica", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 96, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Cactus Breath may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cactus-breath.webp"}, {"name": "Purple Urkle", "emoji": "🌧️", "type": "Sativa", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 72, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Purple Urkle may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/purple-urkle.webp"}, {"name": "Orange Cookies", "emoji": "🥭", "type": "CBD-forward Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 73, "flavor": "Tropical, fruit", "caution": ["Strong high seekers"], "insight": "Orange Cookies may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/orange-cookies.webp"}, {"name": "Sherbert", "emoji": "🧀", "type": "Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 74, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sherbert may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sherbert.webp"}, {"name": "Blueberry Muffin", "emoji": "⚖️", "type": "Indica-dominant Hybrid", "category": "Daytime", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 75, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blueberry Muffin may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blueberry-muffin.webp"}, {"name": "Peach Crescendo", "emoji": "🍋", "type": "Sativa-leaning Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 76, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Peach Crescendo may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/peach-crescendo.webp"}, {"name": "Chem Cookies", "emoji": "🛋️", "type": "Balanced Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 77, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Chem Cookies may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/chem-cookies.webp"}, {"name": "Dosilato", "emoji": "🌈", "type": "Indica", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 78, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Dosilato may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/dosilato.webp"}, {"name": "Jokerz", "emoji": "✨", "type": "Sativa", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 79, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Jokerz may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/jokerz.webp"}, {"name": "Red Velvet", "emoji": "🟢", "type": "CBD-forward Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 80, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Red Velvet may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/red-velvet.webp"}, {"name": "Cake Crasher", "emoji": "🌃", "type": "Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 81, "flavor": "Sweet, earthy", "caution": ["Strong high seekers"], "insight": "Cake Crasher may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cake-crasher.webp"}, {"name": "Honey Bun", "emoji": "🧘", "type": "Indica-dominant Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 82, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Honey Bun may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/honey-bun.webp"}, {"name": "Blue Gelato", "emoji": "🪙", "type": "Sativa-leaning Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 83, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blue Gelato may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blue-gelato.webp"}, {"name": "Blueberry Kush", "emoji": "🥭", "type": "Balanced Hybrid", "category": "Stress", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 84, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blueberry Kush may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blueberry-kush.webp"}, {"name": "Watermelon Zkittlez", "emoji": "🍓", "type": "Indica", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 85, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Watermelon Zkittlez may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/watermelon-zkittlez.webp"}, {"name": "Modified Grapes", "emoji": "⛽", "type": "Sativa", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 86, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Modified Grapes may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/modified-grapes.webp"}, {"name": "Donny Burger", "emoji": "🍎", "type": "CBD-forward Hybrid", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 87, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Donny Burger may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/donny-burger.webp"}, {"name": "Kosher Dawg", "emoji": "🍩", "type": "Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 88, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Kosher Dawg may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/kosher-dawg.webp"}, {"name": "LA Kush Cake", "emoji": "🚀", "type": "Indica-dominant Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 89, "flavor": "Berry, dessert", "caution": ["Strong high seekers"], "insight": "LA Kush Cake may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/la-kush-cake.webp"}, {"name": "White Runtz", "emoji": "🍌", "type": "Sativa-leaning Hybrid", "category": "Appetite", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 90, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "White Runtz may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/white-runtz.webp"}, {"name": "Cherry Gelato", "emoji": "🍰", "type": "Balanced Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 91, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Cherry Gelato may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cherry-gelato.webp"}, {"name": "Sunshine Daydream", "emoji": "🐾", "type": "Indica", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 92, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sunshine Daydream may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sunshine-daydream.webp"}, {"name": "Mendo Breath", "emoji": "🧪", "type": "Sativa", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 93, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Mendo Breath may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/mendo-breath.webp"}, {"name": "Orange Herijuana", "emoji": "🚂", "type": "CBD-forward Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 94, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Orange Herijuana may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/orange-herijuana.webp"}, {"name": "Fire OG", "emoji": "🍑", "type": "Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 95, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Fire OG may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/fire-og.webp"}, {"name": "Pink Kush", "emoji": "🌅", "type": "Indica-dominant Hybrid", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 96, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Pink Kush may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/pink-kush.webp"}, {"name": "GMO Cookies", "emoji": "🍬", "type": "Sativa-leaning Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 72, "flavor": "Tropical, fruit", "caution": ["Strong high seekers"], "insight": "GMO Cookies may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/gmo-cookies.webp"}, {"name": "Khalifa Kush", "emoji": "🍊", "type": "Balanced Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 73, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Khalifa Kush may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/khalifa-kush.webp"}, {"name": "Motorbreath", "emoji": "🦍", "type": "Indica", "category": "Daytime", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 74, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Motorbreath may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/motorbreath.webp"}, {"name": "Peanut Butter Breath", "emoji": "🥛", "type": "Sativa", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 75, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Peanut Butter Breath may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/peanut-butter-breath.webp"}, {"name": "Sherbacio", "emoji": "🥧", "type": "CBD-forward Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 76, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Sherbacio may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/sherbacio.webp"}, {"name": "Permanent Marker", "emoji": "🏔️", "type": "Hybrid", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 77, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Permanent Marker may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/permanent-marker.webp"}, {"name": "Apples and Bananas", "emoji": "💥", "type": "Indica-dominant Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 78, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Apples and Bananas may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/apples-and-bananas.webp"}, {"name": "Jealousy", "emoji": "🍒", "type": "Sativa-leaning Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 79, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Jealousy may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/jealousy.webp"}, {"name": "Biscotti", "emoji": "🏀", "type": "Balanced Hybrid", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 80, "flavor": "Sweet, earthy", "caution": ["Strong high seekers"], "insight": "Biscotti may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/biscotti.webp"}, {"name": "Kush Mints", "emoji": "🍫", "type": "Indica", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 81, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Kush Mints may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/kush-mints.webp"}, {"name": "Georgia Pie", "emoji": "🫐", "type": "Sativa", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 82, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Georgia Pie may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/georgia-pie.webp"}, {"name": "London Pound Cake", "emoji": "🚆", "type": "CBD-forward Hybrid", "category": "Stress", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 83, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "London Pound Cake may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/london-pound-cake.webp"}, {"name": "Carbon Fiber", "emoji": "🍊", "type": "Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 84, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Carbon Fiber may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/carbon-fiber.webp"}, {"name": "Rainbow Belts", "emoji": "🏜️", "type": "Indica-dominant Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 85, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Rainbow Belts may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/rainbow-belts.webp"}, {"name": "Tropical Runtz", "emoji": "🍫", "type": "Sativa-leaning Hybrid", "category": "Focus", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 86, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Tropical Runtz may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/tropical-runtz.webp"}, {"name": "Gushers", "emoji": "🌧️", "type": "Balanced Hybrid", "category": "Body Comfort", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 87, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Gushers may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/gushers.webp"}, {"name": "Marshmallow OG", "emoji": "🥭", "type": "Indica", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 88, "flavor": "Berry, dessert", "caution": ["Strong high seekers"], "insight": "Marshmallow OG may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/marshmallow-og.webp"}, {"name": "Black Cherry Gelato", "emoji": "🧀", "type": "Sativa", "category": "Appetite", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 89, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Black Cherry Gelato may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/black-cherry-gelato.webp"}, {"name": "Blue Cookies", "emoji": "⚖️", "type": "CBD-forward Hybrid", "category": "Daytime", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 90, "flavor": "Tropical, fruit", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Blue Cookies may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/blue-cookies.webp"}, {"name": "Canna-Tsu", "emoji": "🍋", "type": "Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 91, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Canna-Tsu may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/canna-tsu.webp"}, {"name": "Stephen Hawking Kush", "emoji": "🛋️", "type": "Indica-dominant Hybrid", "category": "Mood", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 92, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Stephen Hawking Kush may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/stephen-hawking-kush.webp"}, {"name": "Critical Kush", "emoji": "🌈", "type": "Sativa-leaning Hybrid", "category": "Sleep", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 93, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Critical Kush may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/critical-kush.webp"}, {"name": "Cherry AK", "emoji": "✨", "type": "Balanced Hybrid", "category": "Focus", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Sleep", "Calm", "Evening"], "goals": ["Sleep", "Stress"], "score": 94, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Cherry AK may align with sleep, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cherry-ak.webp"}, {"name": "White Rhino", "emoji": "🟢", "type": "Indica", "category": "Body Comfort", "thc": "High THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Balanced", "Creative", "Mood"], "goals": ["Body Comfort", "Stress"], "score": 95, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "White Rhino may align with body comfort, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/white-rhino.webp"}, {"name": "Godfather OG", "emoji": "🌃", "type": "Sativa", "category": "CBD", "thc": "Very low to low THC", "cbd": "High CBD", "time": "Evening", "terpenes": ["Myrcene", "Pinene", "Linalool"], "tags": ["CBD-forward", "Calm", "Low THC"], "goals": ["Anxiety", "Stress"], "score": 96, "flavor": "Tropical, fruit", "caution": ["Strong high seekers"], "insight": "Godfather OG may align with anxiety, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/godfather-og.webp"}, {"name": "Super Boof", "emoji": "🧘", "type": "CBD-forward Hybrid", "category": "Appetite", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Pinene", "Limonene", "Terpinolene"], "tags": ["Appetite", "Relaxed", "Evening"], "goals": ["Appetite", "Stress"], "score": 72, "flavor": "Gas, pepper, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Super Boof may align with appetite, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/super-boof.webp"}, {"name": "Cap Junky", "emoji": "🪙", "type": "Hybrid", "category": "Daytime", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Myrcene", "Caryophyllene", "Limonene"], "tags": ["Stress", "Calm", "Body comfort"], "goals": ["Daytime", "Focus"], "score": 73, "flavor": "Sweet, earthy", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Cap Junky may align with daytime, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/cap-junky.webp"}, {"name": "RS11", "emoji": "🥭", "type": "Indica-dominant Hybrid", "category": "Stress", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Limonene", "Pinene", "Caryophyllene"], "tags": ["Clear-headed", "Functional", "Daytime"], "goals": ["Focus", "Stress"], "score": 74, "flavor": "Citrus, herbal", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "RS11 may align with focus, stress goals for some users. Cannabis affects everyone differently.", "image": "images/strains/rs11.webp"}, {"name": "Zoap", "emoji": "🍓", "type": "Sativa-leaning Hybrid", "category": "Mood", "thc": "Moderate THC", "cbd": "Low CBD", "time": "Evening", "terpenes": ["Terpinolene", "Myrcene", "Ocimene"], "tags": ["Relaxation", "Mood", "Evening"], "goals": ["Stress", "Mood"], "score": 75, "flavor": "Berry, dessert", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Zoap may align with stress, mood goals for some users. Cannabis affects everyone differently.", "image": "images/strains/zoap.webp"}, {"name": "Pink Runtz", "emoji": "⛽", "type": "Balanced Hybrid", "category": "Sleep", "thc": "High THC", "cbd": "Low CBD", "time": "Daytime", "terpenes": ["Caryophyllene", "Limonene", "Humulene"], "tags": ["Focus", "Energy", "Daytime"], "goals": ["Mood", "Focus"], "score": 76, "flavor": "Pine, spice", "caution": ["Anxiety-prone users", "Low THC tolerance"], "insight": "Pink Runtz may align with mood, focus goals for some users. Cannabis affects everyone differently.", "image": "images/strains/pink-runtz.webp"}];
 
 
@@ -4364,445 +4364,275 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.StrainReliefHomeDensityVersion = VERSION;
 })();
 
-
-/* ======================================================
-   V83 HOME FIRST-SCREEN FIT + CAROUSEL FIX JS
-   Home-only: adds final class and protects carousel swiping.
-====================================================== */
+/* ==================================================
+   V88 FULL CODE GLITCH CLEANUP
+   Home cleanup only: removes broken stacked patches, stabilizes first load,
+   fixes duplicate Smart CTA, recent card clipping, centered dashboard layout,
+   and makes Trending Today swipe with a custom/native-safe drag layer.
+================================================== */
 (function(){
-  const VERSION = "v83-home-first-screen-fit";
+  const VERSION = "v88-full-code-glitch-cleanup";
+  const $ = (id)=>document.getElementById(id);
+  const qs = (sel, root=document)=>root.querySelector(sel);
+  const qsa = (sel, root=document)=>Array.from(root.querySelectorAll(sel));
+  const imp = (el, prop, val)=>{ if(el) el.style.setProperty(prop,val,"important"); };
 
-  function applyV83(){
+  function home(){ return $('home'); }
+
+  function disableHomeLoadJump(){
+    const h = home(); if(!h) return;
     document.body.classList.add(VERSION);
-
-    const home = document.getElementById("home");
-    if(!home) return;
-
-    home.querySelectorAll(".section-title").forEach(section => {
-      section.classList.add("v83-heading-safe");
-      section.style.overflow = "visible";
-    });
-
-    const trending = document.getElementById("trendingGrid");
-    if(trending){
-      trending.classList.add("v83-carousel-safe");
-      trending.style.overflowX = "auto";
-      trending.style.webkitOverflowScrolling = "touch";
-      trending.style.touchAction = "pan-x pan-y";
-      trending.querySelectorAll(".strain-card").forEach(card => {
-        card.style.touchAction = "pan-x pan-y";
-      });
-    }
-
-    const recentCarousel = home.querySelector(".recent-carousel");
-    if(recentCarousel){
-      recentCarousel.classList.add("v83-carousel-safe");
-      recentCarousel.style.overflowX = "auto";
-      recentCarousel.style.webkitOverflowScrolling = "touch";
-      recentCarousel.style.touchAction = "pan-x pan-y";
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    applyV83();
-    setTimeout(applyV83, 180);
-    setTimeout(applyV83, 760);
-    setTimeout(applyV83, 1500);
-  });
-
-  window.addEventListener("pageshow", () => setTimeout(applyV83, 120));
-  window.addEventListener("resize", () => setTimeout(applyV83, 120));
-  window.addEventListener("orientationchange", () => setTimeout(applyV83, 260));
-
-  const oldShowPage = window.showPage;
-  if(typeof oldShowPage === "function"){
-    window.showPage = function(){
-      const result = oldShowPage.apply(this, arguments);
-      setTimeout(applyV83, 120);
-      setTimeout(applyV83, 620);
-      return result;
-    };
-  }
-
-  window.StrainReliefHomeFirstScreenVersion = VERSION;
-})();
-
-/* ======================================================
-   V86 HOME LOAD STABILITY + CAROUSEL TOUCH FIX JS
-   Home page only. Removes duplicate Smart action, prevents
-   load resize jumps, and installs touch drag for Trending.
-====================================================== */
-(function(){
-  const VERSION = "v86-home-load-stability";
-
-  function important(el, prop, value){
-    if(el && el.style) el.style.setProperty(prop, value, "important");
-  }
-
-  function lockHeroAndDaily(home){
-    const small = window.innerWidth <= 390;
-    const hero = home.querySelector(".home-hero-v76, .hero");
-    if(hero){
-      important(hero, "height", "auto");
-      important(hero, "min-height", "0");
-      important(hero, "max-height", "none");
-      important(hero, "padding", small ? "16px 16px 18px" : "18px 18px 19px");
-      important(hero, "margin", "0 0 14px");
-      important(hero, "gap", small ? "8px" : "9px");
-      important(hero, "overflow", "hidden");
-      important(hero, "transform", "none");
-      const logo = hero.querySelector(".brand-logo");
-      important(logo, "width", small ? "min(72vw, 430px)" : "min(73vw, 500px)");
-      important(logo, "height", small ? "92px" : "clamp(94px, 18vw, 118px)");
-      important(logo, "max-height", small ? "92px" : "118px");
-      important(logo, "margin", "0 auto 3px");
-      const h1 = hero.querySelector("h1");
-      important(h1, "font-size", small ? "31px" : "clamp(32px, 8.45vw, 44px)");
-      important(h1, "line-height", ".96");
-      important(h1, "margin", "0 0 2px");
-      const copy = hero.querySelector("p");
-      important(copy, "-webkit-line-clamp", "1");
-      important(copy, "line-height", small ? "1.22" : "1.25");
-      important(copy, "margin", "0 auto 3px");
-      hero.querySelectorAll(".hero-actions button").forEach(btn => {
-        important(btn, "height", small ? "40px" : "41px");
-        important(btn, "min-height", small ? "40px" : "41px");
-      });
-      hero.querySelectorAll(".hero-mini-strip span").forEach(item => {
-        important(item, "height", small ? "42px" : "43px");
-        important(item, "min-height", small ? "42px" : "43px");
-      });
-    }
-    const daily = home.querySelector(".daily-card");
-    if(daily){
-      important(daily, "height", "auto");
-      important(daily, "min-height", "0");
-      important(daily, "max-height", "none");
-      important(daily, "overflow", "hidden");
-    }
-  }
-
-  function removeDuplicateSmartAction(home){
-    const smart = home.querySelector("#smartInsights");
-    if(!smart) return;
-    smart.querySelectorAll(".panel-head button, .panel-head .small-btn").forEach(btn => btn.remove());
-    const oldActions = smart.querySelectorAll(".v85-smart-action, .v86-smart-action");
-    oldActions.forEach((btn, i) => { if(i > 0) btn.remove(); });
-    if(!smart.querySelector(".v85-smart-action, .v86-smart-action")){
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "v86-smart-action";
-      btn.innerHTML = `<span><strong>Compare your next direction</strong><span>Open Match and refine by goal, timing, and THC sensitivity.</span></span><b>→</b>`;
-      btn.addEventListener("click", () => window.showPage && showPage("recommend"));
-      smart.appendChild(btn);
-    }
-  }
-
-  function fixProgress(home){
-    const progress = home.querySelector(".pro-card");
-    important(progress, "overflow", "hidden");
-    important(progress, "overflow-y", "hidden");
-    important(progress, "height", "auto");
-    important(progress, "max-height", "none");
-    const row = progress?.querySelector(".stat-row");
-    important(row, "overflow", "visible");
-    important(row, "display", "grid");
-    important(row, "grid-template-columns", "repeat(3,minmax(0,1fr))");
-  }
-
-  function installDrag(row){
-    if(!row || row.dataset.v86DragReady === "yes") return;
-    row.dataset.v86DragReady = "yes";
-    let active = false, startX = 0, startY = 0, startScroll = 0, horizontal = false, dragged = false;
-
-    function begin(x, y){
-      active = true; horizontal = false; dragged = false;
-      startX = x; startY = y; startScroll = row.scrollLeft;
-      row.classList.add("is-dragging");
-    }
-    function move(x, y, ev){
-      if(!active) return;
-      const dx = x - startX;
-      const dy = y - startY;
-      if(!horizontal && Math.abs(dx) > 7 && Math.abs(dx) > Math.abs(dy) * 1.05) horizontal = true;
-      if(horizontal){
-        dragged = true;
-        if(ev && ev.cancelable) ev.preventDefault();
-        row.scrollLeft = startScroll - dx;
-      }
-    }
-    function end(){
-      active = false; horizontal = false;
-      setTimeout(() => { dragged = false; row.classList.remove("is-dragging"); }, 90);
-    }
-
-    row.addEventListener("touchstart", ev => {
-      const t = ev.touches && ev.touches[0];
-      if(t) begin(t.clientX, t.clientY);
-    }, {passive:true});
-    row.addEventListener("touchmove", ev => {
-      const t = ev.touches && ev.touches[0];
-      if(t) move(t.clientX, t.clientY, ev);
-    }, {passive:false});
-    row.addEventListener("touchend", end, {passive:true});
-    row.addEventListener("touchcancel", end, {passive:true});
-
-    row.addEventListener("pointerdown", ev => {
-      if(ev.pointerType === "touch") return;
-      begin(ev.clientX, ev.clientY);
-      try{ row.setPointerCapture(ev.pointerId); }catch(_e){}
-    });
-    row.addEventListener("pointermove", ev => {
-      if(ev.pointerType === "touch") return;
-      move(ev.clientX, ev.clientY, ev);
-    }, {passive:false});
-    row.addEventListener("pointerup", end);
-    row.addEventListener("pointercancel", end);
-    row.addEventListener("mouseleave", end);
-
-    row.addEventListener("click", ev => {
-      if(dragged){
-        ev.preventDefault();
-        ev.stopPropagation();
-      }
-    }, true);
-  }
-
-  function fixTrendingCarousel(home){
-    const row = home.querySelector("#trendingGrid");
-    if(!row) return;
-    important(row, "display", "flex");
-    important(row, "flex-wrap", "nowrap");
-    important(row, "overflow-x", "auto");
-    important(row, "overflow-y", "visible");
-    important(row, "-webkit-overflow-scrolling", "touch");
-    important(row, "touch-action", "pan-y");
-    important(row, "scroll-snap-type", "x proximity");
-    important(row, "padding", "8px 28px 20px 6px");
-    important(row, "margin", "0 0 18px");
-    row.querySelectorAll(".strain-card").forEach(card => {
-      important(card, "flex", window.innerWidth <= 390 ? "0 0 82vw" : "0 0 min(79vw,330px)");
-      important(card, "width", window.innerWidth <= 390 ? "82vw" : "min(79vw,330px)");
-      important(card, "min-width", window.innerWidth <= 390 ? "82vw" : "min(79vw,330px)");
-      important(card, "max-width", window.innerWidth <= 390 ? "82vw" : "min(79vw,330px)");
-      important(card, "touch-action", "pan-y");
-      important(card, "user-select", "none");
-      card.querySelectorAll("*").forEach(child => important(child, "touch-action", "pan-y"));
-    });
-    installDrag(row);
-  }
-
-  function unclipHeadings(home){
-    home.querySelectorAll(".section-title").forEach(section => {
-      important(section, "overflow", "visible");
-      important(section, "padding-left", "8px");
-      important(section, "margin-left", "0");
-      important(section, "transform", "none");
-      section.querySelectorAll("h2,p").forEach(el => {
-        important(el, "overflow", "visible");
-        important(el, "padding-left", "0");
-        important(el, "margin-left", "0");
-        important(el, "transform", "none");
-      });
-    });
-  }
-
-  function applyV86(){
-    document.body.classList.remove("v84-home-first-screen-lock", "v85-home-ux-stabilization");
-    document.body.classList.add(VERSION);
-    const home = document.getElementById("home");
-    if(!home) return;
-    lockHeroAndDaily(home);
-    fixProgress(home);
-    removeDuplicateSmartAction(home);
-    fixTrendingCarousel(home);
-    unclipHeadings(home);
-    window.clearTimeout(window.__srV86ReadyTimer);
-    window.__srV86ReadyTimer = window.setTimeout(() => document.body.classList.add("v86-home-ready"), 420);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    applyV86();
-    setTimeout(applyV86, 80);
-    setTimeout(applyV86, 350);
-    setTimeout(applyV86, 900);
-  });
-  window.addEventListener("pageshow", () => setTimeout(applyV86, 60));
-  window.addEventListener("resize", () => setTimeout(applyV86, 120));
-  window.addEventListener("orientationchange", () => setTimeout(applyV86, 260));
-
-  const oldShowPage = window.showPage;
-  if(typeof oldShowPage === "function"){
-    window.showPage = function(){
-      const result = oldShowPage.apply(this, arguments);
-      setTimeout(applyV86, 80);
-      setTimeout(applyV86, 360);
-      return result;
-    };
-  }
-
-  const oldRenderSmart = window.renderSmartInsights;
-  if(typeof oldRenderSmart === "function"){
-    window.renderSmartInsights = function(){
-      const result = oldRenderSmart.apply(this, arguments);
-      setTimeout(applyV86, 40);
-      return result;
-    };
-  }
-
-  const oldRenderHome = window.renderHome;
-  if(typeof oldRenderHome === "function"){
-    window.renderHome = function(){
-      const result = oldRenderHome.apply(this, arguments);
-      setTimeout(applyV86, 50);
-      return result;
-    };
-  }
-
-  window.StrainReliefHomeLoadStabilityVersion = VERSION;
-})();
-
-
-/* === V87 HOME STABILITY CLEANUP JS ===
-   Home page only: removes first-screen size jump, restores App Progress styling, and makes Trending Today native-scroll friendly.
-*/
-(function(){
-  const VERSION = "v87-home-stability-cleanup";
-  function qs(sel, root=document){ return root.querySelector(sel); }
-  function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
-  function imp(el, prop, val){ if(el) el.style.setProperty(prop, val, "important"); }
-
-  function lockFirstScreen(home){
-    const hero = qs('.hero', home);
-    const daily = qs('.daily-card', home);
-    [hero,daily].filter(Boolean).forEach(el=>{
+    qsa('#home .hero, #home .daily-card, #home .pro-card, #home .lively-dashboard, #home #smartInsights, #home .section-title').forEach(el=>{
+      el.classList.remove('reveal-on-scroll','visible','v27-rise');
       imp(el,'animation','none');
+      imp(el,'transition-property','box-shadow, border-color, background-color, color, opacity');
       imp(el,'transform','none');
       imp(el,'opacity','1');
       imp(el,'filter','none');
-      imp(el,'contain','layout paint');
+      imp(el,'will-change','auto');
     });
+    const hero=qs('#home .hero');
     if(hero){
       imp(hero,'height','auto');
       imp(hero,'min-height','0');
       imp(hero,'max-height','none');
-      const logo=qs('.brand-logo',hero);
-      if(logo){
-        imp(logo,'animation','none');
-        imp(logo,'height', window.innerWidth<=390 ? '102px' : '112px');
-        imp(logo,'min-height', window.innerWidth<=390 ? '102px' : '112px');
-        imp(logo,'max-height', window.innerWidth<=390 ? '102px' : '112px');
-      }
+      imp(hero,'overflow','hidden');
+      imp(hero,'contain','layout paint');
+    }
+    const logo=qs('#home .hero .brand-logo');
+    if(logo){
+      imp(logo,'display','block');
+      imp(logo,'height','96px');
+      imp(logo,'min-height','96px');
+      imp(logo,'max-height','96px');
+      imp(logo,'width','min(82vw,430px)');
+      imp(logo,'object-fit','contain');
+      imp(logo,'animation','none');
     }
   }
 
-  function fixProgress(home){
-    const card = qs('.pro-card', home);
-    if(!card) return;
-    card.classList.add('v87-progress-clean');
+  function cleanSmartRecommendations(){
+    const box=$('smartInsights'); if(!box) return;
+    qsa('.panel-head button, .panel-head .small-btn, .v83-smart-action, .v84-smart-action, .v85-smart-action, .v86-smart-action, .v87-smart-action, .v88-smart-action', box).forEach(el=>el.remove());
+
+    // Fix bad merged text from broken older CTA injection if it exists.
+    qsa('button,a', box).forEach(el=>{
+      const t=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+      if(t.includes('compare your next direction') || t.includes('refresh match')) el.remove();
+    });
+
+    const cta=document.createElement('button');
+    cta.type='button';
+    cta.className='v88-smart-action';
+    cta.innerHTML='<span><strong>Compare your next direction</strong><small>Open Match and refine by goal, timing, and THC sensitivity.</small></span><b>→</b>';
+    cta.addEventListener('click',()=>{ if(typeof window.showPage==='function') window.showPage('recommend'); });
+    box.appendChild(cta);
+  }
+
+  function cleanAppProgress(){
+    const card=qs('#home .pro-card'); if(!card) return;
+    card.classList.add('v88-progress-card');
     imp(card,'overflow','hidden');
     imp(card,'overflow-x','hidden');
     imp(card,'overflow-y','hidden');
-    const row = qs('.stat-row', card);
+    imp(card,'height','auto');
+    imp(card,'max-height','none');
+    imp(card,'background','linear-gradient(145deg, rgba(72,233,135,.13), rgba(7,28,17,.92))');
+    imp(card,'border','1px solid rgba(72,233,135,.20)');
+    const row=qs('.stat-row',card);
     if(row){
-      imp(row,'overflow','visible');
       imp(row,'display','grid');
       imp(row,'grid-template-columns','repeat(3,minmax(0,1fr))');
       imp(row,'gap','10px');
+      imp(row,'overflow','visible');
     }
   }
 
-  function removeSmartDuplicate(home){
-    qsa('#smartInsights .panel-head button, #smartInsights .panel-head .small-btn', home).forEach(btn=>btn.remove());
-    const action = qs('#smartInsights .v85-smart-action, #smartInsights .v86-smart-action', home);
-    if(action){
-      action.classList.remove('v85-smart-action','v86-smart-action');
-      action.classList.add('v87-smart-action');
+  function centerLiveDashboard(){
+    const board=$('livelyDashboard') || qs('#home .lively-dashboard'); if(!board) return;
+    board.classList.add('v88-lively-dashboard');
+    const strip=qs('.live-hero-strip',board);
+    if(strip){
+      imp(strip,'display','grid');
+      imp(strip,'grid-template-columns','1fr');
+      imp(strip,'justify-items','center');
+      imp(strip,'text-align','center');
+      imp(strip,'overflow','hidden');
     }
+    const img=qs('.live-hero-strip img',board);
+    if(img){ imp(img,'margin','0 auto 8px'); imp(img,'display','block'); }
+    const title=qs('.live-hero-strip h2',board);
+    if(title){ imp(title,'text-align','center'); imp(title,'width','100%'); }
+    const p=qs('.live-hero-strip p',board);
+    if(p){ imp(p,'text-align','center'); imp(p,'margin-left','auto'); imp(p,'margin-right','auto'); }
   }
 
-  function makeNativeCarousel(home){
-    let row = qs('#trendingGrid', home);
-    if(!row) return;
+  function makeCardsNonDraggable(row){
+    qsa('img,a,button',row).forEach(el=>{
+      try{ el.draggable=false; }catch(_e){}
+    });
+  }
 
-    // Remove old pointer/touch listeners from V86 by cloning the row after cards render.
-    if(row.dataset.v87Native !== 'yes'){
-      const clone = row.cloneNode(true);
-      clone.dataset.v87Native = 'yes';
-      clone.classList.add('v87-native-carousel');
-      row.replaceWith(clone);
-      row = clone;
-    }
-
+  function fixTrendingCarousel(){
+    const row=$('trendingGrid'); if(!row) return;
+    row.classList.add('v88-trending-carousel');
     imp(row,'display','flex');
     imp(row,'flex-wrap','nowrap');
     imp(row,'overflow-x','auto');
-    imp(row,'overflow-y','visible');
+    imp(row,'overflow-y','hidden');
     imp(row,'-webkit-overflow-scrolling','touch');
+    imp(row,'scroll-snap-type','x proximity');
     imp(row,'overscroll-behavior-x','contain');
-    imp(row,'scroll-snap-type','x mandatory');
-    imp(row,'touch-action','pan-x');
-    imp(row,'padding','8px 34px 18px 8px');
+    imp(row,'touch-action','pan-y pan-x');
     imp(row,'gap','14px');
-    imp(row,'cursor','auto');
-    imp(row,'contain','none');
-
-    const width = window.innerWidth <= 390 ? '78vw' : 'min(76vw,318px)';
-    qsa('.strain-card', row).forEach(card=>{
+    imp(row,'padding','8px 36px 20px 8px');
+    imp(row,'margin','0 0 22px');
+    const width=window.innerWidth<=390?'79vw':'min(78vw,326px)';
+    qsa('.strain-card',row).forEach(card=>{
       imp(card,'flex',`0 0 ${width}`);
       imp(card,'width',width);
       imp(card,'min-width',width);
       imp(card,'max-width',width);
       imp(card,'scroll-snap-align','start');
-      imp(card,'touch-action','pan-x');
-      imp(card,'user-select','auto');
-      qsa('*',card).forEach(child=>imp(child,'touch-action','pan-x'));
+      imp(card,'touch-action','pan-y pan-x');
+      imp(card,'user-select','none');
+      imp(card,'cursor','grab');
+    });
+    makeCardsNonDraggable(row);
+    installSwipeDrag(row);
+  }
+
+  function installSwipeDrag(row){
+    if(row.dataset.v88Swipe==='yes') return;
+    row.dataset.v88Swipe='yes';
+    let active=false, startX=0, startY=0, startScroll=0, dragging=false, moved=false;
+    const begin=(x,y)=>{ active=true; dragging=false; moved=false; startX=x; startY=y; startScroll=row.scrollLeft; };
+    const move=(x,y,ev)=>{
+      if(!active) return;
+      const dx=x-startX, dy=y-startY;
+      if(!dragging && Math.abs(dx)>8 && Math.abs(dx)>Math.abs(dy)*0.75){ dragging=true; row.classList.add('is-dragging'); }
+      if(dragging){
+        moved=true;
+        if(ev && ev.cancelable) ev.preventDefault();
+        row.scrollLeft=startScroll-dx;
+      }
+    };
+    const end=()=>{ active=false; setTimeout(()=>{ dragging=false; moved=false; row.classList.remove('is-dragging'); },120); };
+    row.addEventListener('touchstart',e=>{ const t=e.touches&&e.touches[0]; if(t) begin(t.clientX,t.clientY); },{passive:true});
+    row.addEventListener('touchmove',e=>{ const t=e.touches&&e.touches[0]; if(t) move(t.clientX,t.clientY,e); },{passive:false});
+    row.addEventListener('touchend',end,{passive:true});
+    row.addEventListener('touchcancel',end,{passive:true});
+    row.addEventListener('pointerdown',e=>{ if(e.pointerType==='touch') return; begin(e.clientX,e.clientY); },{passive:true});
+    row.addEventListener('pointermove',e=>{ if(e.pointerType==='touch') return; move(e.clientX,e.clientY,e); },{passive:false});
+    row.addEventListener('pointerup',end,{passive:true});
+    row.addEventListener('pointercancel',end,{passive:true});
+    row.addEventListener('mouseleave',end,{passive:true});
+    row.addEventListener('click',e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+  }
+
+  function fixRecentlyViewed(){
+    const box=$('recentHome'); if(!box) return;
+    box.classList.add('v88-recent-clean');
+    const carousel=qs('.recent-carousel',box) || qs('.recent-mini-grid',box);
+    if(carousel){
+      carousel.classList.add('v88-recent-carousel');
+      imp(carousel,'display','flex');
+      imp(carousel,'gap','14px');
+      imp(carousel,'overflow-x','auto');
+      imp(carousel,'overflow-y','visible');
+      imp(carousel,'padding','8px 24px 24px 8px');
+      imp(carousel,'scroll-snap-type','x proximity');
+      imp(carousel,'-webkit-overflow-scrolling','touch');
+    }
+    qsa('.recent-card,.recent-mini-card',box).forEach(card=>{
+      imp(card,'flex','0 0 152px');
+      imp(card,'width','152px');
+      imp(card,'min-width','152px');
+      imp(card,'height','auto');
+      imp(card,'min-height','132px');
+      imp(card,'overflow','hidden');
+      imp(card,'scroll-snap-align','start');
+      imp(card,'display','block');
+      imp(card,'padding','10px');
+    });
+    qsa('.recent-card img,.recent-mini-card img',box).forEach(img=>{
+      imp(img,'display','block');
+      imp(img,'width','100%');
+      imp(img,'height','82px');
+      imp(img,'object-fit','cover');
+      imp(img,'border-radius','16px');
+      imp(img,'margin','0 0 8px');
     });
   }
 
+  function cleanSectionSpacing(){
+    const h=home(); if(!h) return;
+    qsa('#home .section-title').forEach(section=>{
+      imp(section,'overflow','visible');
+      imp(section,'padding-left','8px');
+      imp(section,'padding-right','8px');
+      imp(section,'margin-left','0');
+      imp(section,'transform','none');
+    });
+    // Keep content away from the fixed bottom nav.
+    imp(h,'padding-bottom','150px');
+  }
+
   function apply(){
-    document.body.classList.add(VERSION);
-    const home = document.getElementById('home');
-    if(!home) return;
-    lockFirstScreen(home);
-    fixProgress(home);
-    removeSmartDuplicate(home);
-    makeNativeCarousel(home);
+    disableHomeLoadJump();
+    cleanAppProgress();
+    centerLiveDashboard();
+    cleanSmartRecommendations();
+    fixTrendingCarousel();
+    fixRecentlyViewed();
+    cleanSectionSpacing();
   }
 
-  document.addEventListener('DOMContentLoaded',()=>{
+  function schedule(){
     apply();
-    setTimeout(apply,60);
-    setTimeout(apply,220);
-    setTimeout(apply,650);
-  });
-  window.addEventListener('pageshow',()=>setTimeout(apply,60));
-  window.addEventListener('resize',()=>setTimeout(apply,140));
-  window.addEventListener('orientationchange',()=>setTimeout(apply,260));
+    setTimeout(apply,80);
+    setTimeout(apply,300);
+    setTimeout(apply,800);
+  }
 
-  const previousShowPage = window.showPage;
-  if(typeof previousShowPage === 'function'){
-    window.showPage = function(){
-      const out = previousShowPage.apply(this, arguments);
-      setTimeout(apply,80);
-      return out;
+  document.addEventListener('DOMContentLoaded',schedule);
+  window.addEventListener('load',schedule);
+  window.addEventListener('pageshow',()=>setTimeout(schedule,60));
+  window.addEventListener('resize',()=>setTimeout(apply,160));
+  window.addEventListener('orientationchange',()=>setTimeout(apply,280));
+
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==='function'){
+    window.showPage=function(){
+      const result=oldShowPage.apply(this,arguments);
+      setTimeout(schedule,80);
+      return result;
     };
   }
-  const previousRenderFeatured = window.renderFeatured;
-  if(typeof previousRenderFeatured === 'function'){
-    window.renderFeatured = function(){
-      const out = previousRenderFeatured.apply(this, arguments);
+  const oldRenderFeatured=window.renderFeatured;
+  if(typeof oldRenderFeatured==='function'){
+    window.renderFeatured=function(){
+      const result=oldRenderFeatured.apply(this,arguments);
       setTimeout(apply,50);
-      return out;
+      return result;
     };
   }
-  const previousRenderSmart = window.renderSmartInsights;
-  if(typeof previousRenderSmart === 'function'){
-    window.renderSmartInsights = function(){
-      const out = previousRenderSmart.apply(this, arguments);
+  const oldRenderRecent=window.renderRecentHome;
+  if(typeof oldRenderRecent==='function'){
+    window.renderRecentHome=function(){
+      const result=oldRenderRecent.apply(this,arguments);
       setTimeout(apply,50);
-      return out;
+      return result;
     };
   }
-  window.StrainReliefHomeStabilityCleanupVersion = VERSION;
+  const oldRenderSmart=window.renderSmartInsights;
+  if(typeof oldRenderSmart==='function'){
+    window.renderSmartInsights=function(){
+      const result=oldRenderSmart.apply(this,arguments);
+      setTimeout(apply,50);
+      return result;
+    };
+  }
+
+  window.StrainReliefV88HomeCleanup = {version: VERSION, apply};
 })();
