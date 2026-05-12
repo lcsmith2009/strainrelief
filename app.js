@@ -4426,3 +4426,101 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefHomeFirstScreenVersion = VERSION;
 })();
+
+/* ======================================================
+   V84 HOME FIRST-SCREEN LOCK JS
+   Adds cache-visible version class and reinforces critical
+   Home-only mobile fit after dynamic rendering.
+====================================================== */
+(function(){
+  const VERSION = "v84-home-first-screen-lock";
+
+  function important(el, prop, value){
+    if(el && el.style) el.style.setProperty(prop, value, "important");
+  }
+
+  function applyV84(){
+    document.body.classList.add(VERSION);
+    const home = document.getElementById("home");
+    if(!home) return;
+
+    const hero = home.querySelector(".home-hero-v76, .hero");
+    if(hero){
+      important(hero, "min-height", "0");
+      important(hero, "height", "auto");
+      important(hero, "padding", "7px 11px 8px");
+      important(hero, "margin", "0 0 7px");
+      important(hero, "gap", "4px");
+    }
+
+    const logo = home.querySelector(".hero .brand-logo, .home-hero-v76 .brand-logo");
+    important(logo, "height", window.innerWidth <= 390 ? "30px" : "34px");
+    important(logo, "max-height", window.innerWidth <= 390 ? "30px" : "34px");
+    important(logo, "margin", "-3px auto -1px");
+
+    const h1 = home.querySelector(".hero h1, .home-hero-v76 h1");
+    important(h1, "line-height", ".94");
+    important(h1, "margin", "1px 0 2px");
+
+    const copy = home.querySelector(".hero p, .home-hero-v76 p");
+    important(copy, "font-size", "10.3px");
+    important(copy, "line-height", "1.12");
+    important(copy, "margin", "0 0 5px");
+    important(copy, "overflow", "hidden");
+
+    home.querySelectorAll(".hero-actions button").forEach(btn => {
+      important(btn, "height", "28px");
+      important(btn, "min-height", "28px");
+      important(btn, "font-size", "9.8px");
+      important(btn, "padding", "0 4px");
+    });
+
+    home.querySelectorAll(".hero-mini-strip span").forEach(item => {
+      important(item, "height", "25px");
+      important(item, "min-height", "25px");
+      important(item, "padding", "3px 4px");
+    });
+
+    home.querySelectorAll(".section-title").forEach(section => {
+      section.classList.add("v84-heading-safe");
+      important(section, "overflow", "visible");
+      important(section, "padding-left", "2px");
+      important(section, "margin-left", "0");
+      important(section, "transform", "none");
+    });
+
+    [document.getElementById("trendingGrid"), home.querySelector(".recent-carousel")].forEach(row => {
+      if(!row) return;
+      row.classList.add("v84-carousel-safe");
+      important(row, "display", "flex");
+      important(row, "overflow-x", "auto");
+      important(row, "overflow-y", "visible");
+      important(row, "-webkit-overflow-scrolling", "touch");
+      important(row, "touch-action", "pan-x");
+      important(row, "scroll-snap-type", "x proximity");
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV84();
+    setTimeout(applyV84, 120);
+    setTimeout(applyV84, 500);
+    setTimeout(applyV84, 1200);
+    setTimeout(applyV84, 2200);
+  });
+  window.addEventListener("pageshow", () => setTimeout(applyV84, 80));
+  window.addEventListener("resize", () => setTimeout(applyV84, 100));
+  window.addEventListener("orientationchange", () => setTimeout(applyV84, 220));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(applyV84, 80);
+      setTimeout(applyV84, 420);
+      return result;
+    };
+  }
+
+  window.StrainReliefHomeFirstScreenLockVersion = VERSION;
+})();

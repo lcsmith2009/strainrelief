@@ -11970,3 +11970,263 @@ body.v83-home-first-screen-fit #home .recent-card{
     padding: 10px 12px !important;
   }
 }
+
+/* ======================================================
+   V84 HOME FIRST-SCREEN LOCK — REAL MOBILE OVERRIDE
+   Home page only. Purpose: make first load show hero + Daily
+   Wellness Direction together, fix clipped Home headings,
+   and make horizontal rows easier to swipe.
+====================================================== */
+html, body{
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+body.v84-home-first-screen-lock #home,
+body.v84-home-first-screen-lock #home.page,
+body.v84-home-first-screen-lock #home.home-page-v76{
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  padding-top: 4px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  padding-bottom: 92px !important;
+  gap: 9px !important;
+}
+
+body.v84-home-first-screen-lock #home > *{
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* REAL hero shrink: move content up and reduce unused vertical height */
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76.hero.card-glow,
+body.v84-home-first-screen-lock #home header.home-hero-v76,
+body.v84-home-first-screen-lock #home .hero{
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 7px 11px 8px !important;
+  margin: 0 0 7px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  transform: none !important;
+}
+
+body.v84-home-first-screen-lock #home .hero .brand-logo,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 .brand-logo{
+  width: auto !important;
+  height: 34px !important;
+  max-height: 34px !important;
+  object-fit: contain !important;
+  margin: -3px auto -1px !important;
+  display: block !important;
+}
+
+body.v84-home-first-screen-lock #home .hero .eyebrow,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .eyebrow{
+  font-size: 8.8px !important;
+  line-height: 1 !important;
+  letter-spacing: .12em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.v84-home-first-screen-lock #home .hero h1,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > h1{
+  font-size: clamp(22px, 6.2vw, 28px) !important;
+  line-height: .94 !important;
+  letter-spacing: -.045em !important;
+  margin: 1px 0 2px !important;
+  padding: 0 !important;
+}
+
+body.v84-home-first-screen-lock #home .hero p,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > p{
+  font-size: 10.3px !important;
+  line-height: 1.12 !important;
+  margin: 0 0 5px !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+}
+
+body.v84-home-first-screen-lock #home .hero-actions,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-actions{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.v84-home-first-screen-lock #home .hero-actions button,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-actions button{
+  height: 28px !important;
+  min-height: 28px !important;
+  border-radius: 999px !important;
+  padding: 0 4px !important;
+  font-size: 9.8px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+body.v84-home-first-screen-lock #home .hero-mini-strip,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-mini-strip{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 5px !important;
+  margin: 5px 0 0 !important;
+  padding: 0 !important;
+}
+
+body.v84-home-first-screen-lock #home .hero-mini-strip span,
+body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-mini-strip span{
+  min-height: 25px !important;
+  height: 25px !important;
+  border-radius: 12px !important;
+  padding: 3px 4px !important;
+  font-size: 9.3px !important;
+  line-height: 1.02 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.v84-home-first-screen-lock #home .hero-mini-strip strong{
+  font-size: 10.8px !important;
+  line-height: 1 !important;
+}
+
+/* Daily card must sit inside the opening viewport with the compact hero */
+body.v84-home-first-screen-lock #home .daily-card,
+body.v84-home-first-screen-lock #home .home-daily-v76{
+  margin: 0 0 9px !important;
+  padding: 10px 12px !important;
+  min-height: 58px !important;
+}
+body.v84-home-first-screen-lock #home .daily-card .eyebrow{
+  font-size: 9px !important;
+  line-height: 1 !important;
+  margin-bottom: 3px !important;
+}
+body.v84-home-first-screen-lock #home .daily-card h2{
+  font-size: 17px !important;
+  line-height: 1.05 !important;
+  margin: 0 0 3px !important;
+}
+body.v84-home-first-screen-lock #home .daily-card p{
+  font-size: 11px !important;
+  line-height: 1.18 !important;
+  margin: 0 !important;
+}
+
+/* A little space between every Home box without making the page tall */
+body.v84-home-first-screen-lock #home .quick-row,
+body.v84-home-first-screen-lock #home .pro-card,
+body.v84-home-first-screen-lock #home #smartInsights,
+body.v84-home-first-screen-lock #home #recentHome,
+body.v84-home-first-screen-lock #home #trendingGrid,
+body.v84-home-first-screen-lock #home .section-title{
+  margin-top: 0 !important;
+  margin-bottom: 9px !important;
+}
+
+/* Fix first-letter clipping on section headers */
+body.v84-home-first-screen-lock #home .section-title,
+body.v84-home-first-screen-lock #home .v83-heading-safe{
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+  margin-left: 0 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+body.v84-home-first-screen-lock #home .section-title h2,
+body.v84-home-first-screen-lock #home .section-title p{
+  overflow: visible !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  text-indent: 0 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+/* Easier mobile carousel swiping */
+body.v84-home-first-screen-lock #home #trendingGrid,
+body.v84-home-first-screen-lock #home .recent-carousel{
+  width: calc(100% + 6px) !important;
+  max-width: calc(100% + 6px) !important;
+  display: flex !important;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain !important;
+  scroll-snap-type: x proximity !important;
+  touch-action: pan-x !important;
+  padding: 2px 16px 12px 2px !important;
+  margin-left: 0 !important;
+  margin-right: -6px !important;
+  scrollbar-width: none !important;
+}
+body.v84-home-first-screen-lock #home #trendingGrid::-webkit-scrollbar,
+body.v84-home-first-screen-lock #home .recent-carousel::-webkit-scrollbar{
+  display: none !important;
+}
+body.v84-home-first-screen-lock #home #trendingGrid .strain-card{
+  flex: 0 0 min(76vw, 292px) !important;
+  width: min(76vw, 292px) !important;
+  min-width: min(76vw, 292px) !important;
+  max-width: min(76vw, 292px) !important;
+  scroll-snap-align: start !important;
+}
+body.v84-home-first-screen-lock #home .recent-card{
+  flex: 0 0 126px !important;
+  min-width: 126px !important;
+  max-width: 126px !important;
+  scroll-snap-align: start !important;
+}
+
+@media (max-width: 390px){
+  body.v84-home-first-screen-lock #home,
+  body.v84-home-first-screen-lock #home.page,
+  body.v84-home-first-screen-lock #home.home-page-v76{
+    padding-top: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    gap: 8px !important;
+  }
+  body.v84-home-first-screen-lock #home .hero .brand-logo,
+  body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 .brand-logo{
+    height: 30px !important;
+    max-height: 30px !important;
+  }
+  body.v84-home-first-screen-lock #home .hero h1,
+  body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > h1{
+    font-size: 21px !important;
+  }
+  body.v84-home-first-screen-lock #home .hero p,
+  body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > p{
+    -webkit-line-clamp: 1 !important;
+    margin-bottom: 4px !important;
+  }
+  body.v84-home-first-screen-lock #home .hero-actions button{
+    height: 27px !important;
+    min-height: 27px !important;
+    font-size: 9.3px !important;
+  }
+  body.v84-home-first-screen-lock #home .hero-mini-strip span{
+    height: 24px !important;
+    min-height: 24px !important;
+  }
+}
