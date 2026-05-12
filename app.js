@@ -1435,11 +1435,7 @@ document.addEventListener('visibilitychange',()=>setTimeout(srV25LockProgress,12
     orb.className='v27-hero-orbits';
     orb.innerHTML='<i></i><i></i><i></i>';
     hero.prepend(orb);
-    const micro=document.createElement('div');
-    micro.className='v27-live-pill';
-    micro.innerHTML='<span></span><b>Live daily wellness map</b>';
-    const actions=hero.querySelector('.hero-actions');
-    if(actions) hero.insertBefore(micro, actions);
+    // V74: Live daily wellness map pill removed to tighten mobile home layout.
   }
   function v27RenderSpotlight(){
     const home=document.getElementById('home'); if(!home) return;
@@ -3997,4 +3993,43 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   }
 
   window.StrainReliefPatchVersion = VERSION;
+})();
+
+
+/* ======================================================
+   V74 HOME PILL REMOVAL + BALANCE JS
+====================================================== */
+(function(){
+  const VERSION='v74-home-pill-removal-balance';
+  function run(){
+    document.body.classList.add(VERSION);
+    document.querySelectorAll('.v27-live-pill,.live-pill,.hero-pill,.status-pill').forEach(el=>{
+      if((el.textContent||'').toLowerCase().includes('live daily wellness map')) el.remove();
+    });
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      Object.assign(nav.style,{position:'fixed',left:'50%',right:'auto',transform:'translateX(-50%)',bottom:'calc(8px + env(safe-area-inset-bottom))',width:'min(660px, calc(100vw - 24px))',maxWidth:'calc(100vw - 24px)',zIndex:'99990'});
+    }
+    let btn=document.getElementById('srBackTop');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='srBackTop';
+      btn.type='button';
+      btn.setAttribute('aria-label','Back to top');
+      btn.textContent='↑';
+      document.body.appendChild(btn);
+      btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    }
+    const y=window.scrollY||document.documentElement.scrollTop||0;
+    btn.classList.toggle('show', y>520);
+  }
+  document.addEventListener('DOMContentLoaded',()=>{run(); setTimeout(run,200); setTimeout(run,800); setTimeout(run,1600);});
+  window.addEventListener('scroll',run,{passive:true});
+  window.addEventListener('pageshow',()=>setTimeout(run,120));
+  window.addEventListener('resize',()=>setTimeout(run,120));
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==='function'){
+    window.showPage=function(){const r=oldShowPage.apply(this,arguments); setTimeout(run,120); return r;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
 })();
