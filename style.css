@@ -9007,3 +9007,384 @@ body{
     padding-bottom:10px !important;
   }
 }
+
+
+/* ======================================================
+   V72 HOME FINAL REPAIR
+   Goal:
+   1) Center hero visually
+   2) Pull Daily Wellness fully above nav on first load
+   3) Restore subtle back-to-top button
+   4) Preserve the compact premium layout
+====================================================== */
+
+body.v72-home-final-repair{
+  --sr-nav-h: 86px;
+  --sr-nav-gap: 8px;
+  --sr-page-x: 14px;
+  padding-left:var(--sr-page-x) !important;
+  padding-right:var(--sr-page-x) !important;
+  padding-bottom:calc(var(--sr-nav-h) + var(--sr-nav-gap) + env(safe-area-inset-bottom)) !important;
+  overflow-x:hidden !important;
+}
+
+/* Keep the bottom nav centered and predictable */
+body.v72-home-final-repair .bottom-nav,
+body.v72-home-final-repair nav.bottom-nav,
+body.v72-home-final-repair #bottomNav{
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:calc(8px + env(safe-area-inset-bottom)) !important;
+  transform:translateX(-50%) !important;
+  width:min(660px, calc(100vw - 24px)) !important;
+  max-width:calc(100vw - 24px) !important;
+  height:auto !important;
+  min-height:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:7px !important;
+  padding:7px !important;
+  margin:0 !important;
+  z-index:99990 !important;
+}
+
+/* Home page: hard-reset outer spacing */
+body.v72-home-final-repair #home,
+body.v72-home-final-repair .page#home,
+body.v72-home-final-repair [data-page="home"]{
+  padding-top:8px !important;
+  padding-bottom:calc(var(--sr-nav-h) + 10px + env(safe-area-inset-bottom)) !important;
+  margin:0 auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+}
+
+/* Hero centering + height control.
+   The screenshot shows the hero is visually shifted because the card is too tall.
+   This compresses the card using internal spacing instead of deleting content. */
+body.v72-home-final-repair #home .hero,
+body.v72-home-final-repair #home .home-hero,
+body.v72-home-final-repair #home .hero-card,
+body.v72-home-final-repair #home .welcome-card,
+body.v72-home-final-repair #home .top-card,
+body.v72-home-final-repair .hero-card{
+  width:calc(100vw - 28px) !important;
+  max-width:660px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  margin-top:0 !important;
+  margin-bottom:8px !important;
+  min-height:0 !important;
+  height:auto !important;
+  max-height:calc(100svh - 235px) !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+  padding:clamp(16px, 3.4vh, 24px) clamp(18px, 5vw, 30px) clamp(14px, 2.3vh, 20px) !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  text-align:center !important;
+  gap:clamp(8px, 1.2vh, 12px) !important;
+}
+
+/* Compact typography inside home hero */
+body.v72-home-final-repair #home .hero img,
+body.v72-home-final-repair #home .home-hero img,
+body.v72-home-final-repair #home .hero-card img,
+body.v72-home-final-repair #home .brand-logo,
+body.v72-home-final-repair #home .logo{
+  max-height:clamp(42px, 7vh, 68px) !important;
+  width:auto !important;
+  object-fit:contain !important;
+  margin:0 auto 2px !important;
+}
+
+body.v72-home-final-repair #home .eyebrow,
+body.v72-home-final-repair #home .kicker,
+body.v72-home-final-repair #home .hero-eyebrow{
+  margin:0 !important;
+  font-size:clamp(.72rem, 2.8vw, .92rem) !important;
+  line-height:1.05 !important;
+  letter-spacing:.14em !important;
+}
+
+body.v72-home-final-repair #home .hero h1,
+body.v72-home-final-repair #home .home-hero h1,
+body.v72-home-final-repair #home .hero-card h1,
+body.v72-home-final-repair #home h1{
+  margin:0 !important;
+  max-width:11.5em !important;
+  font-size:clamp(2.05rem, 8.4vw, 3rem) !important;
+  line-height:.94 !important;
+  text-align:center !important;
+}
+
+body.v72-home-final-repair #home .hero p,
+body.v72-home-final-repair #home .home-hero p,
+body.v72-home-final-repair #home .hero-card p,
+body.v72-home-final-repair #home .hero-subtitle,
+body.v72-home-final-repair #home .subtitle{
+  margin:0 auto !important;
+  max-width:28em !important;
+  font-size:clamp(.88rem, 3.5vw, 1.02rem) !important;
+  line-height:1.22 !important;
+  text-align:center !important;
+}
+
+body.v72-home-final-repair #home .status-pill,
+body.v72-home-final-repair #home .live-pill,
+body.v72-home-final-repair #home .hero-pill{
+  margin:2px auto 4px !important;
+  padding:8px 14px !important;
+  min-height:0 !important;
+  height:auto !important;
+  font-size:.9rem !important;
+}
+
+body.v72-home-final-repair #home .hero-actions,
+body.v72-home-final-repair #home .cta-stack,
+body.v72-home-final-repair #home .hero-buttons{
+  width:100% !important;
+  display:grid !important;
+  gap:8px !important;
+  margin:clamp(8px, 1.6vh, 14px) 0 0 !important;
+}
+
+body.v72-home-final-repair #home .hero button,
+body.v72-home-final-repair #home .hero-card button,
+body.v72-home-final-repair #home .cta-stack button,
+body.v72-home-final-repair #home .hero-actions button{
+  min-height:46px !important;
+  height:46px !important;
+  padding:0 16px !important;
+  border-radius:999px !important;
+}
+
+body.v72-home-final-repair #home .hero-stats,
+body.v72-home-final-repair #home .stats-row,
+body.v72-home-final-repair #home .stat-row,
+body.v72-home-final-repair #home .mini-stats{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:8px !important;
+  margin-top:clamp(8px, 1.5vh, 14px) !important;
+}
+
+body.v72-home-final-repair #home .hero-stats > *,
+body.v72-home-final-repair #home .stats-row > *,
+body.v72-home-final-repair #home .stat-row > *,
+body.v72-home-final-repair #home .mini-stats > *{
+  min-height:48px !important;
+  height:48px !important;
+  padding:6px 4px !important;
+  border-radius:16px !important;
+  display:grid !important;
+  place-items:center !important;
+}
+
+/* Pull Daily Wellness into the first screen and keep the profile button usable */
+body.v72-home-final-repair #home .daily-card,
+body.v72-home-final-repair #home .daily-wellness,
+body.v72-home-final-repair #home .daily-direction,
+body.v72-home-final-repair #dailyWellness,
+body.v72-home-final-repair #dailyDirection{
+  width:calc(100vw - 28px) !important;
+  max-width:660px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  margin-top:8px !important;
+  margin-bottom:10px !important;
+  min-height:0 !important;
+  max-height:none !important;
+  overflow:visible !important;
+  padding:14px 18px 18px !important;
+  box-sizing:border-box !important;
+  position:relative !important;
+  z-index:3 !important;
+}
+
+body.v72-home-final-repair #home .daily-card h2,
+body.v72-home-final-repair #home .daily-wellness h2,
+body.v72-home-final-repair #home .daily-direction h2,
+body.v72-home-final-repair #dailyWellness h2,
+body.v72-home-final-repair #dailyDirection h2{
+  font-size:clamp(1.85rem, 7vw, 2.45rem) !important;
+  line-height:.98 !important;
+  margin:0 0 8px !important;
+}
+
+body.v72-home-final-repair #home .daily-card p,
+body.v72-home-final-repair #home .daily-wellness p,
+body.v72-home-final-repair #home .daily-direction p,
+body.v72-home-final-repair #dailyWellness p,
+body.v72-home-final-repair #dailyDirection p{
+  margin:0 0 8px !important;
+  line-height:1.25 !important;
+  font-size:clamp(.94rem, 3.5vw, 1.08rem) !important;
+}
+
+body.v72-home-final-repair #home .daily-card button,
+body.v72-home-final-repair #home .daily-wellness button,
+body.v72-home-final-repair #home .daily-direction button,
+body.v72-home-final-repair #dailyWellness button,
+body.v72-home-final-repair #dailyDirection button{
+  position:relative !important;
+  z-index:5 !important;
+  min-height:40px !important;
+  height:40px !important;
+  padding:0 16px !important;
+}
+
+/* Ensure Today's Spotlight never overlaps over Daily Wellness */
+body.v72-home-final-repair #home .spotlight,
+body.v72-home-final-repair #home .spotlight-card,
+body.v72-home-final-repair #todaySpotlight{
+  margin-top:12px !important;
+  position:relative !important;
+  z-index:1 !important;
+}
+
+/* Subtle restored back-to-top button */
+body.v72-home-final-repair #srBackTop,
+body.v72-home-final-repair .back-to-top,
+body.v72-home-final-repair #backToTop{
+  position:fixed !important;
+  right:18px !important;
+  bottom:calc(96px + env(safe-area-inset-bottom)) !important;
+  width:38px !important;
+  height:38px !important;
+  border-radius:999px !important;
+  display:grid !important;
+  place-items:center !important;
+  border:1px solid rgba(124,255,173,.24) !important;
+  background:rgba(26,220,113,.82) !important;
+  color:#02190b !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+  box-shadow:0 12px 24px rgba(0,0,0,.35), 0 0 16px rgba(78,255,145,.18) !important;
+  z-index:99980 !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  transform:translateY(6px) scale(.96) !important;
+  transition:opacity .18s ease, transform .18s ease !important;
+}
+
+body.v72-home-final-repair #srBackTop.show,
+body.v72-home-final-repair .back-to-top.show,
+body.v72-home-final-repair #backToTop.show{
+  opacity:.86 !important;
+  pointer-events:auto !important;
+  transform:translateY(0) scale(1) !important;
+}
+
+/* Samsung/Android specific height squeeze */
+@media(max-width:430px) and (max-height:860px){
+  body.v72-home-final-repair{
+    --sr-page-x:12px;
+  }
+
+  body.v72-home-final-repair #home .hero,
+  body.v72-home-final-repair #home .home-hero,
+  body.v72-home-final-repair #home .hero-card,
+  body.v72-home-final-repair #home .welcome-card,
+  body.v72-home-final-repair #home .top-card{
+    width:calc(100vw - 24px) !important;
+    max-height:calc(100svh - 230px) !important;
+    padding:12px 16px 12px !important;
+    gap:7px !important;
+  }
+
+  body.v72-home-final-repair #home .hero img,
+  body.v72-home-final-repair #home .home-hero img,
+  body.v72-home-final-repair #home .hero-card img,
+  body.v72-home-final-repair #home .brand-logo,
+  body.v72-home-final-repair #home .logo{
+    max-height:48px !important;
+  }
+
+  body.v72-home-final-repair #home .hero h1,
+  body.v72-home-final-repair #home .home-hero h1,
+  body.v72-home-final-repair #home .hero-card h1,
+  body.v72-home-final-repair #home h1{
+    font-size:clamp(1.9rem, 7.8vw, 2.45rem) !important;
+  }
+
+  body.v72-home-final-repair #home .hero p,
+  body.v72-home-final-repair #home .home-hero p,
+  body.v72-home-final-repair #home .hero-card p,
+  body.v72-home-final-repair #home .hero-subtitle,
+  body.v72-home-final-repair #home .subtitle{
+    font-size:.88rem !important;
+    line-height:1.18 !important;
+  }
+
+  body.v72-home-final-repair #home .hero button,
+  body.v72-home-final-repair #home .hero-card button,
+  body.v72-home-final-repair #home .cta-stack button,
+  body.v72-home-final-repair #home .hero-actions button{
+    height:42px !important;
+    min-height:42px !important;
+  }
+
+  body.v72-home-final-repair #home .hero-stats > *,
+  body.v72-home-final-repair #home .stats-row > *,
+  body.v72-home-final-repair #home .stat-row > *,
+  body.v72-home-final-repair #home .mini-stats > *{
+    height:42px !important;
+    min-height:42px !important;
+  }
+
+  body.v72-home-final-repair #home .daily-card,
+  body.v72-home-final-repair #home .daily-wellness,
+  body.v72-home-final-repair #home .daily-direction,
+  body.v72-home-final-repair #dailyWellness,
+  body.v72-home-final-repair #dailyDirection{
+    width:calc(100vw - 24px) !important;
+    padding:12px 16px 14px !important;
+    margin-top:7px !important;
+  }
+}
+
+/* Ultra compact first screen on shorter Android browser viewports */
+@media(max-width:430px) and (max-height:780px){
+  body.v72-home-final-repair #home .hero,
+  body.v72-home-final-repair #home .home-hero,
+  body.v72-home-final-repair #home .hero-card,
+  body.v72-home-final-repair #home .welcome-card,
+  body.v72-home-final-repair #home .top-card{
+    max-height:calc(100svh - 210px) !important;
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+  }
+
+  body.v72-home-final-repair #home .hero img,
+  body.v72-home-final-repair #home .home-hero img,
+  body.v72-home-final-repair #home .hero-card img,
+  body.v72-home-final-repair #home .brand-logo,
+  body.v72-home-final-repair #home .logo{
+    max-height:40px !important;
+  }
+
+  body.v72-home-final-repair #home .hero h1,
+  body.v72-home-final-repair #home .home-hero h1,
+  body.v72-home-final-repair #home .hero-card h1,
+  body.v72-home-final-repair #home h1{
+    font-size:2rem !important;
+  }
+
+  body.v72-home-final-repair #home .hero p,
+  body.v72-home-final-repair #home .home-hero p,
+  body.v72-home-final-repair #home .hero-card p{
+    font-size:.82rem !important;
+  }
+
+  body.v72-home-final-repair #home .status-pill,
+  body.v72-home-final-repair #home .live-pill,
+  body.v72-home-final-repair #home .hero-pill{
+    padding:6px 12px !important;
+    font-size:.82rem !important;
+  }
+}

@@ -3904,3 +3904,97 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V72 HOME FINAL REPAIR JS
+====================================================== */
+(function(){
+  const VERSION = "v72-home-final-repair";
+
+  function ensureClass(){
+    document.body.classList.add(VERSION);
+  }
+
+  function centerNav(){
+    const nav = document.querySelector(".bottom-nav, nav.bottom-nav, #bottomNav");
+    if(!nav) return;
+    Object.assign(nav.style, {
+      position:"fixed",
+      left:"50%",
+      right:"auto",
+      bottom:"calc(8px + env(safe-area-inset-bottom))",
+      transform:"translateX(-50%)",
+      width:"min(660px, calc(100vw - 24px))",
+      maxWidth:"calc(100vw - 24px)",
+      zIndex:"99990"
+    });
+  }
+
+  function labelHomeElements(){
+    const home = document.getElementById("home") || document.querySelector('[data-page="home"]');
+    if(!home) return;
+
+    const headings = [...home.querySelectorAll("h1,h2,h3")];
+    const heroHeading = headings.find(h => /find\s+your\s+wellness\s+direction/i.test(h.textContent || ""));
+    if(heroHeading){
+      const card = heroHeading.closest(".hero,.home-hero,.hero-card,.welcome-card,.top-card,.panel,.card,section,article,div");
+      if(card) card.classList.add("home-hero", "hero-card");
+    }
+
+    const dailyHeading = headings.find(h => /daily\s+wellness\s+direction|mood check|stress support|sleep support|body comfort|cbd/i.test(h.textContent || ""));
+    if(dailyHeading){
+      const card = dailyHeading.closest(".daily-card,.daily-wellness,.daily-direction,.panel,.card,section,article,div");
+      if(card) {
+        card.classList.add("daily-card", "daily-wellness");
+        card.id = card.id || "dailyWellness";
+      }
+    }
+  }
+
+  function restoreBackTop(){
+    let btn = document.getElementById("srBackTop");
+    if(!btn){
+      btn = document.createElement("button");
+      btn.id = "srBackTop";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Back to top");
+      btn.textContent = "↑";
+      document.body.appendChild(btn);
+      btn.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+    }
+
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    btn.classList.toggle("show", y > 520);
+  }
+
+  function run(){
+    ensureClass();
+    labelHomeElements();
+    centerNav();
+    restoreBackTop();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 150);
+    setTimeout(run, 600);
+    setTimeout(run, 1200);
+  });
+
+  window.addEventListener("scroll", restoreBackTop, {passive:true});
+  window.addEventListener("resize", () => setTimeout(run, 120));
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 80);
+      setTimeout(run, 450);
+      return result;
+    };
+  }
+
+  window.StrainReliefPatchVersion = VERSION;
+})();
