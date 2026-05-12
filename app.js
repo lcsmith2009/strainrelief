@@ -4055,3 +4055,111 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener("scroll", ensureBackTop, {passive:true});
   window.addEventListener("pageshow", ensureBackTop);
 })();
+
+
+/* ======================================================
+   V78 PREMIUM CARD / IMAGE UPGRADE JS
+   Adds safe helper classes to card-like elements so CSS can style consistently.
+====================================================== */
+(function(){
+  const VERSION = "v78-premium-card-image";
+
+  function addVersion(){
+    document.body.classList.add(VERSION);
+  }
+
+  function tagCards(){
+    const pages = document.querySelectorAll("#home, #search, #saved, #learn, #match");
+    pages.forEach(page => {
+      const cards = page.querySelectorAll(".card, .card-glow, article, [data-strain], button[data-strain]");
+      cards.forEach(card => {
+        const txt = (card.textContent || "").trim();
+        const hasStrainText = /strain|hybrid|indica|sativa|cbd|mood|sleep|stress|focus|body comfort|terpene|myrcene|limonene|pinene|linalool|humulene|caryophyllene/i.test(txt);
+        const hasImg = !!card.querySelector("img");
+        if(hasImg && hasStrainText){
+          card.classList.add("strain-card");
+          if(page.id === "home" && /trending/i.test(page.textContent || "")){
+            card.classList.add("trending-card");
+          }
+        }
+      });
+    });
+
+    // Horizontal home sections
+    const home = document.getElementById("home");
+    if(home){
+      [...home.querySelectorAll("section, div")].forEach(el => {
+        const t = (el.textContent || "").trim();
+        if(/^Trending Today/i.test(t)) el.classList.add("section", "trending-section");
+        if(/^Recently Viewed/i.test(t)) el.classList.add("section", "recent-section");
+        if(/^Smart Recommendations/i.test(t)) el.classList.add("section", "smart-section");
+      });
+    }
+  }
+
+  function run(){
+    addVersion();
+    tagCards();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 250);
+    setTimeout(run, 900);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 120);
+      return result;
+    };
+  }
+
+  window.StrainReliefPremiumVersion = VERSION;
+})();
+
+
+/* ======================================================
+   V94 SAFE PREMIUM POLISH FROM V78 JS
+   Minimal support only: version class, scroll safety, cache marker, and
+   non-destructive carousel accessibility. Does not replace Search/Learn data.
+====================================================== */
+(function(){
+  const VERSION = "v94-safe-premium-polish-from-v78";
+  function applyV94(){
+    document.body.classList.add("v94-safe-premium-polish");
+    document.documentElement.style.overflowY = "auto";
+    document.body.style.overflowY = "auto";
+    document.body.style.touchAction = "pan-y";
+    const trending = document.getElementById("trendingGrid");
+    if(trending){
+      trending.setAttribute("aria-label", "Trending strain directions");
+      trending.setAttribute("role", "list");
+      trending.querySelectorAll(".strain-card").forEach(card => card.setAttribute("role", "listitem"));
+    }
+    const nav = document.querySelector(".bottom-nav");
+    if(nav){
+      nav.setAttribute("aria-label", "Primary navigation");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV94();
+    setTimeout(applyV94, 250);
+    setTimeout(applyV94, 900);
+  });
+  window.addEventListener("pageshow", () => setTimeout(applyV94, 120));
+  window.addEventListener("resize", () => setTimeout(applyV94, 120));
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const out = oldShowPage.apply(this, arguments);
+      setTimeout(applyV94, 80);
+      return out;
+    };
+  }
+  window.StrainReliefPatchVersion = VERSION;
+})();
