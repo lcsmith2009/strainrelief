@@ -4121,3 +4121,83 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPremiumVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V79 MOBILE OVERFLOW STABILIZATION JS
+   Single purpose:
+   Finds elements wider than viewport and clamps them safely.
+====================================================== */
+(function(){
+  const VERSION = "v79-mobile-overflow-stabilization";
+
+  function applyVersion(){
+    document.body.classList.add(VERSION);
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+  }
+
+  function stabilizeOverflow(){
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if(!vw) return;
+
+    const selectors = [
+      ".app","main",".screen",".page",".tab-page",".view","[data-page]",
+      "section","article",".card",".card-glow",".panel",
+      ".horizontal-scroll",".scroll-row",".card-row",".carousel",".rail",
+      ".strain-card",".strain-tile",".result-card",".recent-card",".trending-card",
+      ".smart-card",".recommendation-card",".dashboard-card"
+    ];
+
+    document.querySelectorAll(selectors.join(",")).forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if(rect.width > vw + 2 || rect.left < -2 || rect.right > vw + 2){
+        el.classList.add("sr-overflow-fixed");
+        el.style.maxWidth = "100%";
+        el.style.minWidth = "0";
+        if(!/(horizontal-scroll|scroll-row|card-row|carousel|rail)/.test(el.className || "")){
+          el.style.overflowX = "hidden";
+        }
+      }
+    });
+
+    // Make fixed nav safe if injected dynamically
+    const nav = document.querySelector(".bottom-nav");
+    if(nav){
+      nav.style.left = "50%";
+      nav.style.right = "auto";
+      nav.style.transform = "translateX(-50%)";
+      nav.style.width = "calc(100vw - 28px)";
+      nav.style.maxWidth = "430px";
+      nav.style.overflow = "hidden";
+    }
+  }
+
+  function run(){
+    applyVersion();
+    stabilizeOverflow();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 150);
+    setTimeout(run, 600);
+    setTimeout(run, 1200);
+  });
+
+  window.addEventListener("resize", () => setTimeout(run, 80));
+  window.addEventListener("orientationchange", () => setTimeout(run, 250));
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 120);
+      setTimeout(run, 500);
+      return result;
+    };
+  }
+
+  window.StrainReliefOverflowVersion = VERSION;
+})();

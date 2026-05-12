@@ -1,11 +1,21 @@
-# StrainRelief V71 Home Alignment + Nav Clearance Fix REAL
+# StrainRelief V79 — Mobile Overflow Stabilization
 
-Fixes:
-- Re-centers the Home hero card.
-- Makes the Home hero more compact without removing the 150 / Daily / Smart tiles.
-- Keeps the Daily Wellness Direction card fully visible and clickable above the bottom nav on first load/refresh.
-- Uses the Learn page spacing style as the standard for bottom nav clearance.
-- Restores a smaller, subtle back-to-top button.
-- Cache-busts CSS, JS, and service worker to v71.
+## Single update in this version
+Mobile Width + Overflow Stabilization Pass.
 
-Upload all files to GitHub, wait for Vercel, then hard refresh / reinstall PWA if needed.
+## What changed
+- Prevents horizontal page scrolling.
+- Keeps major cards, sections, carousels, and app pages inside the Samsung/mobile viewport.
+- Centers and clamps the fixed bottom nav.
+- Keeps carousels scrollable internally without widening the whole page.
+- Prevents Smart Recommendations, Live Wellness Dashboard, Recently Viewed, Trending, Search cards, and Learn cards from leaking off-screen.
+- Adds a safe overflow guard in JavaScript for dynamically rendered cards.
+
+## What did not change
+- No redesign.
+- No Home layout rebuild.
+- No bundled feature updates.
+- V78 visual style is preserved.
+
+## Upload notes
+Upload all files to GitHub/Vercel. After deployment, hard refresh or close/reopen the app so the new cache-busted CSS and JS load.
