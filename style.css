@@ -11900,3 +11900,362 @@ body.v88-full-code-glitch-cleanup #home #recentHome .recent-mini-card span{
   body.v88-full-code-glitch-cleanup #home .hero p{font-size:14px!important;}
   body.v88-full-code-glitch-cleanup #home #trendingGrid .strain-card{flex-basis:79vw!important;width:79vw!important;min-width:79vw!important;max-width:79vw!important;}
 }
+
+
+/* ==================================================
+   V89 HOME HARD STABILITY RESET
+   Purpose: stop Home load flicker, remove stacked-patch visual conflicts,
+   simplify native horizontal scrolling, fix dashboard alignment, and prevent
+   bottom-nav overlap. Home page only.
+================================================== */
+body.v89-home-hard-stability-reset .splash{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+body.v89-home-hard-stability-reset,
+body.v89-home-hard-stability-reset #home{
+  overflow-x:hidden!important;
+}
+
+body.v89-home-hard-stability-reset #home{
+  padding-bottom:180px!important;
+}
+
+body.v89-home-hard-stability-reset #home .hero,
+body.v89-home-hard-stability-reset #home .daily-card,
+body.v89-home-hard-stability-reset #home .pro-card,
+body.v89-home-hard-stability-reset #home .lively-dashboard,
+body.v89-home-hard-stability-reset #home #livelyDashboard,
+body.v89-home-hard-stability-reset #home #smartInsights,
+body.v89-home-hard-stability-reset #home .section-title,
+body.v89-home-hard-stability-reset #home #trendingGrid,
+body.v89-home-hard-stability-reset #home #recentHome,
+body.v89-home-hard-stability-reset #home .strain-card,
+body.v89-home-hard-stability-reset #home .recent-card,
+body.v89-home-hard-stability-reset #home .recent-mini-card{
+  animation:none!important;
+  transform:none!important;
+  opacity:1!important;
+  filter:none!important;
+  will-change:auto!important;
+  transition:box-shadow .18s ease, border-color .18s ease, background-color .18s ease!important;
+}
+
+/* First screen: stable final layout immediately, no grow/shrink. */
+body.v89-home-hard-stability-reset #home .hero{
+  margin:10px 0 14px!important;
+  padding:22px 22px 18px!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  contain:layout paint!important;
+}
+body.v89-home-hard-stability-reset #home .hero .brand-logo{
+  display:block!important;
+  width:min(82vw,430px)!important;
+  height:88px!important;
+  min-height:88px!important;
+  max-height:88px!important;
+  object-fit:contain!important;
+  margin:0 auto 8px!important;
+  animation:none!important;
+  transform:none!important;
+}
+body.v89-home-hard-stability-reset #home .hero .eyebrow{
+  display:block!important;
+  margin:0 0 6px!important;
+  font-size:11px!important;
+  letter-spacing:.13em!important;
+  text-align:center!important;
+}
+body.v89-home-hard-stability-reset #home .hero h1{
+  font-size:clamp(34px,9.3vw,44px)!important;
+  line-height:.96!important;
+  letter-spacing:-.055em!important;
+  margin:0 auto 8px!important;
+  max-width:360px!important;
+  text-align:center!important;
+}
+body.v89-home-hard-stability-reset #home .hero p{
+  font-size:14px!important;
+  line-height:1.26!important;
+  max-width:95%!important;
+  margin:0 auto 11px!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+body.v89-home-hard-stability-reset #home .hero-actions{
+  display:grid!important;
+  grid-template-columns:1fr 1fr 1fr!important;
+  gap:8px!important;
+  margin:0!important;
+}
+body.v89-home-hard-stability-reset #home .hero-actions button{
+  min-width:0!important;
+  min-height:42px!important;
+  padding:9px 7px!important;
+  border-radius:999px!important;
+  font-size:13px!important;
+  white-space:nowrap!important;
+}
+body.v89-home-hard-stability-reset #home .hero-mini-strip{
+  display:grid!important;
+  grid-template-columns:1fr 1fr 1fr!important;
+  gap:8px!important;
+  margin:10px 0 0!important;
+}
+body.v89-home-hard-stability-reset #home .hero-mini-strip span{
+  min-width:0!important;
+  min-height:42px!important;
+  padding:6px 4px!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+}
+body.v89-home-hard-stability-reset #home .hero-mini-strip strong{
+  font-size:22px!important;
+  line-height:.88!important;
+}
+body.v89-home-hard-stability-reset #home .hero-mini-strip span{
+  font-size:10px!important;
+}
+
+body.v89-home-hard-stability-reset #home .daily-card{
+  margin:0 0 14px!important;
+  padding:22px 22px 20px!important;
+  overflow:hidden!important;
+}
+body.v89-home-hard-stability-reset #home .daily-card h2{
+  font-size:clamp(42px,10vw,54px)!important;
+  line-height:.96!important;
+  margin:10px 0 14px!important;
+}
+body.v89-home-hard-stability-reset #home .daily-card p{
+  font-size:18px!important;
+  line-height:1.34!important;
+  margin:0 0 14px!important;
+}
+
+body.v89-home-hard-stability-reset #home .quick-row,
+body.v89-home-hard-stability-reset #home .pro-card,
+body.v89-home-hard-stability-reset #home .lively-dashboard,
+body.v89-home-hard-stability-reset #home #livelyDashboard,
+body.v89-home-hard-stability-reset #home #smartInsights,
+body.v89-home-hard-stability-reset #home .section-title{
+  margin-top:14px!important;
+  margin-bottom:14px!important;
+}
+
+/* App Progress: clean green glass, never scrolls. */
+body.v89-home-hard-stability-reset #home .pro-card{
+  padding:20px!important;
+  overflow:hidden!important;
+  background:linear-gradient(145deg,rgba(22,72,45,.90),rgba(5,28,16,.92))!important;
+  border:1px solid rgba(72,233,135,.20)!important;
+}
+body.v89-home-hard-stability-reset #home .pro-card .stat-row{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+  overflow:visible!important;
+}
+body.v89-home-hard-stability-reset #home .pro-card .stat-row div{
+  min-width:0!important;
+  overflow:hidden!important;
+  padding:16px 7px!important;
+  text-align:center!important;
+}
+body.v89-home-hard-stability-reset #home .pro-card .stat-row strong{
+  font-size:32px!important;
+  line-height:1!important;
+}
+body.v89-home-hard-stability-reset #home .pro-card .stat-row span{
+  font-size:12px!important;
+  white-space:normal!important;
+}
+
+/* Live Wellness Dashboard: centered strain tile and no content hidden behind nav. */
+body.v89-home-hard-stability-reset #home .lively-dashboard,
+body.v89-home-hard-stability-reset #home #livelyDashboard{
+  padding:20px!important;
+  overflow:hidden!important;
+}
+body.v89-home-hard-stability-reset #home .live-hero-strip{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  justify-items:center!important;
+  align-items:center!important;
+  text-align:center!important;
+  padding:16px!important;
+  gap:8px!important;
+  overflow:hidden!important;
+}
+body.v89-home-hard-stability-reset #home .live-hero-strip img{
+  display:block!important;
+  width:96px!important;
+  height:96px!important;
+  margin:0 auto 8px!important;
+  object-fit:cover!important;
+}
+body.v89-home-hard-stability-reset #home .live-hero-strip h2,
+body.v89-home-hard-stability-reset #home .live-hero-strip p{
+  width:100%!important;
+  max-width:100%!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+body.v89-home-hard-stability-reset #home .live-hero-strip h2{
+  font-size:clamp(34px,8vw,44px)!important;
+  line-height:1!important;
+  overflow-wrap:anywhere!important;
+}
+
+/* Smart Recommendations: only one clean CTA. */
+body.v89-home-hard-stability-reset #home #smartInsights{
+  padding:22px!important;
+  overflow:hidden!important;
+}
+body.v89-home-hard-stability-reset #home #smartInsights .panel-head button,
+body.v89-home-hard-stability-reset #home #smartInsights .panel-head .small-btn,
+body.v89-home-hard-stability-reset #home #smartInsights .v83-smart-action,
+body.v89-home-hard-stability-reset #home #smartInsights .v84-smart-action,
+body.v89-home-hard-stability-reset #home #smartInsights .v85-smart-action,
+body.v89-home-hard-stability-reset #home #smartInsights .v86-smart-action,
+body.v89-home-hard-stability-reset #home #smartInsights .v87-smart-action,
+body.v89-home-hard-stability-reset #home #smartInsights .v88-smart-action{
+  display:none!important;
+}
+body.v89-home-hard-stability-reset #home #smartInsights .v89-smart-action{
+  width:100%!important;
+  margin-top:14px!important;
+  min-height:72px!important;
+  padding:14px 16px!important;
+  border-radius:24px!important;
+  background:linear-gradient(135deg,var(--green),var(--green2))!important;
+  color:#03130b!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  text-align:left!important;
+  gap:14px!important;
+}
+body.v89-home-hard-stability-reset #home #smartInsights .v89-smart-action strong,
+body.v89-home-hard-stability-reset #home #smartInsights .v89-smart-action small{
+  display:block!important;
+  color:#03130b!important;
+  line-height:1.15!important;
+}
+body.v89-home-hard-stability-reset #home #smartInsights .v89-smart-action strong{font-size:18px!important;font-weight:950!important;}
+body.v89-home-hard-stability-reset #home #smartInsights .v89-smart-action small{font-size:13px!important;font-weight:850!important;opacity:.75!important;margin-top:3px!important;}
+
+/* Native horizontal scroll, no visible scrollbar, no JS drag fighting. */
+body.v89-home-hard-stability-reset #home #trendingGrid{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:14px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x mandatory!important;
+  overscroll-behavior-x:contain!important;
+  touch-action:pan-x!important;
+  padding:8px 36px 22px 8px!important;
+  margin:0 0 22px!important;
+  scrollbar-width:none!important;
+  cursor:default!important;
+}
+body.v89-home-hard-stability-reset #home #trendingGrid::-webkit-scrollbar{display:none!important;}
+body.v89-home-hard-stability-reset #home #trendingGrid .strain-card{
+  flex:0 0 82vw!important;
+  width:82vw!important;
+  min-width:82vw!important;
+  max-width:82vw!important;
+  scroll-snap-align:start!important;
+  scroll-snap-stop:always!important;
+  touch-action:pan-x!important;
+  user-select:none!important;
+}
+body.v89-home-hard-stability-reset #home #trendingGrid .strain-card .card-hero img{
+  height:170px!important;
+}
+
+/* Recently Viewed: keep cards visible, not chopped, with text. */
+body.v89-home-hard-stability-reset #home #recentHome{
+  min-height:0!important;
+  overflow:visible!important;
+  padding-bottom:150px!important;
+}
+body.v89-home-hard-stability-reset #home #recentHome .recent-carousel,
+body.v89-home-hard-stability-reset #home #recentHome .recent-mini-grid{
+  display:flex!important;
+  gap:14px!important;
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x mandatory!important;
+  padding:8px 30px 28px 8px!important;
+  scrollbar-width:none!important;
+}
+body.v89-home-hard-stability-reset #home #recentHome .recent-carousel::-webkit-scrollbar,
+body.v89-home-hard-stability-reset #home #recentHome .recent-mini-grid::-webkit-scrollbar{display:none!important;}
+body.v89-home-hard-stability-reset #home #recentHome .recent-card,
+body.v89-home-hard-stability-reset #home #recentHome .recent-mini-card{
+  flex:0 0 160px!important;
+  width:160px!important;
+  min-width:160px!important;
+  min-height:158px!important;
+  height:158px!important;
+  display:block!important;
+  overflow:hidden!important;
+  padding:10px!important;
+  border-radius:22px!important;
+  scroll-snap-align:start!important;
+  text-align:left!important;
+}
+body.v89-home-hard-stability-reset #home #recentHome .recent-card img,
+body.v89-home-hard-stability-reset #home #recentHome .recent-mini-card img{
+  width:100%!important;
+  height:90px!important;
+  object-fit:cover!important;
+  border-radius:16px!important;
+  margin:0 0 8px!important;
+}
+body.v89-home-hard-stability-reset #home #recentHome .recent-card strong,
+body.v89-home-hard-stability-reset #home #recentHome .recent-mini-card span{
+  display:block!important;
+  color:var(--text)!important;
+  font-size:14px!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+body.v89-home-hard-stability-reset #home #recentHome .recent-card small,
+body.v89-home-hard-stability-reset #home #recentHome .recent-mini-card small{
+  display:block!important;
+  margin-top:3px!important;
+  font-size:11px!important;
+  color:var(--muted)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+body.v89-home-hard-stability-reset .bottom-nav{
+  z-index:5000!important;
+}
+
+@media(max-width:390px){
+  body.v89-home-hard-stability-reset #home .hero{padding:20px 20px 17px!important;}
+  body.v89-home-hard-stability-reset #home .hero .brand-logo{height:82px!important;min-height:82px!important;max-height:82px!important;}
+  body.v89-home-hard-stability-reset #home .hero h1{font-size:33px!important;}
+  body.v89-home-hard-stability-reset #home .hero p{font-size:13px!important;}
+  body.v89-home-hard-stability-reset #home .hero-actions button{font-size:12px!important;padding-inline:5px!important;}
+  body.v89-home-hard-stability-reset #home #trendingGrid .strain-card{flex-basis:83vw!important;width:83vw!important;min-width:83vw!important;max-width:83vw!important;}
+}

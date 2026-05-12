@@ -4636,3 +4636,136 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefV88HomeCleanup = {version: VERSION, apply};
 })();
+
+
+/* ==================================================
+   V89 HOME HARD STABILITY RESET
+   Full-folder cleanup pass: stops load flicker, removes stacked listeners/CTAs,
+   forces one Smart CTA, re-renders Recently Viewed cleanly, and uses native
+   mobile scrolling for Trending Today.
+================================================== */
+(function(){
+  const VERSION='v89-home-hard-stability-reset';
+  const $=(id)=>document.getElementById(id);
+  const qs=(sel,root=document)=>root.querySelector(sel);
+  const qsa=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
+  const imp=(el,prop,val)=>{ if(el) el.style.setProperty(prop,val,'important'); };
+  let applying=false;
+
+  function hideSplashNow(){
+    const s=$('splash');
+    if(s){ s.style.setProperty('display','none','important'); s.style.setProperty('opacity','0','important'); s.style.setProperty('visibility','hidden','important'); }
+  }
+
+  function killHomeMotion(){
+    document.body.classList.add(VERSION);
+    const nodes=qsa('#home .hero,#home .daily-card,#home .pro-card,#home .lively-dashboard,#home #livelyDashboard,#home #smartInsights,#home .section-title,#home #trendingGrid,#home #recentHome,#home .strain-card,#home .recent-card,#home .recent-mini-card');
+    nodes.forEach(el=>{
+      ['reveal-on-scroll','revealed','sr-motion-ready','sr-motion-in','v27-rise','visible','is-dragging'].forEach(c=>el.classList.remove(c));
+      imp(el,'animation','none'); imp(el,'transform','none'); imp(el,'opacity','1'); imp(el,'filter','none'); imp(el,'will-change','auto');
+    });
+  }
+
+  function cleanSmart(){
+    const box=$('smartInsights'); if(!box) return;
+    qsa('.v89-smart-action,.v88-smart-action,.v87-smart-action,.v86-smart-action,.v85-smart-action,.v84-smart-action,.v83-smart-action',box).forEach(el=>el.remove());
+    qsa('button,a',box).forEach(el=>{
+      const txt=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+      if(txt.includes('compare your next direction') || txt.includes('refresh match')) el.remove();
+    });
+    const cta=document.createElement('button');
+    cta.type='button';
+    cta.className='v89-smart-action';
+    cta.innerHTML='<span><strong>Compare your next direction</strong><small>Open Match and refine by goal, timing, and THC sensitivity.</small></span><b aria-hidden="true">→</b>';
+    cta.onclick=()=>{ if(typeof window.showPage==='function') window.showPage('recommend'); };
+    box.appendChild(cta);
+  }
+
+  function cloneStripListeners(row){
+    if(!row || row.dataset.v89Native==='yes') return row;
+    const clone=row.cloneNode(true);
+    clone.dataset.v89Native='yes';
+    row.replaceWith(clone);
+    return clone;
+  }
+
+  function nativeTrending(){
+    let row=$('trendingGrid'); if(!row) return;
+    row=cloneStripListeners(row);
+    row.classList.remove('is-dragging');
+    row.classList.add('v89-native-carousel');
+    imp(row,'display','flex'); imp(row,'flex-wrap','nowrap'); imp(row,'gap','14px'); imp(row,'overflow-x','auto'); imp(row,'overflow-y','hidden');
+    imp(row,'-webkit-overflow-scrolling','touch'); imp(row,'scroll-snap-type','x mandatory'); imp(row,'touch-action','pan-x'); imp(row,'scrollbar-width','none');
+    qsa('.strain-card',row).forEach(card=>{
+      imp(card,'flex','0 0 82vw'); imp(card,'width','82vw'); imp(card,'min-width','82vw'); imp(card,'max-width','82vw'); imp(card,'scroll-snap-align','start'); imp(card,'touch-action','pan-x');
+      qsa('img',card).forEach(img=>{ try{img.draggable=false}catch(e){} });
+    });
+  }
+
+  function centerDashboard(){
+    const board=$('livelyDashboard') || qs('#home .lively-dashboard'); if(!board) return;
+    const strip=qs('.live-hero-strip',board); if(!strip) return;
+    imp(strip,'display','grid'); imp(strip,'grid-template-columns','1fr'); imp(strip,'justify-items','center'); imp(strip,'text-align','center'); imp(strip,'overflow','hidden');
+    qsa('img',strip).forEach(img=>{ imp(img,'display','block'); imp(img,'margin','0 auto 8px'); });
+    qsa('h2,h3,p',strip).forEach(el=>{ imp(el,'text-align','center'); imp(el,'margin-left','auto'); imp(el,'margin-right','auto'); });
+  }
+
+  function cleanProgress(){
+    const card=qs('#home .pro-card'); if(!card) return;
+    imp(card,'overflow','hidden'); imp(card,'overflow-x','hidden'); imp(card,'overflow-y','hidden'); imp(card,'height','auto'); imp(card,'max-height','none');
+    const row=qs('.stat-row',card); if(row){ imp(row,'display','grid'); imp(row,'grid-template-columns','repeat(3,minmax(0,1fr))'); imp(row,'overflow','visible'); }
+  }
+
+  function cleanRecent(){
+    const box=$('recentHome'); if(!box) return;
+    const raw=(localStorage.getItem('srRecent')||'[]');
+    let names=[]; try{ names=JSON.parse(raw)||[]; }catch(e){ names=[]; }
+    names=names.filter(Boolean).slice(0,8);
+    if(!names.length){ box.innerHTML='<div class="empty-state">No recently viewed strains yet. Open a strain profile to start.</div>'; return; }
+    const cards=names.map(n=>{
+      const s=(typeof getStrain==='function'?getStrain(n):null) || {name:n,category:'Recent'};
+      const img=(typeof strainImage==='function'?strainImage(s):'');
+      const safe=(typeof safeName==='function'?safeName(s.name):String(s.name).replace(/'/g,"\\'"));
+      return `<button class="recent-card v89-recent-card" onclick="openModal('${safe}')"><img src="${img}" alt="${s.name}" loading="lazy"><strong>${s.name}</strong><small>${s.category||'Recent'}</small></button>`;
+    }).join('');
+    box.innerHTML=`<div class="recent-carousel v89-recent-carousel">${cards}</div>`;
+  }
+
+  function apply(){
+    if(applying) return; applying=true;
+    try{
+      hideSplashNow(); killHomeMotion(); cleanProgress(); centerDashboard(); cleanSmart(); nativeTrending(); cleanRecent();
+      const home=$('home'); if(home) imp(home,'padding-bottom','180px');
+    }finally{ applying=false; }
+  }
+
+  function schedule(){ apply(); setTimeout(apply,60); setTimeout(apply,250); }
+  document.addEventListener('DOMContentLoaded',schedule);
+  window.addEventListener('load',schedule);
+  window.addEventListener('pageshow',schedule);
+  window.addEventListener('resize',()=>setTimeout(apply,120));
+  window.addEventListener('orientationchange',()=>setTimeout(apply,250));
+
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==='function'){
+    window.showPage=function(id){
+      const result=oldShowPage.apply(this,arguments);
+      if(id==='home') setTimeout(schedule,40);
+      return result;
+    };
+  }
+  const oldRecent=window.renderRecentHome;
+  if(typeof oldRecent==='function'){
+    window.renderRecentHome=function(){ const result=oldRecent.apply(this,arguments); setTimeout(cleanRecent,20); setTimeout(apply,60); return result; };
+  }
+  const oldSmart=window.renderSmartInsights;
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){ const result=oldSmart.apply(this,arguments); setTimeout(cleanSmart,20); setTimeout(apply,60); return result; };
+  }
+  const oldFeatured=window.renderFeatured;
+  if(typeof oldFeatured==='function'){
+    window.renderFeatured=function(){ const result=oldFeatured.apply(this,arguments); setTimeout(nativeTrending,20); setTimeout(apply,60); return result; };
+  }
+
+  window.StrainReliefV89HomeReset={version:VERSION,apply};
+})();
