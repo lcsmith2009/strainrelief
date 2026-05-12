@@ -4428,228 +4428,147 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 })();
 
 /* ======================================================
-   V84 HOME FIRST-SCREEN LOCK JS
-   Adds cache-visible version class and reinforces critical
-   Home-only mobile fit after dynamic rendering.
+   V86 HOME LOAD STABILITY + CAROUSEL TOUCH FIX JS
+   Home page only. Removes duplicate Smart action, prevents
+   load resize jumps, and installs touch drag for Trending.
 ====================================================== */
 (function(){
-  const VERSION = "v84-home-first-screen-lock";
+  const VERSION = "v86-home-load-stability";
 
   function important(el, prop, value){
     if(el && el.style) el.style.setProperty(prop, value, "important");
   }
 
-  function applyV84(){
-    document.body.classList.add(VERSION);
-    const home = document.getElementById("home");
-    if(!home) return;
-
+  function lockHeroAndDaily(home){
+    const small = window.innerWidth <= 390;
     const hero = home.querySelector(".home-hero-v76, .hero");
     if(hero){
-      important(hero, "min-height", "0");
       important(hero, "height", "auto");
-      important(hero, "padding", "7px 11px 8px");
-      important(hero, "margin", "0 0 7px");
-      important(hero, "gap", "4px");
+      important(hero, "min-height", "0");
+      important(hero, "max-height", "none");
+      important(hero, "padding", small ? "16px 16px 18px" : "18px 18px 19px");
+      important(hero, "margin", "0 0 14px");
+      important(hero, "gap", small ? "8px" : "9px");
+      important(hero, "overflow", "hidden");
+      important(hero, "transform", "none");
+      const logo = hero.querySelector(".brand-logo");
+      important(logo, "width", small ? "min(72vw, 430px)" : "min(73vw, 500px)");
+      important(logo, "height", small ? "92px" : "clamp(94px, 18vw, 118px)");
+      important(logo, "max-height", small ? "92px" : "118px");
+      important(logo, "margin", "0 auto 3px");
+      const h1 = hero.querySelector("h1");
+      important(h1, "font-size", small ? "31px" : "clamp(32px, 8.45vw, 44px)");
+      important(h1, "line-height", ".96");
+      important(h1, "margin", "0 0 2px");
+      const copy = hero.querySelector("p");
+      important(copy, "-webkit-line-clamp", "1");
+      important(copy, "line-height", small ? "1.22" : "1.25");
+      important(copy, "margin", "0 auto 3px");
+      hero.querySelectorAll(".hero-actions button").forEach(btn => {
+        important(btn, "height", small ? "40px" : "41px");
+        important(btn, "min-height", small ? "40px" : "41px");
+      });
+      hero.querySelectorAll(".hero-mini-strip span").forEach(item => {
+        important(item, "height", small ? "42px" : "43px");
+        important(item, "min-height", small ? "42px" : "43px");
+      });
     }
-
-    const logo = home.querySelector(".hero .brand-logo, .home-hero-v76 .brand-logo");
-    important(logo, "height", window.innerWidth <= 390 ? "30px" : "34px");
-    important(logo, "max-height", window.innerWidth <= 390 ? "30px" : "34px");
-    important(logo, "margin", "-3px auto -1px");
-
-    const h1 = home.querySelector(".hero h1, .home-hero-v76 h1");
-    important(h1, "line-height", ".94");
-    important(h1, "margin", "1px 0 2px");
-
-    const copy = home.querySelector(".hero p, .home-hero-v76 p");
-    important(copy, "font-size", "10.3px");
-    important(copy, "line-height", "1.12");
-    important(copy, "margin", "0 0 5px");
-    important(copy, "overflow", "hidden");
-
-    home.querySelectorAll(".hero-actions button").forEach(btn => {
-      important(btn, "height", "28px");
-      important(btn, "min-height", "28px");
-      important(btn, "font-size", "9.8px");
-      important(btn, "padding", "0 4px");
-    });
-
-    home.querySelectorAll(".hero-mini-strip span").forEach(item => {
-      important(item, "height", "25px");
-      important(item, "min-height", "25px");
-      important(item, "padding", "3px 4px");
-    });
-
-    home.querySelectorAll(".section-title").forEach(section => {
-      section.classList.add("v84-heading-safe");
-      important(section, "overflow", "visible");
-      important(section, "padding-left", "2px");
-      important(section, "margin-left", "0");
-      important(section, "transform", "none");
-    });
-
-    [document.getElementById("trendingGrid"), home.querySelector(".recent-carousel")].forEach(row => {
-      if(!row) return;
-      row.classList.add("v84-carousel-safe");
-      important(row, "display", "flex");
-      important(row, "overflow-x", "auto");
-      important(row, "overflow-y", "visible");
-      important(row, "-webkit-overflow-scrolling", "touch");
-      important(row, "touch-action", "pan-x");
-      important(row, "scroll-snap-type", "x proximity");
-    });
+    const daily = home.querySelector(".daily-card");
+    if(daily){
+      important(daily, "height", "auto");
+      important(daily, "min-height", "0");
+      important(daily, "max-height", "none");
+      important(daily, "overflow", "hidden");
+    }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    applyV84();
-    setTimeout(applyV84, 120);
-    setTimeout(applyV84, 500);
-    setTimeout(applyV84, 1200);
-    setTimeout(applyV84, 2200);
-  });
-  window.addEventListener("pageshow", () => setTimeout(applyV84, 80));
-  window.addEventListener("resize", () => setTimeout(applyV84, 100));
-  window.addEventListener("orientationchange", () => setTimeout(applyV84, 220));
-
-  const oldShowPage = window.showPage;
-  if(typeof oldShowPage === "function"){
-    window.showPage = function(){
-      const result = oldShowPage.apply(this, arguments);
-      setTimeout(applyV84, 80);
-      setTimeout(applyV84, 420);
-      return result;
-    };
+  function removeDuplicateSmartAction(home){
+    const smart = home.querySelector("#smartInsights");
+    if(!smart) return;
+    smart.querySelectorAll(".panel-head button, .panel-head .small-btn").forEach(btn => btn.remove());
+    const oldActions = smart.querySelectorAll(".v85-smart-action, .v86-smart-action");
+    oldActions.forEach((btn, i) => { if(i > 0) btn.remove(); });
+    if(!smart.querySelector(".v85-smart-action, .v86-smart-action")){
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "v86-smart-action";
+      btn.innerHTML = `<span><strong>Compare your next direction</strong><span>Open Match and refine by goal, timing, and THC sensitivity.</span></span><b>→</b>`;
+      btn.addEventListener("click", () => window.showPage && showPage("recommend"));
+      smart.appendChild(btn);
+    }
   }
 
-  window.StrainReliefHomeFirstScreenLockVersion = VERSION;
-})();
-
-
-/* ======================================================
-   V85 HOME UX STABILIZATION JS
-   Runs after V84 to repair over-compression and lock the
-   Home-only UX fixes requested after live testing.
-====================================================== */
-(function(){
-  const VERSION = "v85-home-ux-stabilization";
-
-  function important(el, prop, value){
-    if(el && el.style) el.style.setProperty(prop, value, "important");
-  }
-
-  function restoreHeroBalance(home){
-    const hero = home.querySelector(".home-hero-v76, .hero");
-    if(!hero) return;
-    const small = window.innerWidth <= 390;
-    important(hero, "height", "auto");
-    important(hero, "min-height", "0");
-    important(hero, "max-height", "none");
-    important(hero, "padding", small ? "16px 16px 18px" : "18px 18px 20px");
-    important(hero, "margin", "0 0 14px");
-    important(hero, "gap", small ? "8px" : "10px");
-    important(hero, "overflow", "hidden");
-
-    const logo = hero.querySelector(".brand-logo");
-    important(logo, "width", small ? "min(72vw, 430px)" : "min(74vw, 520px)");
-    important(logo, "height", small ? "88px" : "clamp(86px, 18vw, 126px)");
-    important(logo, "max-height", small ? "88px" : "126px");
-    important(logo, "margin", "0 auto 4px");
-
-    const eyebrow = hero.querySelector(".eyebrow");
-    important(eyebrow, "font-size", "11px");
-    important(eyebrow, "line-height", "1.05");
-
-    const h1 = hero.querySelector("h1");
-    important(h1, "font-size", small ? "30px" : "clamp(31px, 8.4vw, 46px)");
-    important(h1, "line-height", ".95");
-    important(h1, "margin", "0 0 2px");
-    important(h1, "text-align", "center");
-
-    const copy = hero.querySelector("p");
-    important(copy, "font-size", small ? "13px" : "clamp(13px, 3.55vw, 16px)");
-    important(copy, "line-height", small ? "1.22" : "1.28");
-    important(copy, "margin", "0 auto 4px");
-    important(copy, "max-width", "94%");
-    important(copy, "text-align", "center");
-
-    const actions = hero.querySelector(".hero-actions");
-    important(actions, "display", "grid");
-    important(actions, "grid-template-columns", "1fr 1fr 1fr");
-    important(actions, "gap", "8px");
-    important(actions, "margin", "4px 0 0");
-    actions?.querySelectorAll("button").forEach(btn => {
-      important(btn, "height", small ? "40px" : "42px");
-      important(btn, "min-height", small ? "40px" : "42px");
-      important(btn, "padding", "0 8px");
-      important(btn, "font-size", small ? "12px" : "clamp(12px, 3.35vw, 15px)");
-    });
-
-    const strip = hero.querySelector(".hero-mini-strip");
-    important(strip, "display", "grid");
-    important(strip, "grid-template-columns", "repeat(3,minmax(0,1fr))");
-    important(strip, "gap", "8px");
-    important(strip, "margin", "4px 0 0");
-    strip?.querySelectorAll("span").forEach(item => {
-      important(item, "height", small ? "42px" : "46px");
-      important(item, "min-height", small ? "42px" : "46px");
-      important(item, "padding", "6px 4px");
-      important(item, "font-size", "11px");
-    });
-    strip?.querySelectorAll("strong").forEach(strong => {
-      important(strong, "font-size", "clamp(19px,5vw,28px)");
-    });
-  }
-
-  function fixProgressOverflow(home){
+  function fixProgress(home){
     const progress = home.querySelector(".pro-card");
     important(progress, "overflow", "hidden");
+    important(progress, "overflow-y", "hidden");
     important(progress, "height", "auto");
     important(progress, "max-height", "none");
-    important(progress, "padding", "20px");
     const row = progress?.querySelector(".stat-row");
     important(row, "overflow", "visible");
     important(row, "display", "grid");
     important(row, "grid-template-columns", "repeat(3,minmax(0,1fr))");
-    important(row, "gap", "10px");
   }
 
-  function restoreSmartAction(home){
-    const smart = home.querySelector("#smartInsights");
-    if(!smart || smart.querySelector(".v85-smart-action")) return;
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "v85-smart-action";
-    btn.innerHTML = `<span><strong>Compare your next direction</strong><span>Open Match and refine by goal, timing, and THC sensitivity.</span></span><b>→</b>`;
-    btn.addEventListener("click", () => showPage("recommend"));
-    smart.appendChild(btn);
-  }
+  function installDrag(row){
+    if(!row || row.dataset.v86DragReady === "yes") return;
+    row.dataset.v86DragReady = "yes";
+    let active = false, startX = 0, startY = 0, startScroll = 0, horizontal = false, dragged = false;
 
-  function installCarouselDrag(row){
-    if(!row || row.dataset.v85DragReady === "yes") return;
-    row.dataset.v85DragReady = "yes";
-    let down = false, startX = 0, startScroll = 0, dragged = false;
-    row.addEventListener("pointerdown", e => {
-      down = true; dragged = false; startX = e.clientX; startScroll = row.scrollLeft;
+    function begin(x, y){
+      active = true; horizontal = false; dragged = false;
+      startX = x; startY = y; startScroll = row.scrollLeft;
       row.classList.add("is-dragging");
-      try{ row.setPointerCapture(e.pointerId); }catch(_e){}
-    });
-    row.addEventListener("pointermove", e => {
-      if(!down) return;
-      const dx = e.clientX - startX;
-      if(Math.abs(dx) > 5){ dragged = true; e.preventDefault(); }
-      row.scrollLeft = startScroll - dx;
+    }
+    function move(x, y, ev){
+      if(!active) return;
+      const dx = x - startX;
+      const dy = y - startY;
+      if(!horizontal && Math.abs(dx) > 7 && Math.abs(dx) > Math.abs(dy) * 1.05) horizontal = true;
+      if(horizontal){
+        dragged = true;
+        if(ev && ev.cancelable) ev.preventDefault();
+        row.scrollLeft = startScroll - dx;
+      }
+    }
+    function end(){
+      active = false; horizontal = false;
+      setTimeout(() => { dragged = false; row.classList.remove("is-dragging"); }, 90);
+    }
+
+    row.addEventListener("touchstart", ev => {
+      const t = ev.touches && ev.touches[0];
+      if(t) begin(t.clientX, t.clientY);
+    }, {passive:true});
+    row.addEventListener("touchmove", ev => {
+      const t = ev.touches && ev.touches[0];
+      if(t) move(t.clientX, t.clientY, ev);
     }, {passive:false});
-    function end(){ down = false; setTimeout(() => { dragged = false; row.classList.remove("is-dragging"); }, 60); }
+    row.addEventListener("touchend", end, {passive:true});
+    row.addEventListener("touchcancel", end, {passive:true});
+
+    row.addEventListener("pointerdown", ev => {
+      if(ev.pointerType === "touch") return;
+      begin(ev.clientX, ev.clientY);
+      try{ row.setPointerCapture(ev.pointerId); }catch(_e){}
+    });
+    row.addEventListener("pointermove", ev => {
+      if(ev.pointerType === "touch") return;
+      move(ev.clientX, ev.clientY, ev);
+    }, {passive:false});
     row.addEventListener("pointerup", end);
     row.addEventListener("pointercancel", end);
     row.addEventListener("mouseleave", end);
-    row.addEventListener("click", e => {
-      if(dragged){ e.preventDefault(); e.stopPropagation(); }
+
+    row.addEventListener("click", ev => {
+      if(dragged){
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
     }, true);
   }
 
-  function fixCarousel(home){
+  function fixTrendingCarousel(home){
     const row = home.querySelector("#trendingGrid");
     if(!row) return;
     important(row, "display", "flex");
@@ -4657,25 +4576,26 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     important(row, "overflow-x", "auto");
     important(row, "overflow-y", "visible");
     important(row, "-webkit-overflow-scrolling", "touch");
-    important(row, "touch-action", "pan-x");
+    important(row, "touch-action", "pan-y");
     important(row, "scroll-snap-type", "x proximity");
-    important(row, "padding", "8px 22px 18px 4px");
+    important(row, "padding", "8px 28px 20px 6px");
     important(row, "margin", "0 0 18px");
     row.querySelectorAll(".strain-card").forEach(card => {
-      important(card, "flex", "0 0 min(79vw,330px)");
-      important(card, "width", "min(79vw,330px)");
-      important(card, "min-width", "min(79vw,330px)");
-      important(card, "max-width", "min(79vw,330px)");
-      important(card, "touch-action", "pan-x");
+      important(card, "flex", window.innerWidth <= 390 ? "0 0 82vw" : "0 0 min(79vw,330px)");
+      important(card, "width", window.innerWidth <= 390 ? "82vw" : "min(79vw,330px)");
+      important(card, "min-width", window.innerWidth <= 390 ? "82vw" : "min(79vw,330px)");
+      important(card, "max-width", window.innerWidth <= 390 ? "82vw" : "min(79vw,330px)");
+      important(card, "touch-action", "pan-y");
       important(card, "user-select", "none");
+      card.querySelectorAll("*").forEach(child => important(child, "touch-action", "pan-y"));
     });
-    installCarouselDrag(row);
+    installDrag(row);
   }
 
-  function unclampHeadings(home){
+  function unclipHeadings(home){
     home.querySelectorAll(".section-title").forEach(section => {
       important(section, "overflow", "visible");
-      important(section, "padding-left", "6px");
+      important(section, "padding-left", "8px");
       important(section, "margin-left", "0");
       important(section, "transform", "none");
       section.querySelectorAll("h2,p").forEach(el => {
@@ -4687,34 +4607,36 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     });
   }
 
-  function applyV85(){
+  function applyV86(){
+    document.body.classList.remove("v84-home-first-screen-lock", "v85-home-ux-stabilization");
     document.body.classList.add(VERSION);
     const home = document.getElementById("home");
     if(!home) return;
-    restoreHeroBalance(home);
-    fixProgressOverflow(home);
-    restoreSmartAction(home);
-    fixCarousel(home);
-    unclampHeadings(home);
+    lockHeroAndDaily(home);
+    fixProgress(home);
+    removeDuplicateSmartAction(home);
+    fixTrendingCarousel(home);
+    unclipHeadings(home);
+    window.clearTimeout(window.__srV86ReadyTimer);
+    window.__srV86ReadyTimer = window.setTimeout(() => document.body.classList.add("v86-home-ready"), 420);
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    applyV85();
-    setTimeout(applyV85, 160);
-    setTimeout(applyV85, 700);
-    setTimeout(applyV85, 1500);
-    setTimeout(applyV85, 2600);
+    applyV86();
+    setTimeout(applyV86, 80);
+    setTimeout(applyV86, 350);
+    setTimeout(applyV86, 900);
   });
-  window.addEventListener("pageshow", () => setTimeout(applyV85, 120));
-  window.addEventListener("resize", () => setTimeout(applyV85, 150));
-  window.addEventListener("orientationchange", () => setTimeout(applyV85, 280));
+  window.addEventListener("pageshow", () => setTimeout(applyV86, 60));
+  window.addEventListener("resize", () => setTimeout(applyV86, 120));
+  window.addEventListener("orientationchange", () => setTimeout(applyV86, 260));
 
   const oldShowPage = window.showPage;
   if(typeof oldShowPage === "function"){
     window.showPage = function(){
       const result = oldShowPage.apply(this, arguments);
-      setTimeout(applyV85, 120);
-      setTimeout(applyV85, 650);
+      setTimeout(applyV86, 80);
+      setTimeout(applyV86, 360);
       return result;
     };
   }
@@ -4723,10 +4645,19 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   if(typeof oldRenderSmart === "function"){
     window.renderSmartInsights = function(){
       const result = oldRenderSmart.apply(this, arguments);
-      setTimeout(applyV85, 60);
+      setTimeout(applyV86, 40);
       return result;
     };
   }
 
-  window.StrainReliefHomeUXVersion = VERSION;
+  const oldRenderHome = window.renderHome;
+  if(typeof oldRenderHome === "function"){
+    window.renderHome = function(){
+      const result = oldRenderHome.apply(this, arguments);
+      setTimeout(applyV86, 50);
+      return result;
+    };
+  }
+
+  window.StrainReliefHomeLoadStabilityVersion = VERSION;
 })();

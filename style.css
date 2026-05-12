@@ -11972,351 +11972,106 @@ body.v83-home-first-screen-fit #home .recent-card{
 }
 
 /* ======================================================
-   V84 HOME FIRST-SCREEN LOCK — REAL MOBILE OVERRIDE
-   Home page only. Purpose: make first load show hero + Daily
-   Wellness Direction together, fix clipped Home headings,
-   and make horizontal rows easier to swipe.
+   V86 HOME LOAD STABILITY + CAROUSEL TOUCH FIX
+   Home page only. Stops load jumping, removes duplicate
+   Smart Recommendation action, and makes Trending a real
+   mobile swipe row.
 ====================================================== */
 html, body{
-  max-width: 100% !important;
-  overflow-x: hidden !important;
+  max-width:100%;
+  overflow-x:hidden;
 }
-
-body.v84-home-first-screen-lock #home,
-body.v84-home-first-screen-lock #home.page,
-body.v84-home-first-screen-lock #home.home-page-v76{
-  width: 100% !important;
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  padding-top: 4px !important;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
-  padding-bottom: 92px !important;
-  gap: 9px !important;
-}
-
-body.v84-home-first-screen-lock #home > *{
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* REAL hero shrink: move content up and reduce unused vertical height */
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76.hero.card-glow,
-body.v84-home-first-screen-lock #home header.home-hero-v76,
-body.v84-home-first-screen-lock #home .hero{
-  min-height: 0 !important;
-  height: auto !important;
-  padding: 7px 11px 8px !important;
-  margin: 0 0 7px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  justify-content: flex-start !important;
-  gap: 4px !important;
-  transform: none !important;
-}
-
-body.v84-home-first-screen-lock #home .hero .brand-logo,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 .brand-logo{
-  width: auto !important;
-  height: 34px !important;
-  max-height: 34px !important;
-  object-fit: contain !important;
-  margin: -3px auto -1px !important;
-  display: block !important;
-}
-
-body.v84-home-first-screen-lock #home .hero .eyebrow,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .eyebrow{
-  font-size: 8.8px !important;
-  line-height: 1 !important;
-  letter-spacing: .12em !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-body.v84-home-first-screen-lock #home .hero h1,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > h1{
-  font-size: clamp(22px, 6.2vw, 28px) !important;
-  line-height: .94 !important;
-  letter-spacing: -.045em !important;
-  margin: 1px 0 2px !important;
-  padding: 0 !important;
-}
-
-body.v84-home-first-screen-lock #home .hero p,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > p{
-  font-size: 10.3px !important;
-  line-height: 1.12 !important;
-  margin: 0 0 5px !important;
-  padding: 0 !important;
-  max-width: 100% !important;
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 2 !important;
-  overflow: hidden !important;
-}
-
-body.v84-home-first-screen-lock #home .hero-actions,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-actions{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr !important;
-  gap: 5px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-body.v84-home-first-screen-lock #home .hero-actions button,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-actions button{
-  height: 28px !important;
-  min-height: 28px !important;
-  border-radius: 999px !important;
-  padding: 0 4px !important;
-  font-size: 9.8px !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-body.v84-home-first-screen-lock #home .hero-mini-strip,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-mini-strip{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr !important;
-  gap: 5px !important;
-  margin: 5px 0 0 !important;
-  padding: 0 !important;
-}
-
-body.v84-home-first-screen-lock #home .hero-mini-strip span,
-body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > .hero-mini-strip span{
-  min-height: 25px !important;
-  height: 25px !important;
-  border-radius: 12px !important;
-  padding: 3px 4px !important;
-  font-size: 9.3px !important;
-  line-height: 1.02 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-body.v84-home-first-screen-lock #home .hero-mini-strip strong{
-  font-size: 10.8px !important;
-  line-height: 1 !important;
-}
-
-/* Daily card must sit inside the opening viewport with the compact hero */
-body.v84-home-first-screen-lock #home .daily-card,
-body.v84-home-first-screen-lock #home .home-daily-v76{
-  margin: 0 0 9px !important;
-  padding: 10px 12px !important;
-  min-height: 58px !important;
-}
-body.v84-home-first-screen-lock #home .daily-card .eyebrow{
-  font-size: 9px !important;
-  line-height: 1 !important;
-  margin-bottom: 3px !important;
-}
-body.v84-home-first-screen-lock #home .daily-card h2{
-  font-size: 17px !important;
-  line-height: 1.05 !important;
-  margin: 0 0 3px !important;
-}
-body.v84-home-first-screen-lock #home .daily-card p{
-  font-size: 11px !important;
-  line-height: 1.18 !important;
-  margin: 0 !important;
-}
-
-/* A little space between every Home box without making the page tall */
-body.v84-home-first-screen-lock #home .quick-row,
-body.v84-home-first-screen-lock #home .pro-card,
-body.v84-home-first-screen-lock #home #smartInsights,
-body.v84-home-first-screen-lock #home #recentHome,
-body.v84-home-first-screen-lock #home #trendingGrid,
-body.v84-home-first-screen-lock #home .section-title{
-  margin-top: 0 !important;
-  margin-bottom: 9px !important;
-}
-
-/* Fix first-letter clipping on section headers */
-body.v84-home-first-screen-lock #home .section-title,
-body.v84-home-first-screen-lock #home .v83-heading-safe{
-  width: 100% !important;
-  max-width: 100% !important;
-  overflow: visible !important;
-  padding-left: 2px !important;
-  padding-right: 2px !important;
-  margin-left: 0 !important;
-  transform: none !important;
-  clip-path: none !important;
-}
-body.v84-home-first-screen-lock #home .section-title h2,
-body.v84-home-first-screen-lock #home .section-title p{
-  overflow: visible !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-  text-indent: 0 !important;
-  transform: none !important;
-  clip-path: none !important;
-}
-
-/* Easier mobile carousel swiping */
-body.v84-home-first-screen-lock #home #trendingGrid,
-body.v84-home-first-screen-lock #home .recent-carousel{
-  width: calc(100% + 6px) !important;
-  max-width: calc(100% + 6px) !important;
-  display: flex !important;
-  gap: 10px !important;
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-  -webkit-overflow-scrolling: touch !important;
-  overscroll-behavior-x: contain !important;
-  scroll-snap-type: x proximity !important;
-  touch-action: pan-x !important;
-  padding: 2px 16px 12px 2px !important;
-  margin-left: 0 !important;
-  margin-right: -6px !important;
-  scrollbar-width: none !important;
-}
-body.v84-home-first-screen-lock #home #trendingGrid::-webkit-scrollbar,
-body.v84-home-first-screen-lock #home .recent-carousel::-webkit-scrollbar{
-  display: none !important;
-}
-body.v84-home-first-screen-lock #home #trendingGrid .strain-card{
-  flex: 0 0 min(76vw, 292px) !important;
-  width: min(76vw, 292px) !important;
-  min-width: min(76vw, 292px) !important;
-  max-width: min(76vw, 292px) !important;
-  scroll-snap-align: start !important;
-}
-body.v84-home-first-screen-lock #home .recent-card{
-  flex: 0 0 126px !important;
-  min-width: 126px !important;
-  max-width: 126px !important;
-  scroll-snap-align: start !important;
-}
-
-@media (max-width: 390px){
-  body.v84-home-first-screen-lock #home,
-  body.v84-home-first-screen-lock #home.page,
-  body.v84-home-first-screen-lock #home.home-page-v76{
-    padding-top: 2px !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    gap: 8px !important;
-  }
-  body.v84-home-first-screen-lock #home .hero .brand-logo,
-  body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 .brand-logo{
-    height: 30px !important;
-    max-height: 30px !important;
-  }
-  body.v84-home-first-screen-lock #home .hero h1,
-  body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > h1{
-    font-size: 21px !important;
-  }
-  body.v84-home-first-screen-lock #home .hero p,
-  body.v84-home-first-screen-lock #home.home-page-v76 > header.home-hero-v76 > p{
-    -webkit-line-clamp: 1 !important;
-    margin-bottom: 4px !important;
-  }
-  body.v84-home-first-screen-lock #home .hero-actions button{
-    height: 27px !important;
-    min-height: 27px !important;
-    font-size: 9.3px !important;
-  }
-  body.v84-home-first-screen-lock #home .hero-mini-strip span{
-    height: 24px !important;
-    min-height: 24px !important;
-  }
-}
-
-
-/* ======================================================
-   V85 HOME UX STABILIZATION
-   Home page only: undo V84 over-compression, remove App
-   Progress overflow, restore Smart action, and fix Trending
-   carousel swipe behavior without touching other pages.
-====================================================== */
-body.v85-home-ux-stabilization #home{
+body.v86-home-load-stability #home{
   overflow-x:hidden!important;
-  padding-left:clamp(12px,3.2vw,18px)!important;
-  padding-right:clamp(12px,3.2vw,18px)!important;
-  padding-top:8px!important;
+  padding-left:clamp(12px,3.4vw,18px)!important;
+  padding-right:clamp(12px,3.4vw,18px)!important;
+  padding-top:10px!important;
+  padding-bottom:calc(122px + env(safe-area-inset-bottom,0px))!important;
 }
-body.v85-home-ux-stabilization #home .hero,
-body.v85-home-ux-stabilization #home header.home-hero-v76{
+
+/* No big-small-big on open/refresh */
+body.v86-home-load-stability:not(.v86-home-ready) #home .hero,
+body.v86-home-load-stability:not(.v86-home-ready) #home .daily-card,
+body.v86-home-load-stability:not(.v86-home-ready) #home .card-glow{
+  animation:none!important;
+  transition:none!important;
+  transform:none!important;
+}
+body.v86-home-load-stability #home .hero,
+body.v86-home-load-stability #home header.home-hero-v76{
   height:auto!important;
   min-height:0!important;
   max-height:none!important;
-  padding:18px 18px 20px!important;
+  padding:18px 18px 19px!important;
   margin:0 0 14px!important;
-  gap:10px!important;
+  gap:9px!important;
   display:flex!important;
   flex-direction:column!important;
   justify-content:flex-start!important;
   align-items:stretch!important;
   overflow:hidden!important;
   border-radius:28px!important;
+  transform:none!important;
 }
-body.v85-home-ux-stabilization #home .hero .brand-logo,
-body.v85-home-ux-stabilization #home header.home-hero-v76 .brand-logo{
-  width:min(74vw,520px)!important;
-  height:clamp(86px,18vw,126px)!important;
-  max-height:126px!important;
+body.v86-home-load-stability #home .hero .brand-logo,
+body.v86-home-load-stability #home header.home-hero-v76 .brand-logo{
+  width:min(73vw,500px)!important;
+  height:clamp(94px,18vw,118px)!important;
+  max-height:118px!important;
   object-fit:contain!important;
-  margin:0 auto 4px!important;
+  margin:0 auto 3px!important;
+  flex:0 0 auto!important;
 }
-body.v85-home-ux-stabilization #home .hero .eyebrow{
+body.v86-home-load-stability #home .hero .eyebrow{
   font-size:11px!important;
   line-height:1.05!important;
   letter-spacing:.15em!important;
   margin:0!important;
 }
-body.v85-home-ux-stabilization #home .hero h1{
-  font-size:clamp(31px,8.4vw,46px)!important;
-  line-height:.95!important;
+body.v86-home-load-stability #home .hero h1{
+  font-size:clamp(32px,8.45vw,44px)!important;
+  line-height:.96!important;
   letter-spacing:-.055em!important;
   margin:0 0 2px!important;
   text-align:center!important;
 }
-body.v85-home-ux-stabilization #home .hero p{
-  font-size:clamp(13px,3.55vw,16px)!important;
-  line-height:1.28!important;
-  margin:0 auto 4px!important;
+body.v86-home-load-stability #home .hero p{
+  font-size:clamp(13px,3.5vw,16px)!important;
+  line-height:1.25!important;
+  margin:0 auto 3px!important;
   max-width:94%!important;
   text-align:center!important;
   display:-webkit-box!important;
   -webkit-box-orient:vertical!important;
-  -webkit-line-clamp:2!important;
+  -webkit-line-clamp:1!important;
   overflow:hidden!important;
 }
-body.v85-home-ux-stabilization #home .hero-actions{
+body.v86-home-load-stability #home .hero-actions{
   display:grid!important;
   grid-template-columns:1fr 1fr 1fr!important;
   gap:8px!important;
   margin:4px 0 0!important;
   padding:0!important;
 }
-body.v85-home-ux-stabilization #home .hero-actions button{
-  min-height:42px!important;
-  height:42px!important;
+body.v86-home-load-stability #home .hero-actions button{
+  min-height:41px!important;
+  height:41px!important;
   padding:0 8px!important;
   border-radius:999px!important;
   font-size:clamp(12px,3.35vw,15px)!important;
   line-height:1!important;
   white-space:nowrap!important;
 }
-body.v85-home-ux-stabilization #home .hero-mini-strip{
+body.v86-home-load-stability #home .hero-mini-strip{
   display:grid!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:8px!important;
   margin:4px 0 0!important;
   padding:0!important;
 }
-body.v85-home-ux-stabilization #home .hero-mini-strip span{
-  min-height:46px!important;
-  height:46px!important;
+body.v86-home-load-stability #home .hero-mini-strip span{
+  min-height:43px!important;
+  height:43px!important;
   padding:6px 4px!important;
   border-radius:18px!important;
   font-size:11px!important;
@@ -12327,60 +12082,76 @@ body.v85-home-ux-stabilization #home .hero-mini-strip span{
   justify-content:center!important;
   text-align:center!important;
 }
-body.v85-home-ux-stabilization #home .hero-mini-strip strong{
-  font-size:clamp(19px,5vw,28px)!important;
+body.v86-home-load-stability #home .hero-mini-strip strong{
+  font-size:clamp(19px,5vw,27px)!important;
   line-height:.95!important;
 }
-body.v85-home-ux-stabilization #home .daily-card{
+body.v86-home-load-stability #home .daily-card{
   margin:0 0 16px!important;
   padding:20px 20px 22px!important;
   min-height:0!important;
+  max-height:none!important;
   overflow:hidden!important;
   border-radius:28px!important;
 }
-body.v85-home-ux-stabilization #home .daily-card h2{
+body.v86-home-load-stability #home .daily-card h2{
   font-size:clamp(32px,8.5vw,48px)!important;
   line-height:.98!important;
   margin:10px 0 12px!important;
 }
-body.v85-home-ux-stabilization #home .daily-card p{
+body.v86-home-load-stability #home .daily-card p{
   font-size:clamp(16px,4.2vw,20px)!important;
   line-height:1.35!important;
   margin:0 0 12px!important;
 }
-body.v85-home-ux-stabilization #home .daily-card button{min-height:44px!important;}
+body.v86-home-load-stability #home .daily-card button{min-height:44px!important;}
 
-/* Home boxes: small clean space, no accidental inner scrollbars */
-body.v85-home-ux-stabilization #home .daily-card,
-body.v85-home-ux-stabilization #home .pro-card,
-body.v85-home-ux-stabilization #home #livelyDashboard,
-body.v85-home-ux-stabilization #home #smartInsights,
-body.v85-home-ux-stabilization #home #categoryRibbons,
-body.v85-home-ux-stabilization #home .section-title{
-  margin-top:0!important;
+/* Keep Home boxes separated without creating giant gaps */
+body.v86-home-load-stability #home .daily-card,
+body.v86-home-load-stability #home .quick-row,
+body.v86-home-load-stability #home .pro-card,
+body.v86-home-load-stability #home #livelyDashboard,
+body.v86-home-load-stability #home #smartInsights,
+body.v86-home-load-stability #home #categoryRibbons,
+body.v86-home-load-stability #home .section-title,
+body.v86-home-load-stability #home #trendingGrid,
+body.v86-home-load-stability #home #recentHome{
   margin-bottom:16px!important;
 }
-body.v85-home-ux-stabilization #home .pro-card{
+
+/* App Progress: no internal scrollbars ever */
+body.v86-home-load-stability #home .pro-card{
   overflow:hidden!important;
-  max-height:none!important;
+  overflow-y:hidden!important;
+  overflow-x:hidden!important;
   height:auto!important;
+  max-height:none!important;
   padding:20px!important;
 }
-body.v85-home-ux-stabilization #home .pro-card::-webkit-scrollbar,
-body.v85-home-ux-stabilization #home .stat-row::-webkit-scrollbar{display:none!important;}
-body.v85-home-ux-stabilization #home .stat-row{
+body.v86-home-load-stability #home .pro-card *,
+body.v86-home-load-stability #home .stat-row{
+  scrollbar-width:none!important;
+}
+body.v86-home-load-stability #home .pro-card *::-webkit-scrollbar,
+body.v86-home-load-stability #home .stat-row::-webkit-scrollbar{display:none!important;}
+body.v86-home-load-stability #home .stat-row{
   overflow:visible!important;
   display:grid!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:10px!important;
 }
-body.v85-home-ux-stabilization #home .stat-row div{
+body.v86-home-load-stability #home .stat-row div{
   min-width:0!important;
   overflow:hidden!important;
 }
 
-/* Restore a small pressable action under Smart Recommendations */
-body.v85-home-ux-stabilization #home .v85-smart-action{
+/* Smart Recommendations: one clear action only */
+body.v86-home-load-stability #home #smartInsights .panel-head .small-btn,
+body.v86-home-load-stability #home #smartInsights .panel-head button{
+  display:none!important;
+}
+body.v86-home-load-stability #home .v85-smart-action,
+body.v86-home-load-stability #home .v86-smart-action{
   margin-top:12px!important;
   border-radius:24px!important;
   padding:14px!important;
@@ -12394,23 +12165,26 @@ body.v85-home-ux-stabilization #home .v85-smart-action{
   box-shadow:0 16px 38px rgba(72,233,135,.20)!important;
   text-align:left!important;
 }
-body.v85-home-ux-stabilization #home .v85-smart-action strong{display:block;font-size:15px!important;line-height:1.05!important;}
-body.v85-home-ux-stabilization #home .v85-smart-action span{display:block;font-size:12px!important;line-height:1.15!important;opacity:.78;margin-top:3px;}
-body.v85-home-ux-stabilization #home .v85-smart-action b{font-size:22px!important;line-height:1!important;}
+body.v86-home-load-stability #home .v85-smart-action strong,
+body.v86-home-load-stability #home .v86-smart-action strong{display:block;font-size:15px!important;line-height:1.05!important;}
+body.v86-home-load-stability #home .v85-smart-action span,
+body.v86-home-load-stability #home .v86-smart-action span{display:block;font-size:12px!important;line-height:1.15!important;opacity:.78;margin-top:3px;}
+body.v86-home-load-stability #home .v85-smart-action b,
+body.v86-home-load-stability #home .v86-smart-action b{font-size:22px!important;line-height:1!important;}
 
-/* Section headings must never clip first letters */
-body.v85-home-ux-stabilization #home .section-title{
+/* Headings: never clip first letters */
+body.v86-home-load-stability #home .section-title{
   width:100%!important;
   max-width:100%!important;
   overflow:visible!important;
-  padding:22px 6px 16px!important;
+  padding:22px 8px 16px!important;
   margin-left:0!important;
   margin-right:0!important;
   transform:none!important;
   clip-path:none!important;
 }
-body.v85-home-ux-stabilization #home .section-title h2,
-body.v85-home-ux-stabilization #home .section-title p{
+body.v86-home-load-stability #home .section-title h2,
+body.v86-home-load-stability #home .section-title p{
   overflow:visible!important;
   transform:none!important;
   margin-left:0!important;
@@ -12419,8 +12193,8 @@ body.v85-home-ux-stabilization #home .section-title p{
   clip-path:none!important;
 }
 
-/* Real horizontal carousel behavior for Trending */
-body.v85-home-ux-stabilization #home #trendingGrid{
+/* Trending Today: true swipe row */
+body.v86-home-load-stability #home #trendingGrid{
   display:flex!important;
   flex-wrap:nowrap!important;
   gap:14px!important;
@@ -12431,35 +12205,40 @@ body.v85-home-ux-stabilization #home #trendingGrid{
   -webkit-overflow-scrolling:touch!important;
   overscroll-behavior-x:contain!important;
   scroll-snap-type:x proximity!important;
-  touch-action:pan-x!important;
+  touch-action:pan-y!important;
   cursor:grab!important;
-  padding:8px 22px 18px 4px!important;
+  padding:8px 28px 20px 6px!important;
   margin:0 0 18px!important;
   scrollbar-width:none!important;
   mask-image:none!important;
+  -webkit-mask-image:none!important;
+  contain:layout paint!important;
 }
-body.v85-home-ux-stabilization #home #trendingGrid.is-dragging{cursor:grabbing!important;scroll-snap-type:none!important;}
-body.v85-home-ux-stabilization #home #trendingGrid::-webkit-scrollbar{display:none!important;}
-body.v85-home-ux-stabilization #home #trendingGrid .strain-card{
+body.v86-home-load-stability #home #trendingGrid.is-dragging{cursor:grabbing!important;scroll-snap-type:none!important;}
+body.v86-home-load-stability #home #trendingGrid::-webkit-scrollbar{display:none!important;}
+body.v86-home-load-stability #home #trendingGrid .strain-card{
   flex:0 0 min(79vw,330px)!important;
   width:min(79vw,330px)!important;
   min-width:min(79vw,330px)!important;
   max-width:min(79vw,330px)!important;
   scroll-snap-align:start!important;
-  touch-action:pan-x!important;
+  touch-action:pan-y!important;
   user-select:none!important;
+  -webkit-user-select:none!important;
 }
-body.v85-home-ux-stabilization #home #trendingGrid .card-hero{height:auto!important;}
-body.v85-home-ux-stabilization #home #trendingGrid .card-hero img{height:185px!important;}
+body.v86-home-load-stability #home #trendingGrid .strain-card *{
+  touch-action:pan-y!important;
+}
+body.v86-home-load-stability #home #trendingGrid .card-hero img{height:185px!important;}
 
 @media(max-width:390px){
-  body.v85-home-ux-stabilization #home .hero,
-  body.v85-home-ux-stabilization #home header.home-hero-v76{padding:16px 16px 18px!important;gap:8px!important;}
-  body.v85-home-ux-stabilization #home .hero .brand-logo,
-  body.v85-home-ux-stabilization #home header.home-hero-v76 .brand-logo{height:88px!important;max-height:88px!important;width:min(72vw,430px)!important;}
-  body.v85-home-ux-stabilization #home .hero h1{font-size:30px!important;}
-  body.v85-home-ux-stabilization #home .hero p{font-size:13px!important;line-height:1.22!important;}
-  body.v85-home-ux-stabilization #home .hero-actions button{height:40px!important;min-height:40px!important;font-size:12px!important;}
-  body.v85-home-ux-stabilization #home .hero-mini-strip span{height:42px!important;min-height:42px!important;}
-  body.v85-home-ux-stabilization #home #trendingGrid .strain-card{flex-basis:82vw!important;width:82vw!important;min-width:82vw!important;max-width:82vw!important;}
+  body.v86-home-load-stability #home .hero,
+  body.v86-home-load-stability #home header.home-hero-v76{padding:16px 16px 18px!important;gap:8px!important;}
+  body.v86-home-load-stability #home .hero .brand-logo,
+  body.v86-home-load-stability #home header.home-hero-v76 .brand-logo{height:92px!important;max-height:92px!important;width:min(72vw,430px)!important;}
+  body.v86-home-load-stability #home .hero h1{font-size:31px!important;}
+  body.v86-home-load-stability #home .hero p{font-size:13px!important;line-height:1.22!important;}
+  body.v86-home-load-stability #home .hero-actions button{height:40px!important;min-height:40px!important;font-size:12px!important;}
+  body.v86-home-load-stability #home .hero-mini-strip span{height:42px!important;min-height:42px!important;}
+  body.v86-home-load-stability #home #trendingGrid .strain-card{flex-basis:82vw!important;width:82vw!important;min-width:82vw!important;max-width:82vw!important;}
 }

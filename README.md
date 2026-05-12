@@ -1,12 +1,14 @@
-# StrainRelief V85 — Home UX Stabilization
+# StrainRelief V86 — Home Load Stability + Carousel Touch Fix
 
 Home page only update.
 
-## Fixed
-- Restored a more balanced hero after V84 over-compression.
-- Removed the App Progress scrollbar/overflow issue.
-- Restored a small pressable Smart Recommendations action card.
-- Improved Trending Today carousel swipe behavior with real drag support.
-- Kept section headings from clipping.
+## Updated
+- Stopped the Home hero/Daily Wellness load-size jumping on refresh.
+- Removed duplicate Smart Recommendations action behavior.
+- Kept the main Smart Recommendations action: Compare your next direction.
+- Fixed App Progress overflow/scrollbar behavior.
+- Strengthened Trending Today mobile carousel swipe handling.
+- Preserved Home page spacing and heading safety.
 
-Educational only. Follow local laws. Cannabis affects everyone differently. Do not drive while impaired.
+## Safety
+StrainRelief is educational only and does not diagnose, treat, cure, or prevent any condition. Cannabis affects everyone differently. Follow local laws and do not drive while impaired.
