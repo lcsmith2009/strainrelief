@@ -22,3 +22,7 @@ Premium motion and interaction polish.
 
 ## Upload notes
 Upload all files to GitHub/Vercel. After deployment, hard refresh or close/reopen the app so the new cache-busted CSS and JS load.
+
+## V82 — Home Card Density Polish
+
+Focused only on the Home page. Tightened card spacing, internal padding, Spotlight density, Live Wellness Dashboard density, Smart Recommendations cards, Trending card height, and Recently Viewed scaling. No redesigns, no new features, and no unrelated page changes.

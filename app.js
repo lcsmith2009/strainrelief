@@ -4326,3 +4326,40 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefMotionVersion = VERSION;
 })();
+
+/* ======================================================
+   V82 HOME CARD DENSITY POLISH JS
+   Single-purpose update: marks Home-only density polish.
+====================================================== */
+(function(){
+  const VERSION = "v82-home-card-density-polish";
+
+  function run(){
+    document.body.classList.add(VERSION);
+    document.querySelectorAll(
+      "#home #v27Spotlight, #home #livelyDashboard, #home #smartInsights, #home #recentHome, #home #trendingGrid"
+    ).forEach(el => el.classList.add("v82-density-ready"));
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 180);
+    setTimeout(run, 750);
+    setTimeout(run, 1450);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+  window.addEventListener("resize", () => setTimeout(run, 140));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 130);
+      setTimeout(run, 620);
+      return result;
+    };
+  }
+
+  window.StrainReliefHomeDensityVersion = VERSION;
+})();

@@ -11155,3 +11155,499 @@ body.v81-premium-motion-pass #srBackTop.show{
     scroll-behavior: auto !important;
   }
 }
+
+/* ======================================================
+   V82 HOME CARD DENSITY POLISH
+   Single-purpose update:
+   - Home page only.
+   - Tightens bulky cards without redesigning layout.
+   - Improves Spotlight, Dashboard, Smart Recommendations,
+     Trending, and Recently Viewed density.
+====================================================== */
+
+body.v82-home-card-density-polish #home{
+  --v82-home-gap: 13px;
+  --v82-card-pad: 14px;
+  --v82-card-radius: 22px;
+}
+
+/* Overall Home rhythm: slightly tighter, still premium */
+body.v82-home-card-density-polish #home.page{
+  gap: var(--v82-home-gap) !important;
+  padding-bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+}
+
+body.v82-home-card-density-polish #home .section-title{
+  margin: 12px 0 7px !important;
+  padding: 0 2px !important;
+}
+
+body.v82-home-card-density-polish #home .section-title h2{
+  font-size: clamp(23px, 6vw, 34px) !important;
+  line-height: 1.02 !important;
+  margin: 0 0 3px !important;
+}
+
+body.v82-home-card-density-polish #home .section-title p{
+  font-size: 13px !important;
+  line-height: 1.32 !important;
+  margin: 0 !important;
+}
+
+/* Keep the locked compact hero behavior; do not enlarge it */
+body.v82-home-card-density-polish #home .hero{
+  padding-top: 16px !important;
+  padding-bottom: 15px !important;
+  margin-top: 8px !important;
+}
+
+body.v82-home-card-density-polish #home .hero .brand-logo{
+  margin-bottom: 6px !important;
+}
+
+body.v82-home-card-density-polish #home .hero p{
+  margin-top: 8px !important;
+  line-height: 1.42 !important;
+}
+
+body.v82-home-card-density-polish #home .hero-actions{
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+body.v82-home-card-density-polish #home .hero-mini-strip{
+  gap: 7px !important;
+  margin-top: 10px !important;
+}
+
+/* Daily direction: premium but less blocky */
+body.v82-home-card-density-polish #home .daily-card{
+  padding: 13px 14px !important;
+  border-radius: var(--v82-card-radius) !important;
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home .daily-card .eyebrow{
+  margin-bottom: 4px !important;
+}
+
+body.v82-home-card-density-polish #home .daily-card h2{
+  font-size: clamp(24px, 6.4vw, 36px) !important;
+  line-height: 1.02 !important;
+  margin: 3px 0 5px !important;
+}
+
+body.v82-home-card-density-polish #home .daily-card p{
+  font-size: 13.5px !important;
+  line-height: 1.34 !important;
+  margin: 0 !important;
+}
+
+/* Quick chips + progress card */
+body.v82-home-card-density-polish #home .quick-row{
+  gap: 8px !important;
+  margin: 10px 0 8px !important;
+  padding-bottom: 2px !important;
+}
+
+body.v82-home-card-density-polish #home .quick-row button{
+  min-height: 36px !important;
+  padding: 9px 12px !important;
+  font-size: 12px !important;
+}
+
+body.v82-home-card-density-polish #home .pro-card{
+  padding: 13px !important;
+  border-radius: var(--v82-card-radius) !important;
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home .pro-card h2{
+  font-size: clamp(22px, 5.7vw, 32px) !important;
+  line-height: 1.02 !important;
+  margin: 0 0 10px !important;
+}
+
+body.v82-home-card-density-polish #home .stat-row{
+  gap: 8px !important;
+}
+
+body.v82-home-card-density-polish #home .stat-row div{
+  min-height: 68px !important;
+  padding: 10px 8px !important;
+  border-radius: 18px !important;
+}
+
+body.v82-home-card-density-polish #home .stat-row strong{
+  font-size: clamp(22px, 6vw, 32px) !important;
+  line-height: 1 !important;
+}
+
+body.v82-home-card-density-polish #home .stat-row span{
+  margin-top: 4px !important;
+  font-size: 10px !important;
+}
+
+/* Today's Spotlight: biggest density fix */
+body.v82-home-card-density-polish #home #v27Spotlight,
+body.v82-home-card-density-polish #home .v27-spotlight{
+  margin: 0 !important;
+  border-radius: 24px !important;
+}
+
+body.v82-home-card-density-polish #home .v27-spotlight-inner{
+  gap: 11px !important;
+  padding: 13px !important;
+  align-items: center !important;
+}
+
+body.v82-home-card-density-polish #home .v27-spotlight-copy h2{
+  font-size: clamp(28px, 7.4vw, 46px) !important;
+  line-height: .96 !important;
+  margin: 4px 0 6px !important;
+}
+
+body.v82-home-card-density-polish #home .v27-spotlight-copy p{
+  font-size: 13.5px !important;
+  line-height: 1.34 !important;
+  margin: 0 0 10px !important;
+}
+
+body.v82-home-card-density-polish #home .v27-spotlight-copy button{
+  min-height: 38px !important;
+  padding: 10px 13px !important;
+  border-radius: 16px !important;
+  font-size: 13px !important;
+}
+
+body.v82-home-card-density-polish #home .v27-spotlight-art{
+  min-height: 142px !important;
+  border-radius: 20px !important;
+}
+
+body.v82-home-card-density-polish #home .v27-spotlight-art span{
+  left: 8px !important;
+  bottom: 8px !important;
+  padding: 6px 9px !important;
+  font-size: 11px !important;
+}
+
+/* Live Wellness Dashboard: make it glanceable instead of chunky */
+body.v82-home-card-density-polish #home #livelyDashboard,
+body.v82-home-card-density-polish #home .lively-dashboard{
+  padding: 14px !important;
+  border-radius: 24px !important;
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home .lively-dashboard .panel-head{
+  gap: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+body.v82-home-card-density-polish #home .lively-dashboard .panel-head h3{
+  font-size: clamp(23px, 6.2vw, 36px) !important;
+  line-height: .98 !important;
+  margin: 3px 0 0 !important;
+}
+
+body.v82-home-card-density-polish #home .lively-dashboard .panel-head .small-btn{
+  min-height: 34px !important;
+  padding: 8px 10px !important;
+  border-radius: 14px !important;
+  font-size: 11px !important;
+}
+
+body.v82-home-card-density-polish #home .live-hero-strip{
+  grid-template-columns: 74px 1fr !important;
+  gap: 10px !important;
+  padding: 9px !important;
+  border-radius: 19px !important;
+  margin: 0 0 10px !important;
+}
+
+body.v82-home-card-density-polish #home .live-hero-strip img{
+  width: 74px !important;
+  height: 74px !important;
+  border-radius: 16px !important;
+}
+
+body.v82-home-card-density-polish #home .live-hero-strip h2{
+  font-size: 21px !important;
+  line-height: 1.02 !important;
+  margin: 3px 0 4px !important;
+}
+
+body.v82-home-card-density-polish #home .live-hero-strip p{
+  font-size: 12.5px !important;
+  line-height: 1.28 !important;
+  margin: 0 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+body.v82-home-card-density-polish #home .live-pill{
+  padding: 5px 8px !important;
+  font-size: 10px !important;
+}
+
+body.v82-home-card-density-polish #home .lively-stat-row{
+  gap: 8px !important;
+  margin: 8px 0 10px !important;
+}
+
+body.v82-home-card-density-polish #home .lively-stat-row div{
+  min-height: 62px !important;
+  padding: 9px 7px !important;
+  border-radius: 17px !important;
+}
+
+body.v82-home-card-density-polish #home .lively-stat-row strong{
+  font-size: 23px !important;
+  line-height: 1 !important;
+}
+
+body.v82-home-card-density-polish #home .lively-stat-row span{
+  margin-top: 4px !important;
+  font-size: 10px !important;
+}
+
+body.v82-home-card-density-polish #home .section-micro-head{
+  margin: 8px 0 7px !important;
+}
+
+body.v82-home-card-density-polish #home .quest-carousel{
+  gap: 9px !important;
+  padding: 2px 3px 8px !important;
+}
+
+body.v82-home-card-density-polish #home .quest-card{
+  min-width: 126px !important;
+  padding: 10px !important;
+  border-radius: 18px !important;
+}
+
+body.v82-home-card-density-polish #home .quest-card span{
+  font-size: 18px !important;
+  margin-bottom: 5px !important;
+}
+
+body.v82-home-card-density-polish #home .quest-card strong{
+  font-size: 13px !important;
+  line-height: 1.12 !important;
+}
+
+body.v82-home-card-density-polish #home .quest-card small{
+  font-size: 10.5px !important;
+  line-height: 1.18 !important;
+}
+
+/* Explore by vibe lanes */
+body.v82-home-card-density-polish #home #categoryRibbons{
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home .vibe-ribbon{
+  gap: 9px !important;
+  padding: 2px 3px 9px !important;
+}
+
+body.v82-home-card-density-polish #home .vibe-chip{
+  min-width: 118px !important;
+  padding: 10px !important;
+  border-radius: 19px !important;
+}
+
+body.v82-home-card-density-polish #home .vibe-chip span{
+  font-size: 18px !important;
+}
+
+body.v82-home-card-density-polish #home .vibe-chip strong{
+  font-size: 13px !important;
+  line-height: 1.1 !important;
+}
+
+body.v82-home-card-density-polish #home .vibe-chip small{
+  font-size: 10px !important;
+}
+
+/* Smart Recommendations: compress text and card stacks */
+body.v82-home-card-density-polish #home #smartInsights,
+body.v82-home-card-density-polish #home .smart-insights{
+  padding: 14px !important;
+  border-radius: 24px !important;
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home #smartInsights .panel-head{
+  gap: 10px !important;
+  margin-bottom: 9px !important;
+}
+
+body.v82-home-card-density-polish #home #smartInsights .panel-head h3{
+  font-size: clamp(23px, 6.2vw, 34px) !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home #smartInsights .panel-head .small-btn{
+  min-height: 34px !important;
+  padding: 8px 10px !important;
+  border-radius: 14px !important;
+  font-size: 11px !important;
+}
+
+body.v82-home-card-density-polish #home .smart-grid{
+  gap: 9px !important;
+  margin-top: 9px !important;
+}
+
+body.v82-home-card-density-polish #home .smart-card{
+  padding: 11px !important;
+  border-radius: 18px !important;
+  min-height: 0 !important;
+}
+
+body.v82-home-card-density-polish #home .smart-card span{
+  font-size: 10.5px !important;
+  letter-spacing: .075em !important;
+  margin-bottom: 5px !important;
+}
+
+body.v82-home-card-density-polish #home .smart-card h3{
+  font-size: clamp(18px, 5vw, 23px) !important;
+  line-height: 1.04 !important;
+  margin: 0 0 5px !important;
+}
+
+body.v82-home-card-density-polish #home .smart-card p{
+  font-size: 12.5px !important;
+  line-height: 1.32 !important;
+}
+
+/* Trending cards: slightly less tall on Home only */
+body.v82-home-card-density-polish #home #trendingGrid{
+  gap: 10px !important;
+  padding: 2px 4px 10px !important;
+}
+
+body.v82-home-card-density-polish #home #trendingGrid .strain-card{
+  min-width: min(78vw, 310px) !important;
+  padding: 11px !important;
+  border-radius: 22px !important;
+}
+
+body.v82-home-card-density-polish #home #trendingGrid .card-hero img,
+body.v82-home-card-density-polish #home #trendingGrid .strain-card img{
+  max-height: 155px !important;
+  border-radius: 18px !important;
+}
+
+body.v82-home-card-density-polish #home #trendingGrid .strain-card h3{
+  font-size: 21px !important;
+  line-height: 1.02 !important;
+  margin: 8px 0 5px !important;
+}
+
+body.v82-home-card-density-polish #home #trendingGrid .strain-card p{
+  font-size: 12.5px !important;
+  line-height: 1.32 !important;
+  margin-bottom: 8px !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+body.v82-home-card-density-polish #home #trendingGrid .tags{
+  gap: 6px !important;
+  margin: 8px 0 !important;
+}
+
+body.v82-home-card-density-polish #home #trendingGrid .tag{
+  padding: 6px 8px !important;
+  font-size: 10.5px !important;
+}
+
+/* Recently Viewed: tighter streaming-row feel */
+body.v82-home-card-density-polish #home #recentHome{
+  margin: 0 !important;
+}
+
+body.v82-home-card-density-polish #home .recent-carousel{
+  gap: 9px !important;
+  padding: 2px 3px 12px !important;
+}
+
+body.v82-home-card-density-polish #home .recent-card{
+  min-width: 132px !important;
+  padding: 8px !important;
+  border-radius: 19px !important;
+}
+
+body.v82-home-card-density-polish #home .recent-card img{
+  height: 70px !important;
+  border-radius: 14px !important;
+  margin-bottom: 6px !important;
+}
+
+body.v82-home-card-density-polish #home .recent-card strong{
+  font-size: 14.5px !important;
+  line-height: 1.02 !important;
+}
+
+body.v82-home-card-density-polish #home .recent-card small{
+  font-size: 10.5px !important;
+  line-height: 1.1 !important;
+}
+
+/* Empty state should not become a huge block on Home */
+body.v82-home-card-density-polish #home .empty-state{
+  padding: 14px !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 520px){
+  body.v82-home-card-density-polish #home .v27-spotlight-inner{
+    grid-template-columns: 1fr !important;
+  }
+
+  body.v82-home-card-density-polish #home .v27-spotlight-art{
+    min-height: 132px !important;
+  }
+
+  body.v82-home-card-density-polish #home .live-hero-strip{
+    grid-template-columns: 68px 1fr !important;
+  }
+
+  body.v82-home-card-density-polish #home .live-hero-strip img{
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  body.v82-home-card-density-polish #home #trendingGrid .strain-card{
+    min-width: 80vw !important;
+  }
+}
+
+@media (max-width: 390px){
+  body.v82-home-card-density-polish #home .hero{
+    padding-top: 14px !important;
+    padding-bottom: 13px !important;
+  }
+
+  body.v82-home-card-density-polish #home .daily-card,
+  body.v82-home-card-density-polish #home .pro-card,
+  body.v82-home-card-density-polish #home #smartInsights,
+  body.v82-home-card-density-polish #home #livelyDashboard{
+    padding: 12px !important;
+  }
+
+  body.v82-home-card-density-polish #home .v27-spotlight-inner{
+    padding: 12px !important;
+  }
+}
