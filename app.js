@@ -4661,3 +4661,148 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefHomeLoadStabilityVersion = VERSION;
 })();
+
+
+/* === V87 HOME STABILITY CLEANUP JS ===
+   Home page only: removes first-screen size jump, restores App Progress styling, and makes Trending Today native-scroll friendly.
+*/
+(function(){
+  const VERSION = "v87-home-stability-cleanup";
+  function qs(sel, root=document){ return root.querySelector(sel); }
+  function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+  function imp(el, prop, val){ if(el) el.style.setProperty(prop, val, "important"); }
+
+  function lockFirstScreen(home){
+    const hero = qs('.hero', home);
+    const daily = qs('.daily-card', home);
+    [hero,daily].filter(Boolean).forEach(el=>{
+      imp(el,'animation','none');
+      imp(el,'transform','none');
+      imp(el,'opacity','1');
+      imp(el,'filter','none');
+      imp(el,'contain','layout paint');
+    });
+    if(hero){
+      imp(hero,'height','auto');
+      imp(hero,'min-height','0');
+      imp(hero,'max-height','none');
+      const logo=qs('.brand-logo',hero);
+      if(logo){
+        imp(logo,'animation','none');
+        imp(logo,'height', window.innerWidth<=390 ? '102px' : '112px');
+        imp(logo,'min-height', window.innerWidth<=390 ? '102px' : '112px');
+        imp(logo,'max-height', window.innerWidth<=390 ? '102px' : '112px');
+      }
+    }
+  }
+
+  function fixProgress(home){
+    const card = qs('.pro-card', home);
+    if(!card) return;
+    card.classList.add('v87-progress-clean');
+    imp(card,'overflow','hidden');
+    imp(card,'overflow-x','hidden');
+    imp(card,'overflow-y','hidden');
+    const row = qs('.stat-row', card);
+    if(row){
+      imp(row,'overflow','visible');
+      imp(row,'display','grid');
+      imp(row,'grid-template-columns','repeat(3,minmax(0,1fr))');
+      imp(row,'gap','10px');
+    }
+  }
+
+  function removeSmartDuplicate(home){
+    qsa('#smartInsights .panel-head button, #smartInsights .panel-head .small-btn', home).forEach(btn=>btn.remove());
+    const action = qs('#smartInsights .v85-smart-action, #smartInsights .v86-smart-action', home);
+    if(action){
+      action.classList.remove('v85-smart-action','v86-smart-action');
+      action.classList.add('v87-smart-action');
+    }
+  }
+
+  function makeNativeCarousel(home){
+    let row = qs('#trendingGrid', home);
+    if(!row) return;
+
+    // Remove old pointer/touch listeners from V86 by cloning the row after cards render.
+    if(row.dataset.v87Native !== 'yes'){
+      const clone = row.cloneNode(true);
+      clone.dataset.v87Native = 'yes';
+      clone.classList.add('v87-native-carousel');
+      row.replaceWith(clone);
+      row = clone;
+    }
+
+    imp(row,'display','flex');
+    imp(row,'flex-wrap','nowrap');
+    imp(row,'overflow-x','auto');
+    imp(row,'overflow-y','visible');
+    imp(row,'-webkit-overflow-scrolling','touch');
+    imp(row,'overscroll-behavior-x','contain');
+    imp(row,'scroll-snap-type','x mandatory');
+    imp(row,'touch-action','pan-x');
+    imp(row,'padding','8px 34px 18px 8px');
+    imp(row,'gap','14px');
+    imp(row,'cursor','auto');
+    imp(row,'contain','none');
+
+    const width = window.innerWidth <= 390 ? '78vw' : 'min(76vw,318px)';
+    qsa('.strain-card', row).forEach(card=>{
+      imp(card,'flex',`0 0 ${width}`);
+      imp(card,'width',width);
+      imp(card,'min-width',width);
+      imp(card,'max-width',width);
+      imp(card,'scroll-snap-align','start');
+      imp(card,'touch-action','pan-x');
+      imp(card,'user-select','auto');
+      qsa('*',card).forEach(child=>imp(child,'touch-action','pan-x'));
+    });
+  }
+
+  function apply(){
+    document.body.classList.add(VERSION);
+    const home = document.getElementById('home');
+    if(!home) return;
+    lockFirstScreen(home);
+    fixProgress(home);
+    removeSmartDuplicate(home);
+    makeNativeCarousel(home);
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    apply();
+    setTimeout(apply,60);
+    setTimeout(apply,220);
+    setTimeout(apply,650);
+  });
+  window.addEventListener('pageshow',()=>setTimeout(apply,60));
+  window.addEventListener('resize',()=>setTimeout(apply,140));
+  window.addEventListener('orientationchange',()=>setTimeout(apply,260));
+
+  const previousShowPage = window.showPage;
+  if(typeof previousShowPage === 'function'){
+    window.showPage = function(){
+      const out = previousShowPage.apply(this, arguments);
+      setTimeout(apply,80);
+      return out;
+    };
+  }
+  const previousRenderFeatured = window.renderFeatured;
+  if(typeof previousRenderFeatured === 'function'){
+    window.renderFeatured = function(){
+      const out = previousRenderFeatured.apply(this, arguments);
+      setTimeout(apply,50);
+      return out;
+    };
+  }
+  const previousRenderSmart = window.renderSmartInsights;
+  if(typeof previousRenderSmart === 'function'){
+    window.renderSmartInsights = function(){
+      const out = previousRenderSmart.apply(this, arguments);
+      setTimeout(apply,50);
+      return out;
+    };
+  }
+  window.StrainReliefHomeStabilityCleanupVersion = VERSION;
+})();
