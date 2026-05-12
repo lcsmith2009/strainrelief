@@ -4339,9 +4339,9 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
    Tiny, non-destructive polish. Search/Terpenes/data untouched.
 ====================================================== */
 (function(){
-  const VERSION = 'v97-safe-premium-elevation';
+  const VERSION = 'v98-mobile-ux-polish';
   function applyV97(){
-    document.body.classList.add('v97-safe-premium-elevation');
+    document.body.classList.add('v98-mobile-ux-polish');
     document.documentElement.style.overflowY = 'auto';
     document.body.style.overflowY = 'auto';
     document.body.style.touchAction = 'pan-y';
@@ -4395,4 +4395,48 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
     };
   }
   window.StrainReliefPatchVersion = VERSION;
+})();
+
+
+/* ======================================================
+   V98 MOBILE UX POLISH BOOT
+   Adds class, computes nav height, and keeps safe rows native-scroll.
+====================================================== */
+(function(){
+  const VERSION='v98-mobile-ux-polish';
+  function applyV98(){
+    document.body.classList.add(VERSION);
+    document.documentElement.style.overflowY='auto';
+    document.body.style.overflowY='auto';
+    document.body.style.touchAction='pan-y';
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      const h=Math.ceil(nav.getBoundingClientRect().height||74);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h+'px');
+    }
+    const smart=document.getElementById('smartInsights');
+    if(smart){
+      const h=smart.querySelector('.panel-head h3');
+      if(h) h.textContent='Smart Recommendations';
+    }
+    ['trendingGrid','recentHome'].forEach(id=>{
+      const row=document.getElementById(id);
+      if(row){
+        row.style.webkitOverflowScrolling='touch';
+        row.style.overscrollBehaviorX='contain';
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{applyV98();setTimeout(applyV98,160);setTimeout(applyV98,700);});
+  window.addEventListener('pageshow',()=>setTimeout(applyV98,90));
+  window.addEventListener('resize',()=>setTimeout(applyV98,120));
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(){const out=oldShow.apply(this,arguments);setTimeout(applyV98,90);return out;};
+  }
+  const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV98,40);return out;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
 })();

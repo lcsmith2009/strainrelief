@@ -11329,3 +11329,301 @@ body.v97-safe-premium-elevation .v96-trend-bridge button{
     width:auto!important;
   }
 }
+
+/* ======================================================
+   V98 MOBILE UX POLISH FROM V97
+   Safe refinement only: typography clamps, card density,
+   dock footprint, carousel sizing. Search/Terpenes/data untouched.
+====================================================== */
+body.v98-mobile-ux-polish{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  touch-action:pan-y!important;
+  padding-bottom:calc(var(--sr-real-nav-h, 76px) + 32px + env(safe-area-inset-bottom))!important;
+}
+body.v98-mobile-ux-polish .app-shell{
+  width:min(100%, 1120px)!important;
+}
+body.v98-mobile-ux-polish #home{
+  padding-bottom:calc(var(--sr-real-nav-h, 76px) + 42px)!important;
+}
+/* Hero: keep premium, stop vertical button tower from stretching the first screen */
+body.v98-mobile-ux-polish #home .hero{
+  padding:16px 18px 18px!important;
+  margin:8px 0 10px!important;
+  border-radius:28px!important;
+}
+body.v98-mobile-ux-polish #home .brand-logo{
+  height:clamp(56px,17vw,92px)!important;
+  max-height:92px!important;
+  margin:0 auto 6px!important;
+}
+body.v98-mobile-ux-polish #home .hero .eyebrow{
+  font-size:11px!important;
+  letter-spacing:.11em!important;
+  margin-bottom:4px!important;
+}
+body.v98-mobile-ux-polish #home .hero h1{
+  font-size:clamp(31px,8.7vw,48px)!important;
+  line-height:.95!important;
+  letter-spacing:-.055em!important;
+  margin:4px 0 8px!important;
+}
+body.v98-mobile-ux-polish #home .hero p{
+  font-size:14px!important;
+  line-height:1.34!important;
+  margin:0!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v98-mobile-ux-polish #home .hero-actions{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:7px!important;
+  margin-top:12px!important;
+}
+body.v98-mobile-ux-polish #home .hero-actions button{
+  min-height:41px!important;
+  height:auto!important;
+  padding:10px 12px!important;
+  border-radius:18px!important;
+  font-size:14px!important;
+  line-height:1!important;
+}
+body.v98-mobile-ux-polish #home .hero-mini-strip{
+  margin-top:9px!important;
+  padding:7px!important;
+  gap:7px!important;
+}
+body.v98-mobile-ux-polish #home .hero-mini-strip span{
+  padding:7px 5px!important;
+  border-radius:15px!important;
+  min-width:0!important;
+}
+body.v98-mobile-ux-polish #home .hero-mini-strip strong{
+  font-size:clamp(22px,7vw,34px)!important;
+  line-height:.9!important;
+}
+body.v98-mobile-ux-polish #home .hero-mini-strip b,
+body.v98-mobile-ux-polish #home .hero-mini-strip small{
+  font-size:10px!important;
+  line-height:1!important;
+}
+/* Home cards: unified density without removing richness */
+body.v98-mobile-ux-polish #home .daily-card,
+body.v98-mobile-ux-polish #home .panel,
+body.v98-mobile-ux-polish #home .pro-card,
+body.v98-mobile-ux-polish #home .section-title{
+  border-radius:28px!important;
+  margin-top:10px!important;
+  margin-bottom:10px!important;
+  padding:18px!important;
+}
+body.v98-mobile-ux-polish #home .daily-card h2,
+body.v98-mobile-ux-polish #home .section-title h2,
+body.v98-mobile-ux-polish #home .panel h3,
+body.v98-mobile-ux-polish #home .pro-card h2{
+  font-size:clamp(30px,8.5vw,44px)!important;
+  line-height:.98!important;
+  letter-spacing:-.052em!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  max-width:100%!important;
+}
+body.v98-mobile-ux-polish #home .daily-card p,
+body.v98-mobile-ux-polish #home .section-title p,
+body.v98-mobile-ux-polish #home .panel p,
+body.v98-mobile-ux-polish #home .pro-card p{
+  font-size:14.5px!important;
+  line-height:1.42!important;
+}
+body.v98-mobile-ux-polish #home .daily-card button,
+body.v98-mobile-ux-polish #home .pro-card button,
+body.v98-mobile-ux-polish #home .panel button{
+  padding:11px 15px!important;
+  min-height:42px!important;
+  border-radius:19px!important;
+}
+/* Smart Recommendations: stop title splitting and reduce giant card feel */
+body.v98-mobile-ux-polish #smartInsights{
+  padding:18px!important;
+  overflow:hidden!important;
+}
+body.v98-mobile-ux-polish #smartInsights .panel-head{
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  align-items:start!important;
+  gap:10px!important;
+  margin-bottom:12px!important;
+}
+body.v98-mobile-ux-polish #smartInsights .panel-head h3{
+  font-size:clamp(29px,8vw,42px)!important;
+  line-height:.98!important;
+  letter-spacing:-.055em!important;
+  max-width:100%!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  hyphens:none!important;
+}
+body.v98-mobile-ux-polish #smartInsights .panel-head .small-btn{
+  white-space:nowrap!important;
+  align-self:start!important;
+  padding:9px 12px!important;
+  min-height:38px!important;
+  font-size:13px!important;
+}
+body.v98-mobile-ux-polish #smartInsights .smart-grid{
+  display:grid!important;
+  gap:10px!important;
+}
+body.v98-mobile-ux-polish #smartInsights .smart-card{
+  padding:14px!important;
+  border-radius:22px!important;
+  min-height:auto!important;
+}
+body.v98-mobile-ux-polish #smartInsights .smart-card span{
+  font-size:12px!important;
+  letter-spacing:.11em!important;
+}
+body.v98-mobile-ux-polish #smartInsights .smart-card h3{
+  font-size:clamp(21px,6vw,30px)!important;
+  line-height:1.04!important;
+  letter-spacing:-.04em!important;
+  margin:7px 0 6px!important;
+}
+body.v98-mobile-ux-polish #smartInsights .smart-card p{
+  font-size:14px!important;
+  line-height:1.38!important;
+}
+/* Wellness dashboard: strong but not massive */
+body.v98-mobile-ux-polish #wellnessDashboard,
+body.v98-mobile-ux-polish #home .wellness-dashboard,
+body.v98-mobile-ux-polish #home .ai-wellness-dashboard{
+  padding:18px!important;
+  border-radius:28px!important;
+}
+body.v98-mobile-ux-polish #wellnessDashboard h2,
+body.v98-mobile-ux-polish #home .wellness-dashboard h2,
+body.v98-mobile-ux-polish #home .ai-wellness-dashboard h2{
+  font-size:clamp(30px,8.3vw,44px)!important;
+  line-height:1!important;
+}
+body.v98-mobile-ux-polish #wellnessDashboard p,
+body.v98-mobile-ux-polish #home .wellness-dashboard p,
+body.v98-mobile-ux-polish #home .ai-wellness-dashboard p{
+  font-size:14.5px!important;
+  line-height:1.42!important;
+}
+body.v98-mobile-ux-polish #home .habit-card,
+body.v98-mobile-ux-polish #home .metric-card,
+body.v98-mobile-ux-polish #home .wellness-metric-card{
+  padding:14px!important;
+  border-radius:20px!important;
+  min-height:auto!important;
+}
+body.v98-mobile-ux-polish #home .habit-card strong,
+body.v98-mobile-ux-polish #home .metric-card strong,
+body.v98-mobile-ux-polish #home .wellness-metric-card strong{
+  font-size:clamp(22px,6vw,32px)!important;
+  line-height:1!important;
+}
+/* Today Spotlight anchor: premium, but smaller */
+body.v98-mobile-ux-polish #home #v27Spotlight{
+  padding:16px!important;
+  margin-top:10px!important;
+  margin-bottom:10px!important;
+}
+body.v98-mobile-ux-polish #home .v27-spotlight-inner{
+  grid-template-columns:1fr 96px!important;
+  gap:12px!important;
+}
+body.v98-mobile-ux-polish #home .v27-spotlight-copy h2{
+  font-size:clamp(28px,7.6vw,40px)!important;
+}
+body.v98-mobile-ux-polish #home .v27-spotlight-art{
+  height:112px!important;
+  min-height:112px!important;
+}
+/* Trending carousel: smaller card footprint, smoother native feel */
+body.v98-mobile-ux-polish #home #trendingGrid{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  gap:10px!important;
+  padding:2px 18px 12px 2px!important;
+  margin:0!important;
+  scroll-snap-type:x proximity!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+  touch-action:pan-x pan-y!important;
+  scrollbar-width:none!important;
+  mask-image:linear-gradient(90deg,#000 0,#000 90%,transparent)!important;
+}
+body.v98-mobile-ux-polish #home #trendingGrid::-webkit-scrollbar{display:none!important;}
+body.v98-mobile-ux-polish #home #trendingGrid .strain-card{
+  min-width:min(68vw,276px)!important;
+  max-width:min(68vw,276px)!important;
+  flex:0 0 auto!important;
+  padding:16px!important;
+  border-radius:26px!important;
+}
+body.v98-mobile-ux-polish #home #trendingGrid .card-hero{border-radius:22px!important;margin-bottom:13px!important;}
+body.v98-mobile-ux-polish #home #trendingGrid .card-hero img{height:138px!important;}
+body.v98-mobile-ux-polish #home #trendingGrid .strain-card h3{font-size:23px!important;line-height:1!important;}
+body.v98-mobile-ux-polish #home #trendingGrid .strain-card p{font-size:13px!important;line-height:1.32!important;}
+body.v98-mobile-ux-polish #home #trendingGrid .tags{gap:7px!important;}
+body.v98-mobile-ux-polish #home #trendingGrid .tag{padding:7px 10px!important;font-size:12px!important;}
+/* Recently viewed: keep list readable and clear of dock */
+body.v98-mobile-ux-polish #home #recentHome,
+body.v98-mobile-ux-polish #recentHome{
+  padding-bottom:calc(var(--sr-real-nav-h, 76px) + 24px)!important;
+  margin-bottom:0!important;
+}
+body.v98-mobile-ux-polish #home #recentHome .recent-card{
+  padding:11px!important;
+  border-radius:22px!important;
+}
+body.v98-mobile-ux-polish #home #recentHome .recent-card img{
+  width:64px!important;
+  height:64px!important;
+  border-radius:16px!important;
+}
+/* Smaller dock/nav footprint */
+body.v98-mobile-ux-polish .bottom-nav{
+  left:10px!important;
+  right:10px!important;
+  bottom:10px!important;
+  width:auto!important;
+  border-radius:28px!important;
+  padding:7px!important;
+  gap:5px!important;
+  border:1px solid rgba(116,255,173,.18)!important;
+  box-shadow:0 -8px 34px rgba(0,0,0,.36),0 0 24px rgba(72,233,135,.10)!important;
+}
+body.v98-mobile-ux-polish .bottom-nav button{
+  min-height:52px!important;
+  padding:6px 4px!important;
+  border-radius:18px!important;
+  font-size:11px!important;
+}
+body.v98-mobile-ux-polish .bottom-nav button span{font-size:18px!important;line-height:1!important;}
+body.v98-mobile-ux-polish .bottom-nav button b{font-size:11px!important;line-height:1.05!important;}
+body.v98-mobile-ux-polish .toast{bottom:calc(var(--sr-real-nav-h, 76px) + 24px)!important;}
+body.v98-mobile-ux-polish .back-to-top{bottom:calc(var(--sr-real-nav-h, 76px) + 28px)!important;}
+@media(max-width:420px){
+  body.v98-mobile-ux-polish #home .hero{padding:14px 16px 16px!important;}
+  body.v98-mobile-ux-polish #home .brand-logo{height:clamp(52px,16vw,82px)!important;}
+  body.v98-mobile-ux-polish #home .hero h1{font-size:clamp(29px,8.3vw,43px)!important;}
+  body.v98-mobile-ux-polish #home .hero-actions button{min-height:39px!important;font-size:13.5px!important;}
+  body.v98-mobile-ux-polish #smartInsights .panel-head{grid-template-columns:1fr!important;}
+  body.v98-mobile-ux-polish #smartInsights .panel-head .small-btn{justify-self:start!important;}
+  body.v98-mobile-ux-polish #home #trendingGrid .strain-card{min-width:70vw!important;max-width:70vw!important;}
+  body.v98-mobile-ux-polish #home #trendingGrid .card-hero img{height:128px!important;}
+}
+@media(min-width:760px){
+  body.v98-mobile-ux-polish #home #trendingGrid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;overflow:visible!important;padding:0!important;mask-image:none!important;}
+  body.v98-mobile-ux-polish #home #trendingGrid .strain-card{min-width:0!important;max-width:none!important;width:auto!important;}
+}
