@@ -4333,3 +4333,66 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+/* ======================================================
+   V97 SAFE PREMIUM ELEVATION FROM V96
+   Tiny, non-destructive polish. Search/Terpenes/data untouched.
+====================================================== */
+(function(){
+  const VERSION = 'v97-safe-premium-elevation';
+  function applyV97(){
+    document.body.classList.add('v97-safe-premium-elevation');
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+    document.body.style.touchAction = 'pan-y';
+
+    const nav = document.querySelector('.bottom-nav');
+    if(nav){
+      const h = Math.ceil(nav.getBoundingClientRect().height || 76);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h + 'px');
+    }
+
+    const home = document.getElementById('home');
+    if(!home) return;
+
+    const trending = document.getElementById('trendingGrid');
+    if(trending){
+      trending.classList.add('v97-easy-swipe-row');
+      trending.style.webkitOverflowScrolling = 'touch';
+      trending.style.overscrollBehaviorX = 'contain';
+      trending.style.touchAction = 'pan-x pan-y';
+      trending.setAttribute('aria-label','Trending strain directions');
+    }
+
+    ['quest-carousel','vibe-ribbon','recent-carousel','learn-example-row'].forEach(cls=>{
+      document.querySelectorAll('.'+cls).forEach(row=>{
+        row.style.webkitOverflowScrolling='touch';
+        row.style.overscrollBehaviorX='contain';
+        row.style.touchAction='pan-x pan-y';
+      });
+    });
+
+    const spotlight = document.getElementById('v27Spotlight');
+    if(spotlight){
+      spotlight.setAttribute('aria-label','Today’s Spotlight wellness direction');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    applyV97();
+    setTimeout(applyV97,240);
+    setTimeout(applyV97,900);
+  });
+  window.addEventListener('pageshow',()=>setTimeout(applyV97,120));
+  window.addEventListener('resize',()=>setTimeout(applyV97,140));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === 'function'){
+    window.showPage = function(){
+      const out = oldShowPage.apply(this, arguments);
+      setTimeout(applyV97,90);
+      return out;
+    };
+  }
+  window.StrainReliefPatchVersion = VERSION;
+})();

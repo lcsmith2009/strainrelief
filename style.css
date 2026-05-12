@@ -11130,3 +11130,202 @@ body.v96-safe-richness-restore #home #recentHome{
   body.v96-safe-richness-restore #home #trendingGrid .strain-card{min-width:78vw!important;max-width:78vw!important;}
   .v96-trend-bridge{grid-template-columns:1fr;}
 }
+
+/* ======================================================
+   V97 SAFE PREMIUM ELEVATION FROM V96
+   Small polish only: premium anchor, density, carousel ease.
+   No global scroll lock. Search + Terpene systems untouched.
+====================================================== */
+body.v97-safe-premium-elevation{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  touch-action:pan-y!important;
+  padding-bottom:calc(var(--sr-real-nav-h, 84px) + 38px + env(safe-area-inset-bottom))!important;
+}
+body.v97-safe-premium-elevation #home{
+  padding-bottom:calc(var(--sr-real-nav-h, 84px) + 48px)!important;
+}
+body.v97-safe-premium-elevation #home .hero{
+  padding:18px 18px 20px!important;
+  margin-top:8px!important;
+  margin-bottom:12px!important;
+}
+body.v97-safe-premium-elevation #home .brand-logo{
+  height:clamp(72px,20vw,104px)!important;
+  max-height:104px!important;
+  margin-bottom:6px!important;
+}
+body.v97-safe-premium-elevation #home .hero h1{
+  font-size:clamp(37px,10.6vw,56px)!important;
+  line-height:.94!important;
+  margin:6px 0 8px!important;
+}
+body.v97-safe-premium-elevation #home .hero p{
+  font-size:15px!important;
+  line-height:1.38!important;
+}
+body.v97-safe-premium-elevation #home .hero-actions{
+  gap:8px!important;
+  margin-top:13px!important;
+}
+body.v97-safe-premium-elevation #home .hero-actions button{
+  min-height:46px!important;
+  padding:12px 12px!important;
+}
+body.v97-safe-premium-elevation #home .hero-mini-strip{
+  margin-top:10px!important;
+  padding:8px!important;
+}
+body.v97-safe-premium-elevation #home .daily-card,
+body.v97-safe-premium-elevation #home .pro-card,
+body.v97-safe-premium-elevation #home .panel,
+body.v97-safe-premium-elevation #home .section-title{
+  margin-top:12px!important;
+  margin-bottom:12px!important;
+}
+body.v97-safe-premium-elevation #home #v27Spotlight{
+  padding:16px!important;
+  border:1px solid rgba(72,233,135,.22)!important;
+  background:linear-gradient(150deg,rgba(28,70,45,.84),rgba(6,18,13,.93) 54%,rgba(9,48,25,.86))!important;
+  box-shadow:0 24px 60px rgba(0,0,0,.32),0 0 34px rgba(72,233,135,.09)!important;
+}
+body.v97-safe-premium-elevation #home .v27-spotlight-inner{
+  display:grid!important;
+  grid-template-columns:1fr 112px!important;
+  gap:14px!important;
+  align-items:center!important;
+}
+body.v97-safe-premium-elevation #home .v27-spotlight-copy h2{
+  font-size:clamp(30px,8vw,42px)!important;
+  line-height:.96!important;
+  margin:5px 0 7px!important;
+}
+body.v97-safe-premium-elevation #home .v27-spotlight-copy p{
+  font-size:14px!important;
+  line-height:1.35!important;
+  margin-bottom:10px!important;
+}
+body.v97-safe-premium-elevation #home .v27-spotlight-copy button{
+  min-height:42px!important;
+  padding:10px 14px!important;
+}
+body.v97-safe-premium-elevation #home .v27-spotlight-art{
+  min-height:132px!important;
+  height:132px!important;
+  border-radius:24px!important;
+  overflow:hidden!important;
+}
+body.v97-safe-premium-elevation #home .v27-spotlight-art img{
+  height:100%!important;
+  object-fit:cover!important;
+}
+body.v97-safe-premium-elevation #home .lively-dashboard{
+  padding:16px!important;
+}
+body.v97-safe-premium-elevation #home .lively-dashboard .panel-head{
+  gap:10px!important;
+  margin-bottom:8px!important;
+}
+body.v97-safe-premium-elevation #home .live-hero-strip{
+  grid-template-columns:72px 1fr!important;
+  gap:11px!important;
+  padding:9px!important;
+  margin:10px 0!important;
+}
+body.v97-safe-premium-elevation #home .live-hero-strip img{
+  width:72px!important;
+  height:72px!important;
+  border-radius:18px!important;
+}
+body.v97-safe-premium-elevation #home .live-hero-strip h2{
+  font-size:clamp(23px,6.4vw,34px)!important;
+  line-height:.96!important;
+  margin:4px 0!important;
+}
+body.v97-safe-premium-elevation #home .live-hero-strip p{
+  font-size:13.5px!important;
+  line-height:1.3!important;
+}
+body.v97-safe-premium-elevation #home .lively-stat-row div{
+  padding:10px 7px!important;
+}
+body.v97-safe-premium-elevation #home .lively-stat-row strong{
+  font-size:22px!important;
+}
+body.v97-safe-premium-elevation #home .quest-carousel,
+body.v97-safe-premium-elevation #home .vibe-ribbon,
+body.v97-safe-premium-elevation #home #trendingGrid,
+body.v97-safe-premium-elevation #home .recent-carousel{
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+  touch-action:pan-x pan-y!important;
+  scrollbar-width:none!important;
+}
+body.v97-safe-premium-elevation #home .quest-carousel::-webkit-scrollbar,
+body.v97-safe-premium-elevation #home .vibe-ribbon::-webkit-scrollbar,
+body.v97-safe-premium-elevation #home #trendingGrid::-webkit-scrollbar,
+body.v97-safe-premium-elevation #home .recent-carousel::-webkit-scrollbar{
+  display:none!important;
+}
+body.v97-safe-premium-elevation #home #trendingGrid{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  gap:11px!important;
+  padding:3px 18px 13px 2px!important;
+  scroll-snap-type:x proximity!important;
+}
+body.v97-safe-premium-elevation #home #trendingGrid .strain-card{
+  min-width:min(72vw,292px)!important;
+  max-width:min(72vw,292px)!important;
+  flex:0 0 auto!important;
+  scroll-snap-align:start!important;
+}
+body.v97-safe-premium-elevation #home #trendingGrid .card-hero img{
+  height:162px!important;
+}
+body.v97-safe-premium-elevation #home #trendingGrid .strain-card h3{
+  font-size:25px!important;
+  line-height:1!important;
+}
+body.v97-safe-premium-elevation #home #trendingGrid .strain-card p{
+  font-size:13.5px!important;
+  line-height:1.34!important;
+}
+body.v97-safe-premium-elevation #home #recentHome .mini-card,
+body.v97-safe-premium-elevation #home #recentHome .recent-card{
+  padding:12px!important;
+  min-height:auto!important;
+}
+body.v97-safe-premium-elevation #homeQuickActions,
+body.v97-safe-premium-elevation #homeTrendBridge{
+  margin-top:10px!important;
+  margin-bottom:12px!important;
+}
+body.v97-safe-premium-elevation .v96-action-grid button,
+body.v97-safe-premium-elevation .v96-trend-bridge button{
+  padding:13px 14px!important;
+  border-radius:21px!important;
+}
+@media(max-width:420px){
+  body.v97-safe-premium-elevation #home .hero{padding:16px 16px 18px!important;}
+  body.v97-safe-premium-elevation #home .brand-logo{height:clamp(68px,19vw,96px)!important;}
+  body.v97-safe-premium-elevation #home .hero h1{font-size:clamp(35px,10.4vw,52px)!important;}
+  body.v97-safe-premium-elevation #home .v27-spotlight-inner{grid-template-columns:1fr 98px!important;gap:11px!important;}
+  body.v97-safe-premium-elevation #home .v27-spotlight-art{height:118px!important;min-height:118px!important;}
+  body.v97-safe-premium-elevation #home #trendingGrid .strain-card{min-width:73vw!important;max-width:73vw!important;}
+}
+@media(min-width:760px){
+  body.v97-safe-premium-elevation #home #trendingGrid{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    overflow:visible!important;
+    padding:0!important;
+  }
+  body.v97-safe-premium-elevation #home #trendingGrid .strain-card{
+    min-width:0!important;
+    max-width:none!important;
+    width:auto!important;
+  }
+}
