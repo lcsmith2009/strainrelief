@@ -4163,3 +4163,51 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   }
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+/* ======================================================
+   V95 SAFE REFINEMENT FROM V94 JS
+   Non-destructive: keeps Search strains + Terpene Explorer intact.
+====================================================== */
+(function(){
+  const VERSION = "v95-safe-refinement-from-v94";
+  function applyV95(){
+    document.body.classList.add("v95-safe-refinement");
+    document.documentElement.style.overflowY = "auto";
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowY = "auto";
+    document.body.style.overflowX = "hidden";
+    document.body.style.touchAction = "pan-y";
+
+    const safeScrollRows = [
+      document.getElementById("trendingGrid"),
+      ...document.querySelectorAll(".quest-carousel,.vibe-ribbon,.recent-carousel,.learn-example-row")
+    ].filter(Boolean);
+    safeScrollRows.forEach(row => {
+      row.style.webkitOverflowScrolling = "touch";
+      row.style.touchAction = "pan-x pan-y";
+      row.style.overscrollBehaviorX = "contain";
+    });
+
+    const nav = document.querySelector(".bottom-nav");
+    if(nav){
+      const h = Math.ceil(nav.getBoundingClientRect().height || 72);
+      document.documentElement.style.setProperty("--sr-real-nav-h", h + "px");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV95();
+    setTimeout(applyV95, 200);
+    setTimeout(applyV95, 800);
+  });
+  window.addEventListener("pageshow", () => setTimeout(applyV95, 100));
+  window.addEventListener("resize", () => setTimeout(applyV95, 100));
+  const previousShowPage = window.showPage;
+  if(typeof previousShowPage === "function"){
+    window.showPage = function(){
+      const out = previousShowPage.apply(this, arguments);
+      setTimeout(applyV95, 80);
+      return out;
+    };
+  }
+  window.StrainReliefPatchVersion = VERSION;
+})();
