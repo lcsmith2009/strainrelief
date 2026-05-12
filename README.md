@@ -1,5 +1,12 @@
-# StrainRelief V89 — Home Hard Stability Reset
+# StrainRelief V90 Home Layout Overlap Fix
 
-Full-code cleanup pass focused on stopping Home-page load flicker, removing stacked patch conflicts, fixing Smart Recommendations duplication, restoring App Progress stability, centering the Live Wellness Dashboard strain layout, simplifying Trending Today native swipe, and fixing Recently Viewed card clipping.
+Home page cleanup focused on layout overlap, stable first load, clean carousels, and mobile spacing.
 
-No README.txt included.
+- Removed splash overlay from startup to stop first-screen flicker
+- Fixed Today's Spotlight quick button layout
+- Preserved App Progress green card styling
+- Centered Live Wellness Dashboard strain layout
+- Removed duplicate Smart Recommendation CTAs
+- Simplified Trending Today carousel to native horizontal scroll
+- Fixed Recently Viewed clipping and bottom-nav overlap
+- No README.txt included
