@@ -10905,3 +10905,253 @@ body.v80-responsive-card-scaling #search .strain-result p{
     width:154px !important;
   }
 }
+
+
+/* ======================================================
+   V81 PREMIUM MOTION PASS
+   Single-purpose update:
+   - Premium tap/press feedback.
+   - Smooth page/card reveal.
+   - Better carousel momentum/snapping.
+   - Subtle glow drift.
+   - No layout redesign.
+====================================================== */
+
+body.v81-premium-motion-pass{
+  --sr-motion-fast: 150ms;
+  --sr-motion-med: 280ms;
+  --sr-motion-slow: 720ms;
+  --sr-ease-out: cubic-bezier(.2,.85,.2,1);
+  --sr-ease-soft: cubic-bezier(.16,1,.3,1);
+  -webkit-tap-highlight-color: transparent !important;
+  scroll-behavior: smooth !important;
+}
+
+/* Make scrolling feel more app-like */
+body.v81-premium-motion-pass,
+body.v81-premium-motion-pass .page,
+body.v81-premium-motion-pass .horizontal-scroll,
+body.v81-premium-motion-pass .scroll-row,
+body.v81-premium-motion-pass .card-row,
+body.v81-premium-motion-pass .carousel,
+body.v81-premium-motion-pass .rail{
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Carousel polish */
+body.v81-premium-motion-pass .horizontal-scroll,
+body.v81-premium-motion-pass .scroll-row,
+body.v81-premium-motion-pass .card-row,
+body.v81-premium-motion-pass .carousel,
+body.v81-premium-motion-pass .rail{
+  scroll-snap-type: x proximity !important;
+  overscroll-behavior-x: contain !important;
+}
+
+body.v81-premium-motion-pass .horizontal-scroll > *,
+body.v81-premium-motion-pass .scroll-row > *,
+body.v81-premium-motion-pass .card-row > *,
+body.v81-premium-motion-pass .carousel > *,
+body.v81-premium-motion-pass .rail > *{
+  scroll-snap-align: start !important;
+}
+
+/* Universal premium transition layer */
+body.v81-premium-motion-pass button,
+body.v81-premium-motion-pass .btn,
+body.v81-premium-motion-pass .small-btn,
+body.v81-premium-motion-pass .chip,
+body.v81-premium-motion-pass .tag,
+body.v81-premium-motion-pass .nav-btn,
+body.v81-premium-motion-pass .card,
+body.v81-premium-motion-pass .card-glow,
+body.v81-premium-motion-pass .panel,
+body.v81-premium-motion-pass .daily-card,
+body.v81-premium-motion-pass .strain-card,
+body.v81-premium-motion-pass .recent-card,
+body.v81-premium-motion-pass .trending-card,
+body.v81-premium-motion-pass .result-card,
+body.v81-premium-motion-pass .learn-detail,
+body.v81-premium-motion-pass details,
+body.v81-premium-motion-pass summary{
+  transition:
+    transform var(--sr-motion-fast) var(--sr-ease-out),
+    box-shadow var(--sr-motion-med) var(--sr-ease-out),
+    border-color var(--sr-motion-med) var(--sr-ease-out),
+    background var(--sr-motion-med) var(--sr-ease-out),
+    filter var(--sr-motion-med) var(--sr-ease-out),
+    opacity var(--sr-motion-med) var(--sr-ease-out) !important;
+}
+
+/* Press behavior */
+body.v81-premium-motion-pass button:active,
+body.v81-premium-motion-pass .btn:active,
+body.v81-premium-motion-pass .small-btn:active,
+body.v81-premium-motion-pass .chip:active,
+body.v81-premium-motion-pass .tag:active{
+  transform: scale(.965) translateY(1px) !important;
+  filter: brightness(1.08) saturate(1.05) !important;
+}
+
+body.v81-premium-motion-pass .card:active,
+body.v81-premium-motion-pass .card-glow:active,
+body.v81-premium-motion-pass .panel:active,
+body.v81-premium-motion-pass .daily-card:active,
+body.v81-premium-motion-pass .strain-card:active,
+body.v81-premium-motion-pass .recent-card:active,
+body.v81-premium-motion-pass .trending-card:active,
+body.v81-premium-motion-pass .result-card:active,
+body.v81-premium-motion-pass .learn-detail:active{
+  transform: scale(.988) translateY(1px) !important;
+}
+
+/* Bottom nav feels touch-responsive */
+body.v81-premium-motion-pass .bottom-nav .nav-btn:active,
+body.v81-premium-motion-pass .bottom-nav button:active{
+  transform: scale(.935) translateY(1px) !important;
+}
+
+body.v81-premium-motion-pass .bottom-nav .nav-btn.active,
+body.v81-premium-motion-pass .bottom-nav button.active{
+  animation: srNavSettle .28s var(--sr-ease-soft) both;
+}
+
+@keyframes srNavSettle{
+  from{ transform: translateY(2px) scale(.97); filter:brightness(1.1); }
+  to{ transform: translateY(0) scale(1); filter:brightness(1); }
+}
+
+/* Page reveal - subtle only */
+body.v81-premium-motion-pass .page.active > *{
+  animation: srPageRise .42s var(--sr-ease-soft) both;
+}
+
+body.v81-premium-motion-pass .page.active > *:nth-child(2){ animation-delay: 35ms; }
+body.v81-premium-motion-pass .page.active > *:nth-child(3){ animation-delay: 70ms; }
+body.v81-premium-motion-pass .page.active > *:nth-child(4){ animation-delay: 105ms; }
+body.v81-premium-motion-pass .page.active > *:nth-child(n+5){ animation-delay: 120ms; }
+
+@keyframes srPageRise{
+  from{
+    opacity: 0;
+    transform: translateY(12px) scale(.992);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Card reveal for dynamically rendered cards */
+body.v81-premium-motion-pass .sr-motion-ready{
+  animation: srCardIn .38s var(--sr-ease-soft) both;
+}
+
+@keyframes srCardIn{
+  from{
+    opacity:0;
+    transform:translateY(10px) scale(.985);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* Subtle animated glow, no layout changes */
+body.v81-premium-motion-pass .hero.card-glow::before,
+body.v81-premium-motion-pass .daily-card.card-glow::before,
+body.v81-premium-motion-pass .panel.card-glow::before,
+body.v81-premium-motion-pass .card-glow::before{
+  animation: srGlowFloat 9s ease-in-out infinite alternate;
+}
+
+@keyframes srGlowFloat{
+  from{
+    transform: translate3d(-6px,-4px,0) scale(1);
+    opacity: .72;
+  }
+  to{
+    transform: translate3d(8px,6px,0) scale(1.035);
+    opacity: .94;
+  }
+}
+
+/* Better modal open feel */
+body.v81-premium-motion-pass .modal:not(.hidden),
+body.v81-premium-motion-pass #strainModal:not(.hidden){
+  animation: srModalFade .22s ease both;
+}
+
+body.v81-premium-motion-pass .modal:not(.hidden) .modal-card,
+body.v81-premium-motion-pass #strainModal:not(.hidden) .modal-card{
+  animation: srModalLift .32s var(--sr-ease-soft) both;
+}
+
+@keyframes srModalFade{
+  from{ opacity:0; }
+  to{ opacity:1; }
+}
+
+@keyframes srModalLift{
+  from{
+    opacity:0;
+    transform: translateY(20px) scale(.965);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Accordion polish */
+body.v81-premium-motion-pass details[open]{
+  animation: srAccordionShell .22s var(--sr-ease-soft) both;
+}
+
+body.v81-premium-motion-pass details[open] > *:not(summary){
+  animation: srAccordionContent .25s var(--sr-ease-soft) both;
+}
+
+@keyframes srAccordionShell{
+  from{ filter:brightness(.96); }
+  to{ filter:brightness(1); }
+}
+
+@keyframes srAccordionContent{
+  from{ opacity:0; transform:translateY(-6px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* Focus ring for real app accessibility */
+body.v81-premium-motion-pass button:focus-visible,
+body.v81-premium-motion-pass input:focus-visible,
+body.v81-premium-motion-pass select:focus-visible,
+body.v81-premium-motion-pass textarea:focus-visible,
+body.v81-premium-motion-pass summary:focus-visible{
+  outline: 2px solid rgba(124,255,173,.82) !important;
+  outline-offset: 3px !important;
+}
+
+/* Back-to-top soft entrance */
+body.v81-premium-motion-pass #srBackTop.show{
+  animation: srBackTopPop .22s var(--sr-ease-soft) both;
+}
+
+@keyframes srBackTopPop{
+  from{ opacity:0; transform:translateY(8px) scale(.88); }
+  to{ opacity:.86; transform:translateY(0) scale(1); }
+}
+
+/* Reduce animation if user/device requests it */
+@media (prefers-reduced-motion: reduce){
+  body.v81-premium-motion-pass,
+  body.v81-premium-motion-pass *,
+  body.v81-premium-motion-pass *::before,
+  body.v81-premium-motion-pass *::after{
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

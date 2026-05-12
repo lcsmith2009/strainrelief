@@ -1,21 +1,24 @@
-# StrainRelief V80 — Responsive Card Scaling
+# StrainRelief V81 — Premium Motion Pass
 
 ## Single update in this version
-Responsive Card Scaling Pass.
+Premium motion and interaction polish.
 
 ## What changed
-- Fixes squeezed internal card layouts.
-- Improves Smart Recommendations title wrapping.
-- Improves Live Wellness Dashboard button/stat/card scaling.
-- Improves Today's Spotlight card balance.
-- Improves Recently Viewed card height/content clipping.
-- Keeps Search cards compact while scaling text and chips safely.
+- Added smoother button/card tap feedback.
+- Added subtle page reveal animations.
+- Added card reveal motion for dynamic content.
+- Added smoother carousel scrolling/snapping.
+- Added subtle glow drift on premium cards.
+- Added smoother modal open animation.
+- Added smoother accordion expansion feel.
+- Added accessibility-friendly focus states.
+- Respects reduced-motion device settings.
 
 ## What did not change
-- No redesign.
-- No new feature bundle.
+- No layout redesign.
+- No new features.
 - No unrelated page rebuild.
-- V79 mobile overflow stabilization remains intact.
+- V80 responsive card scaling remains intact.
 
 ## Upload notes
 Upload all files to GitHub/Vercel. After deployment, hard refresh or close/reopen the app so the new cache-busted CSS and JS load.

@@ -4256,3 +4256,73 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefResponsiveCardVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V81 PREMIUM MOTION PASS JS
+   Adds motion helper classes after dynamic rendering.
+====================================================== */
+(function(){
+  const VERSION = "v81-premium-motion-pass";
+
+  function addVersion(){
+    document.body.classList.add(VERSION);
+  }
+
+  function markMotionCards(){
+    const candidates = document.querySelectorAll(
+      ".page.active .card, .page.active .card-glow, .page.active .panel, .page.active .strain-card, .page.active .recent-card, .page.active .trending-card, .page.active .result-card, .page.active .learn-detail, .page.active details"
+    );
+
+    candidates.forEach((el, index) => {
+      if(el.dataset.srMotionMarked) return;
+      el.dataset.srMotionMarked = "1";
+      el.classList.add("sr-motion-ready");
+      el.style.animationDelay = Math.min(index * 28, 180) + "ms";
+    });
+  }
+
+  function addPressedClass(){
+    document.querySelectorAll("button, .btn, .small-btn, .chip, .tag, summary").forEach(el => {
+      if(el.dataset.srPressReady) return;
+      el.dataset.srPressReady = "1";
+
+      el.addEventListener("pointerdown", () => {
+        el.classList.add("sr-pressing");
+      }, { passive: true });
+
+      ["pointerup", "pointercancel", "pointerleave", "blur"].forEach(evt => {
+        el.addEventListener(evt, () => {
+          el.classList.remove("sr-pressing");
+        }, { passive: true });
+      });
+    });
+  }
+
+  function run(){
+    addVersion();
+    markMotionCards();
+    addPressedClass();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 200);
+    setTimeout(run, 900);
+    setTimeout(run, 1600);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 100);
+      setTimeout(run, 500);
+      return result;
+    };
+  }
+
+  window.StrainReliefMotionVersion = VERSION;
+})();
