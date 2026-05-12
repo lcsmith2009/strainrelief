@@ -26,3 +26,13 @@ Upload all files to GitHub/Vercel. After deployment, hard refresh or close/reope
 ## V82 — Home Card Density Polish
 
 Focused only on the Home page. Tightened card spacing, internal padding, Spotlight density, Live Wellness Dashboard density, Smart Recommendations cards, Trending card height, and Recently Viewed scaling. No redesigns, no new features, and no unrelated page changes.
+
+
+## V83 — Home First-Screen Fit + Carousel Fix
+
+- Home page only.
+- Compact hero content upward so Daily Wellness Direction appears sooner on mobile refresh.
+- Preserved small spacing between Home sections.
+- Fixed clipped Home section headings like Trending Today and Recently Viewed.
+- Improved horizontal swipe behavior for Home carousel rows.
+- No Search, Match, Saved, Learn, modal, branding, or feature changes.

@@ -4363,3 +4363,66 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefHomeDensityVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V83 HOME FIRST-SCREEN FIT + CAROUSEL FIX JS
+   Home-only: adds final class and protects carousel swiping.
+====================================================== */
+(function(){
+  const VERSION = "v83-home-first-screen-fit";
+
+  function applyV83(){
+    document.body.classList.add(VERSION);
+
+    const home = document.getElementById("home");
+    if(!home) return;
+
+    home.querySelectorAll(".section-title").forEach(section => {
+      section.classList.add("v83-heading-safe");
+      section.style.overflow = "visible";
+    });
+
+    const trending = document.getElementById("trendingGrid");
+    if(trending){
+      trending.classList.add("v83-carousel-safe");
+      trending.style.overflowX = "auto";
+      trending.style.webkitOverflowScrolling = "touch";
+      trending.style.touchAction = "pan-x pan-y";
+      trending.querySelectorAll(".strain-card").forEach(card => {
+        card.style.touchAction = "pan-x pan-y";
+      });
+    }
+
+    const recentCarousel = home.querySelector(".recent-carousel");
+    if(recentCarousel){
+      recentCarousel.classList.add("v83-carousel-safe");
+      recentCarousel.style.overflowX = "auto";
+      recentCarousel.style.webkitOverflowScrolling = "touch";
+      recentCarousel.style.touchAction = "pan-x pan-y";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV83();
+    setTimeout(applyV83, 180);
+    setTimeout(applyV83, 760);
+    setTimeout(applyV83, 1500);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(applyV83, 120));
+  window.addEventListener("resize", () => setTimeout(applyV83, 120));
+  window.addEventListener("orientationchange", () => setTimeout(applyV83, 260));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(applyV83, 120);
+      setTimeout(applyV83, 620);
+      return result;
+    };
+  }
+
+  window.StrainReliefHomeFirstScreenVersion = VERSION;
+})();

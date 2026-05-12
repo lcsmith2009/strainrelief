@@ -11651,3 +11651,322 @@ body.v82-home-card-density-polish #home .empty-state{
     padding: 12px !important;
   }
 }
+
+
+/* ======================================================
+   V83 HOME FIRST-SCREEN FIT + CAROUSEL FIX
+   Single-purpose update:
+   - Home page only.
+   - Makes the hero shorter by moving/compressing content upward.
+   - Keeps Daily Wellness Direction visible sooner on mobile refresh.
+   - Fixes clipped Home section headings.
+   - Improves Trending/Recently Viewed carousel swipe behavior.
+====================================================== */
+
+body.v83-home-first-screen-fit #home{
+  overflow-x: visible !important;
+  padding-top: 0 !important;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+  row-gap: 10px !important;
+}
+
+/* First-screen rule: compact the hero without redesigning it */
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76.hero.card-glow,
+body.v83-home-first-screen-fit #home .hero{
+  margin: 6px 0 8px !important;
+  padding: 9px 13px 10px !important;
+  border-radius: 24px !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+}
+
+body.v83-home-first-screen-fit #home .hero .brand-logo,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 .brand-logo{
+  height: 44px !important;
+  max-height: 44px !important;
+  max-width: min(218px, 58vw) !important;
+  margin: -2px auto 2px !important;
+  object-fit: contain !important;
+}
+
+body.v83-home-first-screen-fit #home .hero .eyebrow,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > .eyebrow{
+  font-size: 9.5px !important;
+  letter-spacing: .105em !important;
+  line-height: 1 !important;
+  margin: 0 0 3px !important;
+}
+
+body.v83-home-first-screen-fit #home .hero h1,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > h1{
+  font-size: clamp(25px, 7.15vw, 32px) !important;
+  line-height: .92 !important;
+  letter-spacing: -.057em !important;
+  margin: 0 0 4px !important;
+  max-width: 330px !important;
+}
+
+body.v83-home-first-screen-fit #home .hero p,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > p{
+  font-size: 11.3px !important;
+  line-height: 1.18 !important;
+  margin: 0 auto 7px !important;
+  max-width: 330px !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+body.v83-home-first-screen-fit #home .hero-actions,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > .hero-actions{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+body.v83-home-first-screen-fit #home .hero-actions button,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > .hero-actions button{
+  min-height: 34px !important;
+  height: 34px !important;
+  padding: 0 7px !important;
+  border-radius: 14px !important;
+  font-size: 11.2px !important;
+  line-height: 1.05 !important;
+  white-space: normal !important;
+}
+
+body.v83-home-first-screen-fit #home .hero-mini-strip,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > .hero-mini-strip{
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 6px !important;
+  margin-top: 7px !important;
+  width: 100% !important;
+}
+
+body.v83-home-first-screen-fit #home .hero-mini-strip span,
+body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > .hero-mini-strip span{
+  min-height: 32px !important;
+  height: 32px !important;
+  padding: 5px 4px !important;
+  border-radius: 13px !important;
+  font-size: 9.2px !important;
+  line-height: 1.05 !important;
+}
+
+body.v83-home-first-screen-fit #home .hero-mini-strip strong{
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* Daily card should sit right under the hero and fit into the first screen */
+body.v83-home-first-screen-fit #home.home-page-v76 > .home-daily-v76.daily-card,
+body.v83-home-first-screen-fit #home .daily-card{
+  margin: 0 0 9px !important;
+  padding: 12px 13px !important;
+  border-radius: 22px !important;
+}
+
+body.v83-home-first-screen-fit #home .daily-card .eyebrow{
+  font-size: 9.8px !important;
+  line-height: 1 !important;
+  margin-bottom: 3px !important;
+}
+
+body.v83-home-first-screen-fit #home .daily-card h2{
+  font-size: clamp(22px, 6vw, 31px) !important;
+  line-height: .98 !important;
+  margin: 2px 0 4px !important;
+}
+
+body.v83-home-first-screen-fit #home .daily-card p{
+  font-size: 12.5px !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+}
+
+/* Give Home boxes a small, consistent gap without making the page bulky */
+body.v83-home-first-screen-fit #home > .quick-row,
+body.v83-home-first-screen-fit #home > .pro-card,
+body.v83-home-first-screen-fit #home > .panel,
+body.v83-home-first-screen-fit #home > .section-title,
+body.v83-home-first-screen-fit #home > .mini-list,
+body.v83-home-first-screen-fit #home > .grid,
+body.v83-home-first-screen-fit #home > section{
+  margin-top: 9px !important;
+  margin-bottom: 9px !important;
+}
+
+body.v83-home-first-screen-fit #home > .quick-row{
+  margin-top: 2px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Fix clipped first letters like Trending Today / Recently Viewed */
+body.v83-home-first-screen-fit #home .section-title{
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 11px 12px 10px !important;
+  overflow: visible !important;
+  transform: none !important;
+  contain: none !important;
+}
+
+body.v83-home-first-screen-fit #home .section-title h2,
+body.v83-home-first-screen-fit #home .section-title p{
+  padding-left: 2px !important;
+  overflow: visible !important;
+  text-indent: 0 !important;
+  transform: none !important;
+}
+
+body.v83-home-first-screen-fit #home .section-title h2{
+  font-size: clamp(24px, 6.4vw, 34px) !important;
+  line-height: 1.02 !important;
+  margin: 0 0 3px !important;
+}
+
+body.v83-home-first-screen-fit #home .section-title p{
+  font-size: 12.5px !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+}
+
+/* Trending carousel: easier horizontal swipe, no clipped start */
+body.v83-home-first-screen-fit #home #trendingGrid{
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain !important;
+  touch-action: pan-x pan-y !important;
+  scroll-snap-type: x proximity !important;
+  scroll-padding-left: 8px !important;
+  padding: 3px 14px 14px 8px !important;
+  margin-left: 0 !important;
+  margin-right: -4px !important;
+  scrollbar-width: none !important;
+  cursor: grab !important;
+}
+
+body.v83-home-first-screen-fit #home #trendingGrid::-webkit-scrollbar,
+body.v83-home-first-screen-fit #home .recent-carousel::-webkit-scrollbar{
+  display: none !important;
+}
+
+body.v83-home-first-screen-fit #home #trendingGrid .strain-card{
+  flex: 0 0 min(78vw, 300px) !important;
+  width: min(78vw, 300px) !important;
+  min-width: min(78vw, 300px) !important;
+  max-width: min(78vw, 300px) !important;
+  scroll-snap-align: start !important;
+  touch-action: pan-x pan-y !important;
+}
+
+body.v83-home-first-screen-fit #home #trendingGrid .strain-card *{
+  touch-action: pan-x pan-y !important;
+}
+
+/* Recently Viewed: preserve first letter and make row easier to swipe */
+body.v83-home-first-screen-fit #home #recentHome{
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  margin: 0 0 10px !important;
+  padding-left: 0 !important;
+}
+
+body.v83-home-first-screen-fit #home .recent-carousel{
+  display: flex !important;
+  gap: 9px !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain !important;
+  touch-action: pan-x pan-y !important;
+  scroll-snap-type: x proximity !important;
+  padding: 3px 14px 14px 8px !important;
+  margin-left: 0 !important;
+  margin-right: -4px !important;
+  scrollbar-width: none !important;
+}
+
+body.v83-home-first-screen-fit #home .recent-card{
+  flex: 0 0 132px !important;
+  scroll-snap-align: start !important;
+}
+
+@media (max-width: 430px){
+  body.v83-home-first-screen-fit{
+    padding-top: 10px !important;
+  }
+
+  body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76.hero.card-glow,
+  body.v83-home-first-screen-fit #home .hero{
+    padding: 8px 12px 9px !important;
+    margin-top: 4px !important;
+    margin-bottom: 7px !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero .brand-logo,
+  body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 .brand-logo{
+    height: 40px !important;
+    max-height: 40px !important;
+    margin-top: -3px !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero h1,
+  body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > h1{
+    font-size: clamp(24px, 6.9vw, 30px) !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero p,
+  body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > p{
+    font-size: 10.9px !important;
+    line-height: 1.16 !important;
+    margin-bottom: 6px !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero-actions button,
+  body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > .hero-actions button{
+    height: 32px !important;
+    min-height: 32px !important;
+    font-size: 10.6px !important;
+    padding: 0 4px !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero-mini-strip{
+    margin-top: 6px !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero-mini-strip span{
+    height: 30px !important;
+    min-height: 30px !important;
+  }
+}
+
+@media (max-width: 380px){
+  body.v83-home-first-screen-fit #home .hero p,
+  body.v83-home-first-screen-fit #home.home-page-v76 > header.home-hero-v76 > p{
+    -webkit-line-clamp: 1 !important;
+  }
+
+  body.v83-home-first-screen-fit #home .hero-actions button{
+    font-size: 10px !important;
+  }
+
+  body.v83-home-first-screen-fit #home .daily-card{
+    padding: 10px 12px !important;
+  }
+}
