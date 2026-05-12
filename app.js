@@ -4055,3 +4055,69 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener("scroll", ensureBackTop, {passive:true});
   window.addEventListener("pageshow", ensureBackTop);
 })();
+
+
+/* ======================================================
+   V78 PREMIUM CARD / IMAGE UPGRADE JS
+   Adds safe helper classes to card-like elements so CSS can style consistently.
+====================================================== */
+(function(){
+  const VERSION = "v78-premium-card-image";
+
+  function addVersion(){
+    document.body.classList.add(VERSION);
+  }
+
+  function tagCards(){
+    const pages = document.querySelectorAll("#home, #search, #saved, #learn, #match");
+    pages.forEach(page => {
+      const cards = page.querySelectorAll(".card, .card-glow, article, [data-strain], button[data-strain]");
+      cards.forEach(card => {
+        const txt = (card.textContent || "").trim();
+        const hasStrainText = /strain|hybrid|indica|sativa|cbd|mood|sleep|stress|focus|body comfort|terpene|myrcene|limonene|pinene|linalool|humulene|caryophyllene/i.test(txt);
+        const hasImg = !!card.querySelector("img");
+        if(hasImg && hasStrainText){
+          card.classList.add("strain-card");
+          if(page.id === "home" && /trending/i.test(page.textContent || "")){
+            card.classList.add("trending-card");
+          }
+        }
+      });
+    });
+
+    // Horizontal home sections
+    const home = document.getElementById("home");
+    if(home){
+      [...home.querySelectorAll("section, div")].forEach(el => {
+        const t = (el.textContent || "").trim();
+        if(/^Trending Today/i.test(t)) el.classList.add("section", "trending-section");
+        if(/^Recently Viewed/i.test(t)) el.classList.add("section", "recent-section");
+        if(/^Smart Recommendations/i.test(t)) el.classList.add("section", "smart-section");
+      });
+    }
+  }
+
+  function run(){
+    addVersion();
+    tagCards();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 250);
+    setTimeout(run, 900);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 120);
+      return result;
+    };
+  }
+
+  window.StrainReliefPremiumVersion = VERSION;
+})();
