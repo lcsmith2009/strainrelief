@@ -4201,3 +4201,58 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefOverflowVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V80 RESPONSIVE CARD SCALING JS
+   Single purpose:
+   Adds class + recalculates cards after dynamic renders.
+====================================================== */
+(function(){
+  const VERSION = "v80-responsive-card-scaling";
+
+  function addVersion(){
+    document.body.classList.add(VERSION);
+  }
+
+  function markResponsiveCards(){
+    const lively = document.getElementById("livelyDashboard");
+    if(lively) lively.classList.add("v80-card-scale-ready");
+
+    const spotlight = document.getElementById("v27Spotlight");
+    if(spotlight) spotlight.classList.add("v80-card-scale-ready");
+
+    const smart = document.getElementById("smartInsights");
+    if(smart) smart.classList.add("v80-card-scale-ready");
+
+    const recent = document.getElementById("recentHome");
+    if(recent) recent.classList.add("v80-card-scale-ready");
+  }
+
+  function run(){
+    addVersion();
+    markResponsiveCards();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 150);
+    setTimeout(run, 650);
+    setTimeout(run, 1300);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+  window.addEventListener("resize", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 140);
+      setTimeout(run, 620);
+      return result;
+    };
+  }
+
+  window.StrainReliefResponsiveCardVersion = VERSION;
+})();

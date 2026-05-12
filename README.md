@@ -1,21 +1,21 @@
-# StrainRelief V79 — Mobile Overflow Stabilization
+# StrainRelief V80 — Responsive Card Scaling
 
 ## Single update in this version
-Mobile Width + Overflow Stabilization Pass.
+Responsive Card Scaling Pass.
 
 ## What changed
-- Prevents horizontal page scrolling.
-- Keeps major cards, sections, carousels, and app pages inside the Samsung/mobile viewport.
-- Centers and clamps the fixed bottom nav.
-- Keeps carousels scrollable internally without widening the whole page.
-- Prevents Smart Recommendations, Live Wellness Dashboard, Recently Viewed, Trending, Search cards, and Learn cards from leaking off-screen.
-- Adds a safe overflow guard in JavaScript for dynamically rendered cards.
+- Fixes squeezed internal card layouts.
+- Improves Smart Recommendations title wrapping.
+- Improves Live Wellness Dashboard button/stat/card scaling.
+- Improves Today's Spotlight card balance.
+- Improves Recently Viewed card height/content clipping.
+- Keeps Search cards compact while scaling text and chips safely.
 
 ## What did not change
 - No redesign.
-- No Home layout rebuild.
-- No bundled feature updates.
-- V78 visual style is preserved.
+- No new feature bundle.
+- No unrelated page rebuild.
+- V79 mobile overflow stabilization remains intact.
 
 ## Upload notes
 Upload all files to GitHub/Vercel. After deployment, hard refresh or close/reopen the app so the new cache-busted CSS and JS load.
