@@ -1,16 +1,12 @@
-# StrainRelief V84 — Home First-Screen Lock
+# StrainRelief V85 — Home UX Stabilization
 
 Home page only update.
 
-## Focus
-- Makes the Find Your Wellness Direction hero visibly shorter on mobile.
-- Moves hero content upward and tightens internal spacing.
-- Helps Daily Wellness Direction appear on the same first screen.
-- Fixes clipped Home section headings like Trending Today and Recently Viewed.
-- Improves Trending/Recently Viewed carousel swipe behavior.
+## Fixed
+- Restored a more balanced hero after V84 over-compression.
+- Removed the App Progress scrollbar/overflow issue.
+- Restored a small pressable Smart Recommendations action card.
+- Improved Trending Today carousel swipe behavior with real drag support.
+- Kept section headings from clipping.
 
-## Notes
-- No redesign.
-- No new features.
-- No Search, Match, Saved, Learn, or modal changes.
-- No README.txt included.
+Educational only. Follow local laws. Cannabis affects everyone differently. Do not drive while impaired.

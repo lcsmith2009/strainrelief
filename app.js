@@ -4524,3 +4524,209 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 
   window.StrainReliefHomeFirstScreenLockVersion = VERSION;
 })();
+
+
+/* ======================================================
+   V85 HOME UX STABILIZATION JS
+   Runs after V84 to repair over-compression and lock the
+   Home-only UX fixes requested after live testing.
+====================================================== */
+(function(){
+  const VERSION = "v85-home-ux-stabilization";
+
+  function important(el, prop, value){
+    if(el && el.style) el.style.setProperty(prop, value, "important");
+  }
+
+  function restoreHeroBalance(home){
+    const hero = home.querySelector(".home-hero-v76, .hero");
+    if(!hero) return;
+    const small = window.innerWidth <= 390;
+    important(hero, "height", "auto");
+    important(hero, "min-height", "0");
+    important(hero, "max-height", "none");
+    important(hero, "padding", small ? "16px 16px 18px" : "18px 18px 20px");
+    important(hero, "margin", "0 0 14px");
+    important(hero, "gap", small ? "8px" : "10px");
+    important(hero, "overflow", "hidden");
+
+    const logo = hero.querySelector(".brand-logo");
+    important(logo, "width", small ? "min(72vw, 430px)" : "min(74vw, 520px)");
+    important(logo, "height", small ? "88px" : "clamp(86px, 18vw, 126px)");
+    important(logo, "max-height", small ? "88px" : "126px");
+    important(logo, "margin", "0 auto 4px");
+
+    const eyebrow = hero.querySelector(".eyebrow");
+    important(eyebrow, "font-size", "11px");
+    important(eyebrow, "line-height", "1.05");
+
+    const h1 = hero.querySelector("h1");
+    important(h1, "font-size", small ? "30px" : "clamp(31px, 8.4vw, 46px)");
+    important(h1, "line-height", ".95");
+    important(h1, "margin", "0 0 2px");
+    important(h1, "text-align", "center");
+
+    const copy = hero.querySelector("p");
+    important(copy, "font-size", small ? "13px" : "clamp(13px, 3.55vw, 16px)");
+    important(copy, "line-height", small ? "1.22" : "1.28");
+    important(copy, "margin", "0 auto 4px");
+    important(copy, "max-width", "94%");
+    important(copy, "text-align", "center");
+
+    const actions = hero.querySelector(".hero-actions");
+    important(actions, "display", "grid");
+    important(actions, "grid-template-columns", "1fr 1fr 1fr");
+    important(actions, "gap", "8px");
+    important(actions, "margin", "4px 0 0");
+    actions?.querySelectorAll("button").forEach(btn => {
+      important(btn, "height", small ? "40px" : "42px");
+      important(btn, "min-height", small ? "40px" : "42px");
+      important(btn, "padding", "0 8px");
+      important(btn, "font-size", small ? "12px" : "clamp(12px, 3.35vw, 15px)");
+    });
+
+    const strip = hero.querySelector(".hero-mini-strip");
+    important(strip, "display", "grid");
+    important(strip, "grid-template-columns", "repeat(3,minmax(0,1fr))");
+    important(strip, "gap", "8px");
+    important(strip, "margin", "4px 0 0");
+    strip?.querySelectorAll("span").forEach(item => {
+      important(item, "height", small ? "42px" : "46px");
+      important(item, "min-height", small ? "42px" : "46px");
+      important(item, "padding", "6px 4px");
+      important(item, "font-size", "11px");
+    });
+    strip?.querySelectorAll("strong").forEach(strong => {
+      important(strong, "font-size", "clamp(19px,5vw,28px)");
+    });
+  }
+
+  function fixProgressOverflow(home){
+    const progress = home.querySelector(".pro-card");
+    important(progress, "overflow", "hidden");
+    important(progress, "height", "auto");
+    important(progress, "max-height", "none");
+    important(progress, "padding", "20px");
+    const row = progress?.querySelector(".stat-row");
+    important(row, "overflow", "visible");
+    important(row, "display", "grid");
+    important(row, "grid-template-columns", "repeat(3,minmax(0,1fr))");
+    important(row, "gap", "10px");
+  }
+
+  function restoreSmartAction(home){
+    const smart = home.querySelector("#smartInsights");
+    if(!smart || smart.querySelector(".v85-smart-action")) return;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "v85-smart-action";
+    btn.innerHTML = `<span><strong>Compare your next direction</strong><span>Open Match and refine by goal, timing, and THC sensitivity.</span></span><b>→</b>`;
+    btn.addEventListener("click", () => showPage("recommend"));
+    smart.appendChild(btn);
+  }
+
+  function installCarouselDrag(row){
+    if(!row || row.dataset.v85DragReady === "yes") return;
+    row.dataset.v85DragReady = "yes";
+    let down = false, startX = 0, startScroll = 0, dragged = false;
+    row.addEventListener("pointerdown", e => {
+      down = true; dragged = false; startX = e.clientX; startScroll = row.scrollLeft;
+      row.classList.add("is-dragging");
+      try{ row.setPointerCapture(e.pointerId); }catch(_e){}
+    });
+    row.addEventListener("pointermove", e => {
+      if(!down) return;
+      const dx = e.clientX - startX;
+      if(Math.abs(dx) > 5){ dragged = true; e.preventDefault(); }
+      row.scrollLeft = startScroll - dx;
+    }, {passive:false});
+    function end(){ down = false; setTimeout(() => { dragged = false; row.classList.remove("is-dragging"); }, 60); }
+    row.addEventListener("pointerup", end);
+    row.addEventListener("pointercancel", end);
+    row.addEventListener("mouseleave", end);
+    row.addEventListener("click", e => {
+      if(dragged){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
+  }
+
+  function fixCarousel(home){
+    const row = home.querySelector("#trendingGrid");
+    if(!row) return;
+    important(row, "display", "flex");
+    important(row, "flex-wrap", "nowrap");
+    important(row, "overflow-x", "auto");
+    important(row, "overflow-y", "visible");
+    important(row, "-webkit-overflow-scrolling", "touch");
+    important(row, "touch-action", "pan-x");
+    important(row, "scroll-snap-type", "x proximity");
+    important(row, "padding", "8px 22px 18px 4px");
+    important(row, "margin", "0 0 18px");
+    row.querySelectorAll(".strain-card").forEach(card => {
+      important(card, "flex", "0 0 min(79vw,330px)");
+      important(card, "width", "min(79vw,330px)");
+      important(card, "min-width", "min(79vw,330px)");
+      important(card, "max-width", "min(79vw,330px)");
+      important(card, "touch-action", "pan-x");
+      important(card, "user-select", "none");
+    });
+    installCarouselDrag(row);
+  }
+
+  function unclampHeadings(home){
+    home.querySelectorAll(".section-title").forEach(section => {
+      important(section, "overflow", "visible");
+      important(section, "padding-left", "6px");
+      important(section, "margin-left", "0");
+      important(section, "transform", "none");
+      section.querySelectorAll("h2,p").forEach(el => {
+        important(el, "overflow", "visible");
+        important(el, "padding-left", "0");
+        important(el, "margin-left", "0");
+        important(el, "transform", "none");
+      });
+    });
+  }
+
+  function applyV85(){
+    document.body.classList.add(VERSION);
+    const home = document.getElementById("home");
+    if(!home) return;
+    restoreHeroBalance(home);
+    fixProgressOverflow(home);
+    restoreSmartAction(home);
+    fixCarousel(home);
+    unclampHeadings(home);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV85();
+    setTimeout(applyV85, 160);
+    setTimeout(applyV85, 700);
+    setTimeout(applyV85, 1500);
+    setTimeout(applyV85, 2600);
+  });
+  window.addEventListener("pageshow", () => setTimeout(applyV85, 120));
+  window.addEventListener("resize", () => setTimeout(applyV85, 150));
+  window.addEventListener("orientationchange", () => setTimeout(applyV85, 280));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(applyV85, 120);
+      setTimeout(applyV85, 650);
+      return result;
+    };
+  }
+
+  const oldRenderSmart = window.renderSmartInsights;
+  if(typeof oldRenderSmart === "function"){
+    window.renderSmartInsights = function(){
+      const result = oldRenderSmart.apply(this, arguments);
+      setTimeout(applyV85, 60);
+      return result;
+    };
+  }
+
+  window.StrainReliefHomeUXVersion = VERSION;
+})();
