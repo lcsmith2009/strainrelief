@@ -4033,3 +4033,112 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   }
   window.StrainReliefPatchVersion=VERSION;
 })();
+
+
+/* ======================================================
+   V75 TRUE HOME COMPACT JS
+====================================================== */
+(function(){
+  const VERSION = "v75-true-home-compact";
+
+  function addBodyClass(){
+    document.body.classList.add(VERSION);
+  }
+
+  function markHomeCards(){
+    const home = document.getElementById("home") || document.querySelector('.page[data-page="home"], [data-page="home"]');
+    if(!home) return;
+
+    const allHeadings = [...home.querySelectorAll("h1,h2,h3")];
+
+    const heroTitle = allHeadings.find(h => /find\s+your\s+wellness\s+direction/i.test((h.textContent || "").replace(/\s+/g," ")));
+    if(heroTitle){
+      const heroCard = heroTitle.closest("section, article, .panel, .card, .hero, .hero-card, .home-hero, .welcome-card, .top-card, div");
+      if(heroCard){
+        heroCard.classList.add("home-hero", "hero-card");
+      }
+    }
+
+    const dailyHeading = allHeadings.find(h => /daily\s+wellness\s+direction|mood check|stress support|sleep support|body comfort|cbd support/i.test((h.textContent || "").replace(/\s+/g," ")));
+    if(dailyHeading){
+      const dailyCard = dailyHeading.closest("section, article, .panel, .card, .daily-card, .daily-wellness, .daily-direction, div");
+      if(dailyCard){
+        dailyCard.classList.add("daily-card", "daily-wellness");
+        if(!dailyCard.id) dailyCard.id = "dailyWellness";
+      }
+    }
+  }
+
+  function removeLivePill(){
+    const home = document.getElementById("home") || document.querySelector('[data-page="home"]');
+    if(!home) return;
+    [...home.querySelectorAll("*")].forEach(el => {
+      const txt = (el.textContent || "").trim().toLowerCase();
+      if(txt === "live daily wellness map" || txt.includes("live daily wellness map")){
+        const pill = el.closest(".live-pill,.status-pill,.hero-pill,button,span,div");
+        if(pill) pill.style.display = "none";
+      }
+    });
+  }
+
+  function centerBottomNav(){
+    const nav = document.querySelector(".bottom-nav, nav.bottom-nav, #bottomNav");
+    if(!nav) return;
+    Object.assign(nav.style, {
+      position: "fixed",
+      left: "50%",
+      right: "auto",
+      bottom: "calc(8px + env(safe-area-inset-bottom))",
+      transform: "translateX(-50%)",
+      width: "min(660px, calc(100vw - 24px))",
+      maxWidth: "calc(100vw - 24px)",
+      zIndex: "99990"
+    });
+  }
+
+  function ensureBackTop(){
+    let btn = document.getElementById("srBackTop");
+    if(!btn){
+      btn = document.createElement("button");
+      btn.id = "srBackTop";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Back to top");
+      btn.textContent = "↑";
+      document.body.appendChild(btn);
+      btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    }
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    btn.classList.toggle("show", y > 520);
+  }
+
+  function run(){
+    addBodyClass();
+    markHomeCards();
+    removeLivePill();
+    centerBottomNav();
+    ensureBackTop();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 120);
+    setTimeout(run, 500);
+    setTimeout(run, 1200);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 100));
+  window.addEventListener("resize", () => setTimeout(run, 100));
+  window.addEventListener("scroll", ensureBackTop, { passive: true });
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 80);
+      setTimeout(run, 400);
+      return result;
+    };
+  }
+
+  window.StrainReliefPatchVersion = VERSION;
+})();
