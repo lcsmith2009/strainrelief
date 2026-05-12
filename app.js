@@ -4211,3 +4211,125 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   }
   window.StrainReliefPatchVersion = VERSION;
 })();
+
+/* ======================================================
+   V96 SAFE RICHNESS RESTORE FROM V95
+   Adds back light Home support boxes without touching Search,
+   Learn/Terpene data, global scrolling, or core render pipelines.
+====================================================== */
+(function(){
+  const VERSION = "v96-safe-richness-restore";
+
+  function placeAfter(anchor, node){
+    if(!anchor || !node) return;
+    if(anchor.nextElementSibling !== node){
+      anchor.insertAdjacentElement('afterend', node);
+    }
+  }
+
+  function ensureQuickActions(){
+    const home = document.getElementById('home');
+    const smart = document.getElementById('smartInsights');
+    if(!home || !smart) return;
+    let box = document.getElementById('homeQuickActions');
+    if(!box){
+      box = document.createElement('div');
+      box.id = 'homeQuickActions';
+      box.className = 'panel card-glow v96-home-quick-actions';
+      box.innerHTML = `
+        <div class="v96-quick-head">
+          <div><span class="eyebrow">Continue Exploring</span><h3>Choose your next wellness step</h3></div>
+          <button class="small-btn ghost" type="button" onclick="showPage('recommend')">Compare</button>
+        </div>
+        <div class="v96-action-grid" aria-label="Quick wellness actions">
+          <button type="button" onclick="showPage('search')"><strong>Search strains</strong><span>Name, mood, terpene, or type</span></button>
+          <button type="button" onclick="showPage('recommend')"><strong>Start a match</strong><span>Goal, timing, THC sensitivity</span></button>
+          <button type="button" onclick="showPage('learn')"><strong>Learn terpenes</strong><span>Examples + beginner notes</span></button>
+        </div>`;
+    }
+    placeAfter(smart, box);
+
+    const ribbons = document.getElementById('categoryRibbons');
+    if(ribbons && ribbons.previousElementSibling !== box){
+      box.insertAdjacentElement('afterend', ribbons);
+    }
+  }
+
+  function ensureTrendingBridge(){
+    const trending = document.getElementById('trendingGrid');
+    const recent = document.getElementById('recentHome');
+    if(!trending || !recent) return;
+    let bridge = document.getElementById('homeTrendBridge');
+    if(!bridge){
+      bridge = document.createElement('div');
+      bridge.id = 'homeTrendBridge';
+      bridge.className = 'v96-trend-bridge';
+      bridge.innerHTML = `
+        <button type="button" onclick="surpriseMe()"><strong>Surprise me</strong><span>Open a new direction</span></button>
+        <button type="button" onclick="showPage('saved')"><strong>Saved + journal</strong><span>Return to your notes</span></button>`;
+    }
+    const recentTitle = recent.previousElementSibling;
+    if(recentTitle && recentTitle !== bridge){
+      recentTitle.insertAdjacentElement('beforebegin', bridge);
+    }else{
+      trending.insertAdjacentElement('afterend', bridge);
+    }
+  }
+
+  function tuneScrollRows(){
+    const rows = [
+      document.getElementById('trendingGrid'),
+      ...document.querySelectorAll('.quest-carousel,.vibe-ribbon,.recent-carousel,.learn-example-row')
+    ].filter(Boolean);
+    rows.forEach(row => {
+      row.classList.add('v96-native-scroll-row');
+      row.style.webkitOverflowScrolling = 'touch';
+      row.style.overscrollBehaviorX = 'contain';
+      row.style.touchAction = 'pan-x pan-y';
+    });
+  }
+
+  function applyV96(){
+    document.body.classList.add('v96-safe-richness-restore');
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+    document.body.style.touchAction = 'pan-y';
+    ensureQuickActions();
+    ensureTrendingBridge();
+    tuneScrollRows();
+    const nav = document.querySelector('.bottom-nav');
+    if(nav){
+      const h = Math.ceil(nav.getBoundingClientRect().height || 76);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h + 'px');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyV96();
+    setTimeout(applyV96, 220);
+    setTimeout(applyV96, 900);
+    setTimeout(applyV96, 1800);
+  });
+  window.addEventListener('pageshow', () => setTimeout(applyV96, 120));
+  window.addEventListener('resize', () => setTimeout(applyV96, 140));
+
+  const previousShowPage = window.showPage;
+  if(typeof previousShowPage === 'function'){
+    window.showPage = function(){
+      const out = previousShowPage.apply(this, arguments);
+      setTimeout(applyV96, 100);
+      return out;
+    };
+  }
+
+  const previousSmart = window.renderSmartInsights || (typeof renderSmartInsights === 'function' ? renderSmartInsights : null);
+  if(typeof previousSmart === 'function'){
+    window.renderSmartInsights = function(){
+      const out = previousSmart.apply(this, arguments);
+      setTimeout(applyV96, 60);
+      return out;
+    };
+  }
+
+  window.StrainReliefPatchVersion = VERSION;
+})();
