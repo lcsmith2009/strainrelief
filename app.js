@@ -4440,3 +4440,49 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   }
   window.StrainReliefPatchVersion=VERSION;
 })();
+
+/* ======================================================
+   V99 FINAL MOBILE UX LOCK BOOT
+   Safe final polish only. Data/Search/Terpenes untouched.
+====================================================== */
+(function(){
+  const VERSION='v99-final-mobile-ux-lock';
+  function applyV99(){
+    document.body.classList.add(VERSION,'v98-mobile-ux-polish');
+    document.documentElement.style.overflowY='auto';
+    document.body.style.overflowY='auto';
+    document.body.style.overflowX='hidden';
+    document.body.style.touchAction='pan-y';
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      const h=Math.ceil(nav.getBoundingClientRect().height||74);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h+'px');
+    }
+    const smart=document.getElementById('smartInsights');
+    if(smart){
+      const title=smart.querySelector('.panel-head h3');
+      if(title) title.textContent='Smart Recommendations';
+    }
+    ['trendingGrid','recentHome'].forEach(id=>{
+      const row=document.getElementById(id);
+      if(row){
+        row.style.webkitOverflowScrolling='touch';
+        row.style.overscrollBehaviorX='contain';
+      }
+    });
+    const trend=document.getElementById('trendingGrid');
+    if(trend){trend.setAttribute('aria-label','Trending educational strain directions');}
+  }
+  document.addEventListener('DOMContentLoaded',()=>{applyV99();setTimeout(applyV99,140);setTimeout(applyV99,650);});
+  window.addEventListener('pageshow',()=>setTimeout(applyV99,80));
+  window.addEventListener('resize',()=>setTimeout(applyV99,120));
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(){const out=oldShow.apply(this,arguments);setTimeout(applyV99,80);return out;};
+  }
+  const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV99,35);return out;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
+})();

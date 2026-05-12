@@ -11627,3 +11627,328 @@ body.v98-mobile-ux-polish .back-to-top{bottom:calc(var(--sr-real-nav-h, 76px) + 
   body.v98-mobile-ux-polish #home #trendingGrid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;overflow:visible!important;padding:0!important;mask-image:none!important;}
   body.v98-mobile-ux-polish #home #trendingGrid .strain-card{min-width:0!important;max-width:none!important;width:auto!important;}
 }
+
+/* ======================================================
+   V99 FINAL MOBILE UX LOCK
+   Last-mile polish only. Preserve Search/Terpenes/scrolling.
+   Goals: no backwards movement, lower nav footprint, tighter hero,
+   stable Smart header, smoother carousel, normalized Home density.
+====================================================== */
+html{overflow-y:auto!important;}
+body.v99-final-mobile-ux-lock{
+  --sr-nav-h:74px;
+  --sr-real-nav-h:74px;
+  padding-bottom:calc(var(--sr-real-nav-h,74px) + 18px + env(safe-area-inset-bottom))!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  touch-action:pan-y!important;
+}
+body.v99-final-mobile-ux-lock .app-shell,
+body.v99-final-mobile-ux-lock main,
+body.v99-final-mobile-ux-lock .page{
+  overflow:visible!important;
+  max-width:100%!important;
+}
+body.v99-final-mobile-ux-lock .page{
+  padding-bottom:calc(var(--sr-real-nav-h,74px) + 24px + env(safe-area-inset-bottom))!important;
+}
+
+/* First screen: keep premium but stop the hero from eating the viewport */
+body.v99-final-mobile-ux-lock #home .hero{
+  margin:8px 0 10px!important;
+  padding:14px 16px 15px!important;
+  min-height:0!important;
+  border-radius:26px!important;
+  transform:none!important;
+}
+body.v99-final-mobile-ux-lock #home .brand-logo{
+  height:clamp(50px,14.5vw,74px)!important;
+  width:min(72vw,360px)!important;
+  margin:0 auto 7px!important;
+  object-fit:contain!important;
+}
+body.v99-final-mobile-ux-lock #home .hero .eyebrow{
+  font-size:10px!important;
+  line-height:1.1!important;
+  margin:0 0 5px!important;
+  letter-spacing:.145em!important;
+}
+body.v99-final-mobile-ux-lock #home .hero h1{
+  font-size:clamp(30px,8.5vw,42px)!important;
+  line-height:.94!important;
+  letter-spacing:-.058em!important;
+  margin:0 auto 7px!important;
+  max-width:560px!important;
+}
+body.v99-final-mobile-ux-lock #home .hero p{
+  font-size:13.5px!important;
+  line-height:1.35!important;
+  max-width:600px!important;
+  margin:0 auto!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v99-final-mobile-ux-lock #home .hero-actions{
+  display:grid!important;
+  grid-template-columns:1.12fr .94fr .94fr!important;
+  gap:7px!important;
+  margin:11px 0 0!important;
+}
+body.v99-final-mobile-ux-lock #home .hero-actions button{
+  min-height:38px!important;
+  padding:8px 7px!important;
+  border-radius:16px!important;
+  font-size:clamp(11px,3.1vw,13px)!important;
+  line-height:1.05!important;
+  white-space:nowrap!important;
+}
+body.v99-final-mobile-ux-lock #home .hero-mini-strip{
+  gap:7px!important;
+  margin-top:10px!important;
+}
+body.v99-final-mobile-ux-lock #home .hero-mini-strip span{
+  padding:7px 6px!important;
+  border-radius:15px!important;
+  font-size:10px!important;
+  line-height:1.05!important;
+}
+body.v99-final-mobile-ux-lock #home .hero-mini-strip strong{
+  font-size:14px!important;
+}
+
+/* Home rhythm: compact but not stripped */
+body.v99-final-mobile-ux-lock #home .daily-card,
+body.v99-final-mobile-ux-lock #home .pro-card,
+body.v99-final-mobile-ux-lock #home .panel,
+body.v99-final-mobile-ux-lock #home .section-title{
+  margin-top:10px!important;
+  margin-bottom:10px!important;
+  padding:15px!important;
+  border-radius:24px!important;
+}
+body.v99-final-mobile-ux-lock #home .daily-card h2,
+body.v99-final-mobile-ux-lock #home .pro-card h2,
+body.v99-final-mobile-ux-lock #home .panel h3,
+body.v99-final-mobile-ux-lock #home .section-title h2{
+  font-size:clamp(27px,7.3vw,38px)!important;
+  line-height:1!important;
+  letter-spacing:-.048em!important;
+  margin-bottom:6px!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+body.v99-final-mobile-ux-lock #home .daily-card p,
+body.v99-final-mobile-ux-lock #home .pro-card p,
+body.v99-final-mobile-ux-lock #home .panel p,
+body.v99-final-mobile-ux-lock #home .section-title p{
+  font-size:13.5px!important;
+  line-height:1.38!important;
+}
+body.v99-final-mobile-ux-lock #home .quick-row{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:10px 0!important;
+}
+body.v99-final-mobile-ux-lock #home .quick-row button{
+  min-height:39px!important;
+  padding:8px 6px!important;
+  border-radius:16px!important;
+  font-size:clamp(10.5px,3vw,12px)!important;
+  white-space:nowrap!important;
+}
+body.v99-final-mobile-ux-lock #home .pro-card .stat-row{gap:8px!important;}
+body.v99-final-mobile-ux-lock #home .pro-card .stat-row div{padding:10px 7px!important;border-radius:17px!important;}
+body.v99-final-mobile-ux-lock #home .pro-card .stat-row strong{font-size:clamp(22px,7vw,30px)!important;}
+body.v99-final-mobile-ux-lock #home .pro-card .stat-row span{font-size:10px!important;}
+
+/* Smart Recommendations: one clean header line, no giant title split */
+body.v99-final-mobile-ux-lock #smartInsights{
+  padding:15px!important;
+  overflow:hidden!important;
+}
+body.v99-final-mobile-ux-lock #smartInsights .panel-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  margin-bottom:12px!important;
+}
+body.v99-final-mobile-ux-lock #smartInsights .panel-head h3{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  font-size:clamp(24px,6.55vw,34px)!important;
+  line-height:1!important;
+  letter-spacing:-.052em!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+body.v99-final-mobile-ux-lock #smartInsights .panel-head .small-btn{
+  flex:0 0 auto!important;
+  padding:8px 10px!important;
+  min-height:36px!important;
+  font-size:12px!important;
+  border-radius:15px!important;
+  white-space:nowrap!important;
+}
+body.v99-final-mobile-ux-lock #smartInsights .smart-grid{gap:9px!important;}
+body.v99-final-mobile-ux-lock #smartInsights .smart-card{
+  padding:12px!important;
+  border-radius:20px!important;
+  min-height:0!important;
+}
+body.v99-final-mobile-ux-lock #smartInsights .smart-card h3{
+  font-size:clamp(20px,5.55vw,27px)!important;
+  line-height:1.04!important;
+  margin:6px 0!important;
+}
+body.v99-final-mobile-ux-lock #smartInsights .smart-card p{font-size:13.5px!important;line-height:1.35!important;}
+
+/* Wellness dashboard and insight sections: premium anchor, not a skyscraper */
+body.v99-final-mobile-ux-lock #wellnessDashboard,
+body.v99-final-mobile-ux-lock #home .wellness-dashboard,
+body.v99-final-mobile-ux-lock #home .ai-wellness-dashboard,
+body.v99-final-mobile-ux-lock #home .lively-dashboard{
+  padding:15px!important;
+  border-radius:24px!important;
+  margin-top:10px!important;
+  margin-bottom:10px!important;
+}
+body.v99-final-mobile-ux-lock #wellnessDashboard .panel-head,
+body.v99-final-mobile-ux-lock #home .wellness-dashboard .panel-head,
+body.v99-final-mobile-ux-lock #home .lively-dashboard .panel-head{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+}
+body.v99-final-mobile-ux-lock #wellnessDashboard h3,
+body.v99-final-mobile-ux-lock #wellnessDashboard h2,
+body.v99-final-mobile-ux-lock #home .wellness-dashboard h3,
+body.v99-final-mobile-ux-lock #home .wellness-dashboard h2,
+body.v99-final-mobile-ux-lock #home .lively-dashboard h2{
+  font-size:clamp(27px,7.2vw,38px)!important;
+  line-height:1!important;
+  letter-spacing:-.048em!important;
+}
+body.v99-final-mobile-ux-lock #wellnessDashboard .wellness-summary,
+body.v99-final-mobile-ux-lock #home .wellness-dashboard .wellness-summary{
+  font-size:13.5px!important;
+  line-height:1.42!important;
+  margin:10px 0!important;
+}
+body.v99-final-mobile-ux-lock #home .wellness-metric,
+body.v99-final-mobile-ux-lock #home .habit-card,
+body.v99-final-mobile-ux-lock #home .quest-card{
+  padding:12px!important;
+  border-radius:18px!important;
+  min-height:0!important;
+}
+body.v99-final-mobile-ux-lock #home .wellness-metric strong,
+body.v99-final-mobile-ux-lock #home .habit-card strong{
+  font-size:clamp(21px,5.8vw,30px)!important;
+}
+body.v99-final-mobile-ux-lock #home .wellness-bars,
+body.v99-final-mobile-ux-lock #home .wellness-metric-grid{gap:9px!important;}
+
+/* Trending: responsive carousel without huge cards or visible scrollbars */
+body.v99-final-mobile-ux-lock #home #trendingGrid{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  gap:10px!important;
+  padding:2px 18px 10px 2px!important;
+  margin:0!important;
+  scroll-snap-type:x proximity!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+  touch-action:pan-x pan-y!important;
+  scrollbar-width:none!important;
+  mask-image:linear-gradient(90deg,#000 0,#000 92%,transparent)!important;
+}
+body.v99-final-mobile-ux-lock #home #trendingGrid::-webkit-scrollbar{display:none!important;}
+body.v99-final-mobile-ux-lock #home #trendingGrid .strain-card{
+  flex:0 0 auto!important;
+  min-width:min(66vw,268px)!important;
+  max-width:min(66vw,268px)!important;
+  padding:14px!important;
+  border-radius:24px!important;
+  scroll-snap-align:start!important;
+}
+body.v99-final-mobile-ux-lock #home #trendingGrid .card-hero{margin-bottom:10px!important;border-radius:20px!important;}
+body.v99-final-mobile-ux-lock #home #trendingGrid .card-hero img{height:126px!important;object-fit:cover!important;}
+body.v99-final-mobile-ux-lock #home #trendingGrid .strain-card h3{font-size:clamp(21px,5.9vw,26px)!important;line-height:1!important;}
+body.v99-final-mobile-ux-lock #home #trendingGrid .strain-card p{
+  font-size:13px!important;
+  line-height:1.31!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:3!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+body.v99-final-mobile-ux-lock #home #trendingGrid .tag{font-size:11px!important;padding:7px 9px!important;}
+
+/* Recently viewed: keep the list useful and never hidden by dock */
+body.v99-final-mobile-ux-lock #home #recentHome{
+  padding-bottom:calc(var(--sr-real-nav-h,74px) + 30px + env(safe-area-inset-bottom))!important;
+}
+body.v99-final-mobile-ux-lock #home .recent-carousel{gap:9px!important;}
+body.v99-final-mobile-ux-lock #home .recent-card,
+body.v99-final-mobile-ux-lock #home .recent-mini-card,
+body.v99-final-mobile-ux-lock #home #recentHome .mini-item{
+  border-radius:20px!important;
+  padding:10px!important;
+  min-height:0!important;
+}
+body.v99-final-mobile-ux-lock #home .recent-card img,
+body.v99-final-mobile-ux-lock #home .recent-mini-card img{
+  width:56px!important;
+  height:56px!important;
+  border-radius:14px!important;
+}
+
+/* Bottom nav: shorter, still thumb-friendly */
+body.v99-final-mobile-ux-lock .bottom-nav{
+  left:10px!important;
+  right:10px!important;
+  bottom:8px!important;
+  width:auto!important;
+  min-height:0!important;
+  border-radius:25px!important;
+  padding:6px 6px calc(6px + env(safe-area-inset-bottom))!important;
+  gap:5px!important;
+}
+body.v99-final-mobile-ux-lock .bottom-nav button{
+  min-height:48px!important;
+  padding:5px 3px!important;
+  border-radius:17px!important;
+}
+body.v99-final-mobile-ux-lock .bottom-nav button span{font-size:16px!important;line-height:1!important;}
+body.v99-final-mobile-ux-lock .bottom-nav button b{font-size:10px!important;line-height:1!important;}
+body.v99-final-mobile-ux-lock .toast,
+body.v99-final-mobile-ux-lock .back-to-top{
+  bottom:calc(var(--sr-real-nav-h,74px) + 24px + env(safe-area-inset-bottom))!important;
+}
+body.v99-final-mobile-ux-lock .install-banner,
+body.v99-final-mobile-ux-lock .compare-tray{
+  bottom:calc(var(--sr-real-nav-h,74px) + 20px + env(safe-area-inset-bottom))!important;
+}
+
+@media(max-width:380px){
+  body.v99-final-mobile-ux-lock #home .hero-actions{gap:6px!important;}
+  body.v99-final-mobile-ux-lock #home .hero-actions button{font-size:10.7px!important;padding-left:4px!important;padding-right:4px!important;}
+  body.v99-final-mobile-ux-lock #home .quick-row{gap:6px!important;}
+  body.v99-final-mobile-ux-lock #home .quick-row button{font-size:10px!important;}
+  body.v99-final-mobile-ux-lock #smartInsights .panel-head h3{font-size:23px!important;}
+  body.v99-final-mobile-ux-lock #smartInsights .panel-head .small-btn{font-size:11px!important;padding:7px 9px!important;}
+  body.v99-final-mobile-ux-lock #home #trendingGrid .strain-card{min-width:72vw!important;max-width:72vw!important;}
+}
+@media(min-width:760px){
+  body.v99-final-mobile-ux-lock #home #trendingGrid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;overflow:visible!important;padding:0!important;mask-image:none!important;}
+  body.v99-final-mobile-ux-lock #home #trendingGrid .strain-card{min-width:0!important;max-width:none!important;width:auto!important;}
+}
