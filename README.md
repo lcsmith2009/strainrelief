@@ -1,5 +1,5 @@
-# StrainRelief V91 — Full App Stability Reset
+# StrainRelief V92 — Full App Refinement Pass
 
-Full app cleanup focused on removing stacked patch conflicts, stabilizing mobile layout, fixing bottom navigation overlap, simplifying carousels, cleaning modals, and preserving educational cannabis wellness language.
+Full app refinement pass from V91. Stabilized mobile hero height, global bottom navigation spacing, card density, carousel swipe behavior, modal spacing, and app-wide layout rhythm.
 
-No README.txt included.
+Educational only. Follow local laws. Do not drive while impaired.
