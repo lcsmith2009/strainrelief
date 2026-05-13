@@ -1435,11 +1435,7 @@ document.addEventListener('visibilitychange',()=>setTimeout(srV25LockProgress,12
     orb.className='v27-hero-orbits';
     orb.innerHTML='<i></i><i></i><i></i>';
     hero.prepend(orb);
-    const micro=document.createElement('div');
-    micro.className='v27-live-pill';
-    micro.innerHTML='<span></span><b>Live daily wellness map</b>';
-    const actions=hero.querySelector('.hero-actions');
-    if(actions) hero.insertBefore(micro, actions);
+    // V74: Live daily wellness map pill removed to tighten mobile home layout.
   }
   function v27RenderSpotlight(){
     const home=document.getElementById('home'); if(!home) return;
@@ -3906,299 +3902,803 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
 })();
 
 
-/* =========================================================
-   V101 CLEAN CONTROLLER FROM V71
-   Takes final ownership of navigation, Search, Learn/Terpenes,
-   recent cards, journal duplicate controls, and mobile stability.
-   ========================================================= */
+/* ======================================================
+   V72 HOME FINAL REPAIR JS
+====================================================== */
 (function(){
-  const VERSION='v101-clean-controller-from-v71';
-  const legacyClasses = [
-    'v29-structural-polish','v30-mobile-layout-cleanup','v31-home-polish','v35-compact-home','v36-app-store-polish','v37-native-tight','v38-immersion','v39-polish','v41-force-visible','v65-real-motion-nav-lock','v66-density-smart-layout','v67-learn-search-fix','v68-smart-density-repair','v69-final-spacing-learn-polish','v70-final-deadspace-nav-polish','v71-home-alignment-nav-clearance-real'
-  ];
-  const terpeneNotes = {
-    Caryophyllene:'Peppery, warm aroma. Often discussed with body comfort and grounded calm directions.',
-    Humulene:'Earthy, herbal aroma. Often discussed with balanced comfort and less snack-forward directions.',
-    Limonene:'Bright citrus aroma. Often discussed with mood, stress, and daytime-style directions.',
-    Linalool:'Floral lavender-like aroma. Often discussed with calm, relaxed, evening-style directions.',
-    Myrcene:'Earthy herbal aroma. Often discussed with relaxation and nighttime-style directions.',
-    Pinene:'Pine aroma. Often discussed with clearer, more alert daytime-style directions.',
-    Terpinolene:'Fresh herbal aroma. Often discussed with creative, bright, daytime-style directions.'
-  };
-  function q(id){return document.getElementById(id)}
-  function stabilizeShell(){
-    document.body.classList.remove(...legacyClasses);
-    document.body.classList.add('v101-clean-controller');
-    document.documentElement.style.overflowY='auto';
-    document.body.style.overflowY='auto';
-    document.body.style.position='static';
-    document.body.style.height='auto';
-    document.body.style.touchAction='pan-y';
-    const splash=q('splash');
-    if(splash){splash.style.opacity='0'; setTimeout(()=>splash.remove(),120)}
+  const VERSION = "v72-home-final-repair";
+
+  function ensureClass(){
+    document.body.classList.add(VERSION);
   }
-  function compactHeroText(){
-    const hero=document.querySelector('#home .hero'); if(!hero) return;
-    const h=hero.querySelector('h1');
-    if(h) h.innerHTML='Find Your Wellness<br>Direction.';
-    const p=hero.querySelector('p');
-    if(p) p.textContent='Explore directions by mood, sleep, stress, body comfort, THC sensitivity, and terpenes.';
-  }
-  function renderCleanSmartInsights(){
-    const box=q('smartInsights'); if(!box || typeof strains==='undefined') return;
-    const seed = typeof getDailySeed==='function' ? getDailySeed() : new Date().getDate();
-    const low = strains.filter(s=>/cbd|very low|low thc|high cbd/i.test([s.category,s.thc,s.cbd,s.type,(s.tags||[]).join(' ')].join(' ')))[seed % Math.max(1,strains.filter(s=>/cbd|very low|low thc|high cbd/i.test([s.category,s.thc,s.cbd,s.type,(s.tags||[]).join(' ')].join(' '))).length)] || strains[0];
-    const night = strains.filter(s=>/night|evening|sleep/i.test([s.time,s.category,(s.goals||[]).join(' ')].join(' ')))[(seed+3) % Math.max(1,strains.filter(s=>/night|evening|sleep/i.test([s.time,s.category,(s.goals||[]).join(' ')].join(' '))).length)] || strains[1] || strains[0];
-    const body = strains.filter(s=>/body comfort|stress|calm/i.test([s.category,(s.goals||[]).join(' '),(s.tags||[]).join(' ')].join(' ')))[(seed+6) % Math.max(1,strains.filter(s=>/body comfort|stress|calm/i.test([s.category,(s.goals||[]).join(' '),(s.tags||[]).join(' ')].join(' '))).length)] || strains[2] || strains[0];
-    const items=[['Low-THC compare',low],['Evening direction',night],['Comfort lane',body]];
-    box.innerHTML=`<span class="eyebrow">Smart Recommendations</span><h3>Compare your next direction</h3><p>Quick educational picks based on lower-risk lanes, timing, and terpene profiles.</p><div class="mini-list">${items.map(([label,s])=>`<button class="mini-item" onclick="openModal('${safeName(s.name)}')"><strong>${label}</strong><br>${s.name} · ${(s.terpenes||[]).slice(0,2).join(', ')}</button>`).join('')}</div>`;
-  }
-  function renderCleanSearch(){
-    const grid=q('strainGrid'); if(!grid || typeof strains==='undefined') return;
-    const input=q('searchInput');
-    const qv=(input?.value||'').toLowerCase().trim();
-    const f=(typeof currentFilter!=='undefined'?currentFilter:'All');
-    const list=(typeof sortedStrains==='function'?sortedStrains():[...strains]).filter(s=>{
-      const txt=(typeof searchableText==='function'?searchableText(s):JSON.stringify(s).toLowerCase());
-      return (!qv||txt.includes(qv)) && (f==='All'||txt.includes(String(f).toLowerCase()));
+
+  function centerNav(){
+    const nav = document.querySelector(".bottom-nav, nav.bottom-nav, #bottomNav");
+    if(!nav) return;
+    Object.assign(nav.style, {
+      position:"fixed",
+      left:"50%",
+      right:"auto",
+      bottom:"calc(8px + env(safe-area-inset-bottom))",
+      transform:"translateX(-50%)",
+      width:"min(660px, calc(100vw - 24px))",
+      maxWidth:"calc(100vw - 24px)",
+      zIndex:"99990"
     });
-    grid.innerHTML=list.length?list.map(s=>cardHTML(s)).join(''):`<div class="panel"><h3>No matches yet</h3><p>Try another strain, goal, terpene, or feeling.</p></div>`;
   }
-  function seededPick(pool,salt,count=4){
-    const all=[...pool];
-    let seed=0; String(salt).split('').forEach(ch=>seed=(seed*31+ch.charCodeAt(0))>>>0);
-    return all.sort((a,b)=>((typeof seededHash==='function' ? seededHash(salt+a.name) : (seed+a.name.length)))-((typeof seededHash==='function' ? seededHash(salt+b.name) : (seed+b.name.length)))).slice(0,count);
+
+  function labelHomeElements(){
+    const home = document.getElementById("home") || document.querySelector('[data-page="home"]');
+    if(!home) return;
+
+    const headings = [...home.querySelectorAll("h1,h2,h3")];
+    const heroHeading = headings.find(h => /find\s+your\s+wellness\s+direction/i.test(h.textContent || ""));
+    if(heroHeading){
+      const card = heroHeading.closest(".hero,.home-hero,.hero-card,.welcome-card,.top-card,.panel,.card,section,article,div");
+      if(card) card.classList.add("home-hero", "hero-card");
+    }
+
+    const dailyHeading = headings.find(h => /daily\s+wellness\s+direction|mood check|stress support|sleep support|body comfort|cbd/i.test(h.textContent || ""));
+    if(dailyHeading){
+      const card = dailyHeading.closest(".daily-card,.daily-wellness,.daily-direction,.panel,.card,section,article,div");
+      if(card) {
+        card.classList.add("daily-card", "daily-wellness");
+        card.id = card.id || "dailyWellness";
+      }
+    }
   }
-  function examplesForTerpene(name){
-    const pool=(typeof strains!=='undefined'?strains:[]).filter(s=>(s.terpenes||[]).some(t=>String(t).toLowerCase()===String(name).toLowerCase()));
-    const fallback=(typeof strains!=='undefined'?strains:[]);
-    return seededPick(pool.length?pool:fallback, 'v101-'+name+'-'+(new Date().getDate()), 4);
+
+  function restoreBackTop(){
+    let btn = document.getElementById("srBackTop");
+    if(!btn){
+      btn = document.createElement("button");
+      btn.id = "srBackTop";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Back to top");
+      btn.textContent = "↑";
+      document.body.appendChild(btn);
+      btn.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+    }
+
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    btn.classList.toggle("show", y > 520);
   }
-  function renderCleanEducation(){
-    if(!q('learn')) return;
-    if(q('onboardingSlides')) q('onboardingSlides').innerHTML=`<h3>Quick Start</h3><div class="mini-list"><div class="mini-item"><strong>1. Search</strong><br>Find directions by strain, goal, terpene, or timing.</div><div class="mini-item"><strong>2. Match</strong><br>Compare goal, sensitivity, and time of day.</div><div class="mini-item"><strong>3. Save + Journal</strong><br>Track favorites and notes on this device.</div></div>`;
-    const names=Object.keys(terpeneNotes).sort((a,b)=>a.localeCompare(b));
-    if(q('terpeneExplorer')) q('terpeneExplorer').innerHTML=`<h3>Terpene Explorer</h3><p>Alphabetized terpene education with mixed example strains for comparison.</p><div class="terpene-grid-v101">${names.map(name=>`<article class="terpene-card-v101"><h4>${name}</h4><p>${terpeneNotes[name]}</p><div class="example-row">${examplesForTerpene(name).map(s=>`<button type="button" onclick="openModal('${safeName(s.name)}')">${s.name}</button>`).join('')}</div></article>`).join('')}</div>`;
-    if(q('locatorBox')) q('locatorBox').innerHTML=`<h3>Dispensary Prep</h3><p>Use this checklist when shopping legally. Compare products by lab results, THC/CBD percentages, terpene profile, serving size, and onset time.</p><div class="checklist"><div>✅ Lab-tested product / COA</div><div>✅ THC percentage and CBD percentage</div><div>✅ Terpene profile</div><div>✅ Serving size or dose guidance</div><div>✅ Expected onset time and duration</div><div>✅ Beginner-friendly or lower-THC options</div><div>✅ Do not drive while impaired</div><div>✅ Follow local laws</div></div><button onclick="copyChecklist()">Copy Checklist</button>`;
-    if(q('termsBox')) q('termsBox').innerHTML=`<h3>Privacy + Terms</h3><p>Favorites, recent views, and journal entries stay locally on this device. StrainRelief is educational only and does not provide medical advice.</p>`;
-    if(q('learnGrid') && typeof education!=='undefined') q('learnGrid').innerHTML=education.map(e=>`<div class="education-card"><h3>${e.title}</h3><p>${e.body}</p></div>`).join('');
+
+  function run(){
+    ensureClass();
+    labelHomeElements();
+    centerNav();
+    restoreBackTop();
   }
-  function renderCleanRecentHome(){
-    const box=q('recentHome'); if(!box) return;
-    const r=(typeof read==='function'?read('srRecent',[]):[]);
-    box.innerHTML=r.length?r.map(n=>{const s=typeof getStrain==='function'?getStrain(n):null;return s?`<button class="mini-item sr-recent-card" onclick="openModal('${safeName(s.name)}')"><img src="${strainImage(s)}" alt="${s.name}" loading="lazy" onerror="repairStrainImage(this, '${safeName(s.name)}')"><span><strong>${s.name}</strong><br><small>${s.category} · ${(s.terpenes||[])[0]||'Terpene profile'}</small></span></button>`:`<button class="mini-item" onclick="openModal('${safeName(n)}')">${n}</button>`}).join(''):`<div class="empty-state">No recently viewed strains yet. Open a strain profile to start.</div>`;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 150);
+    setTimeout(run, 600);
+    setTimeout(run, 1200);
+  });
+
+  window.addEventListener("scroll", restoreBackTop, {passive:true});
+  window.addEventListener("resize", () => setTimeout(run, 120));
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 80);
+      setTimeout(run, 450);
+      return result;
+    };
   }
-  function cleanJournalDuplicateControls(){
-    const row=q('journalMoodChips');
-    if(row){ row.innerHTML=''; row.setAttribute('aria-hidden','true'); }
-  }
-  function renderHomeSafe(){
-    compactHeroText();
-    if(typeof dailyTip==='function') dailyTip();
-    if(typeof renderFeatured==='function') renderFeatured();
-    renderCleanSmartInsights();
-    renderCleanRecentHome();
-    if(typeof updateStats==='function') updateStats();
-  }
-  function refreshActive(){
-    stabilizeShell();
-    cleanJournalDuplicateControls();
-    const active=document.querySelector('.page.active')?.id || 'home';
-    if(active==='home') renderHomeSafe();
-    if(active==='search'){ if(typeof renderFilters==='function') renderFilters(); renderCleanSearch(); }
-    if(active==='learn') renderCleanEducation();
-    if(active==='saved'){ if(typeof renderSaved==='function') renderSaved(); cleanJournalDuplicateControls(); }
-    if(typeof srAttachReveal==='function') setTimeout(srAttachReveal,30);
-  }
-  window.showPage = showPage = function(id){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    q(id)?.classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active', ['home','search','recommend','saved','learn'][i]===id));
-    window.scrollTo({top:0,behavior:'auto'});
-    if(id==='home') renderHomeSafe();
-    if(id==='search'){ if(typeof renderFilters==='function') renderFilters(); renderCleanSearch(); }
-    if(id==='learn') renderCleanEducation();
-    if(id==='saved'){ if(typeof renderSaved==='function') renderSaved(); cleanJournalDuplicateControls(); }
-    setTimeout(refreshActive,60);
-  };
-  if(typeof renderSearch==='function') renderSearch = window.renderSearch = renderCleanSearch;
-  if(typeof renderEducation==='function') renderEducation = window.renderEducation = renderCleanEducation;
-  if(typeof renderRecentHome==='function') renderRecentHome = window.renderRecentHome = renderCleanRecentHome;
+
   window.StrainReliefPatchVersion = VERSION;
-  document.addEventListener('DOMContentLoaded',()=>{refreshActive(); setTimeout(refreshActive,250); setTimeout(refreshActive,900);});
-  window.addEventListener('load',()=>{refreshActive(); setTimeout(refreshActive,500);});
-  window.addEventListener('pageshow',()=>setTimeout(refreshActive,120));
-  window.addEventListener('resize',()=>setTimeout(refreshActive,120));
 })();
 
 
-/* =========================================================
-   V102 SAFE POLISH ON CLEAN V101 CONTROLLER
-   Purpose: restore premium polish without reintroducing old patch conflicts.
-   ========================================================= */
+/* ======================================================
+   V74 HOME PILL REMOVAL + BALANCE JS
+====================================================== */
 (function(){
-  const VERSION='v102-safe-polish-on-v101-clean-controller';
-  const $ = (id)=>document.getElementById(id);
-  const TERPENE_NOTES = {
-    Caryophyllene:'Peppery and warm. Commonly discussed with grounded, body-comfort style directions.',
-    Humulene:'Earthy and herbal. Commonly discussed with balanced comfort and less snack-forward directions.',
-    Limonene:'Bright citrus aroma. Commonly discussed with upbeat, mood, and daytime-style directions.',
-    Linalool:'Floral, lavender-like aroma. Commonly discussed with calm and evening-style directions.',
-    Myrcene:'Earthy herbal aroma. Commonly discussed with relaxation and nighttime-style directions.',
-    Ocimene:'Sweet herbal aroma. Commonly discussed with bright, fresh, daytime-style profiles.',
-    Pinene:'Pine aroma. Commonly discussed with clearer, more alert daytime-style directions.',
-    Terpinolene:'Fresh herbal aroma. Commonly discussed with creative, bright, daytime-style directions.'
-  };
-
-  function hash(str){
-    let h=2166136261;
-    for(let i=0;i<String(str).length;i++){h^=String(str).charCodeAt(i);h=Math.imul(h,16777619);}
-    return h>>>0;
-  }
-  function safeOpen(name){ return (typeof safeName==='function') ? safeName(name) : String(name).replace(/'/g,"\\'"); }
-  function imgFor(s){ return (typeof strainImage==='function') ? strainImage(s) : (s.image||''); }
-  function sortedStrainList(){
-    if(typeof sortedStrains==='function') return sortedStrains();
-    if(Array.isArray(window.strains)) return [...window.strains].sort((a,b)=>a.name.localeCompare(b.name));
-    if(typeof strains!=='undefined') return [...strains].sort((a,b)=>a.name.localeCompare(b.name));
-    return [];
-  }
-  function textFor(s){
-    if(typeof searchableText==='function') return searchableText(s);
-    return [s.name,s.type,s.category,s.thc,s.cbd,s.time,s.flavor,(s.tags||[]).join(' '),(s.goals||[]).join(' '),(s.terpenes||[]).join(' ')].join(' ').toLowerCase();
-  }
-  function removeSplash(){
-    const splash=$('splash');
-    if(splash){ splash.style.display='none'; splash.remove(); }
-  }
-  function shell(){
-    document.body.classList.remove('v101-clean-controller');
-    document.body.classList.add('v102-safe-polish');
-    document.documentElement.style.overflow='';
-    document.body.style.overflow='';
-    document.body.style.position='';
-    document.body.style.height='';
-    removeSplash();
-  }
-  function cardHTMLSafe(s){
-    if(typeof cardHTML==='function') return cardHTML(s);
-    return `<article class="strain-card card-glow"><img src="${imgFor(s)}" alt="${s.name}"><h3>${s.name}</h3><p>${s.type||''}</p><div class="tags">${(s.tags||[]).slice(0,3).map(t=>`<span class="tag">${t}</span>`).join('')}</div><button onclick="openModal('${safeOpen(s.name)}')">Open Profile</button></article>`;
-  }
-  function fixHero(){
-    const hero=document.querySelector('#home .hero'); if(!hero) return;
-    const h=hero.querySelector('h1');
-    const p=hero.querySelector('p');
-    if(h) h.innerHTML='Find Your Wellness<br>Direction.';
-    if(p) p.textContent='Explore strain directions by mood, sleep, stress, body comfort, THC sensitivity, and terpene profile.';
-  }
-  function renderSmartV102(){
-    const box=$('smartInsights'); if(!box) return;
-    const list=sortedStrainList(); if(!list.length) return;
-    const day=new Date().toISOString().slice(0,10);
-    const lanes=[
-      ['Lower-THC lane', list.filter(s=>/cbd|very low|low thc|high cbd/i.test([s.name,s.type,s.category,s.thc,s.cbd,(s.tags||[]).join(' ')].join(' ')))],
-      ['Night direction', list.filter(s=>/night|evening|sleep|relax/i.test([s.time,s.category,(s.goals||[]).join(' '),(s.tags||[]).join(' ')].join(' ')))],
-      ['Daytime compare', list.filter(s=>/day|focus|energy|creative/i.test([s.time,s.category,(s.goals||[]).join(' '),(s.tags||[]).join(' ')].join(' ')))]
-    ].map(([label,pool],i)=>{
-      const usable=pool.length?pool:list;
-      const pick=[...usable].sort((a,b)=>hash(day+label+a.name)-hash(day+label+b.name))[i%usable.length];
-      return [label,pick];
+  const VERSION='v74-home-pill-removal-balance';
+  function run(){
+    document.body.classList.add(VERSION);
+    document.querySelectorAll('.v27-live-pill,.live-pill,.hero-pill,.status-pill').forEach(el=>{
+      if((el.textContent||'').toLowerCase().includes('live daily wellness map')) el.remove();
     });
-    box.innerHTML=`
-      <div class="panel-head sr-smart-head"><div><span class="eyebrow">Smart Recommendations</span><h3>Compare your next direction</h3></div><button class="small-btn ghost" onclick="showPage('recommend')">Match</button></div>
-      <p>Educational picks for timing, THC sensitivity, and terpene comparison.</p>
-      <div class="sr-smart-actions">${lanes.map(([label,s])=>`<button type="button" class="mini-item sr-smart-action" onclick="openModal('${safeOpen(s.name)}')"><strong>${label}</strong><span>${s.name}</span><small>${(s.terpenes||[]).slice(0,2).join(' + ')||'Terpene profile'}</small></button>`).join('')}</div>`;
-  }
-  function renderSearchV102(){
-    const grid=$('strainGrid'); if(!grid) return;
-    const query=($('searchInput')?.value||'').toLowerCase().trim();
-    const filter=(typeof currentFilter!=='undefined' ? currentFilter : 'All');
-    const list=sortedStrainList().filter(s=>{
-      const text=textFor(s);
-      return (!query || text.includes(query)) && (filter==='All' || text.includes(String(filter).toLowerCase()));
-    });
-    grid.innerHTML=list.length ? list.map(cardHTMLSafe).join('') : `<div class="panel card-glow"><h3>No strain directions found</h3><p>Try a strain name, terpene, goal, or feeling.</p></div>`;
-  }
-  function terpeneExamples(name){
-    const list=sortedStrainList();
-    const pool=list.filter(s=>(s.terpenes||[]).some(t=>String(t).toLowerCase()===name.toLowerCase()));
-    const usable=pool.length?pool:list;
-    const salt=`${name}-${new Date().getDate()}-v102`;
-    return [...usable].sort((a,b)=>hash(salt+a.name)-hash(salt+b.name)).slice(0,4);
-  }
-  function renderLearnV102(){
-    const quick=$('onboardingSlides');
-    if(quick) quick.innerHTML=`<h3>Quick Start</h3><div class="mini-list"><button class="mini-item" onclick="showPage('search')"><strong>1. Search</strong><br>Find directions by strain, goal, terpene, or timing.</button><button class="mini-item" onclick="showPage('recommend')"><strong>2. Match</strong><br>Compare your goal, time of day, and THC sensitivity.</button><button class="mini-item" onclick="showPage('saved')"><strong>3. Save + Journal</strong><br>Track favorites and notes locally on this device.</button></div>`;
-    const explorer=$('terpeneExplorer');
-    if(explorer){
-      const names=Object.keys(TERPENE_NOTES).sort((a,b)=>a.localeCompare(b));
-      explorer.innerHTML=`<h3>Terpene Explorer</h3><p>Alphabetized terpene education with rotating example strain directions.</p><div class="terpene-grid-v102">${names.map(name=>`<article class="terpene-card-v102"><h4>${name}</h4><p>${TERPENE_NOTES[name]}</p><div class="example-row">${terpeneExamples(name).map(s=>`<button type="button" onclick="openModal('${safeOpen(s.name)}')">${s.name}</button>`).join('')}</div></article>`).join('')}</div>`;
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      Object.assign(nav.style,{position:'fixed',left:'50%',right:'auto',transform:'translateX(-50%)',bottom:'calc(8px + env(safe-area-inset-bottom))',width:'min(660px, calc(100vw - 24px))',maxWidth:'calc(100vw - 24px)',zIndex:'99990'});
     }
-    const loc=$('locatorBox');
-    if(loc) loc.innerHTML=`<h3>Dispensary Prep Checklist</h3><p>Use this when shopping legally. Compare lab results, THC/CBD percentages, terpene profile, serving size, and onset time.</p><div class="checklist"><div>✅ Lab-tested product / COA</div><div>✅ THC and CBD percentages</div><div>✅ Terpene profile</div><div>✅ Serving size and onset time</div><div>✅ Lower-THC or beginner-friendly options</div><div>✅ Follow local laws and do not drive impaired</div></div><button onclick="copyChecklist()">Copy Checklist</button>`;
-    const terms=$('termsBox');
-    if(terms) terms.innerHTML=`<h3>Privacy + Terms</h3><p>Favorites, recent views, and journal entries stay locally on this device. StrainRelief is educational only and does not provide medical advice.</p>`;
-    if($('learnGrid') && typeof education!=='undefined') $('learnGrid').innerHTML=education.map(e=>`<div class="education-card card-glow"><h3>${e.title}</h3><p>${e.body}</p></div>`).join('');
-  }
-  function renderRecentV102(){
-    const box=$('recentHome'); if(!box) return;
-    const recent=(typeof read==='function') ? read('srRecent',[]) : [];
-    box.innerHTML=recent.length ? recent.map(n=>{
-      const s=(typeof getStrain==='function') ? getStrain(n) : sortedStrainList().find(x=>x.name===n);
-      if(!s) return `<button class="mini-item" onclick="openModal('${safeOpen(n)}')">${n}</button>`;
-      return `<button type="button" class="mini-item sr-recent-card" onclick="openModal('${safeOpen(s.name)}')"><img src="${imgFor(s)}" alt="${s.name}" loading="lazy"><span><strong>${s.name}</strong><small>${s.category||s.type||'Strain direction'} · ${(s.terpenes||[])[0]||'Terpene profile'}</small></span></button>`;
-    }).join('') : `<div class="empty-state">No recently viewed strains yet. Open a strain profile to start.</div>`;
-  }
-  function cleanJournal(){
-    const row=$('journalMoodChips');
-    if(row){ row.innerHTML=''; row.style.display='none'; row.setAttribute('aria-hidden','true'); }
-  }
-  function refreshPage(id){
-    shell();
-    fixHero();
-    cleanJournal();
-    if(id==='home'){
-      if(typeof dailyTip==='function') dailyTip();
-      if(typeof renderFeatured==='function') renderFeatured();
-      renderSmartV102();
-      renderRecentV102();
-      if(typeof updateStats==='function') updateStats();
+    let btn=document.getElementById('srBackTop');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='srBackTop';
+      btn.type='button';
+      btn.setAttribute('aria-label','Back to top');
+      btn.textContent='↑';
+      document.body.appendChild(btn);
+      btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     }
-    if(id==='search'){
-      if(typeof renderFilters==='function') renderFilters();
-      renderSearchV102();
-    }
-    if(id==='learn') renderLearnV102();
-    if(id==='saved'){
-      if(typeof renderSaved==='function') renderSaved();
-      if(typeof loadJournalSelect==='function') loadJournalSelect();
-      cleanJournal();
-    }
-    if(id==='recommend'){
-      if(typeof renderMatchedHistory==='function') renderMatchedHistory();
-    }
+    const y=window.scrollY||document.documentElement.scrollTop||0;
+    btn.classList.toggle('show', y>520);
   }
-  window.showPage=function(id){
-    const target=$(id); if(!target) id='home';
-    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
-    const order=['home','search','recommend','saved','learn'];
-    document.querySelectorAll('.bottom-nav .nav-btn').forEach((btn,i)=>btn.classList.toggle('active',order[i]===id));
-    window.scrollTo({top:0,behavior:'auto'});
-    refreshPage(id);
-    setTimeout(()=>refreshPage(id),100);
-  };
-  window.renderSearch=renderSearchV102;
-  window.renderEducation=renderLearnV102;
-  window.renderRecentHome=renderRecentV102;
-  window.renderSmartInsights=renderSmartV102;
-  function init(){
-    const active=document.querySelector('.page.active')?.id || 'home';
-    refreshPage(active);
-    setTimeout(()=>refreshPage(document.querySelector('.page.active')?.id || active),250);
+  document.addEventListener('DOMContentLoaded',()=>{run(); setTimeout(run,200); setTimeout(run,800); setTimeout(run,1600);});
+  window.addEventListener('scroll',run,{passive:true});
+  window.addEventListener('pageshow',()=>setTimeout(run,120));
+  window.addEventListener('resize',()=>setTimeout(run,120));
+  const oldShowPage=window.showPage;
+  if(typeof oldShowPage==='function'){
+    window.showPage=function(){const r=oldShowPage.apply(this,arguments); setTimeout(run,120); return r;};
   }
-  document.addEventListener('DOMContentLoaded',init);
-  window.addEventListener('load',init);
-  window.addEventListener('pageshow',()=>setTimeout(init,120));
-  window.addEventListener('resize',()=>setTimeout(init,120));
   window.StrainReliefPatchVersion=VERSION;
+})();
+
+
+/* V76 surgical support: subtle back-to-top only */
+(function(){
+  function ensureBackTop(){
+    let btn = document.getElementById("srBackTop");
+    if(!btn){
+      btn = document.createElement("button");
+      btn.id = "srBackTop";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Back to top");
+      btn.textContent = "↑";
+      document.body.appendChild(btn);
+      btn.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+    }
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    btn.classList.toggle("show", y > 520);
+  }
+  document.addEventListener("DOMContentLoaded", ensureBackTop);
+  window.addEventListener("scroll", ensureBackTop, {passive:true});
+  window.addEventListener("pageshow", ensureBackTop);
+})();
+
+
+/* ======================================================
+   V78 PREMIUM CARD / IMAGE UPGRADE JS
+   Adds safe helper classes to card-like elements so CSS can style consistently.
+====================================================== */
+(function(){
+  const VERSION = "v78-premium-card-image";
+
+  function addVersion(){
+    document.body.classList.add(VERSION);
+  }
+
+  function tagCards(){
+    const pages = document.querySelectorAll("#home, #search, #saved, #learn, #match");
+    pages.forEach(page => {
+      const cards = page.querySelectorAll(".card, .card-glow, article, [data-strain], button[data-strain]");
+      cards.forEach(card => {
+        const txt = (card.textContent || "").trim();
+        const hasStrainText = /strain|hybrid|indica|sativa|cbd|mood|sleep|stress|focus|body comfort|terpene|myrcene|limonene|pinene|linalool|humulene|caryophyllene/i.test(txt);
+        const hasImg = !!card.querySelector("img");
+        if(hasImg && hasStrainText){
+          card.classList.add("strain-card");
+          if(page.id === "home" && /trending/i.test(page.textContent || "")){
+            card.classList.add("trending-card");
+          }
+        }
+      });
+    });
+
+    // Horizontal home sections
+    const home = document.getElementById("home");
+    if(home){
+      [...home.querySelectorAll("section, div")].forEach(el => {
+        const t = (el.textContent || "").trim();
+        if(/^Trending Today/i.test(t)) el.classList.add("section", "trending-section");
+        if(/^Recently Viewed/i.test(t)) el.classList.add("section", "recent-section");
+        if(/^Smart Recommendations/i.test(t)) el.classList.add("section", "smart-section");
+      });
+    }
+  }
+
+  function run(){
+    addVersion();
+    tagCards();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    setTimeout(run, 250);
+    setTimeout(run, 900);
+  });
+
+  window.addEventListener("pageshow", () => setTimeout(run, 120));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const result = oldShowPage.apply(this, arguments);
+      setTimeout(run, 120);
+      return result;
+    };
+  }
+
+  window.StrainReliefPremiumVersion = VERSION;
+})();
+
+
+/* ======================================================
+   V94 SAFE PREMIUM POLISH FROM V78 JS
+   Minimal support only: version class, scroll safety, cache marker, and
+   non-destructive carousel accessibility. Does not replace Search/Learn data.
+====================================================== */
+(function(){
+  const VERSION = "v94-safe-premium-polish-from-v78";
+  function applyV94(){
+    document.body.classList.add("v94-safe-premium-polish");
+    document.documentElement.style.overflowY = "auto";
+    document.body.style.overflowY = "auto";
+    document.body.style.touchAction = "pan-y";
+    const trending = document.getElementById("trendingGrid");
+    if(trending){
+      trending.setAttribute("aria-label", "Trending strain directions");
+      trending.setAttribute("role", "list");
+      trending.querySelectorAll(".strain-card").forEach(card => card.setAttribute("role", "listitem"));
+    }
+    const nav = document.querySelector(".bottom-nav");
+    if(nav){
+      nav.setAttribute("aria-label", "Primary navigation");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV94();
+    setTimeout(applyV94, 250);
+    setTimeout(applyV94, 900);
+  });
+  window.addEventListener("pageshow", () => setTimeout(applyV94, 120));
+  window.addEventListener("resize", () => setTimeout(applyV94, 120));
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === "function"){
+    window.showPage = function(){
+      const out = oldShowPage.apply(this, arguments);
+      setTimeout(applyV94, 80);
+      return out;
+    };
+  }
+  window.StrainReliefPatchVersion = VERSION;
+})();
+
+/* ======================================================
+   V95 SAFE REFINEMENT FROM V94 JS
+   Non-destructive: keeps Search strains + Terpene Explorer intact.
+====================================================== */
+(function(){
+  const VERSION = "v95-safe-refinement-from-v94";
+  function applyV95(){
+    document.body.classList.add("v95-safe-refinement");
+    document.documentElement.style.overflowY = "auto";
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowY = "auto";
+    document.body.style.overflowX = "hidden";
+    document.body.style.touchAction = "pan-y";
+
+    const safeScrollRows = [
+      document.getElementById("trendingGrid"),
+      ...document.querySelectorAll(".quest-carousel,.vibe-ribbon,.recent-carousel,.learn-example-row")
+    ].filter(Boolean);
+    safeScrollRows.forEach(row => {
+      row.style.webkitOverflowScrolling = "touch";
+      row.style.touchAction = "pan-x pan-y";
+      row.style.overscrollBehaviorX = "contain";
+    });
+
+    const nav = document.querySelector(".bottom-nav");
+    if(nav){
+      const h = Math.ceil(nav.getBoundingClientRect().height || 72);
+      document.documentElement.style.setProperty("--sr-real-nav-h", h + "px");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    applyV95();
+    setTimeout(applyV95, 200);
+    setTimeout(applyV95, 800);
+  });
+  window.addEventListener("pageshow", () => setTimeout(applyV95, 100));
+  window.addEventListener("resize", () => setTimeout(applyV95, 100));
+  const previousShowPage = window.showPage;
+  if(typeof previousShowPage === "function"){
+    window.showPage = function(){
+      const out = previousShowPage.apply(this, arguments);
+      setTimeout(applyV95, 80);
+      return out;
+    };
+  }
+  window.StrainReliefPatchVersion = VERSION;
+})();
+
+/* ======================================================
+   V96 SAFE RICHNESS RESTORE FROM V95
+   Adds back light Home support boxes without touching Search,
+   Learn/Terpene data, global scrolling, or core render pipelines.
+====================================================== */
+(function(){
+  const VERSION = "v96-safe-richness-restore";
+
+  function placeAfter(anchor, node){
+    if(!anchor || !node) return;
+    if(anchor.nextElementSibling !== node){
+      anchor.insertAdjacentElement('afterend', node);
+    }
+  }
+
+  function ensureQuickActions(){
+    const home = document.getElementById('home');
+    const smart = document.getElementById('smartInsights');
+    if(!home || !smart) return;
+    let box = document.getElementById('homeQuickActions');
+    if(!box){
+      box = document.createElement('div');
+      box.id = 'homeQuickActions';
+      box.className = 'panel card-glow v96-home-quick-actions';
+      box.innerHTML = `
+        <div class="v96-quick-head">
+          <div><span class="eyebrow">Continue Exploring</span><h3>Choose your next wellness step</h3></div>
+          <button class="small-btn ghost" type="button" onclick="showPage('recommend')">Compare</button>
+        </div>
+        <div class="v96-action-grid" aria-label="Quick wellness actions">
+          <button type="button" onclick="showPage('search')"><strong>Search strains</strong><span>Name, mood, terpene, or type</span></button>
+          <button type="button" onclick="showPage('recommend')"><strong>Start a match</strong><span>Goal, timing, THC sensitivity</span></button>
+          <button type="button" onclick="showPage('learn')"><strong>Learn terpenes</strong><span>Examples + beginner notes</span></button>
+        </div>`;
+    }
+    placeAfter(smart, box);
+
+    const ribbons = document.getElementById('categoryRibbons');
+    if(ribbons && ribbons.previousElementSibling !== box){
+      box.insertAdjacentElement('afterend', ribbons);
+    }
+  }
+
+  function ensureTrendingBridge(){
+    const trending = document.getElementById('trendingGrid');
+    const recent = document.getElementById('recentHome');
+    if(!trending || !recent) return;
+    let bridge = document.getElementById('homeTrendBridge');
+    if(!bridge){
+      bridge = document.createElement('div');
+      bridge.id = 'homeTrendBridge';
+      bridge.className = 'v96-trend-bridge';
+      bridge.innerHTML = `
+        <button type="button" onclick="surpriseMe()"><strong>Surprise me</strong><span>Open a new direction</span></button>
+        <button type="button" onclick="showPage('saved')"><strong>Saved + journal</strong><span>Return to your notes</span></button>`;
+    }
+    const recentTitle = recent.previousElementSibling;
+    if(recentTitle && recentTitle !== bridge){
+      recentTitle.insertAdjacentElement('beforebegin', bridge);
+    }else{
+      trending.insertAdjacentElement('afterend', bridge);
+    }
+  }
+
+  function tuneScrollRows(){
+    const rows = [
+      document.getElementById('trendingGrid'),
+      ...document.querySelectorAll('.quest-carousel,.vibe-ribbon,.recent-carousel,.learn-example-row')
+    ].filter(Boolean);
+    rows.forEach(row => {
+      row.classList.add('v96-native-scroll-row');
+      row.style.webkitOverflowScrolling = 'touch';
+      row.style.overscrollBehaviorX = 'contain';
+      row.style.touchAction = 'pan-x pan-y';
+    });
+  }
+
+  function applyV96(){
+    document.body.classList.add('v96-safe-richness-restore');
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+    document.body.style.touchAction = 'pan-y';
+    ensureQuickActions();
+    ensureTrendingBridge();
+    tuneScrollRows();
+    const nav = document.querySelector('.bottom-nav');
+    if(nav){
+      const h = Math.ceil(nav.getBoundingClientRect().height || 76);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h + 'px');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyV96();
+    setTimeout(applyV96, 220);
+    setTimeout(applyV96, 900);
+    setTimeout(applyV96, 1800);
+  });
+  window.addEventListener('pageshow', () => setTimeout(applyV96, 120));
+  window.addEventListener('resize', () => setTimeout(applyV96, 140));
+
+  const previousShowPage = window.showPage;
+  if(typeof previousShowPage === 'function'){
+    window.showPage = function(){
+      const out = previousShowPage.apply(this, arguments);
+      setTimeout(applyV96, 100);
+      return out;
+    };
+  }
+
+  const previousSmart = window.renderSmartInsights || (typeof renderSmartInsights === 'function' ? renderSmartInsights : null);
+  if(typeof previousSmart === 'function'){
+    window.renderSmartInsights = function(){
+      const out = previousSmart.apply(this, arguments);
+      setTimeout(applyV96, 60);
+      return out;
+    };
+  }
+
+  window.StrainReliefPatchVersion = VERSION;
+})();
+
+/* ======================================================
+   V97 SAFE PREMIUM ELEVATION FROM V96
+   Tiny, non-destructive polish. Search/Terpenes/data untouched.
+====================================================== */
+(function(){
+  const VERSION = 'v98-mobile-ux-polish';
+  function applyV97(){
+    document.body.classList.add('v98-mobile-ux-polish');
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+    document.body.style.touchAction = 'pan-y';
+
+    const nav = document.querySelector('.bottom-nav');
+    if(nav){
+      const h = Math.ceil(nav.getBoundingClientRect().height || 76);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h + 'px');
+    }
+
+    const home = document.getElementById('home');
+    if(!home) return;
+
+    const trending = document.getElementById('trendingGrid');
+    if(trending){
+      trending.classList.add('v97-easy-swipe-row');
+      trending.style.webkitOverflowScrolling = 'touch';
+      trending.style.overscrollBehaviorX = 'contain';
+      trending.style.touchAction = 'pan-x pan-y';
+      trending.setAttribute('aria-label','Trending strain directions');
+    }
+
+    ['quest-carousel','vibe-ribbon','recent-carousel','learn-example-row'].forEach(cls=>{
+      document.querySelectorAll('.'+cls).forEach(row=>{
+        row.style.webkitOverflowScrolling='touch';
+        row.style.overscrollBehaviorX='contain';
+        row.style.touchAction='pan-x pan-y';
+      });
+    });
+
+    const spotlight = document.getElementById('v27Spotlight');
+    if(spotlight){
+      spotlight.setAttribute('aria-label','Today’s Spotlight wellness direction');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    applyV97();
+    setTimeout(applyV97,240);
+    setTimeout(applyV97,900);
+  });
+  window.addEventListener('pageshow',()=>setTimeout(applyV97,120));
+  window.addEventListener('resize',()=>setTimeout(applyV97,140));
+
+  const oldShowPage = window.showPage;
+  if(typeof oldShowPage === 'function'){
+    window.showPage = function(){
+      const out = oldShowPage.apply(this, arguments);
+      setTimeout(applyV97,90);
+      return out;
+    };
+  }
+  window.StrainReliefPatchVersion = VERSION;
+})();
+
+
+/* ======================================================
+   V98 MOBILE UX POLISH BOOT
+   Adds class, computes nav height, and keeps safe rows native-scroll.
+====================================================== */
+(function(){
+  const VERSION='v98-mobile-ux-polish';
+  function applyV98(){
+    document.body.classList.add(VERSION);
+    document.documentElement.style.overflowY='auto';
+    document.body.style.overflowY='auto';
+    document.body.style.touchAction='pan-y';
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      const h=Math.ceil(nav.getBoundingClientRect().height||74);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h+'px');
+    }
+    const smart=document.getElementById('smartInsights');
+    if(smart){
+      const h=smart.querySelector('.panel-head h3');
+      if(h) h.textContent='Smart Recommendations';
+    }
+    ['trendingGrid','recentHome'].forEach(id=>{
+      const row=document.getElementById(id);
+      if(row){
+        row.style.webkitOverflowScrolling='touch';
+        row.style.overscrollBehaviorX='contain';
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{applyV98();setTimeout(applyV98,160);setTimeout(applyV98,700);});
+  window.addEventListener('pageshow',()=>setTimeout(applyV98,90));
+  window.addEventListener('resize',()=>setTimeout(applyV98,120));
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(){const out=oldShow.apply(this,arguments);setTimeout(applyV98,90);return out;};
+  }
+  const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV98,40);return out;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
+})();
+
+/* ======================================================
+   V99 FINAL MOBILE UX LOCK BOOT
+   Safe final polish only. Data/Search/Terpenes untouched.
+====================================================== */
+(function(){
+  const VERSION='v100-final-polish-lock';
+  function applyV99(){
+    document.body.classList.add(VERSION,'v98-mobile-ux-polish');
+    document.documentElement.style.overflowY='auto';
+    document.body.style.overflowY='auto';
+    document.body.style.overflowX='hidden';
+    document.body.style.touchAction='pan-y';
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      const h=Math.ceil(nav.getBoundingClientRect().height||74);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h+'px');
+    }
+    const smart=document.getElementById('smartInsights');
+    if(smart){
+      const title=smart.querySelector('.panel-head h3');
+      if(title) title.textContent='Smart Recommendations';
+    }
+    ['trendingGrid','recentHome'].forEach(id=>{
+      const row=document.getElementById(id);
+      if(row){
+        row.style.webkitOverflowScrolling='touch';
+        row.style.overscrollBehaviorX='contain';
+      }
+    });
+    const trend=document.getElementById('trendingGrid');
+    if(trend){trend.setAttribute('aria-label','Trending educational strain directions');}
+  }
+  document.addEventListener('DOMContentLoaded',()=>{applyV99();setTimeout(applyV99,140);setTimeout(applyV99,650);});
+  window.addEventListener('pageshow',()=>setTimeout(applyV99,80));
+  window.addEventListener('resize',()=>setTimeout(applyV99,120));
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(){const out=oldShow.apply(this,arguments);setTimeout(applyV99,80);return out;};
+  }
+  const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV99,35);return out;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
+})();
+
+
+/* ======================================================
+   V100 FINAL POLISH LOCK BOOT
+   Non-destructive final polish. Preserves Search, Terpenes, data,
+   and normal vertical scrolling.
+====================================================== */
+(function(){
+  const VERSION='v100-final-polish-lock';
+  function applyV100(){
+    document.body.classList.add(VERSION,'v99-final-mobile-ux-lock','v98-mobile-ux-polish');
+    document.documentElement.style.overflowY='auto';
+    document.body.style.overflowY='auto';
+    document.body.style.overflowX='hidden';
+    document.body.style.touchAction='pan-y';
+
+    const nav=document.querySelector('.bottom-nav');
+    if(nav){
+      const h=Math.ceil(nav.getBoundingClientRect().height||68);
+      document.documentElement.style.setProperty('--sr-real-nav-h', h+'px');
+    }
+
+    const smart=document.getElementById('smartInsights');
+    if(smart){
+      const title=smart.querySelector('.panel-head h3');
+      if(title) title.textContent='Smart Recommendations';
+    }
+
+    const trend=document.getElementById('trendingGrid');
+    if(trend){
+      trend.setAttribute('aria-label','Trending educational strain directions');
+      trend.style.webkitOverflowScrolling='touch';
+      trend.style.overscrollBehaviorX='contain';
+      trend.style.touchAction='pan-x';
+    }
+
+    document.querySelectorAll('.recent-carousel,.quest-carousel,.vibe-ribbon,.learn-example-row').forEach(row=>{
+      row.style.webkitOverflowScrolling='touch';
+      row.style.overscrollBehaviorX='contain';
+      row.style.touchAction='pan-x pan-y';
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{applyV100();setTimeout(applyV100,120);setTimeout(applyV100,600);});
+  window.addEventListener('pageshow',()=>setTimeout(applyV100,80));
+  window.addEventListener('resize',()=>setTimeout(applyV100,120));
+  const oldShow=window.showPage;
+  if(typeof oldShow==='function'){
+    window.showPage=function(){const out=oldShow.apply(this,arguments);setTimeout(applyV100,80);return out;};
+  }
+  const oldSmart=window.renderSmartInsights || (typeof renderSmartInsights==='function'?renderSmartInsights:null);
+  if(typeof oldSmart==='function'){
+    window.renderSmartInsights=function(){const out=oldSmart.apply(this,arguments);setTimeout(applyV100,35);return out;};
+  }
+  window.StrainReliefPatchVersion=VERSION;
+})();
+
+/* ===== V103 CLEAN RESCUE CONTROLLER — removes risky stacked UI behavior without deleting data ===== */
+(function(){
+  const VERSION='v103-clean-rescue-from-v100';
+  const $id=(id)=>document.getElementById(id);
+  const safe = (fn)=>{try{return fn()}catch(e){console.warn('[StrainRelief V103]', e);}};
+
+  function normalizeBody(){
+    document.body.className='v103-clean-rescue';
+  }
+
+  function cleanDailyCard(){
+    const card=document.querySelector('#home .daily-card');
+    if(!card) return;
+    card.classList.add('v103-daily-card');
+    const text=$id('dailyText');
+    if(!text) return;
+    const inline=text.querySelector('button.inline-link,button');
+    if(inline){
+      const onclick=inline.getAttribute('onclick') || '';
+      inline.remove();
+      let btn=card.querySelector('.v103-daily-open');
+      if(!btn){
+        btn=document.createElement('button');
+        btn.type='button';
+        btn.className='small-btn ghost v103-daily-open';
+        btn.textContent='Open profile';
+        card.appendChild(btn);
+      }
+      if(onclick) btn.setAttribute('onclick', onclick);
+    }
+  }
+
+  function renderMoodChipsV103(){
+    const row=$id('journalMoodChips');
+    if(row){ row.innerHTML=''; row.hidden=true; row.style.display='none'; }
+  }
+
+  function renderSearchV103(){
+    const grid=$id('strainGrid');
+    if(!grid || typeof strains==='undefined') return;
+    const input=$id('searchInput');
+    const q=(input?.value||'').toLowerCase().trim();
+    const filter=(typeof currentFilter!=='undefined'?currentFilter:'All');
+    const list=[...strains]
+      .sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')))
+      .filter(s=>{
+        const text=(typeof searchableText==='function'?searchableText(s):[s.name,s.type,s.category,(s.tags||[]).join(' '),(s.goals||[]).join(' '),(s.terpenes||[]).join(' '),s.flavor,s.insight].join(' ').toLowerCase());
+        return (!q || text.includes(q)) && (filter==='All' || text.includes(String(filter).toLowerCase()));
+      });
+    grid.innerHTML=list.length?list.map(s=>typeof cardHTML==='function'?cardHTML(s):`<article class="strain-card"><h3>${s.name}</h3><p>${s.insight||''}</p></article>`).join(''):`<div class="panel"><h3>No matches yet</h3><p>Try another strain, goal, terpene, or feeling.</p></div>`;
+  }
+
+  function setFilterV103(f){
+    try{ currentFilter=f; }catch(e){}
+    if(typeof renderFilters==='function') renderFilters();
+    renderSearchV103();
+  }
+  function clearSearchV103(){
+    const input=$id('searchInput'); if(input) input.value='';
+    try{ currentFilter='All'; }catch(e){}
+    if(typeof renderFilters==='function') renderFilters();
+    renderSearchV103();
+  }
+  function jumpFilterV103(f){
+    try{ currentFilter=f; }catch(e){}
+    showPageV103('search');
+    if(typeof renderFilters==='function') renderFilters();
+    renderSearchV103();
+  }
+
+  function shuffle(arr, seed){
+    const a=[...arr];
+    let x=seed || (Date.now()%2147483647);
+    for(let i=a.length-1;i>0;i--){
+      x=(x*48271)%2147483647;
+      const j=x%(i+1);
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderEducationV103(){
+    const explorer=$id('terpeneExplorer');
+    if(!explorer) return;
+    const tList=(typeof terpenes!=='undefined' && Array.isArray(terpenes)?terpenes:[])
+      .slice().sort((a,b)=>String(a[0]||'').localeCompare(String(b[0]||''),undefined,{sensitivity:'base'}));
+    const all=(typeof strains!=='undefined' && Array.isArray(strains)?strains:[]);
+    explorer.innerHTML=`
+      <div class="panel-head"><div><span class="eyebrow">Terpene Explorer</span><h3>Explore aroma profiles</h3></div></div>
+      <p class="v103-learn-note">Terpenes are aroma compounds often used to compare flavor, scent, and general wellness direction. Effects vary by person and product.</p>
+      <div class="v103-terpene-list">
+        ${tList.map((t,idx)=>{
+          const name=t[0], desc=t[1];
+          const exact=all.filter(s=>Array.isArray(s.terpenes)&&s.terpenes.includes(name));
+          const examples=shuffle(exact.length?exact:all, Date.now()+idx*97).slice(0,4);
+          return `<article class="v103-terpene-card">
+            <h4>${name}</h4>
+            <p>${desc}</p>
+            <div class="v103-example-row">${examples.map(s=>`<button type="button" onclick="openModal('${typeof safeName==='function'?safeName(s.name):String(s.name).replace(/'/g,'\\\'')}')">${s.name}</button>`).join('')}</div>
+          </article>`;
+        }).join('')}
+      </div>`;
+    const slides=$id('onboardingSlides');
+    if(slides && !slides.innerHTML.trim() && typeof education!=='undefined'){
+      slides.innerHTML=`<h3>Wellness education basics</h3><div class="grid">${education.map(e=>`<div class="education-card"><h3>${e.title}</h3><p>${e.body}</p></div>`).join('')}</div>`;
+    }
+  }
+
+  function polishHome(){
+    cleanDailyCard();
+    const trend=$id('trendingGrid');
+    if(trend){
+      trend.classList.add('v103-trending-row');
+      trend.style.webkitOverflowScrolling='touch';
+    }
+    const recent=$id('recentHome');
+    if(recent) recent.classList.add('v103-recent-list');
+  }
+
+  function showPageV103(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const page=$id(id); if(page) page.classList.add('active');
+    const order=['home','search','recommend','saved','learn'];
+    document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active', order[i]===id));
+    window.scrollTo({top:0,behavior:'auto'});
+    setTimeout(()=>{
+      normalizeBody();
+      if(id==='home') polishHome();
+      if(id==='search') renderSearchV103();
+      if(id==='learn') renderEducationV103();
+      if(id==='saved') renderMoodChipsV103();
+      document.body.dataset.srPage=id;
+    },20);
+  }
+
+  function boot(){
+    normalizeBody();
+    renderMoodChipsV103();
+    polishHome();
+    const active=document.querySelector('.page.active')?.id || 'home';
+    if(active==='search') renderSearchV103();
+    if(active==='learn') renderEducationV103();
+    const input=$id('searchInput');
+    if(input && !input.dataset.v103Search){
+      input.dataset.v103Search='1';
+      input.addEventListener('input', renderSearchV103);
+    }
+    window.showPage=showPage=showPageV103;
+    window.renderSearch=renderSearch=renderSearchV103;
+    window.setFilter=setFilter=setFilterV103;
+    window.clearSearch=clearSearch=clearSearchV103;
+    window.jumpFilter=jumpFilter=jumpFilterV103;
+    window.renderEducation=renderEducation=renderEducationV103;
+    window.renderMoodChips=renderMoodChips=renderMoodChipsV103;
+    window.StrainReliefPatchVersion=VERSION;
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{boot();setTimeout(boot,180);setTimeout(boot,700);});
+  window.addEventListener('pageshow',()=>setTimeout(boot,80));
 })();
