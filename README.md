@@ -1,8 +1,3 @@
-# StrainRelief V99 — Final Mobile UX Lock
+# StrainRelief V101 — Clean Controller From V71
 
-Safe refinement from V98. Fixes remaining mobile density, nav overlap, smart header wrapping, carousel sizing, and card rhythm while preserving Search strains, Terpene Explorer, and scrolling. No README.txt.
-
-
-## V100 Final Polish Lock
-
-Safe mobile polish pass from V99. Preserves Search, Terpene Explorer, app scrolling, and data while tightening mobile hero, cards, carousel sizing, typography, and bottom nav spacing.
+Built from the V71 rollback base. This version keeps the stable app data/features, adds a final clean navigation/render controller, removes risky stacked patch behavior at runtime, preserves scrolling/Search/Terpene Explorer, and applies safer mobile layout fixes.
