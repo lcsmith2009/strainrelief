@@ -9348,3 +9348,120 @@ body.v101-clean-controller .toast{z-index:11000!important;bottom:calc(var(--sr-n
   body.v101-clean-controller .pro-card h2{font-size:clamp(1.4rem,5.8vw,2rem)!important;}
   body.v101-clean-controller .bottom-nav .nav-btn{height:54px!important;}
 }
+
+
+/* =========================================================
+   V102 SAFE POLISH ON CLEAN V101 CONTROLLER
+   Stable mobile polish without old stacked patch conflicts.
+   ========================================================= */
+:root{--sr-nav-h:72px;--sr-gap:14px;--sr-card-pad:16px;}
+html{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth;}
+body.v102-safe-polish{overflow-x:hidden!important;overflow-y:auto!important;position:static!important;height:auto!important;padding:12px 12px calc(var(--sr-nav-h) + 30px + env(safe-area-inset-bottom))!important;touch-action:pan-y;background:#04140c;color:var(--text);} 
+body.v102-safe-polish .splash{display:none!important;}
+body.v102-safe-polish .app-shell{max-width:760px;margin:0 auto;padding:0 0 calc(var(--sr-nav-h) + 28px + env(safe-area-inset-bottom))!important;overflow:visible!important;}
+body.v102-safe-polish main{display:block!important;overflow:visible!important;padding-bottom:calc(var(--sr-nav-h) + 34px + env(safe-area-inset-bottom))!important;}
+body.v102-safe-polish .page{display:none!important;animation:none!important;min-height:auto!important;padding:0 0 calc(var(--sr-nav-h) + 36px + env(safe-area-inset-bottom))!important;overflow:visible!important;}
+body.v102-safe-polish .page.active{display:block!important;}
+body.v102-safe-polish .hero,
+body.v102-safe-polish .daily-card,
+body.v102-safe-polish .panel,
+body.v102-safe-polish .pro-card,
+body.v102-safe-polish .section-title,
+body.v102-safe-polish .strain-card,
+body.v102-safe-polish .education-card{border-radius:26px!important;overflow:visible!important;box-sizing:border-box!important;}
+body.v102-safe-polish #home .hero{margin:6px 0 var(--sr-gap)!important;padding:16px var(--sr-card-pad)!important;min-height:0!important;display:grid!important;gap:8px!important;}
+body.v102-safe-polish #home .brand-logo{width:min(220px,70%)!important;max-height:82px!important;object-fit:contain!important;margin:0 auto 0!important;display:block!important;}
+body.v102-safe-polish #home .hero h1{font-size:clamp(2rem,9vw,3rem)!important;line-height:.9!important;letter-spacing:-.06em!important;margin:0!important;text-wrap:balance!important;overflow:visible!important;}
+body.v102-safe-polish #home .hero p{font-size:.92rem!important;line-height:1.32!important;margin:0!important;max-width:34rem!important;display:block!important;overflow:visible!important;-webkit-line-clamp:unset!important;}
+body.v102-safe-polish .eyebrow{font-size:.68rem!important;letter-spacing:.11em!important;line-height:1.1!important;}
+body.v102-safe-polish #home .hero-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:2px 0 0!important;}
+body.v102-safe-polish #home .hero-actions button:first-child{grid-column:1/-1!important;}
+body.v102-safe-polish button,
+body.v102-safe-polish .small-btn{min-height:40px!important;padding:10px 12px!important;border-radius:16px!important;line-height:1.05!important;}
+body.v102-safe-polish #home .hero-mini-strip,
+body.v102-safe-polish .stat-row{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;margin:2px 0 0!important;overflow:visible!important;}
+body.v102-safe-polish #home .hero-mini-strip span,
+body.v102-safe-polish .stat-row>div{min-width:0!important;padding:9px 6px!important;border-radius:16px!important;text-align:center!important;}
+body.v102-safe-polish #home .hero-mini-strip strong,
+body.v102-safe-polish .stat-row strong{font-size:clamp(1rem,4.8vw,1.45rem)!important;line-height:1!important;display:block!important;}
+body.v102-safe-polish #home .hero-mini-strip span,
+body.v102-safe-polish .stat-row span{font-size:.68rem!important;line-height:1.15!important;white-space:normal!important;}
+body.v102-safe-polish .daily-card,
+body.v102-safe-polish .panel,
+body.v102-safe-polish .pro-card{padding:var(--sr-card-pad)!important;margin:0 0 var(--sr-gap)!important;}
+body.v102-safe-polish .section-title{padding:4px 2px!important;margin:18px 0 10px!important;background:transparent!important;border:none!important;box-shadow:none!important;}
+body.v102-safe-polish .section-title h2,
+body.v102-safe-polish .daily-card h2,
+body.v102-safe-polish .panel h3,
+body.v102-safe-polish .pro-card h2{font-size:clamp(1.36rem,5.8vw,2.05rem)!important;line-height:1!important;letter-spacing:-.045em!important;margin:0 0 6px!important;overflow:visible!important;text-wrap:balance!important;}
+body.v102-safe-polish .section-title p,
+body.v102-safe-polish .daily-card p,
+body.v102-safe-polish .panel p,
+body.v102-safe-polish .strain-card p,
+body.v102-safe-polish .education-card p{font-size:.9rem!important;line-height:1.35!important;margin:0 0 10px!important;overflow:visible!important;-webkit-line-clamp:unset!important;}
+body.v102-safe-polish .quick-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0 0 var(--sr-gap)!important;}
+body.v102-safe-polish .quick-row button{min-height:38px!important;padding:9px 8px!important;font-size:.82rem!important;}
+body.v102-safe-polish #smartInsights .sr-smart-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin:0 0 8px!important;}
+body.v102-safe-polish #smartInsights h3{font-size:clamp(1.34rem,5.5vw,1.95rem)!important;max-width:14ch!important;}
+body.v102-safe-polish .sr-smart-actions{display:grid!important;gap:9px!important;}
+body.v102-safe-polish .sr-smart-action{display:grid!important;gap:2px!important;text-align:left!important;background:rgba(72,233,135,.08)!important;border:1px solid rgba(72,233,135,.13)!important;box-shadow:none!important;}
+body.v102-safe-polish .sr-smart-action span{font-weight:900;color:var(--text);}
+body.v102-safe-polish .sr-smart-action small{color:var(--muted);font-weight:800;}
+body.v102-safe-polish #strainGrid,
+body.v102-safe-polish #matchResults,
+body.v102-safe-polish .grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))!important;gap:12px!important;}
+body.v102-safe-polish .strain-card{padding:13px!important;min-height:0!important;max-width:none!important;}
+body.v102-safe-polish .strain-card img,
+body.v102-safe-polish .strain-card .card-hero img,
+body.v102-safe-polish .strain-card .sr-image-shell img{width:100%!important;height:clamp(128px,34vw,178px)!important;object-fit:cover!important;border-radius:18px!important;display:block!important;}
+body.v102-safe-polish .strain-card h3{font-size:clamp(1.16rem,5.2vw,1.65rem)!important;line-height:1.02!important;margin:8px 0 5px!important;}
+body.v102-safe-polish .strain-card p{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;overflow:hidden!important;}
+body.v102-safe-polish .tags{gap:6px!important;margin-top:8px!important;}
+body.v102-safe-polish .tag,
+body.v102-safe-polish .filter-chip,
+body.v102-safe-polish .badge{padding:6px 9px!important;font-size:.74rem!important;border-radius:999px!important;}
+body.v102-safe-polish #trendingGrid{display:flex!important;gap:11px!important;overflow-x:auto!important;overflow-y:visible!important;-webkit-overflow-scrolling:touch!important;scroll-snap-type:x proximity!important;padding:2px 4px 12px!important;margin:0 -4px var(--sr-gap)!important;touch-action:pan-x pan-y!important;scrollbar-width:none!important;}
+body.v102-safe-polish #trendingGrid::-webkit-scrollbar{display:none!important;}
+body.v102-safe-polish #trendingGrid .strain-card{flex:0 0 clamp(204px,68vw,286px)!important;scroll-snap-align:start!important;}
+body.v102-safe-polish #recentHome.mini-list{display:grid!important;grid-template-columns:1fr!important;gap:9px!important;margin-bottom:calc(var(--sr-nav-h) + 18px)!important;}
+body.v102-safe-polish #recentHome .sr-recent-card,
+body.v102-safe-polish #recentHome .mini-item{display:flex!important;align-items:center!important;gap:11px!important;padding:11px!important;border-radius:20px!important;text-align:left!important;background:linear-gradient(145deg,rgba(14,48,29,.92),rgba(7,28,17,.82))!important;border:1px solid rgba(255,255,255,.09)!important;color:var(--text)!important;}
+body.v102-safe-polish #recentHome img{width:54px!important;height:54px!important;border-radius:15px!important;object-fit:cover!important;}
+body.v102-safe-polish #recentHome span{display:grid!important;gap:2px!important;}
+body.v102-safe-polish #recentHome small{color:var(--muted)!important;font-weight:800!important;}
+body.v102-safe-polish .search-wrap{display:grid!important;grid-template-columns:1fr auto!important;gap:8px!important;margin-bottom:12px!important;}
+body.v102-safe-polish .search-input,
+body.v102-safe-polish select,
+body.v102-safe-polish textarea{min-height:46px!important;padding:12px 13px!important;border-radius:17px!important;font-size:.96rem!important;box-sizing:border-box!important;}
+body.v102-safe-polish textarea{min-height:96px!important;}
+body.v102-safe-polish #journalMoodChips,
+body.v102-safe-polish .mood-chip-row{display:none!important;}
+body.v102-safe-polish .terpene-grid-v102{display:grid!important;gap:10px!important;}
+body.v102-safe-polish .terpene-card-v102{padding:13px!important;border-radius:20px!important;background:rgba(72,233,135,.075)!important;border:1px solid rgba(72,233,135,.14)!important;}
+body.v102-safe-polish .terpene-card-v102 h4{margin:0 0 5px!important;font-size:1.08rem!important;}
+body.v102-safe-polish .terpene-card-v102 .example-row{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin-top:9px!important;}
+body.v102-safe-polish .terpene-card-v102 button{width:auto!important;min-height:32px!important;padding:7px 9px!important;border-radius:999px!important;font-size:.76rem!important;}
+body.v102-safe-polish .bottom-nav{position:fixed!important;left:10px!important;right:10px!important;bottom:calc(7px + env(safe-area-inset-bottom))!important;height:var(--sr-nav-h)!important;min-height:0!important;max-height:var(--sr-nav-h)!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important;padding:7px!important;border-radius:22px!important;z-index:9000!important;overflow:visible!important;pointer-events:auto!important;}
+body.v102-safe-polish .bottom-nav .nav-btn{height:56px!important;min-height:0!important;width:100%!important;min-width:0!important;padding:5px 2px!important;border-radius:17px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;pointer-events:auto!important;touch-action:manipulation!important;}
+body.v102-safe-polish .bottom-nav span{font-size:1.04rem!important;line-height:1!important;}
+body.v102-safe-polish .bottom-nav b{font-size:.64rem!important;line-height:1!important;white-space:nowrap!important;}
+body.v102-safe-polish .modal{z-index:10000!important;align-items:flex-end!important;}
+body.v102-safe-polish .modal-card{max-height:92dvh!important;overflow-y:auto!important;padding:18px 15px calc(20px + env(safe-area-inset-bottom))!important;border-radius:26px 26px 0 0!important;}
+body.v102-safe-polish .toast{z-index:11000!important;bottom:calc(var(--sr-nav-h) + 20px + env(safe-area-inset-bottom))!important;}
+@media(min-width:700px){
+  body.v102-safe-polish #home .hero-actions{grid-template-columns:repeat(3,1fr)!important;}
+  body.v102-safe-polish #home .hero-actions button:first-child{grid-column:auto!important;}
+  body.v102-safe-polish #recentHome.mini-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  body.v102-safe-polish .sr-smart-actions{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+}
+@media(max-width:390px){
+  :root{--sr-nav-h:68px;--sr-card-pad:14px;--sr-gap:12px;}
+  body.v102-safe-polish{padding-left:10px!important;padding-right:10px!important;}
+  body.v102-safe-polish #home .brand-logo{max-height:72px!important;}
+  body.v102-safe-polish #home .hero h1{font-size:clamp(1.8rem,8.4vw,2.32rem)!important;}
+  body.v102-safe-polish .section-title h2,
+  body.v102-safe-polish .daily-card h2,
+  body.v102-safe-polish .panel h3,
+  body.v102-safe-polish .pro-card h2{font-size:clamp(1.28rem,5.6vw,1.8rem)!important;}
+  body.v102-safe-polish .bottom-nav .nav-btn{height:52px!important;}
+}

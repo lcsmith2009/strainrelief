@@ -1,3 +1,3 @@
-# StrainRelief V101 — Clean Controller From V71
+# StrainRelief V102 Safe Polish on Clean Controller
 
-Built from the V71 rollback base. This version keeps the stable app data/features, adds a final clean navigation/render controller, removes risky stacked patch behavior at runtime, preserves scrolling/Search/Terpene Explorer, and applies safer mobile layout fixes.
+Built from V101 clean-controller rollback base. Preserves Search, Terpene Explorer, Saved/Journal, and scrolling while restoring safe premium mobile polish.

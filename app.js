@@ -3967,7 +3967,7 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   function seededPick(pool,salt,count=4){
     const all=[...pool];
     let seed=0; String(salt).split('').forEach(ch=>seed=(seed*31+ch.charCodeAt(0))>>>0);
-    return all.sort((a,b)=>((seededHash ? seededHash(salt+a.name) : (seed+a.name.length)))-((seededHash ? seededHash(salt+b.name) : (seed+b.name.length)))).slice(0,count);
+    return all.sort((a,b)=>((typeof seededHash==='function' ? seededHash(salt+a.name) : (seed+a.name.length)))-((typeof seededHash==='function' ? seededHash(salt+b.name) : (seed+b.name.length)))).slice(0,count);
   }
   function examplesForTerpene(name){
     const pool=(typeof strains!=='undefined'?strains:[]).filter(s=>(s.terpenes||[]).some(t=>String(t).toLowerCase()===String(name).toLowerCase()));
@@ -4029,4 +4029,176 @@ window.addEventListener('pageshow', rotateTerpeneExplorer);
   window.addEventListener('load',()=>{refreshActive(); setTimeout(refreshActive,500);});
   window.addEventListener('pageshow',()=>setTimeout(refreshActive,120));
   window.addEventListener('resize',()=>setTimeout(refreshActive,120));
+})();
+
+
+/* =========================================================
+   V102 SAFE POLISH ON CLEAN V101 CONTROLLER
+   Purpose: restore premium polish without reintroducing old patch conflicts.
+   ========================================================= */
+(function(){
+  const VERSION='v102-safe-polish-on-v101-clean-controller';
+  const $ = (id)=>document.getElementById(id);
+  const TERPENE_NOTES = {
+    Caryophyllene:'Peppery and warm. Commonly discussed with grounded, body-comfort style directions.',
+    Humulene:'Earthy and herbal. Commonly discussed with balanced comfort and less snack-forward directions.',
+    Limonene:'Bright citrus aroma. Commonly discussed with upbeat, mood, and daytime-style directions.',
+    Linalool:'Floral, lavender-like aroma. Commonly discussed with calm and evening-style directions.',
+    Myrcene:'Earthy herbal aroma. Commonly discussed with relaxation and nighttime-style directions.',
+    Ocimene:'Sweet herbal aroma. Commonly discussed with bright, fresh, daytime-style profiles.',
+    Pinene:'Pine aroma. Commonly discussed with clearer, more alert daytime-style directions.',
+    Terpinolene:'Fresh herbal aroma. Commonly discussed with creative, bright, daytime-style directions.'
+  };
+
+  function hash(str){
+    let h=2166136261;
+    for(let i=0;i<String(str).length;i++){h^=String(str).charCodeAt(i);h=Math.imul(h,16777619);}
+    return h>>>0;
+  }
+  function safeOpen(name){ return (typeof safeName==='function') ? safeName(name) : String(name).replace(/'/g,"\\'"); }
+  function imgFor(s){ return (typeof strainImage==='function') ? strainImage(s) : (s.image||''); }
+  function sortedStrainList(){
+    if(typeof sortedStrains==='function') return sortedStrains();
+    if(Array.isArray(window.strains)) return [...window.strains].sort((a,b)=>a.name.localeCompare(b.name));
+    if(typeof strains!=='undefined') return [...strains].sort((a,b)=>a.name.localeCompare(b.name));
+    return [];
+  }
+  function textFor(s){
+    if(typeof searchableText==='function') return searchableText(s);
+    return [s.name,s.type,s.category,s.thc,s.cbd,s.time,s.flavor,(s.tags||[]).join(' '),(s.goals||[]).join(' '),(s.terpenes||[]).join(' ')].join(' ').toLowerCase();
+  }
+  function removeSplash(){
+    const splash=$('splash');
+    if(splash){ splash.style.display='none'; splash.remove(); }
+  }
+  function shell(){
+    document.body.classList.remove('v101-clean-controller');
+    document.body.classList.add('v102-safe-polish');
+    document.documentElement.style.overflow='';
+    document.body.style.overflow='';
+    document.body.style.position='';
+    document.body.style.height='';
+    removeSplash();
+  }
+  function cardHTMLSafe(s){
+    if(typeof cardHTML==='function') return cardHTML(s);
+    return `<article class="strain-card card-glow"><img src="${imgFor(s)}" alt="${s.name}"><h3>${s.name}</h3><p>${s.type||''}</p><div class="tags">${(s.tags||[]).slice(0,3).map(t=>`<span class="tag">${t}</span>`).join('')}</div><button onclick="openModal('${safeOpen(s.name)}')">Open Profile</button></article>`;
+  }
+  function fixHero(){
+    const hero=document.querySelector('#home .hero'); if(!hero) return;
+    const h=hero.querySelector('h1');
+    const p=hero.querySelector('p');
+    if(h) h.innerHTML='Find Your Wellness<br>Direction.';
+    if(p) p.textContent='Explore strain directions by mood, sleep, stress, body comfort, THC sensitivity, and terpene profile.';
+  }
+  function renderSmartV102(){
+    const box=$('smartInsights'); if(!box) return;
+    const list=sortedStrainList(); if(!list.length) return;
+    const day=new Date().toISOString().slice(0,10);
+    const lanes=[
+      ['Lower-THC lane', list.filter(s=>/cbd|very low|low thc|high cbd/i.test([s.name,s.type,s.category,s.thc,s.cbd,(s.tags||[]).join(' ')].join(' ')))],
+      ['Night direction', list.filter(s=>/night|evening|sleep|relax/i.test([s.time,s.category,(s.goals||[]).join(' '),(s.tags||[]).join(' ')].join(' ')))],
+      ['Daytime compare', list.filter(s=>/day|focus|energy|creative/i.test([s.time,s.category,(s.goals||[]).join(' '),(s.tags||[]).join(' ')].join(' ')))]
+    ].map(([label,pool],i)=>{
+      const usable=pool.length?pool:list;
+      const pick=[...usable].sort((a,b)=>hash(day+label+a.name)-hash(day+label+b.name))[i%usable.length];
+      return [label,pick];
+    });
+    box.innerHTML=`
+      <div class="panel-head sr-smart-head"><div><span class="eyebrow">Smart Recommendations</span><h3>Compare your next direction</h3></div><button class="small-btn ghost" onclick="showPage('recommend')">Match</button></div>
+      <p>Educational picks for timing, THC sensitivity, and terpene comparison.</p>
+      <div class="sr-smart-actions">${lanes.map(([label,s])=>`<button type="button" class="mini-item sr-smart-action" onclick="openModal('${safeOpen(s.name)}')"><strong>${label}</strong><span>${s.name}</span><small>${(s.terpenes||[]).slice(0,2).join(' + ')||'Terpene profile'}</small></button>`).join('')}</div>`;
+  }
+  function renderSearchV102(){
+    const grid=$('strainGrid'); if(!grid) return;
+    const query=($('searchInput')?.value||'').toLowerCase().trim();
+    const filter=(typeof currentFilter!=='undefined' ? currentFilter : 'All');
+    const list=sortedStrainList().filter(s=>{
+      const text=textFor(s);
+      return (!query || text.includes(query)) && (filter==='All' || text.includes(String(filter).toLowerCase()));
+    });
+    grid.innerHTML=list.length ? list.map(cardHTMLSafe).join('') : `<div class="panel card-glow"><h3>No strain directions found</h3><p>Try a strain name, terpene, goal, or feeling.</p></div>`;
+  }
+  function terpeneExamples(name){
+    const list=sortedStrainList();
+    const pool=list.filter(s=>(s.terpenes||[]).some(t=>String(t).toLowerCase()===name.toLowerCase()));
+    const usable=pool.length?pool:list;
+    const salt=`${name}-${new Date().getDate()}-v102`;
+    return [...usable].sort((a,b)=>hash(salt+a.name)-hash(salt+b.name)).slice(0,4);
+  }
+  function renderLearnV102(){
+    const quick=$('onboardingSlides');
+    if(quick) quick.innerHTML=`<h3>Quick Start</h3><div class="mini-list"><button class="mini-item" onclick="showPage('search')"><strong>1. Search</strong><br>Find directions by strain, goal, terpene, or timing.</button><button class="mini-item" onclick="showPage('recommend')"><strong>2. Match</strong><br>Compare your goal, time of day, and THC sensitivity.</button><button class="mini-item" onclick="showPage('saved')"><strong>3. Save + Journal</strong><br>Track favorites and notes locally on this device.</button></div>`;
+    const explorer=$('terpeneExplorer');
+    if(explorer){
+      const names=Object.keys(TERPENE_NOTES).sort((a,b)=>a.localeCompare(b));
+      explorer.innerHTML=`<h3>Terpene Explorer</h3><p>Alphabetized terpene education with rotating example strain directions.</p><div class="terpene-grid-v102">${names.map(name=>`<article class="terpene-card-v102"><h4>${name}</h4><p>${TERPENE_NOTES[name]}</p><div class="example-row">${terpeneExamples(name).map(s=>`<button type="button" onclick="openModal('${safeOpen(s.name)}')">${s.name}</button>`).join('')}</div></article>`).join('')}</div>`;
+    }
+    const loc=$('locatorBox');
+    if(loc) loc.innerHTML=`<h3>Dispensary Prep Checklist</h3><p>Use this when shopping legally. Compare lab results, THC/CBD percentages, terpene profile, serving size, and onset time.</p><div class="checklist"><div>✅ Lab-tested product / COA</div><div>✅ THC and CBD percentages</div><div>✅ Terpene profile</div><div>✅ Serving size and onset time</div><div>✅ Lower-THC or beginner-friendly options</div><div>✅ Follow local laws and do not drive impaired</div></div><button onclick="copyChecklist()">Copy Checklist</button>`;
+    const terms=$('termsBox');
+    if(terms) terms.innerHTML=`<h3>Privacy + Terms</h3><p>Favorites, recent views, and journal entries stay locally on this device. StrainRelief is educational only and does not provide medical advice.</p>`;
+    if($('learnGrid') && typeof education!=='undefined') $('learnGrid').innerHTML=education.map(e=>`<div class="education-card card-glow"><h3>${e.title}</h3><p>${e.body}</p></div>`).join('');
+  }
+  function renderRecentV102(){
+    const box=$('recentHome'); if(!box) return;
+    const recent=(typeof read==='function') ? read('srRecent',[]) : [];
+    box.innerHTML=recent.length ? recent.map(n=>{
+      const s=(typeof getStrain==='function') ? getStrain(n) : sortedStrainList().find(x=>x.name===n);
+      if(!s) return `<button class="mini-item" onclick="openModal('${safeOpen(n)}')">${n}</button>`;
+      return `<button type="button" class="mini-item sr-recent-card" onclick="openModal('${safeOpen(s.name)}')"><img src="${imgFor(s)}" alt="${s.name}" loading="lazy"><span><strong>${s.name}</strong><small>${s.category||s.type||'Strain direction'} · ${(s.terpenes||[])[0]||'Terpene profile'}</small></span></button>`;
+    }).join('') : `<div class="empty-state">No recently viewed strains yet. Open a strain profile to start.</div>`;
+  }
+  function cleanJournal(){
+    const row=$('journalMoodChips');
+    if(row){ row.innerHTML=''; row.style.display='none'; row.setAttribute('aria-hidden','true'); }
+  }
+  function refreshPage(id){
+    shell();
+    fixHero();
+    cleanJournal();
+    if(id==='home'){
+      if(typeof dailyTip==='function') dailyTip();
+      if(typeof renderFeatured==='function') renderFeatured();
+      renderSmartV102();
+      renderRecentV102();
+      if(typeof updateStats==='function') updateStats();
+    }
+    if(id==='search'){
+      if(typeof renderFilters==='function') renderFilters();
+      renderSearchV102();
+    }
+    if(id==='learn') renderLearnV102();
+    if(id==='saved'){
+      if(typeof renderSaved==='function') renderSaved();
+      if(typeof loadJournalSelect==='function') loadJournalSelect();
+      cleanJournal();
+    }
+    if(id==='recommend'){
+      if(typeof renderMatchedHistory==='function') renderMatchedHistory();
+    }
+  }
+  window.showPage=function(id){
+    const target=$(id); if(!target) id='home';
+    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+    const order=['home','search','recommend','saved','learn'];
+    document.querySelectorAll('.bottom-nav .nav-btn').forEach((btn,i)=>btn.classList.toggle('active',order[i]===id));
+    window.scrollTo({top:0,behavior:'auto'});
+    refreshPage(id);
+    setTimeout(()=>refreshPage(id),100);
+  };
+  window.renderSearch=renderSearchV102;
+  window.renderEducation=renderLearnV102;
+  window.renderRecentHome=renderRecentV102;
+  window.renderSmartInsights=renderSmartV102;
+  function init(){
+    const active=document.querySelector('.page.active')?.id || 'home';
+    refreshPage(active);
+    setTimeout(()=>refreshPage(document.querySelector('.page.active')?.id || active),250);
+  }
+  document.addEventListener('DOMContentLoaded',init);
+  window.addEventListener('load',init);
+  window.addEventListener('pageshow',()=>setTimeout(init,120));
+  window.addEventListener('resize',()=>setTimeout(init,120));
+  window.StrainReliefPatchVersion=VERSION;
 })();
