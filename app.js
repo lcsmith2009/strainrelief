@@ -653,7 +653,7 @@ function animatePremiumMeters(){
 
 
 /* ======================================================
-   V104 CLEAN REBUILD CONTROLLER
+   V105 CLEAN REBUILD CONTROLLER
    Purpose: one final controller, no stacked patch wrappers.
    - Keeps original data and core features.
    - Rebuilds Search/Home/Learn rendering safely.
@@ -688,7 +688,7 @@ function animatePremiumMeters(){
       "v70-final-deadspace-nav-polish","v71-home-alignment-nav-clearance","v72-home-final-repair","v74-home-pill-removal-balance",
       "v76-surgical-home-fix","v78-premium-card-image"
     );
-    document.body.classList.add("sr-v104-clean");
+    document.body.classList.add("sr-v104-clean","sr-v105-final-spacing");
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
   }
@@ -704,7 +704,7 @@ function animatePremiumMeters(){
     t.textContent=msg; t.style.display="block"; setTimeout(()=>t.style.display="none",1700);
   }
 
-  function cardHTMLV104(s,opts={}){
+  function cardHTMLV105(s,opts={}){
     const fit = typeof personalizedFitScore === "function" ? personalizedFitScore(s) : (s.score||86);
     const summary = (typeof aiDirectionSummary === "function" ? aiDirectionSummary(s) : (s.insight||"Educational strain direction to compare by THC level, terpene profile, and timing."));
     const tags = (s.tags||[]).slice(0, opts.compact ? 3 : 4).map(t=>`<span class="tag">${t}</span>`).join("");
@@ -717,7 +717,7 @@ function animatePremiumMeters(){
     </article>`;
   }
 
-  function renderFeaturedV104(){
+  function renderFeaturedV105(){
     const box=$id("trendingGrid"); if(!box || !Array.isArray(strains)) return;
     const seed = new Date().toDateString();
     const picked = [...strains]
@@ -726,11 +726,11 @@ function animatePremiumMeters(){
     // Daily, stable-ish mix without app-wide random layout jumps.
     const offset = Math.abs(seed.split('').reduce((n,c)=>n+c.charCodeAt(0),0)) % Math.max(1,picked.length);
     const mixed = picked.slice(offset).concat(picked.slice(0,offset)).slice(0,8);
-    box.innerHTML = mixed.map(s=>cardHTMLV104(s,{home:true,compact:true})).join("");
+    box.innerHTML = mixed.map(s=>cardHTMLV105(s,{home:true,compact:true})).join("");
     enhanceHorizontalRow(box);
   }
 
-  function renderSearchV104(){
+  function renderSearchV105(){
     const grid=$id("strainGrid"); if(!grid || !Array.isArray(strains)) return;
     const q=($id("searchInput")?.value||"").toLowerCase().trim();
     const active = typeof currentFilter !== "undefined" ? currentFilter : "All";
@@ -738,10 +738,10 @@ function animatePremiumMeters(){
       const text=textFor(s);
       return (!q || text.includes(q)) && (!active || active==="All" || text.includes(String(active).toLowerCase()));
     });
-    grid.innerHTML = filtered.length ? filtered.map(s=>cardHTMLV104(s,{compact:true})).join("") : `<div class="panel card-glow"><h3>No matches yet</h3><p>Try another strain, mood, terpene, type, flavor, or wellness direction.</p></div>`;
+    grid.innerHTML = filtered.length ? filtered.map(s=>cardHTMLV105(s,{compact:true})).join("") : `<div class="panel card-glow"><h3>No matches yet</h3><p>Try another strain, mood, terpene, type, flavor, or wellness direction.</p></div>`;
   }
 
-  function renderRecentHomeV104(){
+  function renderRecentHomeV105(){
     const box=$id("recentHome"); if(!box) return;
     const names = (typeof read === "function" ? read("srRecent",[]) : JSON.parse(localStorage.getItem("srRecent")||"[]")).slice(0,6);
     const recent = names.map(strainByName).filter(Boolean);
@@ -754,7 +754,7 @@ function animatePremiumMeters(){
     </button>`).join("")}</div>`;
   }
 
-  function renderSmartInsightsV104(){
+  function renderSmartInsightsV105(){
     const box=$id("smartInsights"); if(!box || !Array.isArray(strains)) return;
     const savedCount = typeof read === "function" ? read("srSaved",[]).length : 0;
     const journalCount = typeof read === "function" ? read("srJournal",[]).length : 0;
@@ -772,7 +772,7 @@ function animatePremiumMeters(){
     </div>`;
   }
 
-  function renderTerpeneExplorerV104(){
+  function renderTerpeneExplorerV105(){
     const explorer=$id("terpeneExplorer"); if(!explorer || !Array.isArray(terpenes)) return;
     const list=[...terpenes].sort((a,b)=>String(a[0]).localeCompare(String(b[0])));
     explorer.innerHTML = `<span class="eyebrow">Terpene Explorer</span><h3>Compare aroma profiles.</h3><p>Terpenes are aromatic compounds often associated with different cannabis aromas and user-reported directions. Effects vary by product and person.</p>
@@ -783,11 +783,11 @@ function animatePremiumMeters(){
       }).join("")}</div>`;
   }
 
-  function renderEducationV104(){
+  function renderEducationV105(){
     if(typeof originalRenderEducation === "function"){
       try { originalRenderEducation(); } catch(e){ console.warn("Education render recovered", e); }
     }
-    renderTerpeneExplorerV104();
+    renderTerpeneExplorerV105();
   }
 
   function removeJournalDuplicateChips(){
@@ -825,18 +825,18 @@ function animatePremiumMeters(){
     }
   }
 
-  function showPageV104(id){
+  function showPageV105(id){
     pageIds.forEach(pid=>$id(pid)?.classList.toggle("active",pid===id));
     document.querySelectorAll(".nav-btn").forEach((b,i)=>b.classList.toggle("active", pageIds[i]===id));
     normalizeScroll();
     if(id==="home"){
       if(typeof originalDailyTip === "function") originalDailyTip();
       if(typeof originalUpdateStats === "function") originalUpdateStats();
-      renderSmartInsightsV104(); renderFeaturedV104(); renderRecentHomeV104();
+      renderSmartInsightsV105(); renderFeaturedV105(); renderRecentHomeV105();
     }
     if(id==="search"){
       if(typeof originalRenderFilters === "function") originalRenderFilters();
-      renderSearchV104();
+      renderSearchV105();
     }
     if(id==="saved"){
       if(typeof originalLoadJournalSelect === "function") originalLoadJournalSelect();
@@ -844,7 +844,7 @@ function animatePremiumMeters(){
       if(typeof originalRenderJournal === "function") originalRenderJournal();
       removeJournalDuplicateChips();
     }
-    if(id==="learn") renderEducationV104();
+    if(id==="learn") renderEducationV105();
     window.scrollTo({top:0,behavior:"auto"});
     setTimeout(run,40);
   }
@@ -854,26 +854,26 @@ function animatePremiumMeters(){
     cleanSplash();
     fixBottomNav();
     removeJournalDuplicateChips();
-    if($id("smartInsights")) renderSmartInsightsV104();
-    if($id("trendingGrid")) renderFeaturedV104();
-    if($id("recentHome")) renderRecentHomeV104();
-    if($id("strainGrid")) renderSearchV104();
-    if($id("terpeneExplorer")) renderTerpeneExplorerV104();
+    if($id("smartInsights")) renderSmartInsightsV105();
+    if($id("trendingGrid")) renderFeaturedV105();
+    if($id("recentHome")) renderRecentHomeV105();
+    if($id("strainGrid")) renderSearchV105();
+    if($id("terpeneExplorer")) renderTerpeneExplorerV105();
     document.querySelectorAll("#home #trendingGrid,.v104-scroll-row").forEach(enhanceHorizontalRow);
     normalizeScroll();
   }
 
   // Final ownership handoff. These names are used by inline HTML handlers.
-  window.showPage = showPageV104;
-  window.renderSearch = renderSearchV104;
-  window.renderFeatured = renderFeaturedV104;
-  window.renderRecentHome = renderRecentHomeV104;
-  window.renderSmartInsights = renderSmartInsightsV104;
-  window.renderTerpeneExplorer = renderTerpeneExplorerV104;
-  window.renderEducation = renderEducationV104;
+  window.showPage = showPageV105;
+  window.renderSearch = renderSearchV105;
+  window.renderFeatured = renderFeaturedV105;
+  window.renderRecentHome = renderRecentHomeV105;
+  window.renderSmartInsights = renderSmartInsightsV105;
+  window.renderTerpeneExplorer = renderTerpeneExplorerV105;
+  window.renderEducation = renderEducationV105;
   window.renderMoodChips = removeJournalDuplicateChips;
 
-  $id("searchInput")?.addEventListener("input", renderSearchV104);
+  $id("searchInput")?.addEventListener("input", renderSearchV105);
   $id("journalMood")?.addEventListener("change", removeJournalDuplicateChips);
   document.addEventListener("DOMContentLoaded",()=>{ setTimeout(run,0); setTimeout(run,180); });
   window.addEventListener("load",()=>{ setTimeout(run,0); setTimeout(run,300); });

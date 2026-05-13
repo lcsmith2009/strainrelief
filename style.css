@@ -10387,3 +10387,232 @@ body.sr-v104-clean{
 @media (prefers-reduced-motion:reduce){
   .sr-v104-clean *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
 }
+
+/* ======================================================
+   V105 FINAL SPACING STABILITY PATCH
+   Purpose: compact the stable V104 rebuild without touching
+   Search data, Terpene Explorer data, or scroll ownership.
+====================================================== */
+body.sr-v104-clean{
+  padding:10px 12px calc(84px + env(safe-area-inset-bottom))!important;
+}
+/* Keep first screen premium but stop the CTA from being clipped */
+.sr-v104-clean #home .hero{
+  padding:14px 14px 16px!important;
+  margin:10px 0 10px!important;
+  overflow:visible!important;
+}
+.sr-v104-clean #home .brand-logo{
+  max-height:76px!important;
+  width:min(68vw,360px)!important;
+  margin:0 auto 6px!important;
+}
+.sr-v104-clean #home .hero .eyebrow{
+  font-size:10px!important;
+  line-height:1.1!important;
+  margin-bottom:4px!important;
+}
+.sr-v104-clean #home .hero h1{
+  font-size:clamp(29px,7.8vw,42px)!important;
+  line-height:.96!important;
+  margin:2px 0 7px!important;
+  text-wrap:balance;
+}
+.sr-v104-clean #home .hero p{
+  font-size:13.6px!important;
+  line-height:1.32!important;
+  max-width:32em!important;
+  margin:0 auto!important;
+  text-align:center!important;
+}
+.sr-v104-clean .hero-actions{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px!important;
+  margin-top:12px!important;
+}
+.sr-v104-clean .hero-actions button{
+  min-height:39px!important;
+  padding:8px 6px!important;
+  border-radius:15px!important;
+  font-size:11.8px!important;
+  line-height:1.08!important;
+  white-space:normal!important;
+}
+.sr-v104-clean .hero-mini-strip{
+  margin-top:8px!important;
+  gap:7px!important;
+}
+.sr-v104-clean .hero-mini-strip span{
+  padding:7px 4px!important;
+  border-radius:15px!important;
+  font-size:10.8px!important;
+  line-height:1.1!important;
+}
+.sr-v104-clean .hero-mini-strip strong{
+  font-size:18px!important;
+  line-height:1!important;
+}
+/* Daily card: keep the profile CTA inside the card and separate pills below */
+.sr-v104-clean .daily-card{
+  padding:15px 16px 18px!important;
+  margin:12px 0 14px!important;
+  overflow:visible!important;
+}
+.sr-v104-clean .daily-card h2{
+  font-size:clamp(25px,6.7vw,34px)!important;
+  line-height:1.02!important;
+  margin-bottom:7px!important;
+}
+.sr-v104-clean .daily-card p{
+  font-size:14.2px!important;
+  line-height:1.38!important;
+  margin:0!important;
+}
+.sr-v104-clean .daily-card .inline-link{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  vertical-align:middle!important;
+  margin:8px 0 0!important;
+  min-height:36px!important;
+  padding:8px 14px!important;
+  border-radius:999px!important;
+  font-size:12.5px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+.sr-v104-clean .quick-row{
+  margin:14px 0 16px!important;
+  gap:9px!important;
+}
+.sr-v104-clean .quick-row button{
+  min-height:42px!important;
+  padding:10px 8px!important;
+  border-radius:15px!important;
+  font-size:12.8px!important;
+}
+/* Progress card: prevent clipped stat labels */
+.sr-v104-clean .pro-card{
+  padding:16px!important;
+  margin:14px 0!important;
+}
+.sr-v104-clean .pro-card h2{
+  font-size:clamp(28px,7vw,38px)!important;
+  margin-bottom:11px!important;
+}
+.sr-v104-clean .stat-row{
+  gap:9px!important;
+}
+.sr-v104-clean .stat-row div{
+  min-height:78px!important;
+  padding:11px 6px 10px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:visible!important;
+}
+.sr-v104-clean .stat-row strong{
+  font-size:25px!important;
+  line-height:1!important;
+  margin-bottom:5px!important;
+}
+.sr-v104-clean .stat-row span{
+  font-size:11px!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+}
+/* Home rhythm and card density */
+.sr-v104-clean .panel,
+.sr-v104-clean .section-title,
+.sr-v104-clean .strain-card,
+.sr-v104-clean .education-card{
+  margin:13px 0!important;
+}
+.sr-v104-clean .section-title{
+  padding:16px!important;
+}
+.sr-v104-clean .section-title h2{
+  font-size:clamp(30px,8vw,44px)!important;
+  line-height:.98!important;
+}
+.sr-v104-clean .section-title p{
+  font-size:14.3px!important;
+}
+.sr-v104-clean #home #trendingGrid{
+  gap:10px!important;
+  padding:2px 4px 14px!important;
+  margin-bottom:8px!important;
+}
+.sr-v104-clean #home #trendingGrid .strain-card{
+  flex:0 0 min(74vw,292px)!important;
+  min-width:min(74vw,292px)!important;
+}
+.sr-v104-clean .strain-card{
+  padding:13px!important;
+}
+.sr-v104-clean .card-hero{
+  height:124px!important;
+  min-height:124px!important;
+  max-height:124px!important;
+  border-radius:18px!important;
+  margin-bottom:10px!important;
+}
+.sr-v104-clean .strain-card h3{
+  font-size:clamp(22px,5.7vw,29px)!important;
+  line-height:1.03!important;
+}
+.sr-v104-clean #search .strain-card .card-hero{
+  height:118px!important;
+  min-height:118px!important;
+  max-height:118px!important;
+}
+/* Recently Viewed should look like clean cards, not loose rows */
+.sr-v104-clean .v104-recent-grid{
+  grid-template-columns:1fr!important;
+  gap:9px!important;
+}
+.sr-v104-clean .v104-recent-card{
+  min-height:72px!important;
+  border-radius:20px!important;
+  padding:11px!important;
+  background:linear-gradient(135deg,rgba(72,233,135,.13),rgba(255,255,255,.035))!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.18)!important;
+}
+.sr-v104-clean .v104-thumb{
+  width:52px!important;
+  height:52px!important;
+}
+.sr-v104-clean .v104-recent-card strong{
+  font-size:15px!important;
+}
+/* Bottom nav: lower and slimmer while keeping taps clickable */
+.sr-v104-clean .bottom-nav{
+  bottom:calc(4px + env(safe-area-inset-bottom))!important;
+  width:min(420px,calc(100vw - 20px))!important;
+  padding:6px 6px calc(6px + env(safe-area-inset-bottom))!important;
+  border-radius:21px!important;
+  gap:4px!important;
+}
+.sr-v104-clean .bottom-nav button{
+  min-height:46px!important;
+  padding:5px 2px!important;
+  border-radius:15px!important;
+  font-size:10.5px!important;
+}
+.sr-v104-clean .bottom-nav button span{
+  font-size:15px!important;
+}
+.sr-v104-clean .bottom-nav button b{
+  font-size:10px!important;
+}
+.sr-v104-clean .toast{bottom:calc(76px + env(safe-area-inset-bottom))!important;}
+@media (max-width:380px){
+  .sr-v104-clean #home .brand-logo{max-height:68px!important;width:min(66vw,320px)!important;}
+  .sr-v104-clean #home .hero h1{font-size:27px!important;}
+  .sr-v104-clean #home .hero p{font-size:12.8px!important;line-height:1.28!important;}
+  .sr-v104-clean .hero-actions button{font-size:10.8px!important;min-height:37px!important;}
+  .sr-v104-clean #home #trendingGrid .strain-card{flex-basis:78vw!important;min-width:78vw!important;}
+  .sr-v104-clean .stat-row div{min-height:74px!important;}
+}
